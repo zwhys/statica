@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material"
 import React from "react"
 
-export function Home() {
+export function HomePage() {
   return <Typography>Home Page</Typography>
 }
 
-export default Home
+export default HomePage

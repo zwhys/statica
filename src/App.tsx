@@ -1,18 +1,18 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Calendar } from "./pages/calendar"
-import { Statistics } from "./pages/statistics"
+import { CalendarPage } from "./pages/calendarPage"
+import { StatsPage } from "./pages/statsPage"
 import NoPage from "./pages/noPage"
-import Home from "./pages/home"
+import HomePage from "./pages/homePage"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={ <Home/>}/>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/calendar" element={<Calendar/>}/>
-        <Route path="/statistics" element={<Statistics/>}/>
+        <Route index element={ <HomePage/>}/>
+        <Route path="/home" element={<HomePage/>}/>
+        <Route path="/calendar" element={<CalendarPage/>}/>
+        <Route path="/statistics" element={<StatsPage/>}/>
         <Route path="*" element={<NoPage/>}/>
       </Routes>
     </BrowserRouter>
