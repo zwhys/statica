@@ -4,6 +4,7 @@ import './index.css';
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, teal } from "@mui/material/colors"
 import App from './App';
+import ExerTractHeader from './header';
 
 const theme = createTheme({
   palette: {
@@ -25,7 +26,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <ExerTractHeader/>
+        <App/>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
