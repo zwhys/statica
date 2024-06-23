@@ -4,7 +4,7 @@ import './index.css';
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from './App';
-import ExerTractHeader from './header';
+import ExerTractHeader from './components/header';
 
 const theme = createTheme({
   palette: {
