@@ -1,5 +1,4 @@
 import {
-  Stack,
   Button,
   Box,
   Dialog,
@@ -12,7 +11,7 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 
-export function SelectExerciseType() {
+export function CreateExerciseInstance() {
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -87,4 +86,4 @@ export function SelectExerciseType() {
   )
 }
 
-export default SelectExerciseType
+export default CreateExerciseInstance
