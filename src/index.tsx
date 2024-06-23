@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createTheme, ThemeProvider } from "@mui/material"
-import { red, green, teal } from "@mui/material/colors"
+import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from './App';
 import ExerTractHeader from './header';
 
 const theme = createTheme({
   palette: {
     primary: teal,
+    secondary: deepPurple,
     error: red,
     success: green
   },

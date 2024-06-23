@@ -1,36 +1,50 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import { Avatar, Typography } from '@mui/material';
-import Link from '@mui/material/Link';
+import React from "react"
+import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
 
 export function ExerTractHeader() {
   return (
-    <AppBar position='static' >
-      <Toolbar sx={{margin: 1}}>
-        <Box display='flex' alignItems='centre'>
-          <Link href='https://github.com/zwhys' underline='none'>
-            <Avatar
-              alt='Logo'
-              src='favicon.ico'
-              sx={{ marginRight: 2, cursor: 'pointer', width: 56, height: 56 }}
-            />
-          </Link>
+    <AppBar position="static">
+      <Toolbar sx={{ margin: 1 }}>
+        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
-            underline='none'
-            variant='h4'
-            sx={{ color: 'inherit', cursor: 'pointer' }}
+            href="https://github.com/zwhys"
+            underline="none"
+            sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >
-            <Typography color={'white'} fontSize={32}>
-              {' '}
-              ExerTract{' '}
+            <Avatar alt="Logo" src="favicon.ico" sx={{ marginRight: 2, width: 56, height: 56 }} />
+            <Typography color="white" fontSize={32}>
+              ExerTract
             </Typography>
           </Link>
+          <Box display="flex" alignItems="center">
+            <Link
+              href="/calendar"
+              underline="hover"
+              color="inherit"
+              variant="h3"
+              sx={{ marginLeft: 2, cursor: "pointer" }}
+            >
+              <Typography color="white" fontSize={24}>
+                Calendar
+              </Typography>
+            </Link>
+
+            <Link
+              href="/statistics"
+              underline="hover"
+              color="inherit"
+              variant="h3"
+              sx={{ marginLeft: 2, cursor: "pointer" }}
+            >
+              <Typography color="white" fontSize={24}>
+                Statistics
+              </Typography>
+            </Link>
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>
-  );
+  )
 }
 
-export default ExerTractHeader;
+export default ExerTractHeader
