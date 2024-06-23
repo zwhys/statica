@@ -7,11 +7,11 @@ export function ExerTractHeader() {
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
-            href="https://github.com/zwhys"
+            href="/home"
             underline="none"
             sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >
-            <Avatar alt="Logo" src="favicon.ico" sx={{ marginRight: 2, width: 56, height: 56 }} />
+            <Avatar alt="Logo" variant="rounded" src="favicon.ico" sx={{ marginRight: 2, width: 56, height: 56 }} />
             <Typography color="white" fontSize={32}>
               ExerTract
             </Typography>
