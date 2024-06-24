@@ -3,7 +3,7 @@ import React from "react"
 import DisplayExerciseStatistics from "../components/displayExerciseStatistics"
 import HeaderHome from "../components/headerHome"
 
-export function StatsPage() {
+export function StatisticsPage() {
   return (
     <>
       <HeaderHome />
@@ -32,4 +32,4 @@ export function StatsPage() {
   )
 }
 
-export default StatsPage
+export default StatisticsPage

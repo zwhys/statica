@@ -1,7 +1,7 @@
 import { Box, Typography, Link } from "@mui/material"
 import React from "react"
 
-export function NoPage() {
+export function NotFoundPage() {
   //TODO: Improve UI for NoPage
   return (
     <Box
@@ -29,4 +29,4 @@ export function NoPage() {
   )
 }
 
-export default NoPage
+export default NotFoundPage

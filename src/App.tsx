@@ -1,8 +1,8 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { CalendarPage } from "./pages/calendarPage"
-import { StatsPage } from "./pages/statsPage"
-import NoPage from "./pages/noPage"
+import { StatisticsPage } from "./pages/statisticsPage"
+import NotFoundPage from "./pages/notFoundPage"
 import HomePage from "./pages/homePage"
 import LandingPage from "./pages/landingPage"
 
@@ -14,8 +14,8 @@ function App() {
         <Route path="/landing" element={<LandingPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/calendar" element={<CalendarPage/>}/>
-        <Route path="/statistics" element={<StatsPage/>}/>
-        <Route path="*" element={<NoPage/>}/>
+        <Route path="/statistics" element={<StatisticsPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
         

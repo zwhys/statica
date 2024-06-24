@@ -2,7 +2,7 @@ import React from "react"
 import { Typography, Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 
-export function HomePage() {
+export function HomePage() { //TODO Remove home page
   return (
     <>
       <HeaderHome />
