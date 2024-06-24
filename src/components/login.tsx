@@ -22,14 +22,25 @@ export function Login() {
         }}
       >
         <Typography variant="h5" component="h1" gutterBottom>
-          Login
+          Log in to your account
         </Typography>
         <TextField label="Username" variant="outlined" fullWidth margin="normal" />
         <TextField label="Password" variant="outlined" type="password" fullWidth margin="normal" />
-        <Link href="/calendar">
+        <Link href="/home">
           <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
             Login
           </Button>
+        </Link>
+        <Link
+          href="/statistics"
+          underline="always"
+          color="inherit"
+          variant="h3"
+          sx={{ marginLeft: 2, cursor: "pointer" }}
+        >
+          <Typography variant="body1">
+            Forgot Password?
+          </Typography>
         </Link>
       </Box>
     </Container>

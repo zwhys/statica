@@ -1,8 +1,9 @@
 import React from "react"
 import { Login } from "../components/login"
+import { Typography } from "@mui/material"
 
 export function HomePage() {
-  return <Login />
+  return <Typography>hehe</Typography>
 }
 
 export default HomePage

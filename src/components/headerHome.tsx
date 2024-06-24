@@ -1,7 +1,7 @@
 import React from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
 
-export function ExerTractHeader() {
+export function HeaderHome() {
   return (
     <AppBar position="static">
       <Toolbar sx={{ margin: 1 }}>
@@ -47,4 +47,4 @@ export function ExerTractHeader() {
   )
 }
 
-export default ExerTractHeader
+export default HeaderHome

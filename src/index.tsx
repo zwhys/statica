@@ -4,7 +4,7 @@ import "./index.css"
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from "./App"
-import ExerTractHeader from "./components/header"
+import HeaderHome from "./components/headerHome"
 import './App.css';
 
 const theme = createTheme({
@@ -27,7 +27,7 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <ExerTractHeader />
+      <HeaderHome />
       {/* <Box
         sx={{
           backgroundImage: `url(/background.jpg)`,
