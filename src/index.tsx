@@ -1,11 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
-import { Box, createTheme, ThemeProvider } from "@mui/material"
+import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from "./App"
 import ExerTractHeader from "./components/header"
-// import './App.css';
+import './App.css';
 
 const theme = createTheme({
   palette: {
