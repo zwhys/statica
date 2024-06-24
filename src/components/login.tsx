@@ -9,7 +9,7 @@ import {
   DialogContent
 } from "@mui/material"
 
-export function LogIn() {
+export function LogIn() { //TODO Remove Forget Username & Forget Password Functionality
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
