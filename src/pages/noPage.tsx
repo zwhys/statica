@@ -4,16 +4,16 @@ import React from "react"
 export function NoPage() {
   return (
     <Container>
-          <Typography variant="h4" gutterBottom>
+          <Typography sx={{color: 'white'}} variant="h4" gutterBottom>
             404 - Page Not Found
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography sx={{color: 'white'}} variant="body1" paragraph>
             Oops! The page you are looking for might have been removed, had its name changed,
             or is temporarily unavailable.
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography sx={{color: 'white'}} variant="body1" paragraph>
             Please check the URL for any spelling mistakes, or{' '}
-            <Link href="/home">
+            <Link href="/home" >
               return to the homepage
             </Link>
             .

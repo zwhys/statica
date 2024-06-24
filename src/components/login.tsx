@@ -1,7 +1,15 @@
 import React, { useState } from "react"
-import { Link, Dialog, DialogContent, Box, Typography, TextField, Button } from "@mui/material"
+import {
+  Link,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Dialog,
+  DialogContent
+} from "@mui/material"
 
-export function SignUp() {
+export function LogIn() {
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -14,12 +22,12 @@ export function SignUp() {
   return (
     <>
       <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={handleClickOpen}>
-        Sign Up
+        Sign In
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           <Typography variant="h5" component="h1" gutterBottom>
-            Create an account
+            Sign in to your account
           </Typography>
           <TextField label="Username" variant="outlined" fullWidth margin="normal" />
           <TextField
@@ -60,4 +68,4 @@ export function SignUp() {
   )
 }
 
-export default SignUp
+export default LogIn

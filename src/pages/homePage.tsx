@@ -1,9 +1,15 @@
 import React from "react"
-import { Login } from "../components/signin"
+import { LogIn } from "../components/login"
 import { Typography } from "@mui/material"
+import HeaderHome from "../components/headerHome"
 
 export function HomePage() {
-  return <Typography>hehe</Typography>
+  return (
+    <>
+      <HeaderHome />
+      <Typography>hehe</Typography>
+    </>
+  )
 }
 
 export default HomePage

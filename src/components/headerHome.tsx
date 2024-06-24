@@ -13,7 +13,7 @@ export function HeaderHome() {
           >
             <Avatar alt="Logo" variant="rounded" src="favicon.ico" sx={{ marginRight: 2, width: 56, height: 56 }} />
             <Typography color="white" fontSize={32}>
-              ExerTract
+              Traxer
             </Typography>
           </Link>
           <Box display="flex" alignItems="center">

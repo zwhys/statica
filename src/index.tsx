@@ -6,6 +6,7 @@ import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from "./App"
 import HeaderHome from "./components/headerHome"
 import './App.css';
+import HeaderLanding from "./components/headerLanding"
 
 const theme = createTheme({
   palette: {
@@ -27,7 +28,6 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <HeaderHome />
       {/* <Box
         sx={{
           backgroundImage: `url(/background.jpg)`,
