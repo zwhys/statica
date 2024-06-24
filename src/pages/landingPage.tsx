@@ -1,7 +1,7 @@
 import React from "react"
 import SignUp from "../components/signup"
 import HeaderLanding from "../components/headerLanding"
-import { Box, Container, Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 export function LandingPage() {
   return (
@@ -10,22 +10,31 @@ export function LandingPage() {
       <Box
         display="flex"
         alignItems="center"
-        height="100vh"
+        textAlign="center"
+        justifyContent="center"
         sx={{
-          flexDirection: "column",
-          gap: 2,
-          width: "50%",
+          height: 500,
           bgcolor: "white",
           margin: 10,
-          backgroundColor: "white",
           padding: "16px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
         }}
-        textAlign="center"
-        justifyContent="center"
       >
-        <Typography variant="h2">Track workout progress, without thinking</Typography>
-        <SignUp />
+        <Box
+          sx={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column"
+          }}
+        >
+          <Typography variant="h2">Text Here</Typography>
+          <SignUp />
+        </Box>
+        <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Typography variant="h2">Image Here</Typography>
+        </Box>
       </Box>
     </>
   )

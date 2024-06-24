@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, Typography, Box, Toolbar, Link, AppBar, Button } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
 import LogIn from "./login"
 import SignUp from "./signup"
 

@@ -12,9 +12,11 @@ export function CalendarPage() {
         sx={{
           display: "flex",
           flexDirection: "column",
+          bgcolor: "white",
           gap: 2,
-          width: "80%",
-          margin: "0 auto"
+          padding: 5,
+          margin: 10,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
         }}
       >
         <Calendar />

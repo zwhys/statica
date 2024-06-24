@@ -4,9 +4,7 @@ import "./index.css"
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, teal, deepPurple } from "@mui/material/colors"
 import App from "./App"
-import HeaderHome from "./components/headerHome"
 import './App.css';
-import HeaderLanding from "./components/headerLanding"
 
 const theme = createTheme({
   palette: {
