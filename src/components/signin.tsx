@@ -14,7 +14,7 @@ export function Login() {
     >
       <Box
         sx={{
-          width: 300,
+          width: 500,
           padding: 4,
           borderRadius: 1,
           boxShadow: 1,
@@ -31,17 +31,26 @@ export function Login() {
             Login
           </Button>
         </Link>
-        <Link
-          href="/statistics"
-          underline="always"
-          color="inherit"
-          variant="h3"
-          sx={{ marginLeft: 2, cursor: "pointer" }}
-        >
-          <Typography variant="body1">
-            Forgot Password?
-          </Typography>
-        </Link>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Link
+            href="/statistics"
+            underline="always"
+            color="inherit"
+            variant="body1"
+            sx={{ cursor: "pointer" }}
+          >
+            <Typography variant="body1">Forgot Password?</Typography>
+          </Link>
+          <Link
+            href="/statistics"
+            underline="always"
+            color="inherit"
+            variant="body1"
+            sx={{ marginLeft: 1, cursor: "pointer" }}
+          >
+            <Typography variant="body1">Forgot Username?</Typography>
+          </Link>
+        </Box>
       </Box>
     </Container>
   )

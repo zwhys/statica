@@ -1,5 +1,5 @@
 import React from "react"
-import { Login } from "../components/login"
+import { Login } from "../components/signin"
 import { Typography } from "@mui/material"
 
 export function HomePage() {
