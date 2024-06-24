@@ -17,7 +17,8 @@ export function StatsPage() {
           bgcolor: "white",
           margin: 10,
           padding: "16px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          borderRadius: 8
         }}
         textAlign="center"
         justifyContent="center"
