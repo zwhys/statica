@@ -11,7 +11,7 @@ export function HeaderHome() {
             underline="none"
             sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >
-            <Avatar alt="Logo" variant="rounded" src="favicon.ico" sx={{ marginRight: 2, width: 56, height: 56 }} />
+            <Avatar alt="Logo" variant="rounded" src="logo.png" sx={{ marginRight: 2, width: 56, height: 56 }} />
             <Typography color="white" fontSize={32}>
               Traxer
             </Typography>

@@ -16,7 +16,7 @@ export function HeaderLanding() {
             <Avatar
               alt="Logo"
               variant="rounded"
-              src="favicon.ico"
+              src="logo.png"
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
             <Typography color="white" fontSize={32}>
