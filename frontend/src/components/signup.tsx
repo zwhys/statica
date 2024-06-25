@@ -29,31 +29,11 @@ export function SignUp() {
             fullWidth
             margin="normal"
           />
-          <Link href="/home">
+          <Link href="/calendar">
             <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
               Login
             </Button>
           </Link>
-          <Box display="flex" alignItems="center" justifyContent="space-between">
-            <Link
-              href="/statistics"
-              underline="always"
-              color="inherit"
-              variant="body1"
-              sx={{ cursor: "pointer" }}
-            >
-              <Typography variant="body1">Forgot Password?</Typography>
-            </Link>
-            <Link
-              href="/statistics"
-              underline="always"
-              color="inherit"
-              variant="body1"
-              sx={{ marginLeft: 1, cursor: "pointer" }}
-            >
-              <Typography variant="body1">Forgot Username?</Typography>
-            </Link>
-          </Box>
         </DialogContent>
       </Dialog>
     </>

@@ -9,7 +9,7 @@ export function HeaderLanding() {
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
-            href="/home"
+            href="/landing"
             underline="none"
             sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >

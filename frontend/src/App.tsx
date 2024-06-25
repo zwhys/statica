@@ -3,16 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { CalendarPage } from "./pages/calendarPage"
 import { StatisticsPage } from "./pages/statisticsPage"
 import NotFoundPage from "./pages/notFoundPage"
-import HomePage from "./pages/homePage"
 import LandingPage from "./pages/landingPage"
 
 function App() { //TODO Start making tables in postgreSQL and read on database normalisation
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={ <HomePage/>}/>
+        <Route index element={ <LandingPage/>}/>
         <Route path="/landing" element={<LandingPage/>}/>
-        <Route path="/home" element={<HomePage/>}/>
         <Route path="/calendar" element={<CalendarPage/>}/>
         <Route path="/statistics" element={<StatisticsPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>

@@ -1,15 +1,8 @@
 import React, { useState } from "react"
-import {
-  Link,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Dialog,
-  DialogContent
-} from "@mui/material"
+import { Link, Box, Typography, TextField, Button, Dialog, DialogContent } from "@mui/material"
 
-export function LogIn() { //TODO Remove Forget Username & Forget Password Functionality
+export function LogIn() {
+  //TODO Remove Forget Username & Forget Password Functionality
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -37,31 +30,11 @@ export function LogIn() { //TODO Remove Forget Username & Forget Password Functi
             fullWidth
             margin="normal"
           />
-          <Link href="/home">
+          <Link href="/calandar">
             <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
               Login
             </Button>
           </Link>
-          <Box display="flex" alignItems="center" justifyContent="space-between">
-            <Link
-              href="/statistics"
-              underline="always"
-              color="inherit"
-              variant="body1"
-              sx={{ cursor: "pointer" }}
-            >
-              <Typography variant="body1">Forgot Password?</Typography>
-            </Link>
-            <Link
-              href="/statistics"
-              underline="always"
-              color="inherit"
-              variant="body1"
-              sx={{ marginLeft: 1, cursor: "pointer" }}
-            >
-              <Typography variant="body1">Forgot Username?</Typography>
-            </Link>
-          </Box>
         </DialogContent>
       </Dialog>
     </>

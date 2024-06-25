@@ -23,7 +23,7 @@ export function NotFoundPage() {
       <Typography sx={{ color: "black" }} variant="body1" paragraph>
         Oops! The page you are looking for might have been removed, had its name changed, or is
         temporarily unavailable. Please check the URL for any spelling mistakes, or{" "}
-        <Link href="/home">return to the homepage</Link>.
+        <Link href="/landing">return to the homepage</Link>.
       </Typography>
     </Box>
   )
