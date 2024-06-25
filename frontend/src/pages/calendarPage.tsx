@@ -1,10 +1,33 @@
-import { Box, Typography, Button } from "@mui/material"
-import HeaderHome from "../components/headerHome"
-import React from "react"
-import Calandar from "../components/calendar"
-import AddExerciseEvent from "../components/addExerciseEvent"
+import React, { useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import HeaderHome from "../components/headerHome";
+import Calandar from "../components/calendar";
+import AddExerciseEvent from "../components/addExerciseEvent";
+import { EventApi, DateSelectArg } from "@fullcalendar/core";
 
-export function CalendarPage() {
+const CalendarPage: React.FC = () => {
+  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectInfo, setSelectInfo] = useState<DateSelectArg | null>(null);
+
+  const handleDateSelect = (selectInfo: DateSelectArg) => {
+    setSelectInfo(selectInfo);
+    setDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleCreateEvent = (
+    sets: string,
+    reps: string,
+    exerciseType: string,
+    comments: string
+  ) => {
+    // Your event creation logic
+  };
+
   return (
     <>
       <HeaderHome />
@@ -25,7 +48,11 @@ export function CalendarPage() {
           <Typography variant="h3" sx={{ margin: 3 }}>
             Welcome, Username
           </Typography>
-          <AddExerciseEvent />
+          <AddExerciseEvent
+            open={dialogOpen}
+            handleClose={handleClose}
+            handleCreateEvent={handleCreateEvent}
+          />
           <Typography fontSize={33} sx={{ margin: 3 }}>
             Frequently Used
           </Typography>
@@ -44,7 +71,7 @@ export function CalendarPage() {
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default CalendarPage
+export default CalendarPage;

@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { CalendarPage } from "./pages/calendarPage"
-import { StatisticsPage } from "./pages/statisticsPage"
+import CalendarPage from "./pages/calendarPage"
+import StatisticsPage from "./pages/statisticsPage"
 import NotFoundPage from "./pages/notFoundPage"
 import LandingPage from "./pages/landingPage"
 

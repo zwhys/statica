@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Typography,
   Grid,
   DialogTitle,
   TextField
