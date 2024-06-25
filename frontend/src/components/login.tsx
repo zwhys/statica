@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, Box, Typography, TextField, Button, Dialog, DialogContent } from "@mui/material"
+import { Link, Typography, TextField, Button, Dialog, DialogContent } from "@mui/material"
 
 export function LogIn() {
   const [open, setOpen] = useState(false)

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, Dialog, DialogContent, Box, Typography, TextField, Button } from "@mui/material"
+import { Link, Dialog, DialogContent, Typography, TextField, Button } from "@mui/material"
 
 export function SignUp() {
   const [open, setOpen] = useState(false)

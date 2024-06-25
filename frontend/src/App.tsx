@@ -5,7 +5,7 @@ import { StatisticsPage } from "./pages/statisticsPage"
 import NotFoundPage from "./pages/notFoundPage"
 import LandingPage from "./pages/landingPage"
 
-function App() { //TODO Start making tables in postgreSQL and read on database normalisation
+function App() { //TODO Read on database normalisation
   return (
     <BrowserRouter>
       <Routes>

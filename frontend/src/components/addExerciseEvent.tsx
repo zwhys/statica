@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 
-export function CreateExerciseInstance() {
+export function AddExerciseEvent() {
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -24,10 +24,10 @@ export function CreateExerciseInstance() {
   return (
     <Box textAlign="center">
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
-        Create New Workout
+        Add Exercise Event
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle sx={{}}>Create New Workout</DialogTitle>
+        <DialogTitle sx={{}}>Add Exercise Event</DialogTitle>
         <DialogContent>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
@@ -86,4 +86,4 @@ export function CreateExerciseInstance() {
   )
 }
 
-export default CreateExerciseInstance
+export default AddExerciseEvent

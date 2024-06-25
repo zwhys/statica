@@ -1,7 +1,8 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import HeaderHome from "../components/headerHome"
-import Calendar from "../components/calender"
 import React from "react"
+import Calandar from "../components/calendar"
+import AddExerciseEvent from "../components/addExerciseEvent"
 
 export function CalendarPage() {
   return (
@@ -11,7 +12,7 @@ export function CalendarPage() {
         textAlign="center"
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           bgcolor: "white",
           gap: 2,
           padding: 5,
@@ -20,7 +21,13 @@ export function CalendarPage() {
           borderRadius: 8
         }}
       >
-        <Calendar />
+        <Box sx={{ width: "25%" }}>
+          <Typography>Testing</Typography>
+          <AddExerciseEvent />
+        </Box>
+        <Box sx={{ width: "75%" }}>
+          <Calandar />
+        </Box>
       </Box>
     </>
   )
