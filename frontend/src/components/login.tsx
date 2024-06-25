@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Link, Box, Typography, TextField, Button, Dialog, DialogContent } from "@mui/material"
 
 export function LogIn() {
-  //TODO Remove Forget Username & Forget Password Functionality
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -15,12 +14,12 @@ export function LogIn() {
   return (
     <>
       <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={handleClickOpen}>
-        Sign In
+        Log In
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           <Typography variant="h5" component="h1" gutterBottom>
-            Sign in to your account
+            Log in to your account
           </Typography>
           <TextField label="Username" variant="outlined" fullWidth margin="normal" />
           <TextField
@@ -30,7 +29,7 @@ export function LogIn() {
             fullWidth
             margin="normal"
           />
-          <Link href="/calandar">
+          <Link href="/calendar">
             <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
               Login
             </Button>
