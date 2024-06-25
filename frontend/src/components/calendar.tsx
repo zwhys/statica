@@ -1,76 +1,89 @@
-import React from "react"
-import { EventApi, DateSelectArg, EventContentArg } from "@fullcalendar/core"
-import FullCalendar from "@fullcalendar/react"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import timeGridPlugin from "@fullcalendar/timegrid"
-import interactionPlugin from "@fullcalendar/interaction"
-import { INITIAL_EVENTS, createEventId } from "./calendar-utils"
+import React, { useState } from "react";
+import { EventApi, DateSelectArg, EventContentArg } from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS, createEventId } from "./calendar-utils";
+import AddExerciseEvent from "./addExerciseEvent";
 
-interface DemoAppState {
-  weekendsVisible: boolean
-  currentEvents: EventApi[]
-}
+export default function Calendar() {
+  const [weekendsVisible, setWeekendsVisible] = useState(true);
+  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectInfo, setSelectInfo] = useState<DateSelectArg | null>(null);
 
-export default class Calandar extends React.Component<{}, DemoAppState> {
-  state: DemoAppState = {
-    weekendsVisible: true,
-    currentEvents: []
-  }
+  const handleDateSelect = (selectInfo: DateSelectArg) => {
+    setSelectInfo(selectInfo);
+    setDialogOpen(true);
+  };
 
-  render() {
-    return (
-      <div className="demo-app">
-        <div className="demo-app-main">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            headerToolbar={{
-              left: "prev,next",
-              center: "title",
-              right: "today",
-            }}
-            initialView="dayGridMonth"
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            initialEvents={INITIAL_EVENTS}
-            select={this.handleDateSelect}
-            eventContent={renderEventContent}
-            eventsSet={this.handleEvents}
-            themeSystem="bootstrap" // Set the theme system here
-          />
-        </div>
-      </div>
-    )
-  }
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
 
-  handleDateSelect = (selectInfo: DateSelectArg) => {
-    let title = prompt("Please enter a new title for your event")
-    let calendarApi = selectInfo.view.calendar
+  const handleCreateEvent = (sets: string, reps: string, exerciseType: string, comments: string) => {
+    if (selectInfo) {
+      let calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect() // clear date selection
+      calendarApi.unselect(); // clear date selection
 
-    if (title) {
       calendarApi.addEvent({
         id: createEventId(),
-        title,
+        title: `${sets} sets of ${reps} reps of ${exerciseType}`,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      })
+        allDay: selectInfo.allDay,
+        extendedProps: {
+          comments: comments
+        }
+      });
+
+      handleClose();
     }
-  }
-  handleEvents = (events: EventApi[]) => {
-    this.setState({
-      currentEvents: events
-    })
-  }
+  };
+
+  const handleEvents = (events: EventApi[]) => {
+    setCurrentEvents(events);
+  };
+
+  return (
+    <div className="demo-app">
+      <div className="demo-app-main">
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          headerToolbar={{
+            left: "prev,next",
+            center: "title",
+            right: "today",
+          }}
+          initialView="dayGridMonth"
+          editable={true}
+          selectable={true}
+          selectMirror={true}
+          dayMaxEvents={true}
+          initialEvents={INITIAL_EVENTS}
+          select={handleDateSelect}
+          eventContent={renderEventContent}
+          eventsSet={handleEvents}
+          themeSystem="bootstrap"
+        />
+      </div>
+      <AddExerciseEvent
+        open={dialogOpen}
+        handleClose={handleClose}
+        handleCreateEvent={handleCreateEvent}
+      />
+    </div>
+  );
 }
 
 function renderEventContent(eventContent: EventContentArg) {
   return (
     <>
       <i>{eventContent.event.title}</i>
+      <br />
+      <small>{eventContent.event.extendedProps.comments}</small>
     </>
-  )
+  );
 }

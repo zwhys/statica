@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, Button } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 import React from "react"
 import Calandar from "../components/calendar"
@@ -22,8 +22,22 @@ export function CalendarPage() {
         }}
       >
         <Box sx={{ width: "25%" }}>
-          <Typography>Testing</Typography>
+          <Typography variant="h3" sx={{ margin: 3 }}>
+            Welcome, Username
+          </Typography>
           <AddExerciseEvent />
+          <Typography fontSize={33} sx={{ margin: 3 }}>
+            Frequently Used
+          </Typography>
+          <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
+            Frequently Used 1
+          </Button>
+          <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
+            Frequently Used 2
+          </Button>
+          <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
+            Frequently Used 3
+          </Button>
         </Box>
         <Box sx={{ width: "75%" }}>
           <Calandar />

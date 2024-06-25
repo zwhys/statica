@@ -8,24 +8,32 @@ import {
   Grid,
   DialogTitle,
   TextField
-} from "@mui/material"
-import React, { useState } from "react"
+} from "@mui/material";
+import React, { useState } from "react";
 
-export function AddExerciseEvent() {
-  const [open, setOpen] = useState(false)
+interface AddExerciseEventProps {
+  open: boolean;
+  handleClose: () => void;
+  handleCreateEvent: (sets: string, reps: string, exerciseType: string, comments: string) => void;
+}
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
+const AddExerciseEvent: React.FC<AddExerciseEventProps> = ({ open, handleClose, handleCreateEvent }) => {
+  const [sets, setSets] = useState("");
+  const [reps, setReps] = useState("");
+  const [exerciseType, setExerciseType] = useState("");
+  const [comments, setComments] = useState("");
 
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const handleCreate = () => {
+    handleCreateEvent(sets, reps, exerciseType, comments);
+    setSets("");
+    setReps("");
+    setExerciseType("");
+    setComments("");
+    handleClose();
+  };
+
   return (
     <Box textAlign="center">
-      <Button variant="contained" color="primary" onClick={handleClickOpen}>
-        Add Exercise Event
-      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{}}>Add Exercise Event</DialogTitle>
         <DialogContent>
@@ -36,11 +44,10 @@ export function AddExerciseEvent() {
                 label="No. of Sets"
                 variant="outlined"
                 placeholder="Eg. 3"
+                value={sets}
+                onChange={(e) => setSets(e.target.value)}
                 sx={{ width: 150 }}
               />
-            </Grid>
-            <Grid item>
-              <Typography>X</Typography>
             </Grid>
             <Grid item>
               <TextField
@@ -48,11 +55,10 @@ export function AddExerciseEvent() {
                 label="No. of Reps"
                 variant="outlined"
                 placeholder="Eg. 10"
+                value={reps}
+                onChange={(e) => setReps(e.target.value)}
                 sx={{ width: 150 }}
               />
-            </Grid>
-            <Grid item>
-              <Typography>of</Typography>
             </Grid>
             <Grid item>
               <TextField
@@ -60,11 +66,21 @@ export function AddExerciseEvent() {
                 label="Type of Exercise"
                 variant="outlined"
                 placeholder="Eg. Pushups"
+                value={exerciseType}
+                onChange={(e) => setExerciseType(e.target.value)}
                 sx={{ width: 150 }}
               />
             </Grid>
           </Grid>
-          <TextField sx={{width: "100%", marginTop: 2}} label="Comments" multiline maxRows={4} placeholder="Eg. Feelings, Difficulty, ..."></TextField>
+          <TextField
+            sx={{ width: "100%", marginTop: 2 }}
+            label="Comments"
+            multiline
+            maxRows={4}
+            placeholder="Eg. Feelings, Difficulty, ..."
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
+          />
         </DialogContent>
         <DialogActions>
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
@@ -77,14 +93,14 @@ export function AddExerciseEvent() {
             >
               Cancel
             </Button>
-            <Button variant="contained" color="primary" fullWidth sx={{ margin: 2 }}>
+            <Button variant="contained" color="primary" fullWidth sx={{ margin: 2 }} onClick={handleCreate}>
               Create
             </Button>
           </Box>
         </DialogActions>
       </Dialog>
     </Box>
-  )
-}
+  );
+};
 
-export default AddExerciseEvent
+export default AddExerciseEvent;
