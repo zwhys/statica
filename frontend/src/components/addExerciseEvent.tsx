@@ -64,6 +64,7 @@ export function AddExerciseEvent() {
               />
             </Grid>
           </Grid>
+          <TextField sx={{width: "100%", marginTop: 2}} label="Comments" multiline maxRows={4} placeholder="Eg. Feelings, Difficulty, ..."></TextField>
         </DialogContent>
         <DialogActions>
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
