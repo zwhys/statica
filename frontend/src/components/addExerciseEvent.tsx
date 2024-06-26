@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Typography,
   Grid,
   DialogTitle,
   TextField
@@ -26,9 +25,9 @@ export function AddExerciseEvent() {
       <Button size="large" variant="contained" color="primary" onClick={handleClickOpen}>
         Add Exercise Event
       </Button>
-      <Dialog open={open} onClose={handleClose} >
-        <DialogTitle >Add Exercise Event</DialogTitle>
-        <DialogContent >
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Add Exercise Event</DialogTitle>
+        <DialogContent>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
               <TextField
@@ -36,7 +35,7 @@ export function AddExerciseEvent() {
                 label="Type of Exercise"
                 variant="outlined"
                 placeholder="Eg. Pushups"
-                sx={{ width: 150}}
+                sx={{ width: 150, marginTop: 1 }}
               />
             </Grid>
             <Grid item>
@@ -45,7 +44,7 @@ export function AddExerciseEvent() {
                 label="No. of Sets"
                 variant="outlined"
                 placeholder="Eg. 3"
-                sx={{ width: 150}}
+                sx={{ width: 150, marginTop: 1 }}
               />
             </Grid>
             <Grid item>
@@ -54,11 +53,17 @@ export function AddExerciseEvent() {
                 label="No. of Reps"
                 variant="outlined"
                 placeholder="Eg. 10"
-                sx={{ width: 150 }}
+                sx={{ width: 150, marginTop: 1 }}
               />
             </Grid>
           </Grid>
-          <TextField sx={{width: "100%", marginTop: 2}} label="Comments" multiline maxRows={4} placeholder="Eg. Feelings, Difficulty, ..."></TextField>
+          <TextField
+            sx={{ width: "100%", marginTop: 2 }}
+            label="Comments"
+            multiline
+            maxRows={4}
+            placeholder="Eg. Feelings, Difficulty, ..."
+          ></TextField>
         </DialogContent>
         <DialogActions>
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
