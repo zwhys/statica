@@ -1,0 +1,16 @@
+INSERT INTO records (userid, date_of_entry, exercise_type, sets, reps, comments) VALUES
+    (1, '2024-06-26', 'Pushups', 3, 15, 'Feeling good today'),
+    (2, '2024-06-25', 'Situps', 2, 20, 'Worked on form'),
+    (1, '2024-06-24', 'Bicep Curls', 4, 12, 'Increased weight'),
+    (3, '2024-06-23', 'Squats', 5, 10, 'Focused on depth'),
+    (2, '2024-06-26', 'Pull-ups', 3, 8, 'Improved grip strength'),
+    (1, '2024-06-25', 'Deadlift', 5, 5, 'New personal record'),
+    (3, '2024-06-24', 'Bench Press', 4, 10, 'Added extra set'),
+    (1, '2024-06-23', 'Dips', 3, 12, 'Superset with pushups'),
+    (2, '2024-06-22', 'Shoulder Press', 3, 12, 'Focused on form'),
+    (3, '2024-06-21', 'Leg Press', 4, 15, 'Increased weight'),
+    (1, '2024-06-20', 'Plank', 1, 60, 'Core workout'),
+    (2, '2024-06-19', 'Burpees', 3, 20, 'High-intensity interval training'),
+    (3, '2024-06-18', 'Mountain Climbers', 3, 30, 'Cardio session'),
+    (1, '2024-06-17', 'Russian Twists', 3, 20, 'Worked obliques'),
+    (2, '2024-06-16', 'Leg Raises', 3, 15, 'Core workout');
