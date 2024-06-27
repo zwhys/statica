@@ -59,7 +59,7 @@ export function AddExerciseEvent() {
           </Grid>
           <TextField
             sx={{ width: "100%", marginTop: 2 }}
-            label="Comments"
+            label="Remarks"
             multiline
             maxRows={4}
             placeholder="Eg. Feelings, Difficulty, ..."

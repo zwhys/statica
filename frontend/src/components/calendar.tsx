@@ -23,7 +23,7 @@ interface DemoAppState {
   exerciseType: string
   setNumber: string
   repNumber: string
-  comments: string
+  remarks: string
 }
 
 export default class Calendar extends React.Component<{}, DemoAppState> {
@@ -34,7 +34,7 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
     exerciseType: "",
     setNumber: "",
     repNumber: "",
-    comments: ""
+    remarks: ""
   }
 
   render() {
@@ -100,12 +100,12 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
             </Grid>
             <TextField
               sx={{ width: "100%", marginTop: 2 }}
-              label="Comments"
+              label="Remarks"
               multiline
               maxRows={4}
               placeholder="Eg. Feelings, Difficulty, ..."
-              value={this.state.comments}
-              onChange={e => this.setState({ comments: e.target.value })}
+              value={this.state.remarks}
+              onChange={e => this.setState({ remarks: e.target.value })}
             />
           </DialogContent>
           <DialogActions>
@@ -145,12 +145,12 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
       exerciseType: "",
       setNumber: "",
       repNumber: "",
-      comments: ""
+      remarks: ""
     })
   }
 
   handleCreateEvent = () => {
-    const { exerciseType, setNumber, repNumber, comments } = this.state
+    const { exerciseType, setNumber, repNumber, remarks } = this.state
     const title = `${exerciseType} - ${setNumber} sets, ${repNumber} reps`
 
     this.handleClose()

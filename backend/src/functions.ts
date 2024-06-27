@@ -1,54 +1,19 @@
-import db from './db';
+import db from "./db";
 
-export const getDevices = async () => { //TODO: Configure this to work for traxer
+export const getUsers = async () => {
   try {
-    const devicesQuery = `
+    const usersQuery = `
       SELECT 
         id AS "id", 
-        serialnumber AS "serialNumber", 
-        name AS "name", 
-        brand AS "brand", 
-        vendor AS "vendor", 
-        type AS "type", 
-        osversioncurrent AS "osVersionCurrent", 
-        osversionlatest AS "osVersionLatest", 
-        clsrating AS "clsRating", 
-        remarks AS "remarks"
-      FROM devices
-      WHERE isCatalog = false;
+        username AS "username"
+        password AS "password"
+      FROM users
     `;
 
-    const { rows } = await db.query(devicesQuery);
+    const { rows } = await db.query(usersQuery);
     return rows;
   } catch (err) {
-    console.error('Error fetching devices:', err);
-    throw err;
-  }
-};
-
-
-export const getCatalog = async () => {
-  try {
-    const catalogQuery = `
-      SELECT 
-        id AS "id", 
-        serialnumber AS "serialNumber", 
-        name AS "name", 
-        brand AS "brand", 
-        vendor AS "vendor", 
-        type AS "type", 
-        osversioncurrent AS "osVersionCurrent", 
-        osversionlatest AS "osVersionLatest", 
-        clsrating AS "clsRating", 
-        remarks AS "remarks"
-      FROM devices
-      WHERE isCatalog = true;
-    `;
-
-    const { rows } = await db.query(catalogQuery);
-    return rows;
-  } catch (err) {
-    console.error('Error fetching catalog:', err);
+    console.error("Error fetching devices:", err);
     throw err;
   }
 };
@@ -57,23 +22,36 @@ export const getRecords = async () => {
   try {
     const recordsQuery = `
       SELECT 
+        entryid AS "entryid"
         id AS "id", 
-        bodypart AS "bodyPart", 
-        recordtype AS "recordType", 
-        datetimecreated AS "dateTimeCreated", 
-        datetimeaccessed AS "dateTimeAccessed", 
-        accesslocation AS "accessLocation", 
-        accessterminal AS "accessTerminal", 
-        accessaction AS "accessAction", 
-        accessedby AS "accessedBy", 
-        accessorrole AS "accessorRole"
+        date_of_entry AS "date_of_entry"
+        exercise_type AS "exercise_type"
+        sets AS "sets"
+        reps AS "reps"
+        remarks AS "remarks"
       FROM records;
     `;
 
     const { rows } = await db.query(recordsQuery);
     return rows;
   } catch (err) {
-    console.error('Error fetching medical records:', err);
+    console.error("Error fetching medical records:", err);
+    throw err;
+  }
+};
+
+export const getExercise_types = async () => {
+  try {
+    const exercise_typesQuery = `
+      SELECT
+        exercise_types AS "exercise_types", 
+      FROM exercise_types
+    `;
+
+    const { rows } = await db.query(exercise_typesQuery);
+    return rows;
+  } catch (err) {
+    console.error("Error fetching catalog:", err);
     throw err;
   }
 };
