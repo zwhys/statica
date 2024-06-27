@@ -1,10 +1,13 @@
-#TODO: Ensure migration and seeding script works
+#TODO: Make sure that frontend can take data from backend and display it
+#TODO: Allow for data to be entered from the frontend into the db
+
+
 #!/bin/bash
 
 # Database credentials
 DB_HOST="localhost"
 DB_PORT="5432"
-DB_NAME="synergy_prod"
+DB_NAME="traxerdb"
 MIGRATIONS_DIR="./migrations"
 
 # Function to check if the database exists
@@ -12,7 +15,7 @@ check_db_exists() {
   psql -h $DB_HOST -p $DB_PORT -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'"
 }
 
-# Optionally drop the database if it exists (Uncomment to enable)
+# Optionally drop the database if it exists
 echo "Checking if database needs to be dropped..."
 DB_EXISTS=$(check_db_exists)
 if [ ! -z "$DB_EXISTS" ]; then

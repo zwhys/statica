@@ -13,7 +13,7 @@ export const getUsers = async () => {
     const { rows } = await db.query(usersQuery);
     return rows;
   } catch (err) {
-    console.error("Error fetching devices:", err);
+    console.error("Error fetching users:", err);
     throw err;
   }
 };
@@ -35,7 +35,7 @@ export const getRecords = async () => {
     const { rows } = await db.query(recordsQuery);
     return rows;
   } catch (err) {
-    console.error("Error fetching medical records:", err);
+    console.error("Error fetching records:", err);
     throw err;
   }
 };
@@ -51,7 +51,7 @@ export const getExercise_types = async () => {
     const { rows } = await db.query(exercise_typesQuery);
     return rows;
   } catch (err) {
-    console.error("Error fetching catalog:", err);
+    console.error("Error fetching exercise_types:", err);
     throw err;
   }
 };

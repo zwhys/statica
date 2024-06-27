@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material"
 import React from "react"
 import DisplayExerciseStatistics from "../components/displayExerciseStatistics"
 import HeaderHome from "../components/headerHome"
+import DisplayData from "../components/displayData"
 
 export function StatisticsPage() {
   return (
@@ -27,6 +28,7 @@ export function StatisticsPage() {
           Exercise Statistics
         </Typography>
         <DisplayExerciseStatistics />
+        <DisplayData/>
       </Box>
     </>
   )

@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS records;
-
 CREATE TABLE
     records (
         entryid SERIAL PRIMARY KEY NOT NULL,
