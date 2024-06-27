@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getUsers, getRecords, getExercise_types } from "../../../backend/src/api" // Adjust path as per your project structure
+import { getUsers, getRecords, getExercise_types } from ""
 import {
   Table,
   TableBody,
@@ -10,6 +10,7 @@ import {
   Paper,
   Typography
 } from "@mui/material"
+
 
 const DisplayData: React.FC = () => {
   const [users, setUsers] = useState<any[]>([])
