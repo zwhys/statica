@@ -1,3 +1,4 @@
+#TODO: Ensure migration and seeding script works
 #!/bin/bash
 
 # Database credentials
