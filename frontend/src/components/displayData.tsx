@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getUsers, getRecords, getExercise_types } from ""
+import { getUsers, getRecords, getExercise_types } from "api.ts"
 import {
   Table,
   TableBody,
