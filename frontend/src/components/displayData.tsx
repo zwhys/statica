@@ -65,10 +65,10 @@ const DisplayData: React.FC = () => {
           throw new Error("Failed to fetch data")
         }
         console.log(response)
-        const responseRecords = await response.json() // Extract JSON data from response
+        const responseRecords = await response.json()
         setRecords(responseRecords)
       } catch (error) {
-        console.error("Error fetching data:", error) // Handle error gracefully, e.g., set state for error message
+        console.error("Error fetching data:", error)
       }
     }
 
@@ -154,10 +154,10 @@ const DisplayData: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {exercise_types.map(exercise_types => (
-              <TableRow key={exercise_types.id}>
-                <TableCell>{exercise_types.id}</TableCell>
-                <TableCell>{exercise_types.exercise_type}</TableCell>
+            {exercise_types.map(exercise_type => (
+              <TableRow key={exercise_type.id}>
+                <TableCell>{exercise_type.id}</TableCell>
+                <TableCell>{exercise_type.exercise_type}</TableCell>
               </TableRow>
             ))}
           </TableBody>

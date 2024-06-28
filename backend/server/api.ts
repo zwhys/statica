@@ -3,11 +3,7 @@ import db from "./db";
 export const getUsers = async () => {
   try {
     const usersQuery = `
-      SELECT 
-        id AS "id", 
-        username AS "username",
-        password AS "password"
-      FROM users;
+      SELECT * FROM users;
     `;
 
     const { rows } = await db.query(usersQuery);
@@ -22,13 +18,7 @@ export const getRecords = async () => {
   try {
     const recordsQuery = `
       SELECT 
-        id AS "id",
-        userid AS "userid", 
-        date_of_entry AS "date_of_entry",
-        exercise_type AS "exercise_type",
-        sets AS "sets",
-        reps AS "reps",
-        remarks AS "remarks"
+        *
       FROM records;
     `;
 
@@ -44,8 +34,7 @@ export const getExercise_types = async () => {
   try {
     const exercise_typesQuery = `
       SELECT
-        id AS "id",
-        exercise_types AS "exercise_types"
+        *
       FROM exercise_types;
     `;
 

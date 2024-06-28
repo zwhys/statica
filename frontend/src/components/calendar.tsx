@@ -6,16 +6,21 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS } from "./calendar-utils";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  TextField,
-  Grid,
   Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
 } from "@mui/material";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 type FormValues = {
   open: boolean;
@@ -26,7 +31,7 @@ type FormValues = {
 };
 
 const Calendar: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
+  const { control, register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -37,11 +42,31 @@ const Calendar: React.FC = () => {
     setOpen(false);
   };
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log("Form submitted with data:", data);
-    handleClose();
-    reset();
-  };
+  const onSubmit: SubmitHandler<FormValues> = async data => {
+    try {
+      const response = await fetch("/add_exercise_entry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          userId: 1,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to add exercise entry")
+      }
+
+      console.log("Exercise entry added successfully")
+      handleClose()
+      reset()
+    } catch (error) {
+      console.error("Error adding exercise entry:", error)
+      // Handle error (e.g., show error message to user)
+    }
+  }
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     setOpen(true);
@@ -77,16 +102,30 @@ const Calendar: React.FC = () => {
           <DialogContent>
             <Grid container spacing={2} alignItems="center">
               <Grid item>
-                <TextField
-                  id="exercise_type"
-                  label="Type of Exercise"
+              <FormControl
                   variant="outlined"
-                  placeholder="Eg. Pushups"
-                  sx={{ width: 150, marginTop: 1 }}
-                  {...register("exercise_type", { required: true })}
                   error={!!errors.exercise_type}
-                  helperText={errors.exercise_type ? "Required" : ""}
-                />
+                  sx={{ width: 200, marginTop: 1 }}
+                >
+                  <InputLabel id="exercise-type-label">Type of Exercise</InputLabel>
+                  <Controller
+                    name="exercise_type"
+                    control={control}
+                    defaultValue=""
+                    rules={{ required: "Required" }}
+                    render={({ field }) => (
+                      <Select
+                        id="exercise_type"
+                        label="Type of Exercise"
+                        {...field}
+                      >
+                        <MenuItem value="Pushups">Pushups</MenuItem>
+
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText>{errors.exercise_type?.message}</FormHelperText>
+                </FormControl>
               </Grid>
               <Grid item>
                 <TextField

@@ -3,7 +3,7 @@ import HeaderHome from "../components/headerHome"
 import React, { useState } from "react"
 import Calandar from "../components/calendar"
 import { DateSelectArg } from "@fullcalendar/core"
-import AddExerciseEvent from "../components/addExerciseEvent"
+import AddExerciseEntry from "../components/addExerciseEntry"
 
 export function CalendarPage() {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -39,7 +39,7 @@ export function CalendarPage() {
             <Typography variant="h3" sx={{ margin: 3 }}>
               Welcome, Username
             </Typography>
-            <AddExerciseEvent/>
+            <AddExerciseEntry/>
             <Typography fontSize={33} sx={{ margin: 3 }}>
               Frequently Used
             </Typography>
