@@ -1,4 +1,3 @@
-#TODO: Fix symbolic link in frontend
 #TODO: Make sure that frontend can take data from backend and display it
 #TODO: Allow for data to be entered from the frontend into the db
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { getUsers, getRecords, getExercise_types } from "api.ts"
 import {
   Table,
   TableBody,
@@ -8,95 +7,68 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography
+  Typography,
 } from "@mui/material"
 
+type User = {
+  id: number
+  username: string
+  password: string
+}
 
 const DisplayData: React.FC = () => {
-  const [users, setUsers] = useState<any[]>([])
+  const [users, setUsers] = useState<User[]>([])
   const [records, setRecords] = useState<any[]>([])
   const [exerciseTypes, setExerciseTypes] = useState<any[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersData = await getUsers()
-        const recordsData = await getRecords()
-        const exerciseTypesData = await getExercise_types()
+        const response = await fetch("localhost:3001/users") // URL to fetch from
+        if (!response.ok) {
+          throw new Error("Failed to fetch data")
+        }
 
-        setUsers(usersData)
-        setRecords(recordsData)
-        setExerciseTypes(exerciseTypesData)
+        console.log(response)
+
+        const responseData = await response.json() // Extract JSON data from response
+        // const recordsData = await getRecords()
+        // const exerciseTypesData = await getExercise_types()
+
+        setUsers(responseData)
+        // setRecords(recordsData)
+        // setExerciseTypes(exerciseTypesData)
       } catch (error) {
         console.error("Error fetching data:", error)
         // Handle error gracefully, e.g., set state for error message
       }
+      console.log("users", users)
     }
 
     fetchData()
   }, [])
 
   return (
-    <>
-      <Typography variant = "h2">Users</Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Username</TableCell>
-              <TableCell>Password</TableCell>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell>Username</TableCell>
+            <TableCell>Password</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {users.map(user => (
+            <TableRow key={user.id}>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.username}</TableCell>
+              <TableCell>{user.password}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map(user => (
-              <TableRow key={user.id}>
-                <TableCell>{user.id}</TableCell>
-                <TableCell>{user.username}</TableCell>
-                <TableCell>{user.password}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <h2>Records</h2>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Entry ID</TableCell>
-              <TableCell>ID</TableCell>
-              <TableCell>Date of Entry</TableCell>
-              <TableCell>Exercise Type</TableCell>
-              <TableCell>Sets</TableCell>
-              <TableCell>Reps</TableCell>
-              <TableCell>Remarks</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {records.map(record => (
-              <TableRow key={record.entryid}>
-                <TableCell>{record.entryid}</TableCell>
-                <TableCell>{record.id}</TableCell>
-                <TableCell>{record.date_of_entry}</TableCell>
-                <TableCell>{record.exercise_type}</TableCell>
-                <TableCell>{record.sets}</TableCell>
-                <TableCell>{record.reps}</TableCell>
-                <TableCell>{record.remarks}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography variant = "h2">Exercise Types</Typography>
-      <ul>
-        {exerciseTypes.map(type => (
-          <li key={type.exercise_types}>{type.exercise_types}</li>
-        ))}
-      </ul>
-    </>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 

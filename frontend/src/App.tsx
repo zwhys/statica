@@ -5,7 +5,7 @@ import StatisticsPage from "./pages/statisticsPage"
 import NotFoundPage from "./pages/notFoundPage"
 import LandingPage from "./pages/landingPage"
 
-function App() { //TODO: Read on database normalisation
+function App() {
   return (
     <BrowserRouter>
       <Routes>

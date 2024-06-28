@@ -5,9 +5,9 @@ export const getUsers = async () => {
     const usersQuery = `
       SELECT 
         id AS "id", 
-        username AS "username"
+        username AS "username",
         password AS "password"
-      FROM users
+      FROM users;
     `;
 
     const { rows } = await db.query(usersQuery);
@@ -22,12 +22,12 @@ export const getRecords = async () => {
   try {
     const recordsQuery = `
       SELECT 
-        entryid AS "entryid"
+        entryid AS "entryid",
         id AS "id", 
-        date_of_entry AS "date_of_entry"
-        exercise_type AS "exercise_type"
-        sets AS "sets"
-        reps AS "reps"
+        date_of_entry AS "date_of_entry",
+        exercise_type AS "exercise_type",
+        sets AS "sets",
+        reps AS "reps",
         remarks AS "remarks"
       FROM records;
     `;

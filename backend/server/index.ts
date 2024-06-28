@@ -5,13 +5,15 @@ import { getUsers, getExercise_types, getRecords } from "./api";
 const app = express();
 const port = 3001;
 
-app.use(cors());
+app.use(
+  cors({ origin: "localhost", methods: ["GET", "POST", "PUT", "DELETE"] })
+);
 
 app.get("/users", async (req, res) => {
   setTimeout(async () => {
     try {
-      const devices = await getUsers();
-      res.json(devices);
+      const users = await getUsers();
+      res.json(users);
     } catch (err) {
       console.error("Server error:", err);
       res.status(500).send("Server error");
@@ -22,8 +24,8 @@ app.get("/users", async (req, res) => {
 app.get("/exercise_types", async (req, res) => {
   setTimeout(async () => {
     try {
-      const devices = await getExercise_types();
-      res.json(devices);
+      const exercise_types = await getExercise_types();
+      res.json(exercise_types);
     } catch (err) {
       console.error("Server error:", err);
       res.status(500).send("Server error");
@@ -34,8 +36,8 @@ app.get("/exercise_types", async (req, res) => {
 app.get("/records", async (req, res) => {
   setTimeout(async () => {
     try {
-      const devices = await getRecords();
-      res.json(devices);
+      const records = await getRecords();
+      res.json(records);
     } catch (err) {
       console.error("Server error:", err);
       res.status(500).send("Server error");

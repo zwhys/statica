@@ -28,8 +28,8 @@ export function StatisticsPage() {
           Exercise Statistics
         </Typography>
         <DisplayExerciseStatistics />
-        <DisplayData/>
       </Box>
+        <DisplayData/>
     </>
   )
 }

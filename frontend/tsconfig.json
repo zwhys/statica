@@ -19,10 +19,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
-    "paths": {
-      "api.ts": ["node_modules/api.ts"]
-    }
   },
   "include": [
     "src"
