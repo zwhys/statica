@@ -1,22 +1,25 @@
+import React, { useState, useEffect } from "react"
 import {
-  //TODO: Make sure select take exercise types from db
-  Button,
   Box,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
-  Grid,
   DialogTitle,
-  TextField,
-  MenuItem,
   FormControl,
-  InputLabel,
-  Select,
   FormHelperText,
-  SelectChangeEvent,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
 } from "@mui/material"
-import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+
+interface Props {
+  open: boolean
+  onClose: () => void
+}
 
 type FormValues = {
   exercise_type: string
@@ -30,7 +33,7 @@ type Exercise_types = {
   exercise_type: string
 }
 
-export const AddExerciseEntry: React.FC = () => {
+export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
 
   const {
@@ -40,8 +43,7 @@ export const AddExerciseEntry: React.FC = () => {
     formState: { errors },
     reset,
   } = useForm<FormValues>()
-  const [open, setOpen] = useState(false)
-  const [exercise_type, setExercise_type] = React.useState("")
+
   const onSubmit: SubmitHandler<FormValues> = async data => {
     try {
       const response = await fetch("http://localhost:3001/add_exercise_entry", {
@@ -49,8 +51,7 @@ export const AddExerciseEntry: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({...data,
-          userId: 1,}),
+        body: JSON.stringify({ ...data, userid: 1, date_of_entry: new Date(Date.now()).toISOString() }),
       })
 
       if (!response.ok) {
@@ -58,16 +59,11 @@ export const AddExerciseEntry: React.FC = () => {
       }
 
       console.log("Exercise entry added successfully")
-      handleClose()
+      handleClose() // Call onClose function passed as prop to close the dialog
       reset()
     } catch (error) {
       console.error("Error adding exercise entry:", error)
-      // Handle error (e.g., show error message to user)
     }
-  }
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setExercise_type(event.target.value as string)
   }
 
   useEffect(() => {
@@ -80,29 +76,22 @@ export const AddExerciseEntry: React.FC = () => {
           throw new Error("Failed to fetch data")
         }
         console.log(response)
-        const responseExercise_types = await response.json() // Extract JSON data from response
+        const responseExercise_types = await response.json()
         setExercise_types(responseExercise_types)
       } catch (error) {
-        console.error("Error fetching data:", error) // Handle error gracefully, e.g., set state for error message
+        console.error("Error fetching data:", error)
       }
     }
 
     fetchExercise_types()
   }, [])
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
   const handleClose = () => {
-    setOpen(false)
+    onClose()
   }
 
   return (
     <Box textAlign="center">
-      <Button size="large" variant="contained" color="primary" onClick={handleClickOpen}>
-        Add Exercise Event
-      </Button>
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>Add Exercise Event</DialogTitle>
@@ -122,8 +111,11 @@ export const AddExerciseEntry: React.FC = () => {
                     rules={{ required: "Required" }}
                     render={({ field }) => (
                       <Select id="exercise_type" label="Type of Exercise" {...field}>
-                        {exercise_types.map((exercise_type) => (
-                          <MenuItem key={exercise_type.exercise_type} value={exercise_type.exercise_type}>
+                        {exercise_types.map(exercise_type => (
+                          <MenuItem
+                            key={exercise_type.exercise_type}
+                            value={exercise_type.exercise_type}
+                          >
                             {exercise_type.exercise_type}
                           </MenuItem>
                         ))}
@@ -180,7 +172,13 @@ export const AddExerciseEntry: React.FC = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
               <Button
                 variant="outlined"
                 color="primary"

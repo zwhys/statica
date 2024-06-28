@@ -133,8 +133,8 @@ const DisplayData: React.FC = () => {
           <TableBody>
             {records.map(record => (
               <TableRow key={record.id}>
-                <TableCell>{record.userid}</TableCell>
                 <TableCell>{record.id}</TableCell>
+                <TableCell>{record.userid}</TableCell>
                 <TableCell>{record.date_of_entry}</TableCell>
                 <TableCell>{record.exercise_type}</TableCell>
                 <TableCell>{record.sets}</TableCell>
