@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
 } from "@mui/material"
 
 type User = {
@@ -18,13 +17,12 @@ type User = {
 
 const DisplayData: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
-  const [records, setRecords] = useState<any[]>([])
-  const [exerciseTypes, setExerciseTypes] = useState<any[]>([])
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("localhost:3001/users") // URL to fetch from
+        const response = await fetch("127.0.0.1:3001/users")
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
@@ -32,15 +30,12 @@ const DisplayData: React.FC = () => {
         console.log(response)
 
         const responseData = await response.json() // Extract JSON data from response
-        // const recordsData = await getRecords()
-        // const exerciseTypesData = await getExercise_types()
 
         setUsers(responseData)
         // setRecords(recordsData)
         // setExerciseTypes(exerciseTypesData)
       } catch (error) {
-        console.error("Error fetching data:", error)
-        // Handle error gracefully, e.g., set state for error message
+        console.error("Error fetching data:", error) // Handle error gracefully, e.g., set state for error message
       }
       console.log("users", users)
     }

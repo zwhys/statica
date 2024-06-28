@@ -8,7 +8,7 @@ export function StatisticsPage() {
   return (
     <>
       <HeaderHome />
-      <Box
+      {/* <Box
         display="flex"
         alignItems="center"
         sx={{
@@ -28,7 +28,7 @@ export function StatisticsPage() {
           Exercise Statistics
         </Typography>
         <DisplayExerciseStatistics />
-      </Box>
+      </Box> */}
         <DisplayData/>
     </>
   )
