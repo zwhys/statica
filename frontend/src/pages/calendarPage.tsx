@@ -2,13 +2,13 @@ import { Box, Typography, Button } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 import React, { useState } from "react"
 import Calandar from "../components/calendar"
-import { EventApi, DateSelectArg } from "@fullcalendar/core"
+import { DateSelectArg } from "@fullcalendar/core"
 import AddExerciseEvent from "../components/addExerciseEvent"
 
 export function CalendarPage() {
-  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const [selectInfo, setSelectInfo] = useState<DateSelectArg | null>(null)
+  
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     setSelectInfo(selectInfo)

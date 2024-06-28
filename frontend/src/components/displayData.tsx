@@ -16,8 +16,8 @@ type User = {
 }
 
 type Records = {
-  entryid: number
   id: number
+  userid: number
   date_of_entry: string
   exercise_type: string
   sets: number
@@ -26,6 +26,7 @@ type Records = {
 }
 
 type Exercise_types = {
+  id: number
   exercise_type: string
 }
 
@@ -120,8 +121,8 @@ const DisplayData: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>EntryIDs</TableCell>
-              <TableCell>IDs</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>UserID</TableCell>
               <TableCell>Date of Entries</TableCell>
               <TableCell>Exercise Types</TableCell>
               <TableCell>Sets</TableCell>
@@ -131,8 +132,8 @@ const DisplayData: React.FC = () => {
           </TableHead>
           <TableBody>
             {records.map(record => (
-              <TableRow key={record.entryid}>
-                <TableCell>{record.entryid}</TableCell>
+              <TableRow key={record.id}>
+                <TableCell>{record.userid}</TableCell>
                 <TableCell>{record.id}</TableCell>
                 <TableCell>{record.date_of_entry}</TableCell>
                 <TableCell>{record.exercise_type}</TableCell>
@@ -148,12 +149,14 @@ const DisplayData: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell>ID</TableCell>
               <TableCell>Exercise Types</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {exercise_types.map(exercise_types => (
-              <TableRow key={exercise_types.exercise_type}>
+              <TableRow key={exercise_types.id}>
+                <TableCell>{exercise_types.id}</TableCell>
                 <TableCell>{exercise_types.exercise_type}</TableCell>
               </TableRow>
             ))}

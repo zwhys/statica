@@ -1,10 +1,10 @@
-import React from "react"
-import { EventApi, DateSelectArg, EventContentArg } from "@fullcalendar/core"
-import FullCalendar from "@fullcalendar/react"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import timeGridPlugin from "@fullcalendar/timegrid"
-import interactionPlugin from "@fullcalendar/interaction"
-import { INITIAL_EVENTS, createEventId } from "./calendar-utils"
+import React, { useState } from "react";
+import { EventApi, DateSelectArg, EventContentArg } from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS } from "./calendar-utils";
 import {
   Dialog,
   DialogTitle,
@@ -13,54 +13,66 @@ import {
   Button,
   TextField,
   Grid,
-  Box
-} from "@mui/material"
+  Box,
+} from "@mui/material";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-interface DemoAppState {
-  weekendsVisible: boolean
-  currentEvents: EventApi[]
-  open: boolean
-  exerciseType: string
-  setNumber: string
-  repNumber: string
-  remarks: string
-}
+type FormValues = {
+  open: boolean;
+  exercise_type: string;
+  sets: number;
+  reps: number;
+  remarks: string;
+};
 
-export default class Calendar extends React.Component<{}, DemoAppState> {
-  state: DemoAppState = {
-    weekendsVisible: true,
-    currentEvents: [],
-    open: false,
-    exerciseType: "",
-    setNumber: "",
-    repNumber: "",
-    remarks: ""
-  }
+const Calendar: React.FC = () => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
+  const [open, setOpen] = useState(false);
 
-  render() {
-    const { open } = this.state
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    return (
-      <>
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            left: "prev,next",
-            center: "title",
-            right: "today"
-          }}
-          initialView="dayGridMonth"
-          editable={true}
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          initialEvents={INITIAL_EVENTS}
-          select={this.handleDateSelect}
-          eventContent={renderEventContent}
-          eventsSet={this.handleEvents}
-        />
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-        <Dialog open={open} onClose={this.handleClose}>
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log("Form submitted with data:", data);
+    handleClose();
+    reset();
+  };
+
+  const handleDateSelect = (selectInfo: DateSelectArg) => {
+    setOpen(true);
+  };
+
+  const handleEvents = (events: EventApi[]) => {
+    console.log("Current Events:", events);
+  };
+
+  return (
+    <>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        headerToolbar={{
+          left: "prev,next",
+          center: "title",
+          right: "today",
+        }}
+        initialView="dayGridMonth"
+        editable={true}
+        selectable={true}
+        selectMirror={true}
+        dayMaxEvents={true}
+        initialEvents={INITIAL_EVENTS}
+        select={handleDateSelect}
+        eventContent={renderEventContent}
+        eventsSet={handleEvents}
+      />
+
+      <Dialog open={open} onClose={handleClose}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>Add Exercise Event</DialogTitle>
           <DialogContent>
             <Grid container spacing={2} alignItems="center">
@@ -71,30 +83,45 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
                   variant="outlined"
                   placeholder="Eg. Pushups"
                   sx={{ width: 150, marginTop: 1 }}
-                  value={this.state.exerciseType}
-                  onChange={e => this.setState({ exerciseType: e.target.value })}
+                  {...register("exercise_type", { required: true })}
+                  error={!!errors.exercise_type}
+                  helperText={errors.exercise_type ? "Required" : ""}
                 />
               </Grid>
               <Grid item>
                 <TextField
-                  id="setnum"
+                  id="sets"
                   label="No. of Sets"
                   variant="outlined"
                   placeholder="Eg. 3"
                   sx={{ width: 150, marginTop: 1 }}
-                  value={this.state.setNumber}
-                  onChange={e => this.setState({ setNumber: e.target.value })}
+                  {...register("sets", {
+                    required: "Required",
+                    pattern: {
+                      value: /^[1-9]\d*$/,
+                      message: "Positive integers only",
+                    },
+                  })}
+                  error={!!errors.sets}
+                  helperText={errors.sets ? errors.sets.message : ""}
                 />
               </Grid>
               <Grid item>
                 <TextField
-                  id="repnum"
+                  id="reps"
                   label="No. of Reps"
                   variant="outlined"
                   placeholder="Eg. 10"
                   sx={{ width: 150, marginTop: 1 }}
-                  value={this.state.repNumber}
-                  onChange={e => this.setState({ repNumber: e.target.value })}
+                  {...register("reps", {
+                    required: "Required",
+                    pattern: {
+                      value: /^[1-9]\d*$/,
+                      message: "Positive integers only",
+                    },
+                  })}
+                  error={!!errors.reps}
+                  helperText={errors.reps ? errors.reps.message : ""}
                 />
               </Grid>
             </Grid>
@@ -104,8 +131,7 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
               multiline
               maxRows={4}
               placeholder="Eg. Feelings, Difficulty, ..."
-              value={this.state.remarks}
-              onChange={e => this.setState({ remarks: e.target.value })}
+              {...register("remarks", { required: false })}
             />
           </DialogContent>
           <DialogActions>
@@ -115,51 +141,26 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
                 color="primary"
                 fullWidth
                 sx={{ margin: 2 }}
-                onClick={this.handleClose}
+                onClick={handleClose}
               >
                 Cancel
               </Button>
               <Button
+                type="submit"
                 variant="contained"
                 color="primary"
                 fullWidth
                 sx={{ margin: 2 }}
-                onClick={this.handleCreateEvent}
               >
                 Create
               </Button>
             </Box>
           </DialogActions>
-        </Dialog>
-      </>
-    )
-  }
-
-  handleDateSelect = (selectInfo: DateSelectArg) => {
-    this.setState({ open: true })
-  }
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-      exerciseType: "",
-      setNumber: "",
-      repNumber: "",
-      remarks: ""
-    })
-  }
-
-  handleCreateEvent = () => {
-    const { exerciseType, setNumber, repNumber, remarks } = this.state
-    const title = `${exerciseType} - ${setNumber} sets, ${repNumber} reps`
-
-    this.handleClose()
-  }
-
-  handleEvents = (events: EventApi[]) => {
-    this.setState({ currentEvents: events })
-  }
-}
+        </form>
+      </Dialog>
+    </>
+  );
+};
 
 function renderEventContent(eventContent: EventContentArg) {
   return (
@@ -167,5 +168,7 @@ function renderEventContent(eventContent: EventContentArg) {
       <b>{eventContent.timeText}</b>
       <i>{eventContent.event.title}</i>
     </>
-  )
+  );
 }
+
+export default Calendar;

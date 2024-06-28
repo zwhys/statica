@@ -1,4 +1,4 @@
-INSERT INTO records (id, date_of_entry, exercise_type, sets, reps, remarks) VALUES
+INSERT INTO records (userid, date_of_entry, exercise_type, sets, reps, remarks) VALUES
     (1, '2024-06-26', 'Pushups', 3, 15, 'Feeling good today'),
     (2, '2024-06-25', 'Situps', 2, 20, 'Worked on form'),
     (1, '2024-06-24', 'Bicep Curls', 4, 12, 'Increased weight'),

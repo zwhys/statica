@@ -22,8 +22,8 @@ export const getRecords = async () => {
   try {
     const recordsQuery = `
       SELECT 
-        entryid AS "entryid",
-        id AS "id", 
+        id AS "id",
+        userid AS "userid", 
         date_of_entry AS "date_of_entry",
         exercise_type AS "exercise_type",
         sets AS "sets",
@@ -44,8 +44,9 @@ export const getExercise_types = async () => {
   try {
     const exercise_typesQuery = `
       SELECT
-        exercise_types AS "exercise_types", 
-      FROM exercise_types
+        id AS "id",
+        exercise_types AS "exercise_types"
+      FROM exercise_types;
     `;
 
     const { rows } = await db.query(exercise_typesQuery);
