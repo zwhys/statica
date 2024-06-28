@@ -1,3 +1,5 @@
+//TODO: Fix server error for exercise_types
+
 import express from "express";
 import cors from "cors";
 import { getUsers, getExercise_types, getRecords } from "./api";
@@ -6,8 +8,10 @@ const app = express();
 const port = 3001;
 
 app.use(
-  // cors({ origin: "http://localhost:3001", methods: ["GET", "POST", "PUT", "DELETE"], allowedHeaders: ['Content-Type', 'Authorization'] })
-  cors()
+  cors(
+    { origin: "http://localhost:3000", 
+      methods: ["GET", "POST", "PUT", "DELETE"], 
+      allowedHeaders: ['Content-Type', 'Authorization'] })
 );
 
 app.get("/users", async (req, res) => {

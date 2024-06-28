@@ -66,7 +66,7 @@ export default class Calendar extends React.Component<{}, DemoAppState> {
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <TextField
-                  id="exertype"
+                  id="exercise_type"
                   label="Type of Exercise"
                   variant="outlined"
                   placeholder="Eg. Pushups"
