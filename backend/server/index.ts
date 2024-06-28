@@ -6,7 +6,8 @@ const app = express();
 const port = 3001;
 
 app.use(
-  cors({ origin: "localhost", methods: ["GET", "POST", "PUT", "DELETE"] })
+  // cors({ origin: "http://localhost:3001", methods: ["GET", "POST", "PUT", "DELETE"], allowedHeaders: ['Content-Type', 'Authorization'] })
+  cors()
 );
 
 app.get("/users", async (req, res) => {

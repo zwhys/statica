@@ -18,22 +18,18 @@ type User = {
 const DisplayData: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("127.0.0.1:3001/users")
+        const response = await fetch("http://localhost:3001/users", {
+          method: "get",
+        })
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
-
         console.log(response)
-
         const responseData = await response.json() // Extract JSON data from response
-
         setUsers(responseData)
-        // setRecords(recordsData)
-        // setExerciseTypes(exerciseTypesData)
       } catch (error) {
         console.error("Error fetching data:", error) // Handle error gracefully, e.g., set state for error message
       }
