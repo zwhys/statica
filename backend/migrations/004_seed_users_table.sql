@@ -1,6 +1,4 @@
 INSERT INTO
     users (username, hashed_password)
 VALUES
-    ('user1', 'password1'),
-    ('user2', 'password2'),
-    ('user3', 'password3');
+    ('mochi', '$2b$10$Ks6X4.AEt3nISBqmYILqiuPm5TsBnspH8ylQXc2BFt0PD4f40Pz/.'),
