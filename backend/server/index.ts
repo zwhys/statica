@@ -71,6 +71,29 @@ app.post("/add_exercise_entry", async (req, res) => {
   }
 });
 
+app.post("/add_user", async (req, res) => {
+  const { userid, username, password } =
+    req.body;
+
+  try {
+    let query = `
+    INSERT INTO records (userid, username, password)
+    VALUES ($1, $2, $3)
+    `;
+    let queryParams = [
+      userid,
+      username,
+      password,
+    ];
+
+    await pool.query(query, queryParams);
+    res.status(200).send("Exercise entry saved successfully");
+  } catch (err) {
+    console.error("Error saving exercise entry:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

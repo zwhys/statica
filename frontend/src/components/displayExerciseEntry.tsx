@@ -10,10 +10,6 @@ import {
 } from "@mui/material"
 import AddExerciseEntry from "./addExerciseEntry"
 
-interface Props {
-  open: boolean
-  onClose: () => void
-}
 
 export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   const [dialogOpen, setDialogOpen] = useState(false)

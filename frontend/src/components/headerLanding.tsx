@@ -20,7 +20,7 @@ export function HeaderLanding() {
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
             <Typography color="white" fontSize={32}>
-              Traxer
+              Tractor
             </Typography>
           </Link>
           <Box display="flex" alignItems="center">

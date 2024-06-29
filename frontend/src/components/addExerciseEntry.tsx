@@ -16,22 +16,7 @@ import {
   TextField,
 } from "@mui/material"
 
-interface Props {
-  open: boolean
-  onClose: () => void
-}
 
-type FormValues = {
-  exercise_type: string
-  sets: number
-  reps: number
-  remarks: string
-}
-
-type Exercise_types = {
-  id: number
-  exercise_type: string
-}
 
 export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])

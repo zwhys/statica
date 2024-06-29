@@ -4,15 +4,7 @@ import { EventInput } from '@fullcalendar/core'
 import dayGridPlugin from "@fullcalendar/daygrid";
 
 
-type Records = {
-  id: number
-  userid: number
-  date_of_entry: string
-  exercise_type: string
-  sets: number
-  reps: number
-  remarks: string
-}
+
 
 type DisplayRecordsProps = {
   setEvents: (events: EventInput[]) => void;

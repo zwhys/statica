@@ -1,5 +1,24 @@
-import React, { useState } from "react"
-import { Link, Dialog, DialogContent, Typography, TextField, Button } from "@mui/material"
+//TODO: Do the same as AddExerciseEntry
+
+import React, { useState, useEffect } from "react"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  FormHelperText,
+  Typography,
+  Link,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material"
 
 export function SignUp() {
   const [open, setOpen] = useState(false)
