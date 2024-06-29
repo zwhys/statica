@@ -1,5 +1,3 @@
-//TODO: Fix server error for exercise_types
-
 import express from "express";
 import cors from "cors";
 import pool from "./db";

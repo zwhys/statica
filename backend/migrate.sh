@@ -1,6 +1,3 @@
-#TODO: Allow for data to be entered from the frontend into the db
-
-
 #!/bin/bash
 
 # Database credentials

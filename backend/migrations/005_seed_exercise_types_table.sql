@@ -9,7 +9,7 @@ VALUES
     ('Bench Dip'),
     ('Bench Press'),
     ('Bent Over Row'),
-    ('Bicycle Crunch'),
+    ('Bicep Curl'),
     ('Bird Dog'),
     ('Bodyweight Squat'),
     ('Box Jump'),
