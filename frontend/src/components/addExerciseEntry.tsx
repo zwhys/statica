@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import {
   Box,
   Button,
@@ -14,7 +15,6 @@ import {
   Select,
   TextField,
 } from "@mui/material"
-import { useForm, SubmitHandler, Controller } from "react-hook-form"
 
 interface Props {
   open: boolean
@@ -59,7 +59,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
       }
 
       console.log("Exercise entry added successfully")
-      handleClose() // Call onClose function passed as prop to close the dialog
+      onClose()
       reset()
     } catch (error) {
       console.error("Error adding exercise entry:", error)
@@ -86,13 +86,10 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
     fetchExercise_types()
   }, [])
 
-  const handleClose = () => {
-    onClose()
-  }
 
   return (
     <Box textAlign="center">
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={() => onClose()}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>Add Exercise Event</DialogTitle>
           <DialogContent>
@@ -184,7 +181,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
                 color="primary"
                 fullWidth
                 sx={{ margin: 2 }}
-                onClick={handleClose}
+                onClick={() => onClose()}
               >
                 Cancel
               </Button>

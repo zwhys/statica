@@ -1,26 +1,19 @@
-import { EventApi, EventContentArg } from "@fullcalendar/core"
-import { INITIAL_EVENTS } from "./calendar-utils"
-import { useForm, SubmitHandler } from "react-hook-form"
-import AddExerciseEntry from "./addExerciseEntry"
+import { EventInput, EventContentArg } from "@fullcalendar/core"
+import DisplayRecords from "./displayRecords"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import React, { useState } from "react"
 import timeGridPlugin from "@fullcalendar/timegrid"
-
-type FormValues = {
-  open: boolean
-  exercise_type: string
-  sets: number
-  reps: number
-  remarks: string
-}
+import DisplayExerciseEntry from "./displayExerciseEntry"
 
 const Calendar: React.FC = () => {
-  const [dialogOpen, setDialogOpen] = useState(false) 
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [events, setEvents] = useState<EventInput[]>([])
 
   return (
     <>
+      <DisplayRecords setEvents={setEvents} />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -33,12 +26,12 @@ const Calendar: React.FC = () => {
         selectable={true}
         selectMirror={true}
         dayMaxEvents={true}
-        initialEvents={INITIAL_EVENTS}
+        events={events}
         select={() => setDialogOpen(true)}
         eventContent={renderEventContent}
       />
 
-      <AddExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
+      <DisplayExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
     </>
   )
 }

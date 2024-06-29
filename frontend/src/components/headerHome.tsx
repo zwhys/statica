@@ -1,5 +1,6 @@
 import React from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
+import LogOut from "./logout"
 
 export function HeaderHome() {
   return (
@@ -40,6 +41,7 @@ export function HeaderHome() {
                 Statistics
               </Typography>
             </Link>
+            <LogOut/>
           </Box>
         </Box>
       </Toolbar>

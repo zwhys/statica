@@ -9,15 +9,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={ <LandingPage/>}/>
-        <Route path="/landing" element={<LandingPage/>}/>
-        <Route path="/calendar" element={<CalendarPage/>}/>
-        <Route path="/statistics" element={<StatisticsPage/>}/>
-        <Route path="*" element={<NotFoundPage/>}/>
+        <Route index element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/statistics" element={<StatisticsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
-        
   )
 }
 
 export default App
+
+//TODO: Create types.ts and consolidate the types
+//TODO: Create loading screen

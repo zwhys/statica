@@ -16,7 +16,6 @@ app.use(
 );
 
 app.get("/users", async (req, res) => {
-  setTimeout(async () => {
     try {
       const users = await getUsers();
       res.json(users);
@@ -24,11 +23,9 @@ app.get("/users", async (req, res) => {
       console.error("Server error:", err);
       res.status(500).send("Server error");
     }
-  }, 1000);
 });
 
 app.get("/exercise_types", async (req, res) => {
-  setTimeout(async () => {
     try {
       const exercise_types = await getExercise_types();
       res.json(exercise_types);
@@ -36,11 +33,9 @@ app.get("/exercise_types", async (req, res) => {
       console.error("Server error:", err);
       res.status(500).send("Server error");
     }
-  }, 1000);
 });
 
 app.get("/records", async (req, res) => {
-  setTimeout(async () => {
     try {
       const records = await getRecords();
       res.json(records);
@@ -48,22 +43,25 @@ app.get("/records", async (req, res) => {
       console.error("Server error:", err);
       res.status(500).send("Server error");
     }
-  }, 1000);
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  const { userid, date_of_entry, exercise_type, sets, reps, remarks } = req.body;
+  const { userid, date_of_entry, exercise_type, sets, reps, remarks } =
+    req.body;
 
   try {
     let query = `
-      INSERT INTO records (userid, date_of_entry, exercise_type, sets, reps, remarks)
-        VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO records (userid, date_of_entry, exercise_type, sets, reps, remarks)
+    VALUES ($1, $2, $3, $4, $5, $6)
     `;
-    let queryParams = [userid, date_of_entry, exercise_type, sets, reps, remarks];
+    let queryParams = [
+      userid,
+      date_of_entry,
+      exercise_type,
+      sets,
+      reps,
+      remarks,
+    ];
 
     await pool.query(query, queryParams);
     res.status(200).send("Exercise entry saved successfully");
@@ -71,4 +69,8 @@ app.post("/add_exercise_entry", async (req, res) => {
     console.error("Error saving exercise entry:", err);
     res.status(500).send("Internal Server Error");
   }
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
