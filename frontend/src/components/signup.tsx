@@ -21,21 +21,14 @@ import {
 } from "@mui/material"
 
 export function SignUp() {
-  const [open, setOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
   return (
     <>
-      <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={handleClickOpen}>
+      <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={() => setIsDialogOpen(true)}>
         Sign Up
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
         <DialogContent>
           <Typography variant="h5" component="h1" gutterBottom>
             Create an account
