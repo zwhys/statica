@@ -22,7 +22,6 @@ const DisplayRecords: React.FC<DisplayRecordsProps> = ({ setEvents }) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
-        console.log(response)
         const responseRecords = await response.json()
         setRecords(responseRecords)
       } catch (error) {

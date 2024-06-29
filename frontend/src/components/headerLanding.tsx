@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState} from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
 import LogIn from "./login"
 import SignUp from "./signup"
 
 export function HeaderLanding() {
+  const [dialogOpen, setDialogOpen] = useState(false)
   return (
     <AppBar position="static">
       <Toolbar sx={{ margin: 1 }}>
@@ -24,8 +25,8 @@ export function HeaderLanding() {
             </Typography>
           </Link>
           <Box display="flex" alignItems="center">
-            <LogIn/>
-            <SignUp/>
+            <LogIn open={dialogOpen} onClose={() => setDialogOpen(false)} />
+            <SignUp open={dialogOpen} onClose={() => setDialogOpen(false)} />
           </Box>
         </Box>
       </Toolbar>

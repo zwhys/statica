@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import SignUp from "../components/signup"
 import HeaderLanding from "../components/headerLanding"
 import { Box, Typography } from "@mui/material"
 
 export function LandingPage() {
+  const [dialogOpen, setDialogOpen] = useState(false)
   return (
     <>
       <HeaderLanding />
@@ -18,7 +19,7 @@ export function LandingPage() {
           margin: 10,
           padding: "16px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          borderRadius: 8
+          borderRadius: 8,
         }}
       >
         <Box
@@ -27,11 +28,11 @@ export function LandingPage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexDirection: "column"
+            flexDirection: "column",
           }}
         >
           <Typography variant="h2">Text Here</Typography>
-          <SignUp />
+          <SignUp open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </Box>
         <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Typography variant="h2">Image Here</Typography>

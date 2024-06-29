@@ -3,11 +3,16 @@ interface Props {
   onClose: () => void
 }
 
-type FormValues = {
+type AddExerciseEntryFormValues = {
   exercise_type: string
   sets: number
   reps: number
   remarks: string
+}
+
+type UserFormValues = {
+  username: string
+  password: string
 }
 
 type Exercise_types = {
@@ -17,7 +22,7 @@ type Exercise_types = {
 
 type Records = {
     id: number
-    userid: number
+    user_id: number
     date_of_entry: string
     exercise_type: string
     sets: number

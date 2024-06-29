@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
@@ -27,23 +26,21 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormValues>()
+  } = useForm<AddExerciseEntryFormValues>()
 
-  const onSubmit: SubmitHandler<FormValues> = async data => {
+  const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
     try {
       const response = await fetch("http://localhost:3001/add_exercise_entry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, userid: 1, date_of_entry: new Date(Date.now()).toISOString() }),
+        body: JSON.stringify({ ...data, user_id: 1, date_of_entry: new Date(Date.now()).toISOString() }),
       })
 
       if (!response.ok) {
         throw new Error("Failed to add exercise entry")
       }
-
-      console.log("Exercise entry added successfully")
       onClose()
       reset()
     } catch (error) {
@@ -55,12 +52,11 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
     const fetchExercise_types = async () => {
       try {
         const response = await fetch("http://localhost:3001/exercise_types", {
-          method: "get",
+          method: "GET",
         })
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
-        console.log(response)
         const responseExercise_types = await response.json()
         setExercise_types(responseExercise_types)
       } catch (error) {
@@ -153,7 +149,6 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               {...register("remarks", { required: false })}
             />
           </DialogContent>
-          <DialogActions>
             <Box
               sx={{
                 display: "flex",
@@ -180,7 +175,6 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
                 Create
               </Button>
             </Box>
-          </DialogActions>
         </form>
       </Dialog>
     </Box>
