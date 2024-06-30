@@ -5,7 +5,7 @@ import Calandar from "../components/calendar"
 import AddExerciseEntry from "../components/addExerciseEntry"
 import { TabsChrome } from "../mui-treasury/tabs-chrome"
 
-export function CalendarPage() {
+export function HomePage() {
   const [dialogOpen, setDialogOpen] = useState(false)
 
   return (
@@ -74,4 +74,4 @@ export function CalendarPage() {
   )
 }
 
-export default CalendarPage
+export default HomePage

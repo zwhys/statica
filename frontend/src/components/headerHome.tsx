@@ -8,7 +8,7 @@ export function HeaderHome() {
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
-            href="/calendar"
+            href="/home"
             underline="none"
             sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >

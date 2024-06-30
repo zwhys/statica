@@ -49,7 +49,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 
       onClose()
       reset()
-      window.location.href = "/calendar"
+      window.location.href = "/home"
     } catch (error) {
       console.error("Error adding user:", error)
     }

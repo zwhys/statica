@@ -47,7 +47,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
       setIsAuthenticated(true)
       onClose()
       reset()
-      window.location.href = "/calendar"
+      window.location.href = "/home"
     } catch (error) {
       console.error("Error during login:", error)
     }
