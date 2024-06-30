@@ -7,7 +7,15 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
 
   return (
     <Box textAlign="center">
-      <Dialog open={open} onClose={() => onClose()}>
+      <Dialog
+        open={open}
+        onClose={() => onClose()}
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: 8,
+          },
+        }}
+      >
         <DialogContent>
           <Box
             textAlign="center"

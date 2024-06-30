@@ -15,8 +15,6 @@ import {
   TextField,
 } from "@mui/material"
 
-
-
 export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
 
@@ -35,7 +33,11 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, user_id: 1, date_of_entry: new Date(Date.now()).toISOString() }),
+        body: JSON.stringify({
+          ...data,
+          user_id: 1,
+          date_of_entry: new Date(Date.now()).toISOString(),
+        }),
       })
 
       if (!response.ok) {
@@ -67,10 +69,17 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
     fetchExercise_types()
   }, [])
 
-
   return (
     <Box textAlign="center">
-      <Dialog open={open} onClose={() => onClose()}>
+      <Dialog
+        open={open}
+        onClose={() => onClose()}
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: 8,
+          },
+        }}
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>Add Exercise Event</DialogTitle>
           <DialogContent>
@@ -149,32 +158,32 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               {...register("remarks", { required: false })}
             />
           </DialogContent>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <Button
+              variant="outlined"
+              color="primary"
+              fullWidth
+              sx={{ margin: 2 }}
+              onClick={() => onClose()}
             >
-              <Button
-                variant="outlined"
-                color="primary"
-                fullWidth
-                sx={{ margin: 2 }}
-                onClick={() => onClose()}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                sx={{ margin: 2, background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
-              >
-                Create
-              </Button>
-            </Box>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ margin: 2, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
+            >
+              Create
+            </Button>
+          </Box>
         </form>
       </Dialog>
     </Box>

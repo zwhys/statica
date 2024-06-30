@@ -90,9 +90,9 @@ app.post("/check_username", async (req, res) => {
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
 
     if (existingUser.rows.length > 0) {
-      res.json({ isUnique: false }); // Username already exists
+      res.json({ isUnique: false }); 
     } else {
-      res.json({ isUnique: true }); // Username is unique
+      res.json({ isUnique: true }); 
     }
   } catch (err) {
     console.error("Error checking username uniqueness:", err);
@@ -119,26 +119,6 @@ app.post("/add_user", async (req, res) => {
   }
 });
 
-// app.post("/check_username", async (req, res) => { delete later
-//   const { username } = req.body;
-  
-//   try {
-//     const checkUserQuery = `
-//       SELECT * FROM users WHERE username = $1 LIMIT 1;
-//     `;
-//     const checkUserParams = [username];
-//     const existingUser = await pool.query(checkUserQuery, checkUserParams);
-
-//     if (existingUser.rows.length > 0) {
-//       res.json({ isUnique: false }); // Username already exists
-//     } else {
-//       res.json({ isUnique: true }); // Username is unique
-//     }
-//   } catch (err) {
-//     console.error("Error checking username uniqueness:", err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// });
 
 app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
@@ -155,21 +135,17 @@ app.post("/authentication", async (req, res) => {
   try {
     const { rows } = await pool.query(query, queryParams);
     
-    // Check if user exists
     if (rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
     const dbPasswordHash = rows[0].hashed_password;
 
-    // Compare hashed password
     const isPasswordValid = await bcrypt.compare(password, dbPasswordHash);
 
     if (isPasswordValid) {
-      // Passwords match, user authenticated
       res.json({ isAuthenticated: true });
     } else {
-      // Passwords do not match
       res.json({ isAuthenticated: false });
     }
   } catch (err) {

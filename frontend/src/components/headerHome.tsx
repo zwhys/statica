@@ -12,37 +12,17 @@ export function HeaderHome() {
             underline="none"
             sx={{ display: "flex", alignItems: "center", color: "inherit", cursor: "pointer" }}
           >
-            <Avatar alt="Logo" variant="rounded" src="logo.png" sx={{ marginRight: 2, width: 56, height: 56 }} />
+            <Avatar
+              alt="Logo"
+              variant="rounded"
+              src="logo.png"
+              sx={{ marginRight: 2, width: 56, height: 56 }}
+            />
             <Typography color="white" fontSize={32}>
               Tractor
             </Typography>
           </Link>
-          <Box display="flex" alignItems="center">
-            <Link
-              href="/calendar"
-              underline="hover"
-              color="inherit"
-              variant="h3"
-              sx={{ marginLeft: 2, cursor: "pointer" }}
-            >
-              <Typography color="white" fontSize={24}>
-                Calendar
-              </Typography>
-            </Link>
-
-            <Link
-              href="/statistics"
-              underline="hover"
-              color="inherit"
-              variant="h3"
-              sx={{ marginLeft: 2, cursor: "pointer" }}
-            >
-              <Typography color="white" fontSize={24}>
-                Statistics
-              </Typography>
-            </Link>
-            <LogOut/>
-          </Box>
+          <LogOut />
         </Box>
       </Toolbar>
     </AppBar>
