@@ -119,31 +119,67 @@ app.post("/add_user", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+// app.post("/check_username", async (req, res) => { delete later
+//   const { username } = req.body;
+  
+//   try {
+//     const checkUserQuery = `
+//       SELECT * FROM users WHERE username = $1 LIMIT 1;
+//     `;
+//     const checkUserParams = [username];
+//     const existingUser = await pool.query(checkUserQuery, checkUserParams);
+
+//     if (existingUser.rows.length > 0) {
+//       res.json({ isUnique: false }); // Username already exists
+//     } else {
+//       res.json({ isUnique: true }); // Username is unique
+//     }
+//   } catch (err) {
+//     console.error("Error checking username uniqueness:", err);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
+
+app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(404).json({ message: "Username and password are required" }); //TODO: Do it another way
+  }
+
   let query = `
-  SELECT * FROM users WHERE username = $1 LIMIT 1;
+    SELECT * FROM users WHERE username = $1 LIMIT 1;
   `;
   let queryParams = [username];
-  if (username == null) {
-    return res.status(400).json({ error: "Cannot find user" });
-  }
+
   try {
     const { rows } = await pool.query(query, queryParams);
-    const db_password = rows[0].hashed_password;
-    if (await bcrypt.compare(password, db_password)) {
-      res.status(200).json({ message: "User Authenticated" });
+    
+    // Check if user exists
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const dbPasswordHash = rows[0].hashed_password;
+
+    // Compare hashed password
+    const isPasswordValid = await bcrypt.compare(password, dbPasswordHash);
+
+    if (isPasswordValid) {
+      // Passwords match, user authenticated
+      res.json({ isAuthenticated: true });
     } else {
-      res.status(403).json({ message: "Access Denied" });
+      // Passwords do not match
+      res.json({ isAuthenticated: false });
     }
   } catch (err) {
-    console.error("Error adding user:", err);
-    res.status(500).json({ messsage: "Internal Server Error" });
+    console.error("Error during authentication:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 //TODO: Set up prisma
-//TODO: Fix unique username
