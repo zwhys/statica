@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, DialogContent, Typography, TextField, Grid, Box } from "@mui/material"
+import { Button, Dialog, Typography, TextField, Box } from "@mui/material"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -63,17 +63,32 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
       >
         Log In
       </Button>
-      <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+      <Dialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        maxWidth="md"
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: 8,
+          },
+        }}
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogContent sx={{ height: 600, width: 900 }}>
-            <Typography variant="h5" component="h1" gutterBottom>
-              Log in to your account
-            </Typography>
-            <Box>
+          <Box display="flex" height={500} width={722} bgcolor="mediumpurple">
+            <Box
+              flex={1}
+              display="flex"
+              justifyContent="center"
+              flexDirection="column"
+              sx={{ margin: 3 }}
+            >
+              <Typography variant="h4" sx={{ textAlign: "left", marginBottom: 2 }}>
+                Login
+              </Typography>
               <TextField
                 label="Username"
                 variant="outlined"
-                margin="normal"
+                fullWidth
                 {...register("username", {
                   required: "Required",
                   maxLength: {
@@ -89,6 +104,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 variant="outlined"
                 type="password"
                 margin="normal"
+                fullWidth
                 {...register("password", {
                   required: "Required",
                   validate: async value => {
@@ -101,14 +117,16 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 error={!!errors.password}
                 helperText={errors.password ? errors.password.message : ""}
               />
-              <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+              <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
                 Login
               </Button>
             </Box>
-            <Box>
-              
-            </Box>
-          </DialogContent>
+            <img
+              src="/login.png"
+              alt="Login Image"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          </Box>
         </form>
       </Dialog>
     </>
