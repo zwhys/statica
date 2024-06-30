@@ -58,7 +58,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
       <Button
         variant="contained"
         color="secondary"
-        sx={{ margin: 1, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
+        sx={{ margin: 1, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)", color:"white" }}
         onClick={() => setIsDialogOpen(true)}
       >
         Log In
@@ -122,7 +122,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                sx={{ mt: 2, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
+                sx={{ mt: 2, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)", color:"white" }}
               >
                 Login
               </Button>
