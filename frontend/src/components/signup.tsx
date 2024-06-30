@@ -2,15 +2,6 @@ import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, DialogContent, Typography, TextField } from "@mui/material"
 
-interface Props {
-  open: boolean
-  onClose: () => void
-}
-
-interface UserFormValues {
-  username: string
-  password: string
-}
 
 const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -33,7 +24,6 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
       })
 
       const result = await response.json()
-      console.log(result.isUnique)
       return result.isUnique
     } catch (error) {
       console.error("Error checking username uniqueness:", error)
@@ -130,3 +120,5 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 }
 
 export default SignUp
+
+//TODO: Welcome user when creating new account
