@@ -1,37 +1,62 @@
-//TODO: Add unique username requirement
-
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, DialogContent, Typography, TextField, FormHelperText } from "@mui/material"
+import { Button, Dialog, DialogContent, Typography, TextField } from "@mui/material"
 
-export const SignUp: React.FC<Props> = ({ open, onClose }) => {
+interface Props {
+  open: boolean
+  onClose: () => void
+}
+
+interface UserFormValues {
+  username: string
+  password: string
+}
+
+const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [usernameTakenError, setUsernameTakenError] = useState("")
 
   const {
-    control,
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
+
+  const checkUniqueUsername = async (username: string) => {
+    try {
+      const response = await fetch("http://localhost:3001/check_username", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username }),
+      })
+
+      const result = await response.json()
+      console.log(result.isUnique)
+      return result.isUnique
+    } catch (error) {
+      console.error("Error checking username uniqueness:", error)
+      return false
+    }
+  }
+
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
+      const isUnique = await checkUniqueUsername(data.username)
+
+      if (!isUnique) {
+        return
+      }
+
       const response = await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data }),
+        body: JSON.stringify(data),
       })
 
-      const result = await response.json()
-      console.log(result, data)
-
-      if (result.message === "Non-Unique Username") {
-        setUsernameTakenError("Username is taken. Please choose another.")
-        return 
-      }
       onClose()
       reset()
       window.location.href = "/calendar"
@@ -67,9 +92,16 @@ export const SignUp: React.FC<Props> = ({ open, onClose }) => {
                   value: 50,
                   message: "Username cannot exceed 50 characters",
                 },
+                validate: async value => {
+                  const isUnique = await checkUniqueUsername(value)
+                  if (!isUnique) {
+                    return "Username is taken. Please choose another"
+                  }
+                  return true
+                },
               })}
               error={!!errors.username}
-              helperText={errors.username ? errors.username.message : usernameTakenError}
+              helperText={errors.username ? errors.username.message : ""}
             />
             <TextField
               label="Password"

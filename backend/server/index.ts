@@ -79,17 +79,31 @@ app.post("/add_exercise_entry", async (req, res) => {
   }
 });
 
-app.post("/add_user", async (req, res) => {
-  const { username, password } = req.body;
+app.post("/check_username", async (req, res) => {
+  const { username } = req.body;
+  
   try {
     const checkUserQuery = `
       SELECT * FROM users WHERE username = $1 LIMIT 1;
     `;
     const checkUserParams = [username];
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
+
     if (existingUser.rows.length > 0) {
-      return res.status(200).send({ message: "Non-Unique Username" });
+      res.json({ isUnique: false }); // Username already exists
+    } else {
+      res.json({ isUnique: true }); // Username is unique
     }
+  } catch (err) {
+    console.error("Error checking username uniqueness:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
+app.post("/add_user", async (req, res) => {
+  const { username, password } = req.body;
+  try {
     const hashed_password = await bcrypt.hash(password, 10);
     let query = `
     INSERT INTO users ( username, hashed_password)
@@ -112,7 +126,7 @@ app.post("/login", async (req, res) => {
   `;
   let queryParams = [username];
   if (username == null) {
-    return res.status(409).json({ error: "Cannot find user" });
+    return res.status(400).json({ error: "Cannot find user" });
   }
   try {
     const { rows } = await pool.query(query, queryParams);
