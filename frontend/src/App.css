@@ -1,5 +1,6 @@
-
 body {
-    background-color: #936fda; /* Change this to any color you like */
-  }
-  
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #2148f3 10%, #6A5ACD 90%);; 
+  background-size: cover;
+}

@@ -28,11 +28,12 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
-              margin: 2
+              margin: 2,
             }}
           >
             <Button
               size="large"
+              sx={{ background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
               variant="contained"
               color="primary"
               onClick={() => setDialogOpen(true)}

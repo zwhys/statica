@@ -170,7 +170,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                sx={{ margin: 2 }}
+                sx={{ margin: 2, background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
               >
                 Create
               </Button>

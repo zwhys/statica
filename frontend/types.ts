@@ -13,6 +13,7 @@ type AddExerciseEntryFormValues = {
 type UserFormValues = {
   username: string
   password: string
+  confirmPassword: string;
 }
 
 type Exercise_types = {

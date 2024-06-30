@@ -58,7 +58,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
       <Button
         variant="contained"
         color="secondary"
-        sx={{ margin: 1 }}
+        sx={{ margin: 1, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
         onClick={() => setIsDialogOpen(true)}
       >
         Log In
@@ -74,7 +74,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex" height={500} width={722} bgcolor="mediumpurple">
+          <Box display="flex" height={500} width={722}>
             <Box
               flex={1}
               display="flex"
@@ -117,7 +117,13 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 error={!!errors.password}
                 helperText={errors.password ? errors.password.message : ""}
               />
-              <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{ mt: 2, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
+              >
                 Login
               </Button>
             </Box>

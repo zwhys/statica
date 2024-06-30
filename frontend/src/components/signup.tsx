@@ -8,6 +8,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
@@ -54,12 +55,17 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
     }
   }
 
+  const password = watch("password", "")
+  const confirmPassword = watch("confirmPassword", "")
+
+  const passwordsMatch = password && confirmPassword === password
+
   return (
     <>
       <Button
         variant="contained"
         color="secondary"
-        sx={{ margin: 1 }}
+        sx={{ margin: 1, background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
         onClick={() => setIsDialogOpen(true)}
       >
         Sign Up
@@ -75,7 +81,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex" height={500} width={722} bgcolor="mediumpurple">
+          <Box display="flex" height={500} width={722}>
             <Box
               flex={1}
               display="flex"
@@ -124,7 +130,32 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
                 error={!!errors.password}
                 helperText={errors.password ? errors.password.message : ""}
               />
-              <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+              {password && (
+                <TextField
+                  label="Confirm Password"
+                  variant="outlined"
+                  type="password"
+                  fullWidth
+                  margin="normal"
+                  {...register("confirmPassword", {
+                    required: "Please confirm your password",
+                    validate: {
+                      matchesPassword: value =>
+                        value === watch("password") || "Passwords do not match",
+                    },
+                  })}
+                  error={!!errors.confirmPassword}
+                  helperText={errors.confirmPassword ? errors.confirmPassword.message : ""}
+                />
+              )}
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                disabled={!passwordsMatch}
+              >
                 Sign Up
               </Button>
             </Box>
@@ -143,3 +174,4 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 export default SignUp
 
 //TODO: Welcome user when creating new account
+//TODO: Add confirm password check

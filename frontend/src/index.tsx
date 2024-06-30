@@ -2,14 +2,14 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
 import { createTheme, ThemeProvider } from "@mui/material"
-import { red, green, teal, deepPurple } from "@mui/material/colors"
+import { red, green, lightBlue, pink } from "@mui/material/colors"
 import App from "./App"
 import './App.css';
 
 const theme = createTheme({
   palette: {
-    primary: teal,
-    secondary: deepPurple,
+    primary: lightBlue,
+    secondary: pink,
     error: red,
     success: green
   },
@@ -26,20 +26,6 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      {/* <Box
-        sx={{
-          backgroundImage: `url(/background.jpg)`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          height: "100vh", // Adjust as needed
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white" // Text color on top of the background
-        }}
-      >
-        <App /> 
-      </Box> */}
       <App />
     </ThemeProvider>
   </React.StrictMode>
