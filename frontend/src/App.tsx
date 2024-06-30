@@ -21,7 +21,6 @@ function App() {
 
 export default App
 
-//TODO: Create types.ts and consolidate the types
 //TODO: Create loading screen
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog

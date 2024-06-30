@@ -2,10 +2,12 @@
 
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, DialogContent, Typography, TextField } from "@mui/material"
+import { Button, Dialog, DialogContent, Typography, TextField, FormHelperText } from "@mui/material"
 
 export const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [usernameTakenError, setUsernameTakenError] = useState("")
+
   const {
     control,
     register,
@@ -13,24 +15,23 @@ export const SignUp: React.FC<Props> = ({ open, onClose }) => {
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
-
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      console.log(data)
       const response = await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...data,
-        }),
+        body: JSON.stringify({ ...data }),
       })
 
-      if (!response.ok) {
-        throw new Error("Failed to add user")
-      }
+      const result = await response.json()
+      console.log(result, data)
 
+      if (result.message === "Non-Unique Username") {
+        setUsernameTakenError("Username is taken. Please choose another.")
+        return 
+      }
       onClose()
       reset()
       window.location.href = "/calendar"
@@ -62,9 +63,13 @@ export const SignUp: React.FC<Props> = ({ open, onClose }) => {
               margin="normal"
               {...register("username", {
                 required: "Required",
+                maxLength: {
+                  value: 50,
+                  message: "Username cannot exceed 50 characters",
+                },
               })}
               error={!!errors.username}
-              helperText={errors.username ? errors.username.message : ""}
+              helperText={errors.username ? errors.username.message : usernameTakenError}
             />
             <TextField
               label="Password"
@@ -74,8 +79,8 @@ export const SignUp: React.FC<Props> = ({ open, onClose }) => {
               margin="normal"
               {...register("password", {
                 required: "Required",
-                pattern: {
-                  value: /^.{8,}$/,
+                minLength: {
+                  value: 8,
                   message: "Password must be at least 8 characters long",
                 },
               })}
@@ -83,7 +88,7 @@ export const SignUp: React.FC<Props> = ({ open, onClose }) => {
               helperText={errors.password ? errors.password.message : ""}
             />
             <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-              Login
+              Sign Up
             </Button>
           </DialogContent>
         </form>

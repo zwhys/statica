@@ -3,6 +3,7 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import pool from "./db";
 import { getUsers, getExercise_types, getRecords } from "./api";
+import { error } from "console";
 
 const app = express();
 const port = 3001;
@@ -87,9 +88,8 @@ app.post("/add_user", async (req, res) => {
     const checkUserParams = [username];
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
     if (existingUser.rows.length > 0) {
-      return res.status(400).send("Non-Unique Username");
+      return res.status(200).send({ message: "Non-Unique Username" });
     }
-    console.log(req.body)
     const hashed_password = await bcrypt.hash(password, 10);
     let query = `
     INSERT INTO users ( username, hashed_password)
@@ -98,10 +98,10 @@ app.post("/add_user", async (req, res) => {
     let queryParams = [username, hashed_password];
 
     await pool.query(query, queryParams);
-    res.status(200).send("User added successfully");
+    res.status(200).json({ message: "User added successfully" });
   } catch (err) {
     console.error("Error adding user:", err);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
@@ -112,22 +112,24 @@ app.post("/login", async (req, res) => {
   `;
   let queryParams = [username];
   if (username == null) {
-    return res.status(400).send("Cannot find user");
+    return res.status(409).json({ error: "Cannot find user" });
   }
   try {
     const { rows } = await pool.query(query, queryParams);
     const db_password = rows[0].hashed_password;
     if (await bcrypt.compare(password, db_password)) {
-      res.status(200).send("User Authenticated");
+      res.status(200).json({ message: "User Authenticated" });
     } else {
-      res.status(403).send("Access Denied");
+      res.status(403).json({ message: "Access Denied" });
     }
   } catch (err) {
     console.error("Error adding user:", err);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ messsage: "Internal Server Error" });
   }
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+//TODO: Set up prisma
+//TODO: Fix unique username

@@ -1,3 +1,5 @@
+//TODO: Fix logging in feature
+
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import {
@@ -11,7 +13,6 @@ import {
 
 export const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
   const {
     control,
     register,
@@ -19,7 +20,6 @@ export const LogIn: React.FC<Props> = ({ open, onClose }) => {
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
-
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const response = await fetch("http://localhost:3001/login", {
@@ -37,6 +37,7 @@ export const LogIn: React.FC<Props> = ({ open, onClose }) => {
       }
       onClose()
       reset()
+      window.location.href = "/calendar";
     } catch (error) {
       console.error("Error logging in:", error)
     }
@@ -64,7 +65,10 @@ export const LogIn: React.FC<Props> = ({ open, onClose }) => {
               fullWidth
               margin="normal"
               {...register("username", {
-                required: "Required",
+                required: "Required", maxLength: {
+                  value: 50, 
+                  message: 'Username cannot exceed 50 characters'
+                }
               })}
               error={!!errors.username}
               helperText={errors.username ? errors.username.message : ""}
