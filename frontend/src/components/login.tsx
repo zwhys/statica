@@ -4,25 +4,7 @@ import { Button, Dialog, Typography, TextField, Box } from "@mui/material"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-
-  const checkUniqueUsername = async (username: string) => {
-    try {
-      const response = await fetch("http://localhost:3001/check_username", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username }),
-      })
-
-      const result = await response.json()
-      return result.isUnique
-    } catch (error) {
-      console.error("Error checking username uniqueness:", error)
-      return false
-    }
-  }
+  const [authError, setAuthError] = useState("")
 
   const {
     register,
@@ -31,21 +13,19 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
     reset,
   } = useForm<UserFormValues>()
 
-  const checkIsAuthenticated = async (data: any) => {
+  const checkIsAuthenticated = async (data: UserFormValues) => {
     try {
       const response = await fetch("http://localhost:3001/authentication", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data }),
+        body: JSON.stringify(data),
       })
 
       const result = await response.json()
       console.log(result)
-      console.log(result.isAuthenticated)
-      return result.isAuthenticated //bool
-      
+      return result.isAuthenticated // bool
     } catch (error) {
       console.error("Error checking authentication:", error)
       return false
@@ -55,13 +35,11 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const isAuthenticated = await checkIsAuthenticated(data)
-      console.log(data) //json
       if (!isAuthenticated) {
-        setIsAuthenticated(false)
+        setAuthError("Username or Password is incorrect")
         return
       }
 
-      setIsAuthenticated(true)
       onClose()
       reset()
       window.location.href = "/home"
@@ -112,23 +90,10 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 variant="outlined"
                 fullWidth
                 {...register("username", {
-                  required: "Required",
-                  maxLength: {
-                    value: 50,
-                    message: "Username cannot exceed 50 characters",
-                  },
-
-                    validate: async value => {
-                      const isUnique = await checkUniqueUsername(value)
-                      if (isUnique) {
-                        return "User does not exist"
-                      }
-                      return true
-                    },
-
+                  required: "Username is required",
                 })}
-                error={!!errors.username}
-                helperText={errors.username ? errors.username.message : ""}
+                error={!!errors.username || !!authError}
+                helperText={errors.username ? errors.username.message : authError}
               />
               <TextField
                 label="Password"
@@ -137,16 +102,10 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                 margin="normal"
                 fullWidth
                 {...register("password", {
-                  required: "Required",
-                  validate: async value => {
-                    if (!isAuthenticated) {
-                      return "Incorrect Password."
-                    }
-                    return true
-                  },
+                  required: "Password is required",
                 })}
-                error={!!errors.password}
-                helperText={errors.password ? errors.password.message : ""}
+                error={!!errors.password || !!authError}
+                helperText={errors.password ? errors.password.message : authError}
               />
               <Button
                 type="submit"
@@ -175,4 +134,3 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 }
 
 export default LogIn
-//TODO: Fix logging in feature (Can log in, Can detect  no user, Cannot handle wrong password)
