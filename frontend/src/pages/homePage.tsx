@@ -1,16 +1,14 @@
-import React, { useState } from "react"
-import { Box, Typography, Button } from "@mui/material"
+import React, {useState} from "react"
+import { Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
-import Calandar from "../components/calendar"
-import AddExerciseEntry from "../components/addExerciseEntry"
 import { TabsChrome } from "../mui-treasury/tabs-chrome"
+import CalendarView from "../components/calendarView"
+import StatisticsView from "../components/statisticsView"
 
 export function HomePage() {
-  const [dialogOpen, setDialogOpen] = useState(false)
-
+  const [tabIndex, setTabIndex] = useState(0);
   return (
     <>
-      <AddExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
       <HeaderHome />
       <Box
         sx={{
@@ -20,7 +18,7 @@ export function HomePage() {
         }}
       >
         <Box>
-          <TabsChrome />
+          <TabsChrome tabIndex={tabIndex} setTabIndex={setTabIndex}/>
         </Box>
         <Box
           textAlign="center"
@@ -36,38 +34,8 @@ export function HomePage() {
             borderBottomLeftRadius: "32px",
           }}
         >
-          <Box sx={{ width: "25%" }}>
-            <Typography variant="h3" sx={{ margin: 3 }}>
-              Welcome, Username
-            </Typography>
-            <Button
-              sx={{
-                background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                color: "white",
-              }}
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={() => setDialogOpen(true)}
-            >
-              Add Exercise Event
-            </Button>
-            <Typography fontSize={33} sx={{ margin: 3 }}>
-              Frequently Used
-            </Typography>
-            <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-              Frequently Used 1
-            </Button>
-            <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-              Frequently Used 2
-            </Button>
-            <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-              Frequently Used 3
-            </Button>
-          </Box>
-          <Box sx={{ width: "75%" }}>
-            <Calandar />
-          </Box>
+          {tabIndex === 0 && <CalendarView />}
+          {tabIndex === 1 && <StatisticsView />}
         </Box>
       </Box>
     </>
