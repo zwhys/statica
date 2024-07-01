@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import SignUp from "../components/signup"
+import SignUp from "../components/authentication/signup"
 import HeaderLanding from "../components/headerLanding"
 import { Box, Typography } from "@mui/material"
 

@@ -1,6 +1,6 @@
 import React from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
-import LogOut from "./logout"
+import LogOut from "./authentication/logout"
 
 export function HeaderHome() {
   return (
