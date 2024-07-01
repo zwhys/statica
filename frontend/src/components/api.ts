@@ -27,11 +27,28 @@ export const fetchRecords = async (setEvents: (events: EventInput[]) => void) =>
         body: JSON.stringify(data),
       })
 
-      const result = await response.json()
-      console.log(result)
+      const result = await response.json() //TODO: Find type
       return result.isAuthenticated // bool
     } catch (error) {
       console.error("Error checking authentication:", error)
       return false
     }
   }
+
+export const checkUniqueUsername = async (username: string) => {
+  try {
+    const response = await fetch("http://localhost:3001/check_username", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username }),
+    })
+
+    const result = await response.json()
+    return result.isUnique
+  } catch (error) {
+    console.error("Error checking username uniqueness:", error)
+    return false
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
+import { checkUniqueUsername } from "../api"
 
 const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -13,33 +14,16 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
     reset,
   } = useForm<UserFormValues>()
 
-  const checkUniqueUsername = async (username: string) => {
-    try {
-      const response = await fetch("http://localhost:3001/check_username", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username }),
-      })
-
-      const result = await response.json()
-      return result.isUnique
-    } catch (error) {
-      console.error("Error checking username uniqueness:", error)
-      return false
-    }
-  }
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isUnique = await checkUniqueUsername(data.username)
+      const isUnique: boolean = await checkUniqueUsername(data.username)
 
       if (!isUnique) {
         return
       }
 
-      const response = await fetch("http://localhost:3001/add_user", {
+      await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +31,6 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         body: JSON.stringify(data),
       })
 
-      const result = await response.json() //See what this does
         onClose()
         reset()
         window.location.href = "/home"

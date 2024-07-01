@@ -124,7 +124,7 @@ app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(404).json({ message: "Username and password are required" }); //TODO: Do it another way
+    return res.json({ message: "Username and password are required" }); 
   }
 
   let query = `

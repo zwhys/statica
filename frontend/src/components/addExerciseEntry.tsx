@@ -39,9 +39,6 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
         }),
       })
 
-      if (!response.ok) {
-        throw new Error("Failed to add exercise entry")
-      }
       onClose()
       reset()
     } catch (error) {
@@ -58,7 +55,8 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
-        const responseExercise_types = await response.json()
+        const responseExercise_types: Exercise_types[] = await response.json()
+        console.log(responseExercise_types)
         setExercise_types(responseExercise_types)
       } catch (error) {
         console.error("Error fetching data:", error)
