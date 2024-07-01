@@ -20,13 +20,17 @@ const data = [
 ]
 export function DisplayExerciseStatistics() {
   return (
-    <Box
+    
+    <Box bgcolor="cyan"
       textAlign="center"
       sx={{
         display: "flex",
-        flexDirection: "column",
+        bgcolor: "#FF8E53",
         gap: 2,
-        width: "80%",
+        padding: 5,
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        borderRadius: 4,
+        width: "90%",
         margin: "0 auto"
       }}
     >
@@ -37,7 +41,7 @@ export function DisplayExerciseStatistics() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="Personal Best" stroke="#673ab7" />
+          <Line type="monotone" dataKey="Personal Best" stroke="#093170" />
         </LineChart>
       </ResponsiveContainer>
     </Box>

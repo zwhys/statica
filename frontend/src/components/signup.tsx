@@ -79,8 +79,8 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         maxWidth="md"
-        sx={{
-          "& .MuiDialog-paper": {
+        PaperProps={{
+          sx: {
             borderRadius: 8,
           },
         }}

@@ -16,6 +16,14 @@ const Calendar: React.FC = () => {
       <DisplayRecords setEvents={setEvents} />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      //   customButtons={{
+      //     myCustomButton: {
+      //         text: 'custom!',
+      //         click: function() {
+      //             alert('clicked the custom button!');
+      //         },
+      //     },
+      // }}
         headerToolbar={{
           left: "prev,next",
           center: "title",

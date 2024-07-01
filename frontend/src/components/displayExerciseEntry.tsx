@@ -10,8 +10,8 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
       <Dialog
         open={open}
         onClose={() => onClose()}
-        sx={{
-          "& .MuiDialog-paper": {
+        PaperProps={{
+          sx: {
             borderRadius: 8,
           },
         }}
@@ -46,7 +46,7 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               color="primary"
               onClick={() => setDialogOpen(true)}
             >
-              Add Exercise Event
+              Add Exercise Entry
             </Button>
             <AddExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
           </Box>
