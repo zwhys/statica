@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { Box, Typography, Button } from "@mui/material"
-import AddExerciseEntry from "../components/addExerciseEntry"
-import Calendar from "../components/calendar"
+import AddExerciseEntry from "./addExerciseEntry"
+import Calendar from "./calendar"
 
-export function CalendarView() {
+export function ViewCalendar() {
   const [dialogOpen, setDialogOpen] = useState(false)
   return (
     <>
@@ -45,4 +45,4 @@ export function CalendarView() {
   )
 }
 
-export default CalendarView
+export default ViewCalendar

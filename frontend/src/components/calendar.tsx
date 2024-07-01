@@ -6,6 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import React, { useState } from "react"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayExerciseEntry from "./displayExerciseEntry"
+import { Box } from "@mui/material"
 
 const Calendar: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -16,14 +17,6 @@ const Calendar: React.FC = () => {
       <DisplayRecords setEvents={setEvents} />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      //   customButtons={{
-      //     myCustomButton: {
-      //         text: 'custom!',
-      //         click: function() {
-      //             alert('clicked the custom button!');
-      //         },
-      //     },
-      // }}
         headerToolbar={{
           left: "prev,next",
           center: "title",
@@ -45,12 +38,8 @@ const Calendar: React.FC = () => {
 }
 
 function renderEventContent(eventContent: EventContentArg) {
-  return (
-    <>
-      <b>{eventContent.timeText}</b>
-      <i>{eventContent.event.title}</i>
-    </>
-  )
+  return <Box sx={{ bgcolor: "#FE6B8B", borderRadius: 1}}>{eventContent.event.title}</Box>
 }
 
 export default Calendar
+//TODO: Make better buttons

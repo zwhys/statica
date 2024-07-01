@@ -2,8 +2,8 @@ import React, {useState} from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 import { TabsChrome } from "../mui-treasury/tabs-chrome"
-import CalendarView from "../components/calendarView"
-import StatisticsView from "../components/statisticsView"
+import ViewCalendar from "../components/viewCalendar"
+import ViewStatistics from "../components/viewStatistics"
 
 export function HomePage() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -34,8 +34,8 @@ export function HomePage() {
             borderBottomLeftRadius: "32px",
           }}
         >
-          {tabIndex === 0 && <CalendarView />}
-          {tabIndex === 1 && <StatisticsView />}
+          {tabIndex === 0 && <ViewCalendar />}
+          {tabIndex === 1 && <ViewStatistics />}
         </Box>
       </Box>
     </>
