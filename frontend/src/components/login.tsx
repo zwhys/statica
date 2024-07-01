@@ -4,7 +4,25 @@ import { Button, Dialog, Typography, TextField, Box } from "@mui/material"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
+
+  const checkUniqueUsername = async (username: string) => {
+    try {
+      const response = await fetch("http://localhost:3001/check_username", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username }),
+      })
+
+      const result = await response.json()
+      return result.isUnique
+    } catch (error) {
+      console.error("Error checking username uniqueness:", error)
+      return false
+    }
+  }
 
   const {
     register,
@@ -13,22 +31,21 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
     reset,
   } = useForm<UserFormValues>()
 
-  const checkIsAuthenticated = async (username: string, password: string) => {
+  const checkIsAuthenticated = async (data: any) => {
     try {
       const response = await fetch("http://localhost:3001/authentication", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ ...data }),
       })
 
-      if (!response.ok) {
-        throw new Error("Authentication failed")
-      }
-
       const result = await response.json()
-      return result.isLogInDetailsValid
+      console.log(result)
+      console.log(result.isAuthenticated)
+      return result.isAuthenticated //bool
+      
     } catch (error) {
       console.error("Error checking authentication:", error)
       return false
@@ -37,10 +54,10 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isAuthenticated = await checkIsAuthenticated(data.username, data.password)
-
+      const isAuthenticated = await checkIsAuthenticated(data)
+      console.log(data) //json
       if (!isAuthenticated) {
-        // Handle authentication failure, show error message, etc.
+        setIsAuthenticated(false)
         return
       }
 
@@ -100,6 +117,15 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
                     value: 50,
                     message: "Username cannot exceed 50 characters",
                   },
+
+                    validate: async value => {
+                      const isUnique = await checkUniqueUsername(value)
+                      if (isUnique) {
+                        return "User does not exist"
+                      }
+                      return true
+                    },
+
                 })}
                 error={!!errors.username}
                 helperText={errors.username ? errors.username.message : ""}
@@ -149,4 +175,4 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 }
 
 export default LogIn
-//TODO: Fix logging in feature
+//TODO: Fix logging in feature (Can log in, Can detect  no user, Cannot handle wrong password)

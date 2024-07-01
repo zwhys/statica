@@ -7,8 +7,8 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 
   const {
     register,
-    handleSubmit,
     watch,
+    handleSubmit,
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
@@ -47,9 +47,10 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         body: JSON.stringify(data),
       })
 
-      onClose()
-      reset()
-      window.location.href = "/home"
+      const result = await response.json() //See what this does
+        onClose()
+        reset()
+        window.location.href = "/home"
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -184,4 +185,3 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 export default SignUp
 
 //TODO: Welcome user when creating new account
-//TODO: Add confirm password check

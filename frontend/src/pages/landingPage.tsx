@@ -8,7 +8,7 @@ export function LandingPage() {
   return (
     <>
       <HeaderLanding />
-      <Box
+      {/* <Box
         display="flex"
         alignItems="center"
         textAlign="center"
@@ -37,7 +37,7 @@ export function LandingPage() {
         <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Typography variant="h2">Image Here</Typography>
         </Box>
-      </Box>
+      </Box> */}
     </>
   )
 }
