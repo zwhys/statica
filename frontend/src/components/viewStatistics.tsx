@@ -5,6 +5,7 @@ import DisplayExerciseStatistics from "./displayExerciseStatistics"
 export function ViewStatistics() {
   return (
     <Grid container spacing={2} direction="column">
+      <Typography variant='h2'>Statistics</Typography>
       <Grid item>
         <DisplayExerciseStatistics />
       </Grid>

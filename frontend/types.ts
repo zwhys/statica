@@ -3,6 +3,10 @@ interface Props {
   onClose: () => void
 }
 
+type DisplayRecordsProps = {
+  setEvents: (events: Records[]) => void;
+};
+
 type AddExerciseEntryFormValues = {
   exercise_type: string
   sets: number

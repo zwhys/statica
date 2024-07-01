@@ -22,3 +22,4 @@ export default App
 //TODO: Create loading screen
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog
+//TODO: Add types to everything

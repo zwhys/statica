@@ -14,7 +14,7 @@ const Calendar: React.FC = () => {
 
   return (
     <>
-      <DisplayRecords setEvents={setEvents} />
+      {/* <DisplayRecords setEvents={setEvents} /> */}
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{

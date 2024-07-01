@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, Typography, TextField, Box } from "@mui/material"
+import { checkIsAuthenticated } from "../api"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -12,25 +13,6 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
     formState: { errors },
     reset,
   } = useForm<UserFormValues>()
-
-  const checkIsAuthenticated = async (data: UserFormValues) => {
-    try {
-      const response = await fetch("http://localhost:3001/authentication", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-
-      const result = await response.json()
-      console.log(result)
-      return result.isAuthenticated // bool
-    } catch (error) {
-      console.error("Error checking authentication:", error)
-      return false
-    }
-  }
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {

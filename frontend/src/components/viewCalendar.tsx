@@ -25,18 +25,6 @@ export function ViewCalendar() {
         >
           Add Exercise Entry
         </Button>
-        <Typography fontSize={33} sx={{ margin: 3 }}>
-          Frequently Used
-        </Typography>
-        <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-          Frequently Used 1
-        </Button>
-        <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-          Frequently Used 2
-        </Button>
-        <Button size="large" variant="contained" color="primary" sx={{ margin: 1 }}>
-          Frequently Used 3
-        </Button>
       </Box>
       <Box sx={{ width: "75%" }}>
         <Calendar />
