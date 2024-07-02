@@ -1,12 +1,14 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 import { TabsChrome } from "../mui-treasury/tabs-chrome"
 import ViewCalendar from "../components/viewCalendar"
 import ViewStatistics from "../components/viewStatistics"
+import WelcomeDialog from "../components/authentication/signupWelcomeDialog"
 
 export function HomePage() {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0)
+  const [isWelcomeDialogOpen, setIsWelcomeDialogOpen] = useState(false)
   return (
     <>
       <HeaderHome />
@@ -18,7 +20,7 @@ export function HomePage() {
         }}
       >
         <Box>
-          <TabsChrome tabIndex={tabIndex} setTabIndex={setTabIndex}/>
+          <TabsChrome tabIndex={tabIndex} setTabIndex={setTabIndex} />
         </Box>
         <Box
           textAlign="center"
@@ -38,6 +40,7 @@ export function HomePage() {
           {tabIndex === 1 && <ViewStatistics />}
         </Box>
       </Box>
+      <WelcomeDialog open={isWelcomeDialogOpen} onClose={() => setIsWelcomeDialogOpen(false)} />
     </>
   )
 }

@@ -7,6 +7,7 @@ export function LogOut() {
     <Link href="/landing">
       <Button
         variant="contained"
+        size="large"
         sx={{
           marginLeft: 2,
           color: "white",

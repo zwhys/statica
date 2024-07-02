@@ -1,9 +1,12 @@
 import { EventInput } from "@fullcalendar/core"
 
-export const fetchRecords = async (setEvents: (events: EventInput[]) => void) => {
+export const fetchRecords = async (setEvents: (events: any) => void) => { //TODO: Fix the type
   try {
     const response = await fetch("http://localhost:3001/records", {
       method: "get",
+      headers: { 
+        "Content-Type": "application/json",
+       }, 
     })
     const responseRecords: Records[] = await response.json()
     const calendarRecords: EventInput[] = responseRecords.map((record: Records) => ({

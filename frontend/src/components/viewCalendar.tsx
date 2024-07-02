@@ -4,10 +4,10 @@ import AddExerciseEntry from "./addExerciseEntry"
 import Calendar from "./calendar"
 
 export function ViewCalendar() {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   return (
     <>
-      <AddExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
+      <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
 
       <Box sx={{ width: "25%" }}>
         <Typography variant="h3" sx={{ margin: 3 }}>
@@ -21,7 +21,7 @@ export function ViewCalendar() {
           size="large"
           variant="contained"
           color="primary"
-          onClick={() => setDialogOpen(true)}
+          onClick={() => setIsDialogOpen(true)}
         >
           Add Exercise Entry
         </Button>

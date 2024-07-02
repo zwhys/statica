@@ -3,12 +3,10 @@ import { fetchRecords } from "./api"
 
 const DisplayRecords: React.FC<DisplayRecordsProps> = ({ setEvents }) => {
   useEffect(() => {
-    // fetchRecords(setEvents);
-  }, [setEvents]);
+    fetchRecords(setEvents)
+  }, [setEvents])
 
-  return null;
-};
+  return null
+}
 
 export default DisplayRecords
-
-//TODO: Fix this please :(

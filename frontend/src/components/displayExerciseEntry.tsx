@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import { Box, Button, Dialog, DialogContent, Paper, Typography } from "@mui/material"
 import AddExerciseEntry from "./addExerciseEntry"
+import DisplayRecords from "./displayRecords"
 
 export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [isdialogOpen, setIsDialogOpen] = useState(false)
 
   return (
     <Box textAlign="center">
@@ -29,6 +30,7 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
           >
             <Paper sx={{ bgcolor: "orange" }}>
               <Typography>hehe</Typography>
+              {/* <DisplayRecords/> */}
             </Paper>
           </Box>
           <Box
@@ -44,11 +46,11 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               sx={{ background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }}
               variant="contained"
               color="primary"
-              onClick={() => setDialogOpen(true)}
+              onClick={() => setIsDialogOpen(true)}
             >
               Add Exercise Entry
             </Button>
-            <AddExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
+            <AddExerciseEntry open={isdialogOpen} onClose={() => setIsDialogOpen(false)} />
           </Box>
         </DialogContent>
       </Dialog>

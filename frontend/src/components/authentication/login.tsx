@@ -1,11 +1,17 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, Typography, TextField, Box } from "@mui/material"
+import { Button, Dialog, Typography, TextField, Box, IconButton, InputAdornment } from "@mui/material"
 import { checkIsAuthenticated } from "../api"
+import { Visibility, VisibilityOff } from "@mui/icons-material/"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [authError, setAuthError] = useState("")
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
 
   const {
     register,
@@ -80,12 +86,25 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
               <TextField
                 label="Password"
                 variant="outlined"
-                type="password"
+                type={showPassword ? "text" : "password"} // Assuming `showPassword` state is defined
                 margin="normal"
                 fullWidth
                 {...register("password", {
                   required: "Password is required",
                 })}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
                 error={!!errors.password || !!authError}
                 helperText={errors.password ? errors.password.message : authError}
               />

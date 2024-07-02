@@ -1,11 +1,13 @@
 import React from "react"
 import { Typography, Grid } from "@mui/material"
 import DisplayExerciseStatistics from "./displayExerciseStatistics"
+import Loading from "./loading"
 
 export function ViewStatistics() {
   return (
     <Grid container spacing={2} direction="column">
-      <Typography variant='h2'>Statistics</Typography>
+      <Loading />
+      <Typography variant="h2">Statistics</Typography>
       <Grid item>
         <DisplayExerciseStatistics />
       </Grid>

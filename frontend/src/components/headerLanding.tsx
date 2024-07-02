@@ -4,7 +4,7 @@ import LogIn from "./authentication/login"
 import SignUp from "./authentication/signup"
 
 export function HeaderLanding() {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   return (
     <AppBar position="static">
       <Toolbar sx={{ margin: 1 }}>
@@ -25,8 +25,8 @@ export function HeaderLanding() {
             </Typography>
           </Link>
           <Box display="flex" alignItems="center">
-            <LogIn open={dialogOpen} onClose={() => setDialogOpen(false)} />
-            <SignUp open={dialogOpen} onClose={() => setDialogOpen(false)} />
+            <LogIn open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+            <SignUp open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
           </Box>
         </Box>
       </Toolbar>

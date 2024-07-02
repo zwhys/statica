@@ -2,9 +2,13 @@ import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
 import { checkIsUniqueUsername } from "../api"
+import { useNavigate } from "react-router-dom"
 
 const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isWelcomeDialogOpen, setIsWelcomeDialogOpen] = useState(false)
+  const navigate = useNavigate(); // Access navigate function for navigation
+
 
   const {
     register,
@@ -14,17 +18,15 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
     reset,
   } = useForm<UserFormValues>()
 
-
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const isUnique: boolean = await checkIsUniqueUsername(data.username)
 
-      if (!isUnique) { 
-        onClose()
-        reset()
-        window.location.href = "/home"
+      if (!isUnique) {
+        setIsWelcomeDialogOpen(true)        
+        navigate("/home"); 
       }
-
+      
       await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
@@ -32,8 +34,6 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         },
         body: JSON.stringify(data),
       })
-
-        
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -153,11 +153,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
                 Sign Up
               </Button>
             </Box>
-            <img
-              src="/login.png"
-              alt=""
-              style={{ maxWidth: "100%", maxHeight: "100%" }}
-            />
+            <img src="/login.png" alt="" style={{ maxWidth: "100%", maxHeight: "100%" }} />
           </Box>
         </form>
       </Dialog>
@@ -168,3 +164,5 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 export default SignUp
 
 //TODO: Welcome user when creating new account
+//TODO: Add password visible feature maybe, look at login for example
+//TODO: Clean up bloat

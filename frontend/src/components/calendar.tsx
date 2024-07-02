@@ -9,7 +9,7 @@ import DisplayExerciseEntry from "./displayExerciseEntry"
 import { Box } from "@mui/material"
 
 const Calendar: React.FC = () => {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
 
   return (
@@ -28,11 +28,11 @@ const Calendar: React.FC = () => {
         selectMirror={true}
         dayMaxEvents={true}
         events={events}
-        select={() => setDialogOpen(true)}
+        select={() => setIsDialogOpen(true)}
         eventContent={renderEventContent}
       />
 
-      <DisplayExerciseEntry open={dialogOpen} onClose={() => setDialogOpen(false)} />
+      <DisplayExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
 }

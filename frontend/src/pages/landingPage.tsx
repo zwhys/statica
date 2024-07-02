@@ -4,7 +4,7 @@ import HeaderLanding from "../components/headerLanding"
 import { Box, Typography } from "@mui/material"
 
 export function LandingPage() {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   return (
     <>
       <HeaderLanding />
@@ -32,7 +32,7 @@ export function LandingPage() {
           }}
         >
           <Typography variant="h2">Text Here</Typography>
-          <SignUp open={dialogOpen} onClose={() => setDialogOpen(false)} />
+          <SignUp open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
         </Box>
         <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Typography variant="h2">Image Here</Typography>
