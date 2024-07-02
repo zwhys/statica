@@ -26,7 +26,7 @@ export const checkIsAuthenticated = async (data: UserFormValues) => {
       },
       body: JSON.stringify(data),
     })
-    
+
     return await response.json()
   } catch (error) {
     console.error("Error checking authentication:", error)
@@ -43,7 +43,7 @@ export const checkIsUniqueUsername = async (username: string) => {
       },
       body: JSON.stringify({ username }),
     })
-    console.log(await response.json())
+    //console.log(await response.json())
 
     return await response.json()
   } catch (error) {

@@ -105,7 +105,6 @@ app.post("/add_user", async (req, res) => {
     let queryParams = [username, hashed_password];
 
     await pool.query(query, queryParams);
-    res.json({ message: "User added successfully" });
   } catch (err) {
     console.error("Error adding user:", err);
     res.status(500).send("Internal Server Error");

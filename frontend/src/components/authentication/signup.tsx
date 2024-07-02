@@ -19,8 +19,10 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
     try {
       const isUnique: boolean = await checkIsUniqueUsername(data.username)
 
-      if (!isUnique) {
-        return
+      if (!isUnique) { 
+        onClose()
+        reset()
+        window.location.href = "/home"
       }
 
       await fetch("http://localhost:3001/add_user", {
@@ -31,9 +33,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
         body: JSON.stringify(data),
       })
 
-        onClose()
-        reset()
-        window.location.href = "/home"
+        
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -94,7 +94,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
                   },
                   validate: async value => {
                     const isUnique = await checkIsUniqueUsername(value)
-                    if (!isUnique) {
+                    if (isUnique) {
                       return "Username is taken. Please choose another"
                     }
                     return true
