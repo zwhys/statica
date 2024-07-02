@@ -16,7 +16,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isAuthenticated: boolean = await checkIsAuthenticated(data)
+      const isAuthenticated: Boolean = await checkIsAuthenticated(data)
       if (!isAuthenticated) {
         setAuthError("Username or Password is incorrect")
         return

@@ -45,3 +45,11 @@ export const getExercise_types = async () => {
     throw err;
   }
 };
+
+export const postExerciseEntry = async () => {
+  try {
+  } catch (err) {
+    console.error("Error adding exercise entry:", err);
+    throw err;
+  }
+};

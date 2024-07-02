@@ -3,7 +3,6 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import pool from "./db";
 import { getUsers, getExercise_types, getRecords } from "./api";
-import { error } from "console";
 
 const app = express();
 const port = 3001;
@@ -72,7 +71,6 @@ app.post("/add_exercise_entry", async (req, res) => {
     ];
 
     await pool.query(query, queryParams);
-    res.status(200).send("Exercise entry saved successfully");
   } catch (err) {
     console.error("Error saving exercise entry:", err);
     res.status(500).send("Internal Server Error");
@@ -81,7 +79,7 @@ app.post("/add_exercise_entry", async (req, res) => {
 
 app.post("/check_username", async (req, res) => {
   const { username } = req.body;
-  
+
   try {
     const checkUserQuery = `
       SELECT * FROM users WHERE username = $1 LIMIT 1;
@@ -89,17 +87,12 @@ app.post("/check_username", async (req, res) => {
     const checkUserParams = [username];
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
 
-    if (existingUser.rows.length > 0) {
-      res.json({ isUnique: false }); 
-    } else {
-      res.json({ isUnique: true }); 
-    }
+    res.send(existingUser.rows.length > 0);
   } catch (err) {
     console.error("Error checking username uniqueness:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).send("Internal Server Error");
   }
 });
-
 
 app.post("/add_user", async (req, res) => {
   const { username, password } = req.body;
@@ -112,19 +105,18 @@ app.post("/add_user", async (req, res) => {
     let queryParams = [username, hashed_password];
 
     await pool.query(query, queryParams);
-    res.status(200).json({ message: "User added successfully" });
+    res.json({ message: "User added successfully" });
   } catch (err) {
     console.error("Error adding user:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).send("Internal Server Error");
   }
 });
-
 
 app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.json({ message: "Username and password are required" }); 
+    return res.send(false);
   }
 
   let query = `
@@ -134,20 +126,14 @@ app.post("/authentication", async (req, res) => {
 
   try {
     const { rows } = await pool.query(query, queryParams);
-    
+
     if (rows.length === 0) {
-      return res.status(404).json({ error: "User not found" });
+      return res.send(false);
     }
 
     const dbPasswordHash = rows[0].hashed_password;
 
-    const isPasswordValid = await bcrypt.compare(password, dbPasswordHash);
-
-    if (isPasswordValid) {
-      res.json({ isAuthenticated: true });
-    } else {
-      res.json({ isAuthenticated: false });
-    }
+    res.send(await bcrypt.compare(password, dbPasswordHash));
   } catch (err) {
     console.error("Error during authentication:", err);
     res.status(500).json({ message: "Internal Server Error" });

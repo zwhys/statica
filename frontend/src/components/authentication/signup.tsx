@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
-import { checkUniqueUsername } from "../api"
+import { checkIsUniqueUsername } from "../api"
 
 const SignUp: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -17,7 +17,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isUnique: boolean = await checkUniqueUsername(data.username)
+      const isUnique: boolean = await checkIsUniqueUsername(data.username)
 
       if (!isUnique) {
         return
@@ -93,7 +93,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const isUnique = await checkUniqueUsername(value)
+                    const isUnique = await checkIsUniqueUsername(value)
                     if (!isUnique) {
                       return "Username is taken. Please choose another"
                     }
@@ -155,7 +155,7 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
             </Box>
             <img
               src="/login.png"
-              alt="Login Image"
+              alt=""
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </Box>
