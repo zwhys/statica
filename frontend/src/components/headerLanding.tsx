@@ -5,6 +5,7 @@ import SignUp from "./authentication/signup"
 
 export function HeaderLanding() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  
   return (
     <AppBar position="static">
       <Toolbar sx={{ margin: 1 }}>

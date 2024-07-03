@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import ChangeColour from "./changeColour"
 import {
   Box,
   Button,
@@ -16,7 +17,7 @@ import {
 
 export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const {
     control,
     register,
@@ -154,8 +155,12 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
                 {...register("remarks", { required: false })}
               />
             </Grid>
+
             <Grid item xs={12}>
               <Grid container justifyContent="flex-end" spacing={2}>
+                <Grid item>
+                  <ChangeColour open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+                </Grid>
                 <Grid item>
                   <Button variant="outlined" color="primary" onClick={onClose}>
                     Cancel
@@ -168,6 +173,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
                     color="primary"
                     sx={{
                       backgroundImage: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                      color: "white",
                     }}
                   >
                     Create
