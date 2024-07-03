@@ -1,8 +1,11 @@
-import React from "react"
-import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
+import React, {useState} from "react"
+import { Avatar, Typography, Box, Toolbar, Link, AppBar, Button } from "@mui/material"
 import LogOut from "./authentication/logout"
+import ChangeColour from "./changeColour"
 
 export function HeaderHome() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
     <AppBar position="static">
       <Toolbar sx={{ margin: 1 }}>
@@ -19,9 +22,23 @@ export function HeaderHome() {
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
             <Typography color="white" fontSize={32}>
-              Tractor
+              Railway
             </Typography>
           </Link>
+          <Button
+        size="large"
+        variant="contained"
+        color="secondary"
+        sx={{
+          margin: 1,
+          background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+          color: "white",
+        }}
+        onClick={() => setIsDialogOpen(true)}
+      >
+        MOGOJOHN
+      </Button>
+          <ChangeColour open={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
           <LogOut />
         </Box>
       </Toolbar>

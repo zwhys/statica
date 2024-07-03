@@ -111,6 +111,12 @@ app.post("/add_user", async (req, res) => {
   }
 });
 
+// app.post("/change_colour"), async (req, res) => {
+//   const {exercise_type, colour} = req.body;
+
+
+// }
+
 app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 

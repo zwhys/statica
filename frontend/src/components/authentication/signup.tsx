@@ -4,10 +4,10 @@ import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
 import { checkIsUniqueUsername } from "../api"
 import { useNavigate } from "react-router-dom"
 
-const SignUp: React.FC<Props> = ({ open, onClose }) => {
+export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isWelcomeDialogOpen, setIsWelcomeDialogOpen] = useState(false)
-  const navigate = useNavigate(); // Access navigate function for navigation
+  const navigate = useNavigate(); 
 
 
   const {
@@ -15,7 +15,6 @@ const SignUp: React.FC<Props> = ({ open, onClose }) => {
     watch,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<UserFormValues>()
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
