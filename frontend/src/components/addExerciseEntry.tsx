@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { fetchExercise_types } from "./api"
 import ChangeColour from "./changeColour"
 import {
   Box,
@@ -48,19 +49,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
   }
 
   useEffect(() => {
-    const fetchExercise_types = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/exercise_types", {
-          method: "GET",
-        })
-        const responseExercise_types: Exercise_types[] = await response.json()
-        setExercise_types(responseExercise_types)
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      }
-    }
-
-    fetchExercise_types()
+    fetchExercise_types(setExercise_types)
   }, [])
 
   return (

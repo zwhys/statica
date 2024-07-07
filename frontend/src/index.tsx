@@ -6,6 +6,8 @@ import { red, green, lightBlue, pink } from "@mui/material/colors"
 import App from "./App"
 import "./App.css"
 import { Provider } from "react-redux"
+import store from './redux/store'
+
 
 const theme = createTheme({
   palette: {
@@ -26,10 +28,10 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>
 )

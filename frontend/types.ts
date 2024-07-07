@@ -4,8 +4,8 @@ interface Props {
 }
 
 type DisplayRecordsProps = {
-  setEvents: (events: Records[]) => void;
-};
+  setEvents: (events: Records[]) => void
+}
 
 type AddExerciseEntryFormValues = {
   exercise_type: string
@@ -13,11 +13,16 @@ type AddExerciseEntryFormValues = {
   reps: number
   remarks: string
 }
+type User = {
+  id: number
+  username: string
+  password: string
+}
 
 type UserFormValues = {
   username: string
   password: string
-  confirmPassword: string;
+  confirmPassword: string
 }
 
 type Exercise_types = {
@@ -27,11 +32,11 @@ type Exercise_types = {
 }
 
 type Records = {
-    id: number
-    user_id: number
-    date_of_entry: string
-    exercise_type: string
-    sets: number
-    reps: number
-    remarks: string
-  }
+  id: number
+  user_id: number
+  date_of_entry: string
+  exercise_type: string
+  sets: number
+  reps: number
+  remarks: string
+}

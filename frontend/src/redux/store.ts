@@ -1,10 +1,10 @@
-import { Typography } from '@mui/material/styles/createTypography'
-import React from 'react'
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './reducer';
 
-function store() {
-  return (
-    <Typography>
-  )
-}
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
 
-export default store
+export default store;

@@ -46,11 +46,36 @@ export const checkIsUniqueUsername = async (username: string) => {
       },
       body: JSON.stringify({ username }),
     })
-    //console.log(await response.json())
 
     return await response.json()
   } catch (error) {
     console.error("Error checking username uniqueness:", error)
     return false
+  }
+}
+
+export const fetchUsers = async () => {
+  try {
+    const response = await fetch("http://localhost:3001/users", {
+      method: "GET",
+      headers: { 
+        "Content-Type": "application/json",
+       }, 
+    })
+    const responseUsers: User[] = await response.json()
+      } catch (error) {
+    console.error("Error fetching data:", error)
+  }
+} 
+
+export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
+  try {
+    const response = await fetch("http://localhost:3001/exercise_types", {
+      method: "GET",
+    })
+    const responseExercise_types: Exercise_types[] = await response.json()
+    setExercise_types(responseExercise_types)
+  } catch (error) {
+    console.error("Error fetching data:", error)
   }
 }
