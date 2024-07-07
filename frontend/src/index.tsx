@@ -4,29 +4,33 @@ import "./index.css"
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, lightBlue, pink } from "@mui/material/colors"
 import App from "./App"
-import './App.css';
+import "./App.css"
+import { Provider } from "react-redux"
+import store from 
 
 const theme = createTheme({
   palette: {
     primary: lightBlue,
     secondary: pink,
     error: red,
-    success: green
+    success: green,
   },
   typography: {
     fontFamily: "Quicksand",
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
-    fontWeightBold: 700
-  }
+    fontWeightBold: 700,
+  },
 })
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 )

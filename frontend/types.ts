@@ -23,6 +23,7 @@ type UserFormValues = {
 type Exercise_types = {
   id: number
   exercise_type: string
+  colour: string
 }
 
 type Records = {

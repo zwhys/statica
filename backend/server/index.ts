@@ -111,11 +111,18 @@ app.post("/add_user", async (req, res) => {
   }
 });
 
-// app.post("/change_colour"), async (req, res) => {
-//   const {exercise_type, colour} = req.body;
-
-
-// }
+app.post("/change_colour", async (req, res) => {
+  const { exercise_type, colour } = req.body;
+  try {
+    let query =
+      "UPDATE exercise_types SET colour = $1 WHERE exercise_type = $2 ";
+      let queryParams = [colour, exercise_type];
+      res.send("Colour changed successfully");
+  } catch (err) {
+    console.error("Error changing colour:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;

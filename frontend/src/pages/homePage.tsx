@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
-import { TabsChrome } from "../mui-treasury/tabs-chrome"
+import TabsChrome from "../components/TabsChrome"
 import ViewCalendar from "../components/viewCalendar"
 import ViewStatistics from "../components/viewStatistics"
 import WelcomeDialog from "../components/authentication/signupWelcomeDialog"

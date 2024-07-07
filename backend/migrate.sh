@@ -2,7 +2,7 @@
 
 DB_HOST="localhost"
 DB_PORT="5432"
-DB_NAME="traxerdb"
+DB_NAME="railwaydb"
 MIGRATIONS_DIR="./migrations"
 
 check_db_exists() {

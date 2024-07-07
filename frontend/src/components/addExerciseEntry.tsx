@@ -53,11 +53,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
         const response = await fetch("http://localhost:3001/exercise_types", {
           method: "GET",
         })
-        if (!response.ok) {
-          throw new Error("Failed to fetch data")
-        }
         const responseExercise_types: Exercise_types[] = await response.json()
-        console.log(responseExercise_types)
         setExercise_types(responseExercise_types)
       } catch (error) {
         console.error("Error fetching data:", error)

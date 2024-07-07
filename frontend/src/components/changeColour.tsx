@@ -1,12 +1,36 @@
 import React, { useState, useCallback } from "react"
 import { ChromePicker, ColorResult } from "react-color"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Box, Button, Dialog, Grid, IconButton, Typography } from "@mui/material"
 import SettingsIcon from "@mui/icons-material/Settings"
-import { Fullscreen } from "@mui/icons-material"
 
 export const ColorPicker: React.FC<Props> = ({ open, onClose }) => {
   const [color, setColor] = useState<string>("#000000")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AddExerciseEntryFormValues>()
+
+  const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
+    try {
+      const response = await fetch("http://localhost:3001/change_colour", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data, //TODO: Fix this
+        }),
+      })
+
+      onClose()
+    } catch (error) {
+      console.error("Error adding exercise entry:", error)
+    }
+  }
 
   const handleChange = useCallback((color: ColorResult) => {
     setColor(color.hex)
@@ -43,7 +67,7 @@ export const ColorPicker: React.FC<Props> = ({ open, onClose }) => {
                   bgcolor: color,
                   borderRadius: 2,
                   height: 150,
-                  width: 150, // Fixed width
+                  width: 150,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -81,5 +105,3 @@ export const ColorPicker: React.FC<Props> = ({ open, onClose }) => {
 }
 
 export default ColorPicker
-
-//TODO: Create a way to preview the colour

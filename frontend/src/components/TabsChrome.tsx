@@ -2,6 +2,7 @@ import React from "react"
 import { styled } from "@mui/material/styles"
 import Tab, { tabClasses } from "@mui/material/Tab"
 import Tabs, { tabsClasses, TabsProps } from "@mui/material/Tabs"
+import { ExposureTwoTone } from "@mui/icons-material"
 
 const TabItem = styled(Tab)(({ theme }) => ({
   opacity: 1,
@@ -55,3 +56,5 @@ export function TabsChrome({ tabIndex, setTabIndex, sx }: TabsChromeProps) {
     </>
   )
 }
+
+export default TabsChrome
