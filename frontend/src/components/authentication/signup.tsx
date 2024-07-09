@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom"
 
 export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isWelcomeDialogOpen, setIsWelcomeDialogOpen] = useState(false)
   const navigate = useNavigate(); 
 
 
@@ -22,8 +21,7 @@ export const SignUp: React.FC<Props> = () => {
       const isUnique: boolean = await checkIsUniqueUsername(data.username)
 
       if (!isUnique) {
-        setIsWelcomeDialogOpen(true)        
-        navigate("/home"); 
+        navigate("/home?dialog=open"); 
       }
       
       await fetch("http://localhost:3001/add_user", {
@@ -162,6 +160,6 @@ export const SignUp: React.FC<Props> = () => {
 
 export default SignUp
 
-//TODO: Welcome user when creating new account
 //TODO: Add password visible feature maybe, look at login for example
 //TODO: Clean up bloat
+//TODO: Add getuserid for login

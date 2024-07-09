@@ -8,11 +8,6 @@ import {
   Button,
 } from "@mui/material";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-}
-
 const WelcomeDialog: React.FC<Props> = ({ open, onClose }) => {
   return (
     <Dialog

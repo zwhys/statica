@@ -128,7 +128,7 @@ app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.json({ authenticated: false });
+    return res.json({ authenticated: null });
   }
 
   let query = `
@@ -140,7 +140,7 @@ app.post("/authentication", async (req, res) => {
     const { rows } = await pool.query(query, queryParams);
 
     if (rows.length === 0) {
-      return res.json({ authenticated: false });
+      return res.json({ authenticated: null });
     }
 
     const dbPasswordHash = rows[0].hashed_password;
@@ -149,9 +149,9 @@ app.post("/authentication", async (req, res) => {
     const match = await bcrypt.compare(password, dbPasswordHash);
 
     if (match) {
-      res.json({ authenticated: true, userId });
+      res.json({ userId });
     } else {
-      res.json({ authenticated: false });
+      res.json({ authenticated: null });
     }
   } catch (err) {
     console.error("Error during authentication:", err);

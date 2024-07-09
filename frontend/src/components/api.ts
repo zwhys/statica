@@ -21,7 +21,7 @@ export const fetchRecords = async (setEvents: (events: any) => void) => {
   }
 }
 
-export const checkIsAuthenticated = async (data: UserFormValues) => {
+export const getUserId = async (data: UserFormValues) => {
   try {
     const response = await fetch("http://localhost:3001/authentication", {
       method: "POST",

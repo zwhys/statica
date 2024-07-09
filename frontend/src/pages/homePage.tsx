@@ -1,14 +1,26 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/headerHome"
 import TabsChrome from "../components/TabsChrome"
 import ViewCalendar from "../components/viewCalendar"
 import ViewStatistics from "../components/viewStatistics"
 import WelcomeDialog from "../components/authentication/signupWelcomeDialog"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export function HomePage() {
   const [tabIndex, setTabIndex] = useState(0)
-  const [isWelcomeDialogOpen, setIsWelcomeDialogOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    if (params.get("dialog") === "open") {
+      setIsDialogOpen(true)
+      navigate("/home")
+    }
+  }, [location, navigate])
+
   return (
     <>
       <HeaderHome />
@@ -40,7 +52,7 @@ export function HomePage() {
           {tabIndex === 1 && <ViewStatistics />}
         </Box>
       </Box>
-      <WelcomeDialog open={isWelcomeDialogOpen} onClose={() => setIsWelcomeDialogOpen(false)} />
+      <WelcomeDialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
 }

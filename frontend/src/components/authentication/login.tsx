@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Dialog, Typography, TextField, Box, IconButton, InputAdornment } from "@mui/material"
-import { checkIsAuthenticated } from "../api"
+import { getUserId } from "../api"
 import { Visibility, VisibilityOff } from "@mui/icons-material/"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
@@ -22,8 +22,8 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isAuthenticated: Boolean = await checkIsAuthenticated(data)
-      if (!isAuthenticated) {
+      const userId: number = await getUserId(data)
+      if (!userId) {
         setAuthError("Username or Password is incorrect")
         return
       }
@@ -86,7 +86,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
               <TextField
                 label="Password"
                 variant="outlined"
-                type={showPassword ? "text" : "password"} // Assuming `showPassword` state is defined
+                type={showPassword ? "text" : "password"}
                 margin="normal"
                 fullWidth
                 {...register("password", {
