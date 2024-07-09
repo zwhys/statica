@@ -128,7 +128,7 @@ app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.send(false);
+    return res.json({ authenticated: false });
   }
 
   let query = `
@@ -140,12 +140,19 @@ app.post("/authentication", async (req, res) => {
     const { rows } = await pool.query(query, queryParams);
 
     if (rows.length === 0) {
-      return res.send(false);
+      return res.json({ authenticated: false });
     }
 
     const dbPasswordHash = rows[0].hashed_password;
+    const userId = rows[0].id;
 
-    res.send(await bcrypt.compare(password, dbPasswordHash));
+    const match = await bcrypt.compare(password, dbPasswordHash);
+
+    if (match) {
+      res.json({ authenticated: true, userId });
+    } else {
+      res.json({ authenticated: false });
+    }
   } catch (err) {
     console.error("Error during authentication:", err);
     res.status(500).json({ message: "Internal Server Error" });

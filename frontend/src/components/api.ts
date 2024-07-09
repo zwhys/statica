@@ -1,12 +1,13 @@
 import { EventInput } from "@fullcalendar/core"
 
-export const fetchRecords = async (setEvents: (events: any) => void) => { //TODO: Fix the type
+export const fetchRecords = async (setEvents: (events: any) => void) => {
+  //TODO: Fix the type
   try {
     const response = await fetch("http://localhost:3001/records", {
       method: "get",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
-       }, 
+      },
     })
     const responseRecords: Records[] = await response.json()
     const calendarRecords: EventInput[] = responseRecords.map((record: Records) => ({
@@ -53,20 +54,6 @@ export const checkIsUniqueUsername = async (username: string) => {
     return false
   }
 }
-
-export const fetchUsers = async () => {
-  try {
-    const response = await fetch("http://localhost:3001/users", {
-      method: "GET",
-      headers: { 
-        "Content-Type": "application/json",
-       }, 
-    })
-    const responseUsers: User[] = await response.json()
-      } catch (error) {
-    console.error("Error fetching data:", error)
-  }
-} 
 
 export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
   try {
