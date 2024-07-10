@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useSelector } from 'react-redux';
 import { Box, Typography, Button } from "@mui/material"
-import AddExerciseEntry from "./addExerciseEntry"
-import Calendar from "./calendar"
+import AddExerciseEntry from "../addExerciseEntry"
+import Calendar from "../calendar"
 
 
 export function ViewCalendar() {

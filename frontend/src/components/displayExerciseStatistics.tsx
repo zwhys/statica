@@ -21,7 +21,7 @@ const data = [
 export function DisplayExerciseStatistics() {
   return (
     
-    <Box bgcolor="cyan"
+    <Box
       textAlign="center"
       sx={{
         display: "flex",

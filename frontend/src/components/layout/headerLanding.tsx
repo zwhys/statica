@@ -1,7 +1,7 @@
 import React, { useState} from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
-import LogIn from "./authentication/login"
-import SignUp from "./authentication/signup"
+import LogIn from "../authentication/login"
+import SignUp from "../authentication/signup"
 
 export function HeaderLanding() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)

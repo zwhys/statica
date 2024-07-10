@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import SignUp from "../components/authentication/signup"
-import HeaderLanding from "../components/headerLanding"
+import { HeaderLanding } from "../components/layout/headerLanding"
 import { Box, Typography } from "@mui/material"
 
 export function LandingPage() {
