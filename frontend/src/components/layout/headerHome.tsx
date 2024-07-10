@@ -1,6 +1,5 @@
-import React, { useState } from "react"
 import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
-import LogOut from "./authentication/logout"
+import LogOut from "../authentication/logout"
 
 export function HeaderHome() {
   return (

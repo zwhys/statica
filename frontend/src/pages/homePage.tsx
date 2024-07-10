@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Box } from "@mui/material"
-import HeaderHome from "../components/headerHome"
+import HeaderHome from "../components/layout/headerHome"
 import TabsChrome from "../components/TabsChrome"
 import ViewCalendar from "../components/viewCalendar"
 import ViewStatistics from "../components/viewStatistics"
