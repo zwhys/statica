@@ -1,19 +1,16 @@
-import { SET_USER_ID } from "./actions";
+import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
-  userId: 0,
-};
+const userSlice = createSlice({
+  name: "userid",
+  initialState: {
+    userId: null,
+  },
+  reducers: {
+    setUserId: (state, action) => {
+      state.userId = action.payload.userId
+    },
+  },
+})
 
-const userReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_USER_ID:
-      return {
-        ...state,
-        userId: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export default userReducer;
+export const { setUserId } = userSlice.actions
+export default userSlice.reducer

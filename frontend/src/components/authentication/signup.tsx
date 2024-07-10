@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
-import { checkIsUniqueUsername } from "../api"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
+import { checkIsUniqueUsername, getUserId } from "../api"
 
 export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const {
     register,
@@ -19,11 +20,12 @@ export const SignUp: React.FC<Props> = () => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const isUnique: boolean = await checkIsUniqueUsername(data.username)
+      const userId: number = await getUserId(data)
 
       if (!isUnique) {
-        navigate("/home?dialog=open"); 
+        navigate("/home?dialog=open")
       }
-      
+
       await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {

@@ -116,8 +116,8 @@ app.post("/change_colour", async (req, res) => {
   try {
     let query =
       "UPDATE exercise_types SET colour = $1 WHERE exercise_type = $2 ";
-      let queryParams = [colour, exercise_type];
-      res.send("Colour changed successfully");
+    let queryParams = [colour, exercise_type];
+    res.send("Colour changed successfully");
   } catch (err) {
     console.error("Error changing colour:", err);
     res.status(500).send("Internal Server Error");
@@ -128,7 +128,7 @@ app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.json({ authenticated: null });
+    return res.json({ userId: null });
   }
 
   let query = `
@@ -140,7 +140,7 @@ app.post("/authentication", async (req, res) => {
     const { rows } = await pool.query(query, queryParams);
 
     if (rows.length === 0) {
-      return res.json({ authenticated: null });
+      return res.json({ userId: null });
     }
 
     const dbPasswordHash = rows[0].hashed_password;
@@ -151,7 +151,7 @@ app.post("/authentication", async (req, res) => {
     if (match) {
       res.json({ userId });
     } else {
-      res.json({ authenticated: null });
+      res.json({ userId: null });
     }
   } catch (err) {
     console.error("Error during authentication:", err);

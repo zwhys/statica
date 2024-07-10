@@ -1,23 +1,32 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Button, Dialog, Typography, TextField, Box, IconButton, InputAdornment } from "@mui/material"
-import { getUserId } from "../api"
+import { useDispatch } from "react-redux"
+import {
+  Button,
+  Dialog,
+  Typography,
+  TextField,
+  Box,
+  IconButton,
+  InputAdornment,
+} from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material/"
+import { getUserId } from "../api"
+import { setUserId } from "../../redux/actions"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [authError, setAuthError] = useState("")
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
+    setShowPassword(prevShowPassword => !prevShowPassword)
+  }
+  const dispatch = useDispatch()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<UserFormValues>()
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
@@ -28,8 +37,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
         return
       }
 
-      onClose()
-      reset()
+      dispatch(setUserId(userId))
       window.location.href = "/home"
     } catch (error) {
       console.error("Error during login:", error)

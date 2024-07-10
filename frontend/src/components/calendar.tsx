@@ -8,8 +8,6 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayExerciseEntry from "./displayExerciseEntry"
 import { Box } from "@mui/material"
 
-
-
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
