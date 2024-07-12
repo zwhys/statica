@@ -32,12 +32,12 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const userId: number = await getUserId(data)
-      if (userId) {
-        console.log(userId)
-        dispatch(setUserId(userId))
-        window.location.href = "/home"
+      if (!userId) {
         return
       }
+      console.log(userId)
+      dispatch(setUserId(userId))
+      window.location.href = "/home"
       setAuthError("Username or Password is incorrect")
     } catch (error) {
       console.error("Error during login:", error)
