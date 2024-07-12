@@ -1,12 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "./index.css"
+import { Provider } from "react-redux"
 import { createTheme, ThemeProvider } from "@mui/material"
 import { red, green, lightBlue, pink } from "@mui/material/colors"
 import App from "./App"
-import "./App.css"
-import { Provider } from "react-redux"
 import store from './redux/store'
+import "./App.css"
+import "./index.css"
 
 
 const theme = createTheme({
