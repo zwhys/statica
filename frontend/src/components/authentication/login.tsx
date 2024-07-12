@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import {
   Button,
   Dialog,
@@ -12,16 +13,14 @@ import {
 } from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material/"
 import { getUserId } from "../api"
-import { setUserId } from "../../redux/actions"
+import { setUserId } from "../../redux/reducer"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [authError, setAuthError] = useState("")
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword)
-  }
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -31,14 +30,14 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const userId: number = await getUserId(data)
+      const response = await getUserId(data)
+      const userId: number = response.userId
       if (!userId) {
+        setAuthError("Username or Password is incorrect")
         return
       }
-      console.log(userId)
       dispatch(setUserId(userId))
-      window.location.href = "/home"
-      setAuthError("Username or Password is incorrect")
+      navigate("/home")
     } catch (error) {
       console.error("Error during login:", error)
     }

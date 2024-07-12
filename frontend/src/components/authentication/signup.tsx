@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
 import { checkUsernameAvailable, getUserId } from "../api"
+import { setUserId } from "../../redux/reducer"
 
 export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -19,13 +20,17 @@ export const SignUp: React.FC<Props> = () => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const response = await checkUsernameAvailable(data.username)
-      const isUsernameAvailable = response.isUsernameAvailable
-      const userId: number = await getUserId(data)
+      const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
+      const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
+
+      const userIdResponse = await getUserId(data)
+      const userId: number = userIdResponse.userId
+
       if (!isUsernameAvailable) {
         return
       }
-      console.log('tesing')
+      console.log(userId)
+      dispatch(setUserId(userId)) 
       navigate("/home?dialog=open")
 
       await fetch("http://localhost:3001/add_user", {
@@ -94,8 +99,8 @@ export const SignUp: React.FC<Props> = () => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const response = await checkUsernameAvailable(value)
-                    const isUsernameAvailable: boolean = response.isUsernameAvailable
+                    const response3 = await checkUsernameAvailable(value)
+                    const isUsernameAvailable: boolean = response3.isUsernameAvailable
                     if (!isUsernameAvailable) {
                       return "Username is taken. Please choose another"
                     }
@@ -167,5 +172,5 @@ export default SignUp
 
 //TODO: Add password visible feature maybe, look at login for example
 //TODO: Clean up bloat
-//TODO: Add getuserid for login
-//TODO: fix noimplicitany 
+//TODO: Add getuserid for signup
+//TODO: fix noimplicitany
