@@ -20,9 +20,10 @@ export const SignUp: React.FC<Props> = () => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const isUnique: boolean = await checkIsUniqueUsername(data.username)
+      console.log(isUnique)
       const userId: number = await getUserId(data)
 
-      if (!isUnique) {
+      if (isUnique) {
         navigate("/home?dialog=open")
       }
 
@@ -92,11 +93,11 @@ export const SignUp: React.FC<Props> = () => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const isUnique = await checkIsUniqueUsername(value)
+                    const isUnique: boolean = await checkIsUniqueUsername(value)
                     if (isUnique) {
-                      return "Username is taken. Please choose another"
+                      return true
                     }
-                    return true
+                    return "Username is taken. Please choose another"
                   },
                 })}
                 error={!!errors.username}

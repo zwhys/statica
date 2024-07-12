@@ -86,8 +86,9 @@ app.post("/check_username", async (req, res) => {
     `;
     const checkUserParams = [username];
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
+    const isUnique: boolean = existingUser.rows.length === 0
 
-    res.send(existingUser.rows.length > 0);
+    res.json(isUnique); //TODO: Turn it into a json
   } catch (err) {
     console.error("Error checking username uniqueness:", err);
     res.status(500).send("Internal Server Error");
@@ -96,6 +97,7 @@ app.post("/check_username", async (req, res) => {
 
 app.post("/add_user", async (req, res) => {
   const { username, password } = req.body;
+  
   try {
     const hashed_password = await bcrypt.hash(password, 10);
     let query = `
