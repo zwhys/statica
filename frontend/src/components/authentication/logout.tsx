@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { setUserId } from "../../redux/reducer"
 import { Link, Button } from "@mui/material"
 
 export function LogOut() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const dispatch = useDispatch()
   return (
     <Link href="/landing">
       <Button
@@ -13,7 +15,7 @@ export function LogOut() {
           color: "white",
           background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
         }}
-        onClick={() => setIsDialogOpen(true)}
+        onClick={() => dispatch(setUserId(0))}
       >
         Log Out
       </Button>
