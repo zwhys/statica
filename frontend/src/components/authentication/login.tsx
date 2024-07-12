@@ -16,8 +16,8 @@ import { setUserId } from "../../redux/actions"
 
 const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [authError, setAuthError] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+  const [authError, setAuthError] = useState("")
   const togglePasswordVisibility = () => {
     setShowPassword(prevShowPassword => !prevShowPassword)
   }
@@ -32,13 +32,13 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       const userId: number = await getUserId(data)
-      if (!userId) {
-        setAuthError("Username or Password is incorrect")
+      if (userId) {
+        console.log(userId)
+        dispatch(setUserId(userId))
+        window.location.href = "/home"
         return
       }
-
-      dispatch(setUserId(userId))
-      window.location.href = "/home"
+      setAuthError("Username or Password is incorrect")
     } catch (error) {
       console.error("Error during login:", error)
     }
