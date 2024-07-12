@@ -38,7 +38,7 @@ export const getUserId = async (data: UserFormValues) => {
   }
 }
 
-export const checkIsUniqueUsername = async (username: string) => {
+export const checkUsernameAvailable = async (username: string) => {
   try {
     const response = await fetch("http://localhost:3001/check_username", {
       method: "POST",

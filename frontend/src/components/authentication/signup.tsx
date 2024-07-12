@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
-import { checkIsUniqueUsername, getUserId } from "../api"
+import { checkUsernameAvailable, getUserId } from "../api"
 
 export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -19,13 +19,14 @@ export const SignUp: React.FC<Props> = () => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
-      const isUnique: boolean = await checkIsUniqueUsername(data.username)
-      console.log(isUnique)
+      const response = await checkUsernameAvailable(data.username)
+      const isUsernameAvailable = response.isUsernameAvailable
       const userId: number = await getUserId(data)
-
-      if (isUnique) {
-        navigate("/home?dialog=open")
+      if (!isUsernameAvailable) {
+        return
       }
+      console.log('tesing')
+      navigate("/home?dialog=open")
 
       await fetch("http://localhost:3001/add_user", {
         method: "POST",
@@ -93,11 +94,12 @@ export const SignUp: React.FC<Props> = () => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const isUnique: boolean = await checkIsUniqueUsername(value)
-                    if (isUnique) {
-                      return true
+                    const response = await checkUsernameAvailable(value)
+                    const isUsernameAvailable: boolean = response.isUsernameAvailable
+                    if (!isUsernameAvailable) {
+                      return "Username is taken. Please choose another"
                     }
-                    return "Username is taken. Please choose another"
+                    return true
                   },
                 })}
                 error={!!errors.username}
@@ -166,3 +168,5 @@ export default SignUp
 //TODO: Add password visible feature maybe, look at login for example
 //TODO: Clean up bloat
 //TODO: Add getuserid for login
+//TODO: make happy path
+//TODO: fix noimplicitany 
