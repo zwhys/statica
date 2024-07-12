@@ -26,6 +26,23 @@ app.get("/users", async (req, res) => {
   }
 });
 
+app.post("/display_username", async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const getUsernameQuery = `
+      SELECT * FROM users WHERE id = $1 LIMIT 1;
+    `;
+    const getUsernameParams = [userId];
+    const { rows } = await pool.query(getUsernameQuery, getUsernameParams);
+    const username = rows[0].username
+    res.json({username: username});
+  } catch (err) {
+    console.error("Error displaying username:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.get("/exercise_types", async (req, res) => {
   try {
     const exercise_types = await getExercise_types();
@@ -146,14 +163,14 @@ app.post("/authentication", async (req, res) => {
     }
 
     const dbPasswordHash = rows[0].hashed_password;
-    const userId = rows[0].id;
+    const userId: number = rows[0].id;
 
     const match = await bcrypt.compare(password, dbPasswordHash);
 
     if (!match) {
-      res.json({ userId: null });
+      return res.json({ userId: null });
     }
-    res.json({ userId: userId });
+    return res.json({ userId: userId });
   } catch (err) {
     console.error("Error during authentication:", err);
     res.status(500).json({ message: "Internal Server Error" });
