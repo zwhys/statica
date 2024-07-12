@@ -86,9 +86,9 @@ app.post("/check_username", async (req, res) => {
     `;
     const checkUserParams = [username];
     const existingUser = await pool.query(checkUserQuery, checkUserParams);
-    const isUsernameAvailable: boolean = existingUser.rows.length === 0
+    const isUsernameAvailable: boolean = existingUser.rows.length === 0;
 
-    res.json({isUsernameAvailable}); //TODO: Turn it into a json
+    res.json({ isUsernameAvailable: isUsernameAvailable });
   } catch (err) {
     console.error("Error checking username availability:", err);
     res.status(500).send("Internal Server Error");
@@ -97,7 +97,7 @@ app.post("/check_username", async (req, res) => {
 
 app.post("/add_user", async (req, res) => {
   const { username, password } = req.body;
-  
+
   try {
     const hashed_password = await bcrypt.hash(password, 10);
     let query = `
@@ -134,7 +134,7 @@ app.post("/authentication", async (req, res) => {
   }
 
   let query = `
-    SELECT * FROM users WHERE username = $1 LIMIT 1;
+  SELECT * FROM users WHERE username = $1 LIMIT 1;
   `;
   let queryParams = [username];
 
@@ -150,11 +150,10 @@ app.post("/authentication", async (req, res) => {
 
     const match = await bcrypt.compare(password, dbPasswordHash);
 
-    if (match) {
-      res.json({ userId });
-    } else {
+    if (!match) {
       res.json({ userId: null });
     }
+    res.json({ userId: userId });
   } catch (err) {
     console.error("Error during authentication:", err);
     res.status(500).json({ message: "Internal Server Error" });

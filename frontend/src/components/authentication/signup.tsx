@@ -168,5 +168,4 @@ export default SignUp
 //TODO: Add password visible feature maybe, look at login for example
 //TODO: Clean up bloat
 //TODO: Add getuserid for login
-//TODO: make happy path
 //TODO: fix noimplicitany 
