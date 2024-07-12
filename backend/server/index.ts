@@ -26,7 +26,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.post("/display_username", async (req, res) => {
+app.post("/username", async (req, res) => {
   const { userId } = req.body;
 
   try {
