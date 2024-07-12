@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+
+const initialState = { userId: 0 }
 
 const userSlice = createSlice({
   name: "userid",
-  initialState: {
-    userId: null,
-  },
+  initialState,
   reducers: {
-    setUserId: (state, action) => {
-      state.userId = action.payload.userId
+    setUserId: (state, action: PayloadAction<number>) => {
+      state.userId = action.payload
     },
   },
 })
