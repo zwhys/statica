@@ -15,7 +15,7 @@ export function LogOut() {
           color: "white",
           background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
         }}
-        onClick={() => dispatch(setUserId(0))}
+        onClick={() => dispatch(setUserId(null))}
       >
         Log Out
       </Button>
