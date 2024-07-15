@@ -31,3 +31,5 @@ export function NotFoundPage() {
 }
 
 export default NotFoundPage
+
+//TODO: fix where it is redirected to

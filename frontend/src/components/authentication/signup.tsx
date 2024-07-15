@@ -31,7 +31,7 @@ export const SignUp: React.FC<Props> = () => {
       }
       console.log(userId)
       dispatch(setUserId(userId)) 
-      navigate("/home?dialog=open")
+      navigate("/?dialog=open")
 
       await fetch("http://localhost:3001/add_user", {
         method: "POST",

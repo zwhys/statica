@@ -17,7 +17,7 @@ export function HomePage() {
     const params = new URLSearchParams(location.search)
     if (params.get("dialog") === "open") {
       setIsDialogOpen(true)
-      navigate("/home")
+      navigate("/")
     }
   }, [location, navigate])
 

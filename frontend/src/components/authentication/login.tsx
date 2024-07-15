@@ -37,7 +37,7 @@ const LogIn: React.FC<Props> = ({ open, onClose }) => {
         return
       }
       dispatch(setUserId(userId))
-      navigate("/home")
+      navigate("/")
     } catch (error) {
       console.error("Error during login:", error)
     }

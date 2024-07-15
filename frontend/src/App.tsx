@@ -1,20 +1,40 @@
 import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "./redux/store"
 import HomePage from "./pages/homePage"
-import NotFoundPage from "./pages/notFoundPage"
 import LandingPage from "./pages/landingPage"
+import NotFoundPage from "./pages/notFoundPage"
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<LandingPage />} />
-        <Route path="/landing" element={<LandingPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
-  )
+const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
+  const userId = useSelector((state: RootState) => state.user.userId)
+
+  return userId ? children : <Navigate to="/" />
+}
+
+const routes = [
+  {
+    path: "/landing",
+    element: <LandingPage />,
+  },
+  {
+    path: "/",
+    element: (
+      <PrivateRoutes>
+        <HomePage />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
+]
+
+const router = createBrowserRouter(routes)
+
+const App = () => {
+  return <RouterProvider router={router} />
 }
 
 export default App
@@ -23,3 +43,5 @@ export default App
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
+//TODO: add fullname and prefername functionality
+//TODO: Fix the issue that the users can manually go back to the landing page also that userstate is cleared after 404
