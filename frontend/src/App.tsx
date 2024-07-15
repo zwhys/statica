@@ -44,4 +44,6 @@ export default App
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: add fullname and prefername functionality
-//TODO: Fix the issue that the users can manually go back to the landing page also that userstate is cleared after 404
+//!: FIX THE ROUTES AND PERSISTING STORE
+//!: CHANGE THE UI AND THEME
+//!: 
