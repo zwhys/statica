@@ -1,4 +1,5 @@
 INSERT INTO
     users (username, hashed_password)
 VALUES
-    ('mochi', '$2b$10$Ks6X4.AEt3nISBqmYILqiuPm5TsBnspH8ylQXc2BFt0PD4f40Pz/.')
+    ('admin', '$2b$10$NLTuvAVTPjucQe8fMSKwxOIflgWR4opMu4fdkYbGmm4O5GZbKbKJW'),
+    ('mogojohn', '$2b$10$4OtE3iv3hdd.tHSaogPBPOsOIK2JOvgTWEd5.MbkL35vShPcrJtlq')
