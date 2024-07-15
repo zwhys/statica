@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
 import { fetchExercise_types } from "./api"
 import ChangeColour from "./changeColour"
 import {
@@ -17,6 +19,7 @@ import {
 } from "@mui/material"
 
 export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
+  const userId = useSelector((state: RootState) => state.user.userId)
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const {
@@ -36,7 +39,7 @@ export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
         },
         body: JSON.stringify({
           ...data,
-          user_id: 1,
+          user_id: userId,
           date_of_entry: new Date(Date.now()).toISOString(),
         }),
       })
