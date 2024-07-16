@@ -7,7 +7,7 @@ import LandingPage from "./pages/landingPage"
 import NotFoundPage from "./pages/notFoundPage"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
-  const userId = useSelector((state: RootState) => state.userId)
+  const userId = useSelector((state: RootState) => state.user.userId)
 
   return userId ? children : <Navigate to="/landing" />
 }
