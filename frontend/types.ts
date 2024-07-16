@@ -1,3 +1,7 @@
+interface State {
+  userId: number | null
+}
+
 interface Props {
   open: boolean
   onClose: () => void
