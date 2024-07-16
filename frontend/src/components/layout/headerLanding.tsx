@@ -1,5 +1,5 @@
 import React, { useState} from "react"
-import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
 import LogIn from "../authentication/login"
 import SignUp from "../authentication/signup"
 
@@ -7,7 +7,7 @@ export function HeaderLanding() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   
   return (
-    <AppBar position="static">
+    <Container>
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
@@ -31,7 +31,7 @@ export function HeaderLanding() {
           </Box>
         </Box>
       </Toolbar>
-    </AppBar>
+    </Container>
   )
 }
 

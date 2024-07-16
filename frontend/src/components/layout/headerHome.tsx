@@ -1,9 +1,9 @@
-import { Avatar, Typography, Box, Toolbar, Link, AppBar } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
 import LogOut from "../authentication/logout"
 
 export function HeaderHome() {
   return (
-    <AppBar position="static">
+    <Container>
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
@@ -24,7 +24,7 @@ export function HeaderHome() {
           <LogOut />
         </Box>
       </Toolbar>
-    </AppBar>
+    </Container>
   )
 }
 
