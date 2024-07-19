@@ -24,7 +24,7 @@ export function NotFoundPage() {
       <Typography sx={{ color: "black", padding: 50 }} variant="body1" paragraph>
         Oops! The page you are looking for no longer exists, had its name changed, or is temporarily
         unavailable. Please check the URL for any spelling mistakes, or{" "}
-        <Link href="/landing">return to the homepage</Link>.
+        <Link href="/">return to the homepage</Link>.
       </Typography>
     </Box>
   )
