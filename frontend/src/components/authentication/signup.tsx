@@ -29,7 +29,6 @@ export const SignUp: React.FC<Props> = () => {
       if (!isUsernameAvailable) {
         return
       }
-      console.log(userId)
       dispatch(setUserId(userId)) 
       navigate("/?dialog=open")
 

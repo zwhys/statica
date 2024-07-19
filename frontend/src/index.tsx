@@ -8,7 +8,7 @@ import { store, persistor } from "./redux/store"
 import App from "./App"
 import "./App.css"
 import "./index.css"
-
+import Loading from "./components/loading"
 
 const theme = createTheme({
   palette: {
@@ -30,11 +30,10 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <PersistGate loading={<Loading />} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

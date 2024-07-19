@@ -12,10 +12,20 @@ const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   return userId ? children : <Navigate to="/landing" />
 }
 
+const PublicRoutes = ({ children }: { children: JSX.Element }) => {
+  const userId = useSelector((state: RootState) => state.user.userId)
+
+  return !userId ? children : <Navigate to="/" />
+}
+
 const routes = [
   {
     path: "/landing",
-    element: <LandingPage />,
+    element: (
+      <PublicRoutes>
+        <LandingPage />
+      </PublicRoutes>
+    ),
   },
   {
     path: "/",
@@ -44,6 +54,6 @@ export default App
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: add fullname and prefername functionality
-//!: FIX THE ROUTES AND PERSISTING STORE
+//TODO: Fix signup functionality
 //!: CHANGE THE UI AND THEME
-//!: 
+//!:
