@@ -6,8 +6,6 @@ type DisplayRecordsProps = {
 }
 
 const DisplayRecords: React.FC<DisplayRecordsProps> = ({ setEvents }) => {
-  const [records, setRecords] = useState<Records[]>([])
-
   useEffect(() => {
     const fetchRecords = async () => {
       try {
@@ -28,7 +26,6 @@ const DisplayRecords: React.FC<DisplayRecordsProps> = ({ setEvents }) => {
 
     fetchRecords()
   }, [setEvents])
-
 
   return null
 }
