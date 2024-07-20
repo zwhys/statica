@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import { Provider } from "react-redux"
 import { createTheme, ThemeProvider } from "@mui/material"
 import { PersistGate } from "redux-persist/integration/react"
-import { red, green, lightBlue, pink } from "@mui/material/colors"
+import { red, green } from "@mui/material/colors"
 import { store, persistor } from "./redux/store"
 import App from "./App"
 import "./App.css"
@@ -12,8 +12,18 @@ import Loading from "./components/loading"
 
 const theme = createTheme({
   palette: {
-    primary: lightBlue,
-    secondary: pink,
+    primary: {
+      main: "#8390FA",
+      light: "#A1A9FC",
+      dark: "#6774C7",
+      contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: "#5A67D8",
+      light: "#7C89E4",
+      dark: "#3A43A3",
+      contrastText: "#FFFFFF",
+    },
     error: red,
     success: green,
   },

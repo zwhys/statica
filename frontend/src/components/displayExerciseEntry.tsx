@@ -43,7 +43,7 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
           >
             <Button
               size="large"
-              sx={{ background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)", color: 'white' }}
+              sx={{ background: "#8390FA", color: "white" }}
               variant="contained"
               color="primary"
               onClick={() => setIsDialogOpen(true)}

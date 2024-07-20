@@ -57,7 +57,7 @@ export const SignUp: React.FC<Props> = () => {
         color="secondary"
         sx={{
           margin: 1,
-          background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+          background: "#8390FA",
           color: "white",
         }}
         onClick={() => setIsDialogOpen(true)}
@@ -151,7 +151,7 @@ export const SignUp: React.FC<Props> = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                  background: "#8390FA",
                   color: "white",
                 }}
                 disabled={!passwordsMatch}
