@@ -2,7 +2,8 @@ import React from "react"
 import { styled } from "@mui/material/styles"
 import Tab, { tabClasses } from "@mui/material/Tab"
 import Tabs, { tabsClasses, TabsProps } from "@mui/material/Tabs"
-import { ExposureTwoTone } from "@mui/icons-material"
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
+import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 
 const TabItem = styled(Tab)(({ theme }) => ({
   opacity: 1,
@@ -50,6 +51,8 @@ export function TabsChrome({ tabIndex, setTabIndex, sx }: TabsChromeProps) {
           ...sx,
         }}
       >
+        {/* <TabItem label={"Calendar"} icon={<CalendarTodayRoundedIcon /> } iconPosition="start" />
+        <TabItem label={"Statistics"} icon={<BarChartOutlinedIcon />} iconPosition="start" /> */}
         <TabItem label={"Calendar"} />
         <TabItem label={"Statistics"} />
       </Tabs>
@@ -58,3 +61,5 @@ export function TabsChrome({ tabIndex, setTabIndex, sx }: TabsChromeProps) {
 }
 
 export default TabsChrome
+
+//TODO: Add icons to tabs

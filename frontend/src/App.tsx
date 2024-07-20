@@ -1,4 +1,3 @@
-import React from "react"
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "./redux/store"

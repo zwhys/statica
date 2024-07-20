@@ -18,35 +18,25 @@ const Calendar: React.FC = () => {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "prev,next",
-          center: "title",
-          right: "today",
+          left: "title",
+          right: "today prev,next",
         }}
-        initialView="dayGridMonth"
+        buttonText={{
+          today: "Today",
+        }}
+        firstDay={1}
         editable={true}
         selectable={true}
         selectMirror={true}
         dayMaxEvents={true}
         events={events}
         select={() => setIsDialogOpen(true)}
-        // eventContent={renderEventContent}
       />
 
       <DisplayExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
 }
-
-// function renderEventContent(eventContent: EventContentArg) {
-//   const exerciseIndex = exerciseList.indexOf(eventContent.event.title);
-//   const backgroundColor = colors[exerciseIndex % colors.length];
-
-//   return (
-//     <Box sx={{ bgcolor: backgroundColor, borderRadius: 1 }}>
-//       {eventContent.event.title}
-//     </Box>
-//   );
-// }
 
 export default Calendar
 //TODO: Make better buttons
