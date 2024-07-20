@@ -17,7 +17,7 @@ export function NotFoundPage() {
         padding: 5,
         margin: 10,
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        borderRadius: 8
+        borderRadius: 8,
       }}
     >
       <Box sx={{ flex: 1 }} />
@@ -31,5 +31,3 @@ export function NotFoundPage() {
 }
 
 export default NotFoundPage
-
-//TODO: fix where it is redirected to

@@ -1,16 +1,38 @@
-import { EventInput, EventContentArg } from "@fullcalendar/core"
-import DisplayRecords from "./displayRecords"
+import React, { useState } from "react"
+import AddIcon from "@mui/icons-material/Add"
+import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
-import React, { useState } from "react"
 import timeGridPlugin from "@fullcalendar/timegrid"
+import DisplayRecords from "./displayRecords"
 import DisplayExerciseEntry from "./displayExerciseEntry"
-import { Box } from "@mui/material"
+import AddExerciseEntry from "./addExerciseEntry"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
+
+  const renderButton = (info: { el: HTMLElement }) => {
+    if (info.el.classList.contains("fc-day-today")) {
+      const button = document.createElement("button")
+      button.innerText = "+"
+      button.style.backgroundColor = "#8390FA"
+      button.style.color = "white"
+      button.style.border = "none"
+      button.style.borderRadius = "25%"
+      button.style.width = "30px"
+      button.style.height = "30px"
+      button.style.fontSize = "20px"
+      button.style.cursor = "pointer"
+      button.style.bottom = "5px"
+      button.style.left = "5px"
+
+      button.onclick = () => setIsDialogOpen(true)
+
+      info.el.querySelector(".fc-daygrid-day-events")?.appendChild(button)
+    }
+  }
 
   return (
     <>
@@ -25,19 +47,17 @@ const Calendar: React.FC = () => {
           today: "Today",
         }}
         firstDay={1}
-        editable={true}
-        selectable={true}
-        selectMirror={true}
+        dayCellDidMount={renderButton}
+        // selectable={true}
         dayMaxEvents={true}
         events={events}
-        select={() => setIsDialogOpen(true)}
       />
-
-      <DisplayExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
 }
 
 export default Calendar
-//TODO: Make better buttons
+//TODO: Fix the button
 //TODO: Reimplement exercise type table, should contain colour column, let user inset into table and choose colour
+//TODO: Fix the display exercise Entry

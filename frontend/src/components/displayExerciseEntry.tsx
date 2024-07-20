@@ -28,8 +28,8 @@ export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
               margin: "0 auto",
             }}
           >
-            <Paper sx={{ bgcolor: "orange" }}>
-              <Typography>hehe</Typography>
+            <Paper sx={{ bgcolor: "purple" }}>
+              <Typography>Testing</Typography>
               {/* <DisplayRecords/> */}
             </Paper>
           </Box>

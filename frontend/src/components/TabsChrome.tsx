@@ -51,8 +51,6 @@ export function TabsChrome({ tabIndex, setTabIndex, sx }: TabsChromeProps) {
           ...sx,
         }}
       >
-        {/* <TabItem label={"Calendar"} icon={<CalendarTodayRoundedIcon /> } iconPosition="start" />
-        <TabItem label={"Statistics"} icon={<BarChartOutlinedIcon />} iconPosition="start" /> */}
         <TabItem label={"Calendar"} />
         <TabItem label={"Statistics"} />
       </Tabs>

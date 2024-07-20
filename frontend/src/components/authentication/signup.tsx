@@ -26,7 +26,7 @@ export const SignUp: React.FC<Props> = () => {
       if (!isUsernameAvailable) {
         return
       }
-      
+
       await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
@@ -34,7 +34,7 @@ export const SignUp: React.FC<Props> = () => {
         },
         body: JSON.stringify(data),
       })
-      
+
       const userIdResponse = await getUserId(data)
       const userId: number = userIdResponse.userId
       dispatch(setUserId(userId))
