@@ -28,7 +28,7 @@ const theme = createTheme({
     success: green,
   },
   typography: {
-    fontFamily: "Quicksand",
+    fontFamily: "Raleway",
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,

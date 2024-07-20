@@ -23,15 +23,10 @@ export const SignUp: React.FC<Props> = () => {
       const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
       const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
 
-      const userIdResponse = await getUserId(data)
-      const userId: number = userIdResponse.userId
-
       if (!isUsernameAvailable) {
         return
       }
-      dispatch(setUserId(userId)) 
-      navigate("/?dialog=open")
-
+      
       await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
@@ -39,6 +34,12 @@ export const SignUp: React.FC<Props> = () => {
         },
         body: JSON.stringify(data),
       })
+      
+      const userIdResponse = await getUserId(data)
+      const userId: number = userIdResponse.userId
+      dispatch(setUserId(userId))
+      console.log(userId)
+      navigate("/?dialog=open")
     } catch (error) {
       console.error("Error adding user:", error)
     }
