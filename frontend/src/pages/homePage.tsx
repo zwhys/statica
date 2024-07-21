@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/layout/headerHome"
 import TabsChrome from "../components/TabsChrome"

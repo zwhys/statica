@@ -1,5 +1,4 @@
 import { Box } from "@mui/material"
-import React from "react"
 import {
   CartesianGrid,
   Legend,
@@ -8,7 +7,7 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis
+  YAxis,
 } from "recharts"
 
 const data = [
@@ -16,11 +15,10 @@ const data = [
   { name: "Feb", "Personal Best": 13, amt: 221 },
   { name: "Mar", "Personal Best": 98, amt: 229 },
   { name: "Apr", "Personal Best": 39, amt: 200 },
-  { name: "May", "Personal Best": 48, amt: 218 }
+  { name: "May", "Personal Best": 48, amt: 218 },
 ]
 export function DisplayExerciseStatistics() {
   return (
-    
     <Box
       textAlign="center"
       sx={{
@@ -31,7 +29,7 @@ export function DisplayExerciseStatistics() {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: 4,
         width: "90%",
-        margin: "0 auto"
+        margin: "0 auto",
       }}
     >
       <ResponsiveContainer width="100%" height={300}>

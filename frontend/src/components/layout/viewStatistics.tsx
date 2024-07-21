@@ -1,12 +1,8 @@
-import React, {useState} from "react"
 import { Typography, Grid } from "@mui/material"
 import DisplayExerciseStatistics from "../displayExerciseStatistics"
 import Loading from "../loading"
-import ChangeColour from "../changeColour"
 
 export function ViewStatistics() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-
   return (
     <Grid container spacing={2} direction="column">
       <Loading />
