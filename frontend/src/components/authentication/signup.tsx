@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
-import { checkUsernameAvailable, getUserId } from "../api"
+import { checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 
 export const SignUp: React.FC<Props> = () => {
@@ -27,7 +27,7 @@ export const SignUp: React.FC<Props> = () => {
         return
       }
 
-      await fetch("http://localhost:3001/add_user", {
+      const userIdResponse = await fetch("http://localhost:3001/add_user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,11 +35,12 @@ export const SignUp: React.FC<Props> = () => {
         body: JSON.stringify(data),
       })
 
-      const userIdResponse = await getUserId(data)
-      const userId: number = userIdResponse.userId
+      const responseData = await userIdResponse.json()
+      const userId: number = responseData.userId
+
       dispatch(setUserId(userId))
-      console.log(userId)
-      navigate("/?dialog=open")
+      navigate("/?dialog=open") //TODO: Fix this so that it opens
+
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -99,8 +100,8 @@ export const SignUp: React.FC<Props> = () => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const response3 = await checkUsernameAvailable(value)
-                    const isUsernameAvailable: boolean = response3.isUsernameAvailable
+                    const response = await checkUsernameAvailable(value)
+                    const isUsernameAvailable: boolean = response.isUsernameAvailable
                     if (!isUsernameAvailable) {
                       return "Username is taken. Please choose another"
                     }
@@ -172,5 +173,4 @@ export default SignUp
 
 //TODO: Add password visible feature maybe, look at login for example
 //TODO: Clean up bloat
-//TODO: Add getuserid for signup
 //TODO: fix noimplicitany

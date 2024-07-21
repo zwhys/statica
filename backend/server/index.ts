@@ -35,8 +35,8 @@ app.post("/username", async (req, res) => {
     `;
     const getUsernameParams = [userId];
     const { rows } = await pool.query(getUsernameQuery, getUsernameParams);
-    const username = rows[0].username
-    res.json({username: username});
+    const username = rows[0].username;
+    res.json({ username: username });
   } catch (err) {
     console.error("Error displaying username:", err);
     res.status(500).send("Internal Server Error");
@@ -120,10 +120,14 @@ app.post("/add_user", async (req, res) => {
     let query = `
     INSERT INTO users ( username, hashed_password)
     VALUES ($1, $2)
+    RETURNING id
     `;
     let queryParams = [username, hashed_password];
 
-    await pool.query(query, queryParams);
+    const result = await pool.query(query, queryParams);
+    const userId: number = result.rows[0].id;
+
+    res.json({ userId: userId });
   } catch (err) {
     console.error("Error adding user:", err);
     res.status(500).send("Internal Server Error");
