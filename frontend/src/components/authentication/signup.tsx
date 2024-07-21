@@ -172,5 +172,4 @@ export const SignUp: React.FC<Props> = () => {
 export default SignUp
 
 //TODO: Add password visible feature maybe, look at login for example
-//TODO: Clean up bloat
 //TODO: fix noimplicitany

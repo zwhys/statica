@@ -15,7 +15,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material/"
 import { getUserId } from "../api"
 import { setUserId } from "../../redux/reducer"
 
-const LogIn: React.FC<Props> = ({ open, onClose }) => {
+const LogIn: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [authError, setAuthError] = useState("")

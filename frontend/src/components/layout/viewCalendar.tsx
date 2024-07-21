@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Box, Typography, Button } from "@mui/material"
 import AddExerciseEntry from "../addExerciseEntry"
@@ -26,7 +26,7 @@ export function ViewCalendar() {
         }
 
         const data = await response.json()
-        setUsername(data.username) // Update state with fetched username
+        setUsername(data.username)
       } catch (error) {
         console.error("Error fetching username:", error)
       }
