@@ -14,15 +14,15 @@ export const getUsers = async () => {
   }
 };
 
-export const getRecords = async () => {
+export const getRecords = async (userId: number) => {
   try {
     const recordsQuery = `
       SELECT 
         *
-      FROM records;
+      FROM records WHERE user_id = $1;
     `;
 
-    const { rows } = await db.query(recordsQuery);
+    const { rows } = await db.query(recordsQuery, [userId]);
     return rows;
   } catch (err) {
     console.error("Error fetching records:", err);

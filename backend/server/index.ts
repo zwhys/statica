@@ -55,7 +55,8 @@ app.get("/exercise_types", async (req, res) => {
 
 app.get("/records", async (req, res) => {
   try {
-    const records = await getRecords();
+    const userId = parseInt(req.query.userId as string);
+    const records = await getRecords(userId);
     res.json(records);
   } catch (err) {
     console.error("Server error:", err);
