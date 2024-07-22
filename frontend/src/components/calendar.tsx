@@ -59,4 +59,3 @@ const Calendar: React.FC = () => {
 export default Calendar
 //TODO: Fix the button
 //TODO: Reimplement exercise type table, should contain colour column, let user inset into table and choose colour
-//TODO: Fix the display exercise Entry
