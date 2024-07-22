@@ -1,11 +1,11 @@
-import { useState} from "react"
+import { useState } from "react"
 import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
 import LogIn from "../authentication/login"
 import SignUp from "../authentication/signup"
 
 export function HeaderLanding() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  
+
   return (
     <Container>
       <Toolbar sx={{ margin: 1 }}>
