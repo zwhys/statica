@@ -11,7 +11,7 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material"
-import { Visibility, VisibilityOff } from "@mui/icons-material/"
+import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { getUserId } from "../api"
 import { setUserId } from "../../redux/reducer"
 
@@ -102,11 +102,7 @@ export const LogIn: React.FC<Props> = () => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                         {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
                     </InputAdornment>

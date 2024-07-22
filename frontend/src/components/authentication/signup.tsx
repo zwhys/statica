@@ -2,12 +2,21 @@ import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { Button, Dialog, Box, Typography, TextField } from "@mui/material"
+import {
+  Box,
+  Button,
+  Checkbox,
+  Dialog,
+  FormControlLabel,
+  TextField,
+  Typography,
+} from "@mui/material"
 import { checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 
 export const SignUp: React.FC<Props> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -40,7 +49,6 @@ export const SignUp: React.FC<Props> = () => {
 
       dispatch(setUserId(userId))
       navigate("/?dialog=open") //TODO: Fix this so that it opens
-
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -114,7 +122,7 @@ export const SignUp: React.FC<Props> = () => {
               <TextField
                 label="Password"
                 variant="outlined"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 fullWidth
                 margin="normal"
                 {...register("password", {
@@ -128,22 +136,33 @@ export const SignUp: React.FC<Props> = () => {
                 helperText={errors.password ? errors.password.message : ""}
               />
               {password && (
-                <TextField
-                  label="Confirm Password"
-                  variant="outlined"
-                  type="password"
-                  fullWidth
-                  margin="normal"
-                  {...register("confirmPassword", {
-                    required: "Please confirm your password",
-                    validate: {
-                      matchesPassword: value =>
-                        value === watch("password") || "Passwords do not match",
-                    },
-                  })}
-                  error={!!errors.confirmPassword}
-                  helperText={errors.confirmPassword ? errors.confirmPassword.message : ""}
-                />
+                <>
+                  <TextField
+                    label="Confirm Password"
+                    variant="outlined"
+                    type={showPassword ? "text" : "password"}
+                    fullWidth
+                    margin="normal"
+                    {...register("confirmPassword", {
+                      required: "Please confirm your password",
+                      validate: {
+                        matchesPassword: value =>
+                          value === watch("password") || "Passwords do not match",
+                      },
+                    })}
+                    error={!!errors.confirmPassword}
+                    helperText={errors.confirmPassword ? errors.confirmPassword.message : ""}
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={showPassword}
+                        onClick={() => setShowPassword(!showPassword)}
+                      />
+                    }
+                    label="Show Password"
+                  />
+                </>
               )}
 
               <Button
@@ -171,6 +190,6 @@ export const SignUp: React.FC<Props> = () => {
 
 export default SignUp
 
-//TODO: Add password visible feature maybe, look at login for example
+//!: Fix password visibility feature for signup where you can click outside and still change it
 //TODO: fix noimplicitany
 //TODO
