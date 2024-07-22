@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { EventInput } from "@fullcalendar/core"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
+import { fetchRecords } from "./api"
 
-type DisplayRecordsProps = {
-  setEvents: (events: EventInput[]) => void
-}
+const DisplayRecords: React.FC<{ setEvents: (events: EventInput[]) => void }> = ({ setEvents }) => {
+  const userId = useSelector((state: RootState) => state.user.userId)
 
-const DisplayRecords: React.FC<DisplayRecordsProps> = ({ setEvents }) => {
   useEffect(() => {
-    const fetchRecords = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/records", {
-          method: "get",
-        })
-        const responseRecords = await response.json()
-        const calendarRecords: EventInput[] = responseRecords.map((record: any) => ({
-          id: String(record.id),
-          title: record.exercise_type,
-          start: record.date_of_entry,
-        }))
-        setEvents(calendarRecords)
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      }
-    }
-
-    fetchRecords()
-  }, [setEvents])
+    fetchRecords(userId, setEvents)
+  }, [userId, setEvents])
 
   return null
 }
