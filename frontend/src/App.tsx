@@ -53,5 +53,3 @@ export default App
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: add fullname and prefername functionality
-//TODO: Fix signup functionality
-//!: CHANGE THE UI AND THEME

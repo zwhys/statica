@@ -176,4 +176,3 @@ export const SignUp: React.FC<DisplayProps> = () => {
 export default SignUp
 
 //!: Fix password visibility feature for signup where you can click outside and still change it
-//TODO: fix noimplicitany
