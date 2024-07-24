@@ -15,7 +15,7 @@ import {
 } from "@mui/material"
 import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
-import { Login, PersonAdd } from "@mui/icons-material"
+import { PersonAdd } from "@mui/icons-material"
 
 export const SignUp: React.FC<DisplayProps> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
