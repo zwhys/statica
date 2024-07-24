@@ -34,6 +34,23 @@ export const getUserId = async (data: UserFormValues) => {
   }
 }
 
+export const addUser = async (data: UserFormValues) => {
+  try {
+    const response = await fetch("http://localhost:3001/add_user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+
+    return await response.json()
+  } catch (error) {
+    console.error("Error checking authentication:", error)
+    return false
+  }
+}
+
 export const checkUsernameAvailable = async (username: string) => {
   try {
     const response = await fetch("http://localhost:3001/check_username", {

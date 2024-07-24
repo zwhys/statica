@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material"
-import { checkUsernameAvailable } from "../api"
+import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 import { Login, PersonAdd } from "@mui/icons-material"
 
@@ -34,23 +34,11 @@ export const SignUp: React.FC<DisplayProps> = () => {
     try {
       const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
       const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
-
       if (!isUsernameAvailable) {
         return
       }
-
-      const userIdResponse = await fetch("http://localhost:3001/add_user", {
-        //TODO: Make this a function like (see getUserId for example)
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-
-      const responseData = await userIdResponse.json()
+      const responseData = await addUser(data)
       const userId: number = responseData.userId
-
       dispatch(setUserId(userId))
       navigate("/?dialog=open") //TODO: Fix this so that it opens
     } catch (error) {
