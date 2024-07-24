@@ -55,4 +55,3 @@ export default App
 //TODO: add fullname and prefername functionality
 //TODO: Fix signup functionality
 //!: CHANGE THE UI AND THEME
-//!:
