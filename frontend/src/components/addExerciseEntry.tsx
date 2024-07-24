@@ -3,7 +3,6 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import { fetchExercise_types } from "./api"
-import ChangeColour from "./changeColour"
 import {
   Box,
   Button,
@@ -146,9 +145,6 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
 
             <Grid item xs={12}>
               <Grid container justifyContent="flex-end" spacing={2}>
-                <Grid item>
-                  <ChangeColour open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-                </Grid>
                 <Grid item>
                   <Button variant="outlined" color="primary" onClick={onClose}>
                     Cancel

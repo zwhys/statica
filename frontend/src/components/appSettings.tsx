@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react"
 import { ChromePicker, ColorResult } from "react-color"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Box, Button, Dialog, Grid, IconButton, Typography } from "@mui/material"
-import SettingsIcon from "@mui/icons-material/Settings"
+import { Box, Button, Dialog, Grid, ListItemIcon, MenuItem, Typography } from "@mui/material"
+import { Settings } from "@mui/icons-material"
 
-export const ColorPicker: React.FC<DisplayProps> = ({ open, onClose }) => {
-  const [color, setColor] = useState<string>("#000000")
+export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [color, setColor] = useState<string>("#000000")
   const {
     control,
     register,
@@ -22,11 +22,11 @@ export const ColorPicker: React.FC<DisplayProps> = ({ open, onClose }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...data, //TODO: Fix this
+          ...data, //TODO: Continue implementation
         }),
       })
 
-      onClose()
+      // onClose()
     } catch (error) {
       console.error("Error adding exercise entry:", error)
     }
@@ -38,12 +38,15 @@ export const ColorPicker: React.FC<DisplayProps> = ({ open, onClose }) => {
 
   return (
     <>
-      <IconButton onClick={() => setIsDialogOpen(true)}>
-        <SettingsIcon />
-      </IconButton>
+      <MenuItem onClick={() => setIsDialogOpen(true)}>
+        <ListItemIcon>
+          <Settings fontSize="small" />
+        </ListItemIcon>
+        Settings
+      </MenuItem>
       <Dialog
         open={isDialogOpen}
-        onClose={() => onClose()}
+        onClose={() => setIsDialogOpen(false)}
         PaperProps={{
           sx: {
             borderRadius: 8,
@@ -104,4 +107,6 @@ export const ColorPicker: React.FC<DisplayProps> = ({ open, onClose }) => {
   )
 }
 
-export default ColorPicker
+export default Settings
+
+//TODO: Fix the issue that the settings auto closes
