@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { Settings } from "@mui/icons-material"
-import Logout from "@mui/icons-material/Logout"
-import { Box, IconButton, Avatar, Menu, MenuItem, ListItemIcon } from "@mui/material"
 import { useDispatch } from "react-redux"
-import { setUserId } from "../../redux/reducer"
 import { useNavigate } from "react-router-dom"
+import { Box, IconButton, Avatar, Menu, MenuItem, ListItemIcon } from "@mui/material"
+import Logout from "@mui/icons-material/Logout"
+import { setUserId } from "../../redux/reducer"
 import { AppSettings } from "../appSettings"
 
 export default function HomeMenu() {
@@ -16,7 +15,7 @@ export default function HomeMenu() {
 
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box>
         <IconButton
           onClick={(event: React.MouseEvent<HTMLElement>) => {
             setAnchorEl(event.currentTarget)
