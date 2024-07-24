@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 
-const WelcomeDialog: React.FC<Props> = ({ open, onClose }) => {
+const WelcomeDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}

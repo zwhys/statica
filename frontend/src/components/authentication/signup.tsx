@@ -14,7 +14,7 @@ import {
 import { checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 
-export const SignUp: React.FC<Props> = () => {
+export const SignUp: React.FC<DisplayProps> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
@@ -37,6 +37,7 @@ export const SignUp: React.FC<Props> = () => {
       }
 
       const userIdResponse = await fetch("http://localhost:3001/add_user", {
+        //TODO: Make this a function like (see getUserId for example)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,13 +63,8 @@ export const SignUp: React.FC<Props> = () => {
   return (
     <>
       <Button
-        size="large"
-        variant="contained"
-        color="secondary"
         sx={{
-          margin: 1,
-          background: "#8390FA",
-          color: "white",
+          color: "black",
         }}
         onClick={() => setIsDialogOpen(true)}
       >
@@ -192,4 +188,3 @@ export default SignUp
 
 //!: Fix password visibility feature for signup where you can click outside and still change it
 //TODO: fix noimplicitany
-//TODO

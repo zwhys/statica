@@ -3,7 +3,7 @@ import { Box, Button, Dialog, DialogContent, Paper, Typography } from "@mui/mate
 import AddExerciseEntry from "./addExerciseEntry"
 import DisplayRecords from "./displayRecords"
 
-export const DisplayExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
+export const DisplayExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [isdialogOpen, setIsDialogOpen] = useState(false)
 
   return (

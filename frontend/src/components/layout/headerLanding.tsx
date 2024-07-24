@@ -1,11 +1,7 @@
-import { useState } from "react"
 import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
-import LogIn from "../authentication/login"
-import SignUp from "../authentication/signup"
+import LandingMenu from "../authentication/landingMenu"
 
-export function HeaderLanding() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-
+export default function HeaderLanding() {
   return (
     <Container>
       <Toolbar sx={{ margin: 1 }}>
@@ -25,14 +21,9 @@ export function HeaderLanding() {
               Railway
             </Typography>
           </Link>
-          <Box display="flex" alignItems="center">
-            <LogIn open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-            <SignUp open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-          </Box>
+          <LandingMenu />
         </Box>
       </Toolbar>
     </Container>
   )
 }
-
-export default HeaderLanding

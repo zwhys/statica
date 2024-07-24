@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import SignUp from "../components/authentication/signup"
-import { HeaderLanding } from "../components/layout/headerLanding"
+import HeaderLanding from "../components/layout/headerLanding"
 import { Box, Typography } from "@mui/material"
 
-export function LandingPage() {
+export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   return (
     <>
@@ -41,5 +40,3 @@ export function LandingPage() {
     </>
   )
 }
-
-export default LandingPage

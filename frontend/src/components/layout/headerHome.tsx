@@ -1,5 +1,5 @@
 import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
-import LogOut from "../authentication/logout"
+import HomeMenu from "../authentication/homeMenu"
 
 export function HeaderHome() {
   return (
@@ -21,7 +21,7 @@ export function HeaderHome() {
               Railway
             </Typography>
           </Link>
-          <LogOut />
+          <HomeMenu />
         </Box>
       </Toolbar>
     </Container>

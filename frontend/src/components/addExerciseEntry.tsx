@@ -18,7 +18,7 @@ import {
   TextField,
 } from "@mui/material"
 
-export const AddExerciseEntry: React.FC<Props> = ({ open, onClose }) => {
+export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)

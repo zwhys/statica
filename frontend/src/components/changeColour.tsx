@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { Box, Button, Dialog, Grid, IconButton, Typography } from "@mui/material"
 import SettingsIcon from "@mui/icons-material/Settings"
 
-export const ColorPicker: React.FC<Props> = ({ open, onClose }) => {
+export const ColorPicker: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [color, setColor] = useState<string>("#000000")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const {

@@ -2,7 +2,7 @@ interface State {
   userId: number | null
 }
 
-interface Props {
+interface DisplayProps {
   open: boolean
   onClose: () => void
 }
