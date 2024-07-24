@@ -10,8 +10,10 @@ import {
   Box,
   IconButton,
   InputAdornment,
+  MenuItem,
+  ListItemIcon,
 } from "@mui/material"
-import { Visibility, VisibilityOff } from "@mui/icons-material"
+import { Login, Visibility, VisibilityOff } from "@mui/icons-material"
 import { getUserId } from "../api"
 import { setUserId } from "../../redux/reducer"
 
@@ -45,14 +47,12 @@ export const LogIn: React.FC<DisplayProps> = () => {
 
   return (
     <>
-      <Button
-        sx={{
-          color: "black",
-        }}
-        onClick={() => setIsDialogOpen(true)}
-      >
-        Log In
-      </Button>
+      <MenuItem onClick={() => setIsDialogOpen(true)}>
+        <ListItemIcon>
+          <Login fontSize="small" />
+        </ListItemIcon>
+        Login
+      </MenuItem>
       <Dialog
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
