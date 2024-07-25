@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import { fetchExercise_types } from "./api"
+import { addExerciseEntry, fetchExercise_types } from "./api"
 import {
   Box,
   Button,
@@ -20,7 +20,6 @@ import {
 export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const {
     control,
     register,
@@ -31,18 +30,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
 
   const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
     try {
-      const response = await fetch("http://localhost:3001/add_exercise_entry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          user_id: userId,
-          date_of_entry: new Date(Date.now()).toISOString(),
-        }),
-      })
-
+      addExerciseEntry(data, userId)
       onClose()
       reset()
     } catch (error) {

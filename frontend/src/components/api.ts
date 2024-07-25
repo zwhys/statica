@@ -1,6 +1,11 @@
 import { EventInput } from "@fullcalendar/core"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
 
-export const fetchRecords = async (userId: number | null, setEvents: (events: EventInput[]) => void) => {
+export const fetchRecords = async (
+  userId: number | null,
+  setEvents: (events: EventInput[]) => void
+) => {
   try {
     const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
       method: "get",
@@ -77,5 +82,27 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
     setExercise_types(responseExercise_types)
   } catch (error) {
     console.error("Error fetching data:", error)
+  }
+}
+
+export const addExerciseEntry = async (data: AddExerciseEntryFormValues, userId: null | number) => {
+  try {
+    const response = await fetch("http://localhost:3001/add_exercise_entry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        user_id: userId,
+        date_of_entry: new Date(Date.now()).toISOString(),
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to add exercise entry")
+    }
+  } catch (error) {
+    console.error("Error adding exercise entry:", error)
   }
 }
