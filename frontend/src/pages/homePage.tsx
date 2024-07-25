@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/layout/headerHome"
 import TabsChrome from "../components/TabsChrome"
-import ViewCalendar from "../components/layout/viewCalendar"
-import ViewStatistics from "../components/layout/viewStatistics"
+import Calendar from "../components/layout/calendar"
+import Statistics from "../components/layout/statistics"
 import WelcomeDialog from "../components/authentication/signupWelcomeDialog"
-import { useLocation, useNavigate } from "react-router-dom"
 
 export function HomePage() {
   const [tabIndex, setTabIndex] = useState(0)
@@ -48,8 +48,8 @@ export function HomePage() {
             borderBottomLeftRadius: "32px",
           }}
         >
-          {tabIndex === 0 && <ViewCalendar />}
-          {tabIndex === 1 && <ViewStatistics />}
+          {tabIndex === 0 && <Calendar />}
+          {tabIndex === 1 && <Statistics />}
         </Box>
       </Box>
       <WelcomeDialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />

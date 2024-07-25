@@ -4,9 +4,10 @@ import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import DisplayRecords from "./displayRecords"
-import DisplayExerciseEntry from "./displayExerciseEntry"
-import AddExerciseEntry from "./addExerciseEntry"
+import DisplayRecords from "../displayRecords"
+import DisplayExerciseEntry from "../displayExerciseEntry"
+import AddExerciseEntry from "../addExerciseEntry"
+import { Box } from "@mui/material"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -34,7 +35,7 @@ const Calendar: React.FC = () => {
   }
 
   return (
-    <>
+    <Box sx={{ width: "100%" }}>
       <DisplayRecords setEvents={setEvents} />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -52,7 +53,7 @@ const Calendar: React.FC = () => {
         events={events}
       />
       <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-    </>
+    </Box>
   )
 }
 

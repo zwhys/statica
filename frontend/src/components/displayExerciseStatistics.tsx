@@ -23,7 +23,7 @@ export function DisplayExerciseStatistics() {
       textAlign="center"
       sx={{
         display: "flex",
-        bgcolor: "#FF8E53",
+        bgcolor: "#00A8F4",
         gap: 2,
         padding: 5,
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
