@@ -53,3 +53,4 @@ export default App
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: add fullname and prefername functionality
+//TODO: set up delete function and prisma while im at it

@@ -23,10 +23,13 @@ const Calendar: React.FC = () => {
       button.style.borderRadius = "25%"
       button.style.width = "30px"
       button.style.height = "30px"
-      button.style.fontSize = "20px"
+      button.style.fontSize = "24px" // Adjusted for better fit
       button.style.cursor = "pointer"
-      button.style.bottom = "5px"
-      button.style.left = "5px"
+      button.style.position = "fixed" // Make the button fixed relative to the viewport
+      button.style.bottom = "5px" // Distance from the bottom edge
+      button.style.left = "5px" // Distance from the left edge
+
+      document.body.appendChild(button)
 
       button.onclick = () => setIsDialogOpen(true)
 
