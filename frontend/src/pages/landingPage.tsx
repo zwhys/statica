@@ -1,42 +1,38 @@
 import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
 import { Box, Typography } from "@mui/material"
+import SignUp from "../components/authentication/signup"
 
 export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   return (
     <>
       <HeaderLanding />
-      {/* <Box
-        display="flex"
-        alignItems="center"
-        textAlign="center"
-        justifyContent="center"
+      <Box
         sx={{
-          height: 500,
-          bgcolor: "white",
-          margin: 10,
-          padding: "16px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          borderRadius: 8,
+          width: "100vw", // Full screen width
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <Box
+          component="img"
+          src="landing.jpg"
           sx={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
+            width: "100%", // Full width of parent
           }}
-        >
-          <Typography variant="h2">Text Here</Typography>
-          <SignUp open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-        </Box>
-        <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Typography variant="h2">Image Here</Typography>
-        </Box>
-      </Box> */}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            width: "100%",
+            height: "100%", // Overlay the image fully
+            background: "linear-gradient(to right, rgba(255, 255, 255, 0) 40%, white 80%)",
+            pointerEvents: "none", // Let events pass through
+          }}
+        />
+      </Box>
     </>
   )
 }
