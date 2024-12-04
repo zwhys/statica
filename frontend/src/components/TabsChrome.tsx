@@ -51,13 +51,25 @@ export function TabsChrome({ tabIndex, setTabIndex, sx }: TabsChromeProps) {
           ...sx,
         }}
       >
-        <TabItem label={"Calendar"} />
-        <TabItem label={"Statistics"} />
+        <TabItem
+          label={"Calendar"}
+          icon={<CalendarTodayRoundedIcon />}
+          iconPosition="start"
+          sx={{
+            minHeight: "48px",
+          }}
+        />
+        <TabItem
+          label={"Statistics"}
+          icon={<BarChartOutlinedIcon />}
+          iconPosition="start"
+          sx={{
+            minHeight: "48px",
+          }}
+        />
       </Tabs>
     </>
   )
 }
 
 export default TabsChrome
-
-//TODO: Add icons to tabs
