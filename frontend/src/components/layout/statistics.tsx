@@ -1,6 +1,6 @@
 import { Typography, Grid } from "@mui/material"
 import DisplayExerciseStatistics from "../displayExerciseStatistics"
-import Loading from "../loading"
+import Loading from "./loading"
 
 export default function Statistics() {
   return (

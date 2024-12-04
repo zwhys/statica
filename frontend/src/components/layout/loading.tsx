@@ -6,18 +6,15 @@ export const Loading: React.FC = () => {
     <Box
       display="flex"
       justifyContent="center"
-      minHeight="70vh"
-      sx={{
-        backgroundImage: `url(/loading.gif)`,
-        backgroundSize: "contain",
-        padding: 5,
-        margin: 10,
-        borderRadius: 8,
-      }}
     >
-      <Typography variant="h2" mt={2}>
-        Loading...
+      <Typography variant="h4" sx={{ marginRight: 2 }}>
+        Loading
       </Typography>
+      <Box
+        component="img"
+        src="loading.gif"
+        sx={{ width: '40px', height: '40px' }}
+      />
     </Box>
   )
 }

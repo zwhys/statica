@@ -1,12 +1,12 @@
 import { EventInput } from "@fullcalendar/core"
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
 
 export const fetchRecords = async (
   userId: number | null,
-  setEvents: (events: EventInput[]) => void
+  setEvents: (events: EventInput[]) => void,
+  setisLoading: (isLoading: boolean) => void
 ) => {
   try {
+    setisLoading(true)
     const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
       method: "get",
     })
@@ -17,6 +17,7 @@ export const fetchRecords = async (
       start: record.date_of_entry,
     }))
     setEvents(calendarRecords)
+    setisLoading(false)
   } catch (error) {
     console.error("Error fetching data:", error)
   }

@@ -8,7 +8,7 @@ import { store, persistor } from "./redux/store"
 import App from "./App"
 import "./App.css"
 import "./index.css"
-import Loading from "./components/loading"
+import Loading from "./components/layout/loading"
 
 const theme = createTheme({
   palette: {

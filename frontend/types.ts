@@ -9,6 +9,7 @@ interface DisplayProps {
 
 type DisplayRecordsProps = {
   setEvents: (events: Records[]) => void
+  setisLoading: (isLoading: boolean) => void
 }
 
 type AddExerciseEntryFormValues = {

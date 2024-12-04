@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
@@ -8,10 +8,12 @@ import DisplayRecords from "../displayRecords"
 import DisplayExerciseEntry from "../displayExerciseEntry"
 import AddExerciseEntry from "../addExerciseEntry"
 import { Box } from "@mui/material"
+import Loading from "./loading"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
+  const [isLoading, setisLoading] = useState(true)
 
   const renderButton = (info: { el: HTMLElement }) => {
     if (info.el.classList.contains("fc-day-today")) {
@@ -39,22 +41,26 @@ const Calendar: React.FC = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <DisplayRecords setEvents={setEvents} />
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        headerToolbar={{
-          left: "title",
-          right: "today prev,next",
-        }}
-        buttonText={{
-          today: "Today",
-        }}
-        firstDay={1}
-        dayCellDidMount={renderButton}
-        // selectable={true}
-        dayMaxEvents={true}
-        events={events}
-      />
+      <DisplayRecords setEvents={setEvents} setisLoading={setisLoading} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          headerToolbar={{
+            left: "title",
+            right: "today prev,next",
+          }}
+          buttonText={{
+            today: "Today",
+          }}
+          firstDay={1}
+          dayCellDidMount={renderButton}
+          // selectable={true}
+          dayMaxEvents={true}
+          events={events}
+        />
+      )}
       <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </Box>
   )
