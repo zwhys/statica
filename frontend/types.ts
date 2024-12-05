@@ -5,6 +5,9 @@ interface State {
 interface DisplayProps {
   open: boolean
   onClose: () => void
+  text?: string
+  icon?: React.ReactNode
+  sx?: object
 }
 
 type DisplayRecordsProps = {

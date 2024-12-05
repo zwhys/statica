@@ -8,16 +8,14 @@ import {
   Checkbox,
   Dialog,
   FormControlLabel,
-  ListItemIcon,
   MenuItem,
   TextField,
   Typography,
 } from "@mui/material"
 import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
-import { PersonAdd } from "@mui/icons-material"
 
-export const SignUp: React.FC<DisplayProps> = () => {
+export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
@@ -53,11 +51,9 @@ export const SignUp: React.FC<DisplayProps> = () => {
 
   return (
     <>
-      <MenuItem onClick={() => setIsDialogOpen(true)}>
-        <ListItemIcon>
-          <PersonAdd fontSize="small" />
-        </ListItemIcon>
-        Signup
+      <MenuItem onClick={() => setIsDialogOpen(true)} sx={sx}>
+        {icon}
+        {text}
       </MenuItem>
       <Dialog
         open={isDialogOpen}

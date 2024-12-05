@@ -10,7 +10,7 @@ export default function LandingPage() {
       <HeaderLanding />
       <Box
         sx={{
-          width: "100vw", // Full screen width
+          width: "100vw",
           position: "relative",
           overflow: "hidden",
         }}
@@ -19,19 +19,42 @@ export default function LandingPage() {
           component="img"
           src="landing.jpg"
           sx={{
-            width: "100%", // Full width of parent
+            width: "100%",
           }}
         />
+
         <Box
           sx={{
             position: "absolute",
-            bottom: 0,
-            width: "100%",
-            height: "100%", // Overlay the image fully
-            background: "linear-gradient(to right, rgba(255, 255, 255, 0) 40%, white 80%)",
-            pointerEvents: "none", // Let events pass through
+            top: "50%", // Center vertically
+            left: "50%", // Center horizontally
+            transform: "translate(-50%, -50%)", // Adjust for perfect centering
+            color: "white", // Text color
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+            padding: "30px", // Padding for text box
+            borderRadius: "8px", // Rounded corners
+            textAlign: "center", // Center text
           }}
-        />
+        >
+          <Typography variant="h4" component="div">
+            Welcome to My Website
+          </Typography>
+          <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
+            This is a beautiful landing page.
+          </Typography>
+          <SignUp
+            open={isDialogOpen}
+            onClose={() => setIsDialogOpen(false)}
+            sx={{
+              display: "inline-block", // Size adjusts to content
+              borderRadius: "8px", // Rounded corners
+              padding: "10px 20px", // Adjust padding for text readability
+              bgcolor: "white", // White background
+              color: "#212227", // Text color
+            }}
+            text="Get Started"
+          />
+        </Box>
       </Box>
     </>
   )

@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { Box, IconButton, Avatar, Menu } from "@mui/material"
+import { Box, IconButton, Avatar, Menu, ListItemIcon } from "@mui/material"
 import SignUp from "./signup"
 import LogIn from "./login"
+import { PersonAdd } from "@mui/icons-material"
 
 export default function LandingMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -27,7 +28,16 @@ export default function LandingMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <LogIn open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-        <SignUp open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+        <SignUp
+          open={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+          icon={
+            <ListItemIcon>
+              <PersonAdd fontSize="small" />
+            </ListItemIcon>
+          }
+          text="Signup"
+        />
       </Menu>
     </>
   )
