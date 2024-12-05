@@ -92,7 +92,7 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
                   type="submit"
                   variant="contained"
                   sx={{
-                    backgroundImage: "#8390FA",
+                    backgroundColor: "#B098A4",
                     color: "white",
                   }}
                 >

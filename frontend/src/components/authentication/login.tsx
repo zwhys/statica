@@ -113,7 +113,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: "#8390FA",
+                  background: "#B098A4",
                   color: "white",
                 }}
               >

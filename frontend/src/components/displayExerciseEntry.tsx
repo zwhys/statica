@@ -43,7 +43,7 @@ export const DisplayExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) 
           >
             <Button
               size="large"
-              sx={{ background: "#8390FA", color: "white" }}
+              sx={{ background: "#B098A4", color: "white" }}
               variant="contained"
               color="primary"
               onClick={() => setIsDialogOpen(true)}

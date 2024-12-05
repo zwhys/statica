@@ -17,7 +17,7 @@ export default function LandingMenu() {
             setAnchorEl(event.currentTarget)
           }}
         >
-          <Avatar sx={{ bgcolor: "#8390FA" }} />
+          <Avatar sx={{ bgcolor: "#B098A4" }} />
         </IconButton>
       </Box>
       <Menu

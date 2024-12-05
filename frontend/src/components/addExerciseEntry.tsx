@@ -144,7 +144,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                     variant="contained"
                     color="primary"
                     sx={{
-                      backgroundImage: "#8390FA",
+                      backgroundColor: "#B098A4",
                       color: "white",
                     }}
                   >

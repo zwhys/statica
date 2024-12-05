@@ -49,7 +49,7 @@ export default function HomeMenu() {
             setAnchorEl(event.currentTarget)
           }}
         >
-          <Avatar sx={{ bgcolor: "#8390FA", fontWeight: "bold" }}>U</Avatar>
+          <Avatar sx={{ bgcolor: "#B098A4", fontWeight: "bold" }}>U</Avatar>
         </IconButton>
       </Box>
       <Menu

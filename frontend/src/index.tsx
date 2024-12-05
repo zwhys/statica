@@ -13,9 +13,9 @@ import Loading from "./components/layout/loading"
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#8390FA",
-      light: "#A1A9FC",
-      dark: "#6774C7",
+      main: "#B098A4", // The base color
+      light: "#D1B5C7", // Lighter version of main (more desaturated pink/purple)
+      dark: "#7D4F77", // Darker version of main (deeper purple)
       contrastText: "#FFFFFF",
     },
     secondary: {

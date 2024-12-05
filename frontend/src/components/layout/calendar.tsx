@@ -19,7 +19,7 @@ const Calendar: React.FC = () => {
     if (info.el.classList.contains("fc-day-today")) {
       const button = document.createElement("button")
       button.innerText = "+"
-      button.style.backgroundColor = "#8390FA"
+      button.style.backgroundColor = "#B098A4"
       button.style.color = "white"
       button.style.border = "none"
       button.style.borderRadius = "25%"

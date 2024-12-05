@@ -153,7 +153,7 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: "#8390FA",
+                  background: "#B098A4",
                   color: "white",
                 }}
                 disabled={!passwordsMatch}

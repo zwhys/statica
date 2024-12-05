@@ -51,6 +51,8 @@ export default function LandingPage() {
               padding: "10px 20px", // Adjust padding for text readability
               bgcolor: "white", // White background
               color: "#212227", // Text color
+              fontWeight: "bold",
+              typography: "h6",
             }}
             text="Get Started"
           />
