@@ -3,7 +3,7 @@ import HomeMenu from "../authentication/homeMenu"
 
 export function HeaderHome() {
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link

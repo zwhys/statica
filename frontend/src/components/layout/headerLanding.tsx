@@ -3,7 +3,7 @@ import LandingMenu from "../authentication/landingMenu"
 
 export default function HeaderLanding() {
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
