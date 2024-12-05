@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
-import { Box, Typography } from "@mui/material"
+import { Box, Container, Grid, Typography } from "@mui/material"
 import SignUp from "../components/authentication/signup"
 
 export default function LandingPage() {
@@ -49,15 +49,64 @@ export default function LandingPage() {
               display: "inline-block", // Size adjusts to content
               borderRadius: "8px", // Rounded corners
               padding: "10px 20px", // Adjust padding for text readability
-              bgcolor: "white", // White background
-              color: "#212227", // Text color
+              bgcolor: "#B098A4", // White background
+              color: "white", // Text color
               fontWeight: "bold",
               typography: "h6",
+              "&:hover": {
+                bgcolor: "#7D4F77", // Change background color on hover (for example, blue)
+              },
             }}
             text="Get Started"
           />
         </Box>
       </Box>
+      <Container maxWidth={false}>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Box
+              sx={{
+                borderRadius: "8px", // Rounded corners
+                padding: "20px", // Adjust padding for text readability
+                bgcolor: "#B098A4", // White background
+                color: "white", // Text color
+                fontWeight: "bold",
+                typography: "h5",
+              }}
+            >
+              Box 1
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Box
+              sx={{
+                borderRadius: "8px", // Rounded corners
+                padding: "20px", // Adjust padding for text readability
+                bgcolor: "#B098A4", // White background
+                color: "white", // Text color
+                fontWeight: "bold",
+                typography: "h5",
+              }}
+            >
+              Box 2
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Box
+              sx={{
+                borderRadius: "8px", // Rounded corners
+                padding: " 20px", // Adjust padding for text readability
+                bgcolor: "#B098A4", // White background
+                color: "white", // Text color
+                fontWeight: "bold",
+                typography: "h5",
+              }}
+            >
+              Box 3
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   )
 }
