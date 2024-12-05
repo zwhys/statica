@@ -1,3 +1,10 @@
+INSERT INTO
+    users (username, hashed_password)
+VALUES
+    ('admin', '$2b$10$NLTuvAVTPjucQe8fMSKwxOIflgWR4opMu4fdkYbGmm4O5GZbKbKJW'),
+    ('mogojohn', '$2b$10$4OtE3iv3hdd.tHSaogPBPOsOIK2JOvgTWEd5.MbkL35vShPcrJtlq');
+
+
 INSERT INTO exercise_types (exercise_type, colour)
 VALUES
     ('Ab Roller', '#FF5733'),
@@ -100,3 +107,20 @@ VALUES
     ('Wide-Grip Bench Press', '#33FFD5'),
     ('Wide-Grip Pull-Up', '#FFA633'),
     ('Windshield Wipers', '#33A6FF');
+
+
+INSERT INTO records (user_id, date_of_entry, exercise_type, sets, reps, remarks, created_at, updated_at, deleted_at) 
+VALUES
+    (1, '2024-06-26', 'Push-Up', 3, 15, 'Feeling good today', NOW(), NOW(), NULL),
+    (2, '2024-06-25', 'Sit-Up', 4, 20, 'Worked on form', NOW(), NOW(), NULL),
+    (1, '2024-06-24', 'Bicep Curl', 4, 12, 'Increased weight', NOW(), NOW(), NULL),
+    (2, '2024-06-26', 'Pull-Up', 3, 8, 'Improved grip strength', NOW(), NOW(), NULL),
+    (1, '2024-12-25', 'Deadlift', 5, 5, 'New personal record', NOW(), NOW(), NULL),
+    (2, '2024-12-24', 'Bench Press', 4, 10, 'Added extra set', NOW(), NOW(), NULL),
+    (1, '2024-12-23', 'Dips', 3, 12, 'Superset with pushups', NOW(), NOW(), NULL),
+    (2, '2024-12-22', 'Shoulder Press', 3, 12, 'Focused on form', NOW(), NOW(), NULL),
+    (1, '2024-12-21', 'Leg Press', 4, 15, 'Increased weight', NOW(), NOW(), NULL);
+
+
+-- psql -h localhost -U ZiYan -d railwaydb -f /Users/ZiYan/Desktop/railway/backend/prisma/seed.sql
+-- command to run seeding scripts
