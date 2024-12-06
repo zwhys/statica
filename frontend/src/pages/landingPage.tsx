@@ -64,8 +64,7 @@ export default function LandingPage() {
           />
         </Box>
       </Box>
-      <Box sx={{ margin: "10px" }}></Box>
-      <Container maxWidth={false}>
+      <Container maxWidth={false} sx={{ marginTop: "15px", marginBottom: "15px" }}>
         <Grid container spacing={2}>
           {[
             {
@@ -123,13 +122,29 @@ export default function LandingPage() {
                     textAlign: "center", // Center align text within the overlay
                   }}
                 >
-                  <Typography variant="h6" sx={{fontSize: 'h4.fontSize'}}>Coming Soon</Typography>
+                  <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>
+                    Coming Soon
+                  </Typography>
                 </Box>
               </Box>
             </Grid>
           ))}
         </Grid>
       </Container>
+      <Box
+        sx={{
+          padding: "20px",
+          bgcolor: "#B098A4",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          fontSize: 'h3.fontSize',
+          height: 200
+        }}
+      >
+        Footer Section
+      </Box>
     </>
   )
 }
