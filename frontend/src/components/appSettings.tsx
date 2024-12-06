@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react"
 import { ChromePicker, ColorResult } from "react-color"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Box, Button, Dialog, Grid, ListItemIcon, MenuItem, Typography } from "@mui/material"
+import { Box, Button, Dialog, Grid, ListItemIcon, MenuItem, Typography, useTheme } from "@mui/material"
 import { Settings } from "@mui/icons-material"
 
 export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
@@ -92,7 +92,7 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
                   type="submit"
                   variant="contained"
                   sx={{
-                    backgroundColor: "#B098A4",
+                    backgroundColor: useTheme().palette.primary.main,
                     color: "white",
                   }}
                 >

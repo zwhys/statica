@@ -52,21 +52,21 @@ const App = () => {
       palette: {
         mode,
         primary: {
-          main: "#B098A4", // Base color
-          light: "#D1B5C7", // Light version of base
-          dark: "#7D4F77", // Darker version of base
-          contrastText: "#FFFFFF", // Ensures contrast for text
+          main: mode === "dark" ? "#B098A4" : "#E3D1DA", // Base color
+          light: mode === "dark" ? "#D1B5C7" : "#F6EAF0", // Light version of base
+          dark: mode === "dark" ? "#7D4F77" : "#C3A5B1", // Darker version of base
+          contrastText: mode === "dark" ? "#FFFFFF" : "#212227", // Text contrast
         },
         background: {
-          default: mode === "dark" ? "#121212" : "#FFFFFF", // Dark or light background
-          paper: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Paper background for cards
+          default: mode === "dark" ? "#FFFFFF" : "#212227", // Background color
+          paper: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Paper/cards
         },
         text: {
-          primary: mode === "dark" ? "#E0E0E0" : grey[900], // Light text on dark, dark text on light
-          secondary: mode === "dark" ? grey[500] : grey[700], // Secondary text color
+          primary: mode === "dark" ? "#E0E0E0" : grey[900], // Main text
+          secondary: mode === "dark" ? grey[500] : grey[700], // Secondary text
         },
-        error: red,
-        success: green,
+        error: red, // Error color
+        success: green, // Success color
       },
       typography: {
         fontFamily: "Raleway",
@@ -76,6 +76,7 @@ const App = () => {
         fontWeightBold: 700,
       },
     })
+
   return (
     <ThemeProvider theme={theme(mode)}>
       <RouterProvider router={router} />

@@ -12,6 +12,7 @@ import {
   InputAdornment,
   MenuItem,
   ListItemIcon,
+  useTheme,
 } from "@mui/material"
 import { Login, Visibility, VisibilityOff } from "@mui/icons-material"
 import { getUserId } from "../api"
@@ -113,7 +114,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: "#B098A4",
+                  background: useTheme().palette.primary.main,
                   color: "white",
                 }}
               >

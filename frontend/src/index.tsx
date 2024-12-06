@@ -8,8 +8,6 @@ import "./App.css"
 import "./index.css"
 import Loading from "./components/layout/loading"
 
-
-
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Box, IconButton, Avatar, Menu, MenuItem, ListItemIcon, Divider } from "@mui/material"
+import { Box, IconButton, Avatar, Menu, MenuItem, ListItemIcon, Divider, useTheme } from "@mui/material"
 import Logout from "@mui/icons-material/Logout"
 import { AccountCircle } from "@mui/icons-material"
 import { setUserId } from "../../redux/reducer"
@@ -50,7 +50,7 @@ export default function HomeMenu() {
             setAnchorEl(event.currentTarget)
           }}
         >
-          <Avatar sx={{ bgcolor: "#B098A4", fontWeight: "bold" }}>U</Avatar>
+          <Avatar sx={{ bgcolor: useTheme().palette.primary.main, fontWeight: "bold" }}>U</Avatar>
         </IconButton>
       </Box>
       <Menu

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, Dialog, DialogContent, Paper, Typography } from "@mui/material"
+import { Box, Button, Dialog, DialogContent, Paper, Typography, useTheme } from "@mui/material"
 import AddExerciseEntry from "./addExerciseEntry"
 import DisplayRecords from "./displayRecords"
 
@@ -43,7 +43,7 @@ export const DisplayExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) 
           >
             <Button
               size="large"
-              sx={{ background: "#B098A4", color: "white" }}
+              sx={{ background: useTheme().palette.primary.main, color: "white" }}
               variant="contained"
               color="primary"
               onClick={() => setIsDialogOpen(true)}

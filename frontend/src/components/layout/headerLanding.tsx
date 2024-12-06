@@ -1,6 +1,6 @@
 import { Avatar, Typography, Box, Toolbar, Link, Container, Switch } from "@mui/material"
 import LandingMenu from "../authentication/landingMenu"
-import ChangeThemeSwitch from "../changeThemeSwitch"
+import ThemeSwitch from "../themeSwitch"
 import { useState } from "react"
 
 export default function HeaderLanding() {
@@ -26,12 +26,7 @@ export default function HeaderLanding() {
             </Typography>
           </Link>
           <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
-            <ChangeThemeSwitch
-              checked={mode === "dark"}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setMode((checked: string) => checked === 'dark' ? 'dark' : 'light')
-              }}
-            />
+            <ThemeSwitch />
             <LandingMenu />
           </Box>
         </Box>
@@ -39,4 +34,3 @@ export default function HeaderLanding() {
     </Container>
   )
 }
-

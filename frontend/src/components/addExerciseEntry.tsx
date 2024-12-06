@@ -15,6 +15,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  useTheme,
 } from "@mui/material"
 
 export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
@@ -144,7 +145,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                     variant="contained"
                     color="primary"
                     sx={{
-                      backgroundColor: "#B098A4",
+                      backgroundColor: useTheme().palette.primary.main,
                       color: "white",
                     }}
                   >

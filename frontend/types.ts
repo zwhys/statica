@@ -1,13 +1,3 @@
-interface ChangeThemeSwitchProps {
-  checked: boolean
-  onChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
-}
-
-interface AppProps {
-  theme: 'light' | 'dark'
-};
-
-
 interface UserState {
   userId: number | null
 }

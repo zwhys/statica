@@ -1,5 +1,6 @@
 import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
 import HomeMenu from "../authentication/homeMenu"
+import ThemeSwitch from "../themeSwitch"
 
 export function HeaderHome() {
   return (
@@ -21,7 +22,10 @@ export function HeaderHome() {
               Railway
             </Typography>
           </Link>
-          <HomeMenu />
+          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
+            <ThemeSwitch />
+            <HomeMenu />
+          </Box>
         </Box>
       </Toolbar>
     </Container>
