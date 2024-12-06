@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
-import pool from "./db";
-import { getUsers, getExercise_types, getRecords } from "./api";
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 const app = express();
 const port = 3001;
 
@@ -18,7 +18,7 @@ app.use(
 
 app.get("/users", async (req, res) => {
   try {
-    const users = await getUsers();
+    const users = await prisma.users.findMany();
     res.json(users);
   } catch (err) {
     console.error("Server error:", err);
@@ -30,13 +30,10 @@ app.post("/username", async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const getUsernameQuery = `
-      SELECT * FROM users WHERE id = $1 LIMIT 1;
-    `;
-    const getUsernameParams = [userId];
-    const { rows } = await pool.query(getUsernameQuery, getUsernameParams);
-    const username = rows[0].username;
-    res.json({ username: username });
+    const user = await prisma.users.findUnique({
+      where: { id: userId },
+    });
+    res.json({ username: user?.username });
   } catch (err) {
     console.error("Error displaying username:", err);
     res.status(500).send("Internal Server Error");
@@ -45,8 +42,8 @@ app.post("/username", async (req, res) => {
 
 app.get("/exercise_types", async (req, res) => {
   try {
-    const exercise_types = await getExercise_types();
-    res.json(exercise_types);
+    const exerciseTypes = await prisma.exercise_types.findMany();
+    res.json(exerciseTypes);
   } catch (err) {
     console.error("Server error:", err);
     res.status(500).send("Server error");
@@ -55,8 +52,10 @@ app.get("/exercise_types", async (req, res) => {
 
 app.get("/records", async (req, res) => {
   try {
-    const userId = parseInt(req.query.userId as string);
-    const records = await getRecords(userId);
+    const { userId } = req.body;
+    const records = await prisma.records.findMany({
+      where: { user_id: userId },
+    });
     res.json(records);
   } catch (err) {
     console.error("Server error:", err);
@@ -65,30 +64,22 @@ app.get("/records", async (req, res) => {
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  const {
-    user_id: user_id,
-    date_of_entry,
-    exercise_type,
-    sets,
-    reps,
-    remarks,
-  } = req.body;
+  //TODO: fix this, date_of_entry does not work, also 3 new columsn
+  const { user_id, date_of_entry, exercise_type, sets, reps, remarks } =
+    req.body;
 
   try {
-    let query = `
-    INSERT INTO records (user_id, date_of_entry, exercise_type, sets, reps, remarks)
-    VALUES ($1, $2, $3, $4, $5, $6)
-    `;
-    let queryParams = [
-      user_id,
-      date_of_entry,
-      exercise_type,
-      sets,
-      reps,
-      remarks,
-    ];
-
-    await pool.query(query, queryParams);
+    await prisma.records.create({
+      data: {
+        user_id,
+        date_of_entry: new Date(date_of_entry),
+        exercise_type,
+        sets,
+        reps,
+        remarks,
+      },
+    });
+    res.send("Exercise entry added successfully");
   } catch (err) {
     console.error("Error saving exercise entry:", err);
     res.status(500).send("Internal Server Error");
@@ -99,14 +90,11 @@ app.post("/check_username", async (req, res) => {
   const { username } = req.body;
 
   try {
-    const checkUserQuery = `
-      SELECT * FROM users WHERE username = $1 LIMIT 1;
-    `;
-    const checkUserParams = [username];
-    const existingUser = await pool.query(checkUserQuery, checkUserParams);
-    const isUsernameAvailable: boolean = existingUser.rows.length === 0;
-
-    res.json({ isUsernameAvailable: isUsernameAvailable });
+    const user = await prisma.users.findUnique({
+      where: { username },
+    });
+    const isUsernameAvailable = !user;
+    res.json({ isUsernameAvailable });
   } catch (err) {
     console.error("Error checking username availability:", err);
     res.status(500).send("Internal Server Error");
@@ -118,17 +106,10 @@ app.post("/add_user", async (req, res) => {
 
   try {
     const hashed_password = await bcrypt.hash(password, 10);
-    let query = `
-    INSERT INTO users ( username, hashed_password)
-    VALUES ($1, $2)
-    RETURNING id
-    `;
-    let queryParams = [username, hashed_password];
-
-    const result = await pool.query(query, queryParams);
-    const userId: number = result.rows[0].id;
-
-    res.json({ userId: userId });
+    const newUser = await prisma.users.create({
+      data: { username, hashed_password },
+    });
+    res.json({ userId: newUser.id });
   } catch (err) {
     console.error("Error adding user:", err);
     res.status(500).send("Internal Server Error");
@@ -136,11 +117,14 @@ app.post("/add_user", async (req, res) => {
 });
 
 app.post("/change_colour", async (req, res) => {
+  //TODO: Check if this works
   const { exercise_type, colour } = req.body;
+
   try {
-    let query =
-      "UPDATE exercise_types SET colour = $1 WHERE exercise_type = $2 ";
-    let queryParams = [colour, exercise_type];
+    await prisma.exercise_types.update({
+      where: { exercise_type },
+      data: { colour },
+    });
     res.send("Colour changed successfully");
   } catch (err) {
     console.error("Error changing colour:", err);
@@ -155,27 +139,22 @@ app.post("/authentication", async (req, res) => {
     return res.json({ userId: null });
   }
 
-  let query = `
-  SELECT * FROM users WHERE username = $1 LIMIT 1;
-  `;
-  let queryParams = [username];
-
   try {
-    const { rows } = await pool.query(query, queryParams);
+    const user = await prisma.users.findUnique({
+      where: { username },
+    });
 
-    if (rows.length === 0) {
+    if (!user) {
       return res.json({ userId: null });
     }
 
-    const dbPasswordHash = rows[0].hashed_password;
-    const userId: number = rows[0].id;
-
-    const match = await bcrypt.compare(password, dbPasswordHash);
+    const match = await bcrypt.compare(password, user.hashed_password);
 
     if (!match) {
       return res.json({ userId: null });
     }
-    return res.json({ userId: userId });
+
+    res.json({ userId: user.id });
   } catch (err) {
     console.error("Error during authentication:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -185,4 +164,3 @@ app.post("/authentication", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-

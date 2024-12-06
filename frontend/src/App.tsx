@@ -48,7 +48,7 @@ const App = () => {
 
 export default App
 
-//TODO: Create loading screen
+//TODO: Implement loading screen for other than calendar
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
