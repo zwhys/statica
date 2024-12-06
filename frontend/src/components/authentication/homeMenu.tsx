@@ -6,9 +6,10 @@ import Logout from "@mui/icons-material/Logout"
 import { AccountCircle } from "@mui/icons-material"
 import { setUserId } from "../../redux/reducer"
 import { AppSettings } from "../appSettings"
+import { RootState } from "../../redux/store"
 
 export default function HomeMenu() {
-  const userId = useSelector((state: any) => state.user.userId)
+  const userId = useSelector((state: RootState) => state.user.userId)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [username, setUsername] = useState<string | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)

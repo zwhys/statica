@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
-import { Box, Container, Grid, Icon, Typography } from "@mui/material"
+import { Box, Container, Grid, Icon, Switch, Typography } from "@mui/material"
 import SignUp from "../components/authentication/signup"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"

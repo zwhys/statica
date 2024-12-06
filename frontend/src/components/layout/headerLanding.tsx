@@ -1,7 +1,11 @@
-import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, Container, Switch } from "@mui/material"
 import LandingMenu from "../authentication/landingMenu"
+import ChangeThemeSwitch from "../changeThemeSwitch"
+import { useState } from "react"
 
 export default function HeaderLanding() {
+  const [mode, setMode] = useState<"light" | "dark">("light")
+
   return (
     <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
@@ -21,9 +25,18 @@ export default function HeaderLanding() {
               Railway
             </Typography>
           </Link>
-          <LandingMenu />
+          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
+            <ChangeThemeSwitch
+              checked={mode === "dark"}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setMode((checked: string) => checked === 'dark' ? 'dark' : 'light')
+              }}
+            />
+            <LandingMenu />
+          </Box>
         </Box>
       </Toolbar>
     </Container>
   )
 }
+

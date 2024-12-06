@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-const initialState: State = { userId: null }
+const initialUserState: UserState = { userId: null }
+const initialModeState: ModeState = { mode: "dark" }
 
 const userSlice = createSlice({
   name: "userid",
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setUserId: (state, action: PayloadAction<number | null>) => {
       state.userId = action.payload
@@ -12,5 +13,17 @@ const userSlice = createSlice({
   },
 })
 
+const modeSlice = createSlice({
+  name: "mode",
+  initialState: initialModeState,
+  reducers: {
+    setMode: (state, action: PayloadAction<"light" | "dark">) => {
+      state.mode = action.payload
+    },
+  },
+})
+
 export const { setUserId } = userSlice.actions
-export default userSlice.reducer
+export const { setMode } = modeSlice.actions
+
+export { userSlice, modeSlice }
