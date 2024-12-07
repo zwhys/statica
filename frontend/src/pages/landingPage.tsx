@@ -55,7 +55,7 @@ export default function LandingPage() {
               borderRadius: "8px",
               padding: "10px 20px", // Adjust padding for text readability
               bgcolor: theme.palette.primary.main,
-              color: 'white',
+              color: theme.palette.text.secondary,
               fontWeight: "bold",
               typography: "h6",
               "&:hover": {
@@ -94,7 +94,6 @@ export default function LandingPage() {
                   position: "relative", // Required for overlay positioning
                   borderRadius: "8px",
                   padding: "20px",
-                  bgcolor: theme.palette.primary.main,
                   color: theme.palette.text.primary,
                   display: "flex",
                   flexDirection: "column",

@@ -116,7 +116,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 sx={{
                   mt: 2,
                   background: theme.palette.primary.main,
-                  color: theme.palette.text.primary,
+                  color: theme.palette.text.secondary,
                 }}
               >
                 Login

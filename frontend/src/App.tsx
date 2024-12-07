@@ -53,17 +53,17 @@ const App = () => {
       palette: {
         mode,
         primary: {
-          main: mode === "dark" ? "#B098A4" : "#E3D1DA", // Base color
-          light: mode === "dark" ? "#D1B5C7" : "#F6EAF0", // Light version of base
-          dark: mode === "dark" ? "#7D4F77" : "#C3A5B1", // Darker version of base
-          contrastText: mode === "dark" ? "#F8F9FA" : "#1E1E1E", // Text contrast
+          main: mode === "dark" ? "#D6D5FF" : "#B8B6FE", // Base color
+          light: mode === "dark" ? "#9694CC" : "#D6D5FF", // Light version of base
+          dark: mode === "dark" ? "#8785BD" : "#9694CC", // Darker version of base
         },
         background: {
-          default: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Background color
-          paper: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Paper/cards
+          default: mode === "dark" ? "#3C3C4A" : "#F8F1EB", // Background color
+          paper: mode === "dark" ? "#3C3C4A" : "#F8F1EB"
         },
         text: {
-          primary: mode === "dark" ? "#F8F9FA" : "#1E1E1E", // Main text
+          primary: mode === "dark" ? "#F8F1EB" : "#3C3C4A", // Main text
+          secondary: mode === "dark" ? "#3C3C4A" : "#F8F1EB", // Main text
         },
         error: red,
         success: green,
@@ -92,5 +92,7 @@ export default App
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
-//TODO: add fullname and prefername functionality
-//TODO: set up delete function and prisma while im at it
+//TODO: remove fullname and prefername functionality
+//TODO: set up delete and updatefunction
+//TODO: Pick a nice colour palette for light mode
+//TODO: Make calendar work in light mode

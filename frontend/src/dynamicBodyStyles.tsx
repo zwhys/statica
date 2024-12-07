@@ -11,6 +11,7 @@ const DynamicGlobalStyles = () => {
             minHeight: '100vh',
             background: theme.palette.background.default,
             backgroundSize: 'cover',
+            transition: 'background 0.3s ease',
           },
           '.chrome-picker': {
             boxShadow: 'none !important',
@@ -20,7 +21,7 @@ const DynamicGlobalStyles = () => {
             border: 'none',
             height: '40px',
             padding: '5px 10px',
-            borderRadius: '25px',
+            borderRadius: '5px',
             fontSize: '14px',
             fontWeight: 'bold',
           },
@@ -41,7 +42,7 @@ const DynamicGlobalStyles = () => {
             fontWeight: 'bold',
           },
           '.fc-day-sat, .fc-day-sun': {
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette.background.default,
           },
           '.fc-event-title': {
             whiteSpace: 'nowrap',
