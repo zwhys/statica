@@ -16,6 +16,7 @@ export default function HomeMenu() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const open = Boolean(anchorEl)
+  const theme = useTheme()
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -50,7 +51,7 @@ export default function HomeMenu() {
             setAnchorEl(event.currentTarget)
           }}
         >
-          <Avatar sx={{ bgcolor: useTheme().palette.primary.main, fontWeight: "bold" }}>U</Avatar>
+          <Avatar sx={{ bgcolor: theme.palette.primary.main, fontWeight: "bold" }}>U</Avatar>
         </IconButton>
       </Box>
       <Menu

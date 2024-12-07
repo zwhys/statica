@@ -20,6 +20,7 @@ import {
 
 export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
+  const theme = useTheme()
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
   const {
     control,
@@ -135,7 +136,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
             <Grid item xs={12}>
               <Grid container justifyContent="flex-end" spacing={2}>
                 <Grid item>
-                  <Button variant="outlined" color="primary" onClick={onClose}>
+                  <Button variant="outlined" onClick={onClose}>
                     Cancel
                   </Button>
                 </Grid>
@@ -143,10 +144,9 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                   <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
                     sx={{
-                      backgroundColor: useTheme().palette.primary.main,
-                      color: "white",
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.text.primary,
                     }}
                   >
                     Create

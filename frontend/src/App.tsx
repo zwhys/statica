@@ -5,8 +5,9 @@ import HomePage from "./pages/homePage"
 import LandingPage from "./pages/landingPage"
 import NotFoundPage from "./pages/notFoundPage"
 import { ThemeProvider } from "@emotion/react"
-import { createTheme } from "@mui/material"
+import { createTheme, CssBaseline } from "@mui/material"
 import { grey, red, green } from "@mui/material/colors"
+import DynamicGlobalStyles from "./dynamicBodyStyles"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -55,18 +56,17 @@ const App = () => {
           main: mode === "dark" ? "#B098A4" : "#E3D1DA", // Base color
           light: mode === "dark" ? "#D1B5C7" : "#F6EAF0", // Light version of base
           dark: mode === "dark" ? "#7D4F77" : "#C3A5B1", // Darker version of base
-          contrastText: mode === "dark" ? "#FFFFFF" : "#212227", // Text contrast
+          contrastText: mode === "dark" ? "#F8F9FA" : "#1E1E1E", // Text contrast
         },
         background: {
-          default: mode === "dark" ? "#FFFFFF" : "#212227", // Background color
+          default: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Background color
           paper: mode === "dark" ? "#1E1E1E" : "#F8F9FA", // Paper/cards
         },
         text: {
-          primary: mode === "dark" ? "#E0E0E0" : grey[900], // Main text
-          secondary: mode === "dark" ? grey[500] : grey[700], // Secondary text
+          primary: mode === "dark" ? "#F8F9FA" : "#1E1E1E", // Main text
         },
-        error: red, // Error color
-        success: green, // Success color
+        error: red,
+        success: green,
       },
       typography: {
         fontFamily: "Raleway",
@@ -79,6 +79,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme(mode)}>
+      <CssBaseline />
+      <DynamicGlobalStyles />
       <RouterProvider router={router} />
     </ThemeProvider>
   )

@@ -24,6 +24,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
   const [authError, setAuthError] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const theme = useTheme()
 
   const {
     register,
@@ -114,8 +115,8 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: useTheme().palette.primary.main,
-                  color: "white",
+                  background: theme.palette.primary.main,
+                  color: theme.palette.text.primary,
                 }}
               >
                 Login

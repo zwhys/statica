@@ -1,8 +1,10 @@
-import { Avatar, Typography, Box, Toolbar, Link, Container } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, Container, useTheme } from "@mui/material"
 import HomeMenu from "../authentication/homeMenu"
 import ThemeSwitch from "../themeSwitch"
 
 export function HeaderHome() {
+const theme = useTheme()
+
   return (
     <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
@@ -18,7 +20,7 @@ export function HeaderHome() {
               src="logo.png"
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
-            <Typography color="white" fontSize={32}>
+            <Typography color= {theme.palette.text.primary} fontSize={32}>
               Railway
             </Typography>
           </Link>

@@ -7,20 +7,21 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
 import DisplayExerciseEntry from "../displayExerciseEntry"
 import AddExerciseEntry from "../addExerciseEntry"
-import { Box } from "@mui/material"
+import { Box, useTheme } from "@mui/material"
 import Loading from "./loading"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
   const [isLoading, setisLoading] = useState(true)
+  const theme = useTheme()
 
   const renderButton = (info: { el: HTMLElement }) => {
     if (info.el.classList.contains("fc-day-today")) {
       const button = document.createElement("button")
       button.innerText = "+"
-      button.style.backgroundColor = "#B098A4"
-      button.style.color = "white"
+      button.style.backgroundColor = theme.palette.primary.main
+      button.style.color = theme.palette.text.primary
       button.style.border = "none"
       button.style.borderRadius = "25%"
       button.style.width = "30px"

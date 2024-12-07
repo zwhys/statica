@@ -1,10 +1,11 @@
-import { Avatar, Typography, Box, Toolbar, Link, Container, Switch } from "@mui/material"
+import { Avatar, Typography, Box, Toolbar, Link, Container, useTheme } from "@mui/material"
 import LandingMenu from "../authentication/landingMenu"
 import ThemeSwitch from "../themeSwitch"
 import { useState } from "react"
 
 export default function HeaderLanding() {
   const [mode, setMode] = useState<"light" | "dark">("light")
+  const theme = useTheme()
 
   return (
     <Container maxWidth={false}>
@@ -21,7 +22,7 @@ export default function HeaderLanding() {
               src="logo.png"
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
-            <Typography color="white" fontSize={32}>
+            <Typography color={theme.palette.text.primary} fontSize={32}>
               Railway
             </Typography>
           </Link>

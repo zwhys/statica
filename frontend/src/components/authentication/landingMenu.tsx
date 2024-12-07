@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, IconButton, Avatar, Menu, ListItemIcon } from "@mui/material"
+import { Box, IconButton, Avatar, Menu, ListItemIcon, useTheme } from "@mui/material"
 import SignUp from "./signup"
 import LogIn from "./login"
 import { PersonAdd } from "@mui/icons-material"
@@ -8,6 +8,7 @@ export default function LandingMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const open = Boolean(anchorEl)
+  const theme = useTheme()
 
   return (
     <>
@@ -17,7 +18,7 @@ export default function LandingMenu() {
             setAnchorEl(event.currentTarget)
           }}
         >
-          <Avatar sx={{ bgcolor: "#B098A4" }} />
+          <Avatar sx={{ bgcolor: theme.palette.primary.main }} />
         </IconButton>
       </Box>
       <Menu

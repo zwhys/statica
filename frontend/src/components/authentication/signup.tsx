@@ -11,6 +11,7 @@ import {
   MenuItem,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material"
 import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
@@ -20,6 +21,7 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const theme = useTheme()
 
   const {
     register,
@@ -153,8 +155,8 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 fullWidth
                 sx={{
                   mt: 2,
-                  background: "#B098A4",
-                  color: "white",
+                  background: theme.palette.primary.main,
+                  color: theme.palette.text.primary,
                 }}
                 disabled={!passwordsMatch}
               >

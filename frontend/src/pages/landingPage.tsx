@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
-import { Box, Container, Grid, Icon, Switch, Typography } from "@mui/material"
+import { Box, Container, Grid, Icon, Switch, Typography, useTheme } from "@mui/material"
 import SignUp from "../components/authentication/signup"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
@@ -8,6 +8,8 @@ import AssistantIcon from "@mui/icons-material/Assistant"
 
 export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const theme = useTheme()
+
   return (
     <>
       <HeaderLanding />
@@ -32,7 +34,7 @@ export default function LandingPage() {
             top: "50%", // Center vertically
             left: "50%", // Center horizontally
             transform: "translate(-50%, -50%)", // Adjust for perfect centering
-            color: "white",
+            color: 'white',
             backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
             padding: "30px", // Padding for text box
             borderRadius: "8px",
@@ -52,12 +54,12 @@ export default function LandingPage() {
               display: "inline-block", // Size adjusts to content
               borderRadius: "8px",
               padding: "10px 20px", // Adjust padding for text readability
-              bgcolor: "#B098A4", // White background
-              color: "white",
+              bgcolor: theme.palette.primary.main,
+              color: 'white',
               fontWeight: "bold",
               typography: "h6",
               "&:hover": {
-                bgcolor: "#7D4F77", // Change background color on hover (for example, blue)
+                bgcolor: theme.palette.primary.dark,
               },
             }}
             text="Get Started"
@@ -92,8 +94,8 @@ export default function LandingPage() {
                   position: "relative", // Required for overlay positioning
                   borderRadius: "8px",
                   padding: "20px",
-                  bgcolor: "#B098A4",
-                  color: "white",
+                  bgcolor: theme.palette.primary.main,
+                  color: theme.palette.text.primary,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -107,7 +109,7 @@ export default function LandingPage() {
                 <Typography variant="body1" sx={{ textAlign: "left", marginTop: "auto" }}>
                   {item.description}
                 </Typography>
-                <Box
+                {/* <Box
                   sx={{
                     position: "absolute",
                     top: 0,
@@ -125,7 +127,7 @@ export default function LandingPage() {
                   <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>
                     Coming Soon
                   </Typography>
-                </Box>
+                </Box> */}
               </Box>
             </Grid>
           ))}
@@ -134,7 +136,7 @@ export default function LandingPage() {
       <Box
         sx={{
           padding: "20px",
-          bgcolor: "#B098A4",
+          bgcolor: theme.palette.primary.main,
           color: "white",
           display: "flex",
           flexDirection: "column",

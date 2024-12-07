@@ -6,6 +6,7 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 
 const TabItem = styled(Tab)(({ theme }) => ({
+
   opacity: 1,
   borderTopLeftRadius: "16px",
   borderTopRightRadius: "16px",
