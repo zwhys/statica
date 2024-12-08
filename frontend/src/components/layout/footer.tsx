@@ -1,16 +1,14 @@
 import { Box, Typography, IconButton } from "@mui/material"
 import { GitHub, LinkedIn } from "@mui/icons-material"
-import { cibLeetcode } from '@coreui/icons';
-import CIcon from "@coreui/icons-react";
-
+import { FaFileCode } from "react-icons/fa"
 
 const Footer = () => {
   return (
     <Box
       sx={{
         padding: "20px",
-        bgcolor: theme => theme.palette.grey[900],
-        color: theme => theme.palette.grey[50],
+        bgcolor: theme => theme.palette.grey[900], // Dark gray background
+        color: theme => theme.palette.grey[50], // Light text color
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -30,7 +28,7 @@ const Footer = () => {
           <GitHub />
         </IconButton>
         <IconButton color="inherit" href="https://leetcode.com/u/tanziyan/" target="_blank">
-          <CIcon icon={cibLeetcode} />
+          <FaFileCode />
         </IconButton>
         <IconButton
           color="inherit"
