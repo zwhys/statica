@@ -93,5 +93,6 @@ export default App
 //TODO: Add types to everything
 //TODO: remove fullname and prefername functionality
 //TODO: set up delete and updatefunction
-//TODO: Pick a nice colour palette for light mode
+//TODO: Fix footer
 //TODO: Make calendar work in light mode
+
