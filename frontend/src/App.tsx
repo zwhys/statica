@@ -6,7 +6,7 @@ import LandingPage from "./pages/landingPage"
 import NotFoundPage from "./pages/notFoundPage"
 import { ThemeProvider } from "@emotion/react"
 import { createTheme, CssBaseline } from "@mui/material"
-import { grey, red, green } from "@mui/material/colors"
+import { red, green } from "@mui/material/colors"
 import DynamicGlobalStyles from "./dynamicBodyStyles"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
@@ -53,16 +53,16 @@ const App = () => {
       palette: {
         mode,
         primary: {
-          main: mode === "dark" ? "#D6D5FF" : "#B8B6FE", // Base color
-          light: mode === "dark" ? "#9694CC" : "#D6D5FF", // Light version of base
-          dark: mode === "dark" ? "#8785BD" : "#9694CC", // Darker version of base
+          main: mode === "dark" ? "#D6D5FF" : "#B8B6FE",
+          light: mode === "dark" ? "#9694CC" : "#D6D5FF",
+          dark: mode === "dark" ? "#8785BD" : "#9694CC",
         },
         background: {
           default: mode === "dark" ? "#3C3C4A" : "#F8F1EB",
         },
         text: {
-          primary: mode === "dark" ? "#F8F1EB" : "#3C3C4A", // Main text
-          secondary: mode === "dark" ? "#3C3C4A" : "#F8F1EB", // Main text
+          primary: mode === "dark" ? "#F8F1EB" : "#3C3C4A",
+          secondary: mode === "dark" ? "#3C3C4A" : "#F8F1EB",
         },
         error: red,
         success: green,
@@ -95,4 +95,4 @@ export default App
 //TODO: set up delete and updatefunction
 //TODO: Fix footer
 //TODO: Make calendar work in light mode
-
+//TODO: Make it so that can render dark mode without refreshing on different pages

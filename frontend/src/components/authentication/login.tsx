@@ -134,7 +134,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
             </Box>
             <img
               src="/login.png"
-              alt="Login Image"
+              alt="Login"
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </Box>

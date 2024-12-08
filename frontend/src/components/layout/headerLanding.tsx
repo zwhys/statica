@@ -1,10 +1,8 @@
 import { Avatar, Typography, Box, Toolbar, Link, Container, useTheme } from "@mui/material"
 import LandingMenu from "../authentication/landingMenu"
 import ThemeSwitch from "../themeSwitch"
-import { useState } from "react"
 
 export default function HeaderLanding() {
-  const [mode, setMode] = useState<"light" | "dark">("light")
   const theme = useTheme()
 
   return (

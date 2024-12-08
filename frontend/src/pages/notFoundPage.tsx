@@ -1,4 +1,4 @@
-import { Box, Typography, Link, useTheme, Button } from "@mui/material"
+import { Box, Typography, useTheme, Button } from "@mui/material"
 import Footer from "../components/layout/footer"
 
 export function NotFoundPage() {
@@ -7,7 +7,7 @@ export function NotFoundPage() {
   return (
     <>
       <Box textAlign="center">
-        <img src="/404.png" style={{ height: "100vh" }} />
+        <img src="/404.png" alt="error" style={{ height: "100vh" }} />
         <Typography
           sx={{ color: theme.palette.text.primary, marginTop: "-375px" }}
           variant="body1"
