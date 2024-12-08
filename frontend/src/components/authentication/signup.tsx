@@ -83,6 +83,11 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 label="Username"
                 variant="outlined"
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 margin="normal"
                 {...register("username", {
                   required: "Required",
@@ -107,6 +112,11 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 variant="outlined"
                 type={showPassword ? "text" : "password"}
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 margin="normal"
                 {...register("password", {
                   required: "Required",
@@ -125,6 +135,11 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                     variant="outlined"
                     type={showPassword ? "text" : "password"}
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.text.primary, // Label color
+                      },
+                    }}
                     margin="normal"
                     {...register("confirmPassword", {
                       required: "Please confirm your password",
@@ -141,6 +156,9 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                       <Checkbox
                         checked={showPassword}
                         onClick={() => setShowPassword(!showPassword)}
+                        sx={{
+                          color: theme.palette.text.primary, // Label color
+                        }}
                       />
                     }
                     label="Show Password"

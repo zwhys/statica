@@ -61,7 +61,16 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12}>
-              <FormControl variant="outlined" error={!!errors.exercise_type} fullWidth>
+              <FormControl
+                variant="outlined"
+                error={!!errors.exercise_type}
+                fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
+              >
                 <InputLabel id="exercise-type-label">Type of Exercise</InputLabel>
                 <Controller
                   name="exercise_type"
@@ -91,6 +100,11 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 variant="outlined"
                 placeholder="Eg. 3"
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 {...register("sets", {
                   required: "Required",
                   pattern: {
@@ -109,6 +123,11 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 variant="outlined"
                 placeholder="Eg. 10"
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 {...register("reps", {
                   required: "Required",
                   pattern: {
@@ -129,6 +148,11 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 variant="outlined"
                 placeholder="Eg. Feelings, Difficulty, ..."
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 {...register("remarks", { required: false })}
               />
             </Grid>
@@ -146,7 +170,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                     variant="contained"
                     sx={{
                       backgroundColor: theme.palette.primary.main,
-                      color: theme.palette.text.primary,
+                      color: theme.palette.text.secondary,
                     }}
                   >
                     Create

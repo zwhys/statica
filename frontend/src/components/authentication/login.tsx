@@ -81,6 +81,11 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 label="Username"
                 variant="outlined"
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 {...register("username", {
                   required: "Username is required",
                 })}
@@ -93,6 +98,11 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 type={showPassword ? "text" : "password"}
                 margin="normal"
                 fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary, // Label color
+                  },
+                }}
                 {...register("password", {
                   required: "Password is required",
                 })}
