@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
 import { Box, Container, Grid, Typography, useTheme } from "@mui/material"
-import SignUp from "../components/authentication/signup"
+import Register from "../components/authentication/register"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 import AssistantIcon from "@mui/icons-material/Assistant"
@@ -48,7 +48,7 @@ export default function LandingPage() {
           <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
             This is a beautiful landing page.
           </Typography>
-          <SignUp
+          <Register
             open={isDialogOpen}
             onClose={() => setIsDialogOpen(false)}
             sx={{

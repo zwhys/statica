@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Box, IconButton, Avatar, Menu, ListItemIcon, useTheme } from "@mui/material"
-import SignUp from "./signup"
+import Register from "./register"
 import LogIn from "./login"
 import { PersonAdd } from "@mui/icons-material"
 
@@ -29,7 +29,7 @@ export default function LandingMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <LogIn open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
-        <SignUp
+        <Register
           open={isDialogOpen}
           onClose={() => setIsDialogOpen(false)}
           icon={
@@ -37,7 +37,7 @@ export default function LandingMenu() {
               <PersonAdd fontSize="small" />
             </ListItemIcon>
           }
-          text="Signup"
+          text="Register"
         />
       </Menu>
     </>

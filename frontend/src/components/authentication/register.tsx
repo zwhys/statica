@@ -16,7 +16,7 @@ import {
 import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 
-export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
+export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
@@ -178,7 +178,7 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 }}
                 disabled={!passwordsMatch}
               >
-                Sign Up
+                Register
               </Button>
             </Box>
             <img src="/login.png" alt="" style={{ maxWidth: "100%", maxHeight: "100%" }} />
@@ -189,6 +189,6 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   )
 }
 
-export default SignUp
+export default Register
 
 //TODO: Make sure when the user clicks outsides the textfields are cleared
