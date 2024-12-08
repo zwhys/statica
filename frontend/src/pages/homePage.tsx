@@ -5,7 +5,7 @@ import HeaderHome from "../components/layout/headerHome"
 import TabsChrome from "../components/TabsChrome"
 import Calendar from "../components/layout/calendar"
 import Statistics from "../components/layout/statistics"
-import WelcomeDialog from "../components/authentication/signupWelcomeDialog"
+import WelcomeDialog from "../components/authentication/registerWelcomeDialog"
 import { useTheme } from "@mui/material"
 import Footer from "../components/layout/footer"
 
