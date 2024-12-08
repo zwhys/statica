@@ -5,6 +5,7 @@ import SignUp from "../components/authentication/signup"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 import AssistantIcon from "@mui/icons-material/Assistant"
+import Footer from "../components/layout/footer"
 
 export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -34,7 +35,7 @@ export default function LandingPage() {
             top: "50%", // Center vertically
             left: "50%", // Center horizontally
             transform: "translate(-50%, -50%)", // Adjust for perfect centering
-            color: 'white',
+            color: "white",
             backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
             padding: "30px", // Padding for text box
             borderRadius: "8px",
@@ -132,20 +133,7 @@ export default function LandingPage() {
           ))}
         </Grid>
       </Container>
-      <Box
-        sx={{
-          padding: "20px",
-          bgcolor: theme.palette.primary.main,
-          color: "white",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          fontSize: 'h3.fontSize',
-          height: 200
-        }}
-      >
-        Footer Section
-      </Box>
+      <Footer />
     </>
   )
 }

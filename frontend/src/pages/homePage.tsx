@@ -6,12 +6,15 @@ import TabsChrome from "../components/TabsChrome"
 import Calendar from "../components/layout/calendar"
 import Statistics from "../components/layout/statistics"
 import WelcomeDialog from "../components/authentication/signupWelcomeDialog"
+import { useTheme } from "@mui/material"
+import Footer from "../components/layout/footer"
 
 export function HomePage() {
   const [tabIndex, setTabIndex] = useState(0)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const theme = useTheme()
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -39,7 +42,7 @@ export function HomePage() {
           sx={{
             display: "flex",
             flexDirection: "row",
-            bgcolor: "white",
+            bgcolor: theme.palette.background.default,
             gap: 2,
             padding: 5,
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -52,6 +55,7 @@ export function HomePage() {
           {tabIndex === 1 && <Statistics />}
         </Box>
       </Box>
+      <Footer />
       <WelcomeDialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
