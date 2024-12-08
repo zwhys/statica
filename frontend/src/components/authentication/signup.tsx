@@ -191,4 +191,4 @@ export const SignUp: React.FC<DisplayProps> = ({ sx, icon, text }) => {
 
 export default SignUp
 
-//!: Fix password visibility feature for signup where you can click outside and still change it
+//TODO: Make sure when the user clicks outsides the textfields are cleared

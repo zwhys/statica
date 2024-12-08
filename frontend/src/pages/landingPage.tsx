@@ -43,7 +43,7 @@ export default function LandingPage() {
           }}
         >
           <Typography variant="h4" component="div">
-            Welcome to My Website
+            Welcome to Railway
           </Typography>
           <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
             This is a beautiful landing page.
@@ -109,7 +109,7 @@ export default function LandingPage() {
                 <Typography variant="body1" sx={{ textAlign: "left", marginTop: "auto" }}>
                   {item.description}
                 </Typography>
-                {/* <Box
+                <Box
                   sx={{
                     position: "absolute",
                     top: 0,
@@ -127,7 +127,7 @@ export default function LandingPage() {
                   <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>
                     Coming Soon
                   </Typography>
-                </Box> */}
+                </Box>
               </Box>
             </Grid>
           ))}

@@ -27,7 +27,6 @@ CREATE TABLE "records" (
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
     "username" VARCHAR(50) NOT NULL,
-    "preferredname" VARCHAR(50),
     "hashed_password" TEXT NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")

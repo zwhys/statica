@@ -39,7 +39,6 @@ const Footer = () => {
         </IconButton>
       </Box>
 
-      {/* Footer Text */}
       <Typography variant="body2">
         © {new Date().getFullYear()} Railway. All rights reserved.
       </Typography>

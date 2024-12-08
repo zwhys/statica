@@ -91,8 +91,6 @@ export default App
 //TODO: Allow for proper display of data in calendar
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
-//TODO: remove fullname and prefername functionality
 //TODO: set up delete and updatefunction
-//TODO: Fix footer
 //TODO: Make calendar work in light mode
 //TODO: Make it so that can render dark mode without refreshing on different pages
