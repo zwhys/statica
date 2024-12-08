@@ -58,8 +58,7 @@ const App = () => {
           dark: mode === "dark" ? "#8785BD" : "#9694CC", // Darker version of base
         },
         background: {
-          default: mode === "dark" ? "#3C3C4A" : "#F8F1EB", // Background color
-          paper: mode === "dark" ? "#3C3C4A" : "#F8F1EB"
+          default: mode === "dark" ? "#3C3C4A" : "#F8F1EB",
         },
         text: {
           primary: mode === "dark" ? "#F8F1EB" : "#3C3C4A", // Main text
