@@ -1,31 +1,42 @@
-import { Box, Typography, Link } from "@mui/material"
+import { Box, Typography, Link, useTheme, Button } from "@mui/material"
+import Footer from "../components/layout/footer"
 
 export function NotFoundPage() {
+  const theme = useTheme()
+
   return (
-    <Box
-      textAlign="center"
-      sx={{
-        backgroundImage: `url(/error404.jpg)`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        display: "flex",
-        flexDirection: "column",
-        bgcolor: "white",
-        height: 500,
-        padding: 5,
-        margin: 10,
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        borderRadius: 8,
-      }}
-    >
-      <Box sx={{ flex: 1 }} />
-      <Typography sx={{ color: "black", padding: 50 }} variant="body1" paragraph>
-        Oops! The page you are looking for no longer exists, had its name changed, or is temporarily
-        unavailable. Please check the URL for any spelling mistakes, or{" "}
-        <Link href="/">return to the homepage</Link>.
-      </Typography>
-    </Box>
+    <>
+      <Box textAlign="center">
+        <img src="/404.png" style={{ height: "100vh" }} />
+        <Typography
+          sx={{ color: theme.palette.text.primary, marginTop: "-375px" }}
+          variant="body1"
+          paragraph
+        >
+          The page you are looking for does not exists, was renamed, or is temporarily unavailable.
+        </Typography>
+
+        <Button
+          variant="contained"
+          href="/"
+          sx={{
+            borderRadius: "8px",
+            padding: "10px 20px", // Adjust padding for text readability
+            bgcolor: theme.palette.primary.main,
+            color: theme.palette.text.secondary,
+            fontWeight: "bold",
+            typography: "h6",
+            marginBottom: "125px",
+            "&:hover": {
+              bgcolor: theme.palette.primary.dark,
+            },
+          }}
+        >
+          GO BACK HOME
+        </Button>
+      </Box>
+      <Footer />
+    </>
   )
 }
 
