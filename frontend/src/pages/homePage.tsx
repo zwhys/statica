@@ -31,7 +31,7 @@ export default function HomePage() {
           margin: "30px 50px 50px 50px", // top right bottom left
         }}
       >
-        <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+        {/* <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} /> */}
         <Calendar />
       </Box>
       <Footer />

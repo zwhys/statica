@@ -18,13 +18,13 @@ export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
   return (
     <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
-        <IconButton
+        {/* <IconButton
           onClick={() => {
             setIsDrawerOpen(true)
           }}
         >
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
             href="/"

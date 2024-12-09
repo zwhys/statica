@@ -14,24 +14,24 @@ import {
 
 const drawerWidth = 200
 
-const Main = styled("main", { shouldForwardProp: prop => prop !== "open" })<{
-  open?: boolean
-}>(({ theme, open }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  transition: theme.transitions.create("margin", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  marginLeft: `-${drawerWidth}px`,
-  ...(open && {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  }),
-}))
+// const Main = styled("main", { shouldForwardProp: prop => prop !== "open" })<{
+//   open?: boolean
+// }>(({ theme, open }) => ({
+//   flexGrow: 1,
+//   padding: theme.spacing(3),
+//   transition: theme.transitions.create("margin", {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   marginLeft: `-${drawerWidth}px`,
+//   ...(open && {
+//     transition: theme.transitions.create("margin", {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//     marginLeft: 0,
+//   }),
+// }))
 
 export default function SidebarMenu({ open, onClose }: DisplayProps) {
   return (
@@ -43,7 +43,7 @@ export default function SidebarMenu({ open, onClose }: DisplayProps) {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            marginTop: "64px", // Push the drawer down below the header
+            marginTop: "64px",
             height: "calc(100vh - 64px)",
           },
         }}
@@ -67,7 +67,7 @@ export default function SidebarMenu({ open, onClose }: DisplayProps) {
         </List>
         <Divider />
       </Drawer>
-      <Main open={open}></Main>
+      {/* <Main open={open}></Main> */}
     </Box>
   )
 }

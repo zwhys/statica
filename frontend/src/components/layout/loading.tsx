@@ -5,7 +5,7 @@ export const Loading: React.FC = () => {
   const theme = useTheme()
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" minHeight="100vh">
       <CircularProgress sx={{ color: theme.palette.text.primary }} />
     </Box>
   )
