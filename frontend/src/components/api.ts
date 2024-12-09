@@ -15,6 +15,9 @@ export const fetchRecords = async (
       id: String(record.id),
       title: record.exercise_type,
       start: record.date_of_entry,
+      sets: record.sets,
+      reps: record.reps,
+      remarks: record.remarks,
     }))
     setEvents(calendarRecords)
     setisLoading(false)

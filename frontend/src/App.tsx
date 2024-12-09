@@ -100,4 +100,4 @@ export default App
 //TODO: Add types to everything
 //TODO: set up delete and updatefunction
 //TODO: Make calendar look nice
-//TODO: Make it so that can render dark mode without refreshing on different pages
+//TODO: All users see the same entries

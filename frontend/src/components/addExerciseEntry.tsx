@@ -50,7 +50,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
-          borderRadius: 8,
+          borderRadius: 4,
         },
       }}
     >
@@ -102,7 +102,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary, 
                   },
                 }}
                 {...register("sets", {
@@ -125,7 +125,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary,
                   },
                 }}
                 {...register("reps", {
@@ -150,7 +150,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary, 
                   },
                 }}
                 {...register("remarks", { required: false })}

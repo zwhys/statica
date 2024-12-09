@@ -49,7 +49,7 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
         onClose={() => setIsDialogOpen(false)}
         PaperProps={{
           sx: {
-            borderRadius: 8,
+            borderRadius: 4,
           },
         }}
       >

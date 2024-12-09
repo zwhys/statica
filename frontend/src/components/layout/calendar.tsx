@@ -5,44 +5,57 @@ import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
-import DisplayExerciseEntry from "../displayExerciseEntry"
 import AddExerciseEntry from "../addExerciseEntry"
-import { Box, useTheme } from "@mui/material"
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  Typography,
+  useTheme,
+} from "@mui/material"
 import Loading from "./loading"
+import DisplayEntry from "../displayEntry"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isEntryOpen, setIsEntryOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
+  const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [isLoading, setisLoading] = useState(true)
   const theme = useTheme()
 
-  const renderButton = (info: { el: HTMLElement }) => {
-    if (info.el.classList.contains("fc-day-today")) {
-      const button = document.createElement("button")
-      button.innerText = "+"
-      button.style.backgroundColor = theme.palette.primary.main
-      button.style.color = theme.palette.text.primary
-      button.style.border = "none"
-      button.style.borderRadius = "25%"
-      button.style.width = "30px"
-      button.style.height = "30px"
-      button.style.fontSize = "24px" // Adjusted for better fit
-      button.style.cursor = "pointer"
-      button.style.position = "fixed" // Make the button fixed relative to the viewport
-      button.style.bottom = "5px" // Distance from the bottom edge
-      button.style.left = "5px" // Distance from the left edge
-
-      document.body.appendChild(button)
-
-      button.onclick = () => setIsDialogOpen(true)
-
-      info.el.querySelector(".fc-daygrid-day-events")?.appendChild(button)
-    }
+  const handleEventClick = (eventInfo: any) => {
+    const clickedEvent = events.find(event => event.id === eventInfo.event.id)
+    setSelectedEvent(clickedEvent || null)
+    setIsEntryOpen(true)
   }
 
   return (
     <Box sx={{ width: "100%" }}>
+      <Button
+        onClick={() => setIsDialogOpen(true)}
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.text.secondary,
+          width: 40,
+          height: 40,
+          minWidth: 40,
+          borderRadius: "8px",
+          fontSize: 50,
+          "&:hover": {
+            bgcolor: theme.palette.primary.dark,
+          },
+        }}
+      >
+        +
+      </Button>
+
       <DisplayRecords setEvents={setEvents} setisLoading={setisLoading} />
+
       {isLoading ? (
         <Loading />
       ) : (
@@ -56,17 +69,23 @@ const Calendar: React.FC = () => {
             today: "Today",
           }}
           firstDay={1}
-          dayCellDidMount={renderButton}
-          // selectable={true}
           dayMaxEvents={true}
           events={events}
+          eventClick={handleEventClick}
         />
       )}
+      <DisplayEntry
+        open={isEntryOpen}
+        onClose={() => setIsEntryOpen(false)}
+        selectedEvent={selectedEvent}
+      />
+
       <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </Box>
   )
 }
 
 export default Calendar
+
 //TODO: Fix the button
 //TODO: Reimplement exercise type table, should contain colour column, let user insert into table and choose colour

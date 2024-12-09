@@ -16,6 +16,7 @@ interface DisplayProps {
   text?: string
   icon?: React.ReactNode
   sx?: object
+  selectedEvent?: any
 }
 
 type DisplayRecordsProps = {
