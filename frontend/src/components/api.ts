@@ -3,12 +3,12 @@ import { EventInput } from "@fullcalendar/core"
 export const fetchRecords = async (
   userId: number | null,
   setEvents: (events: EventInput[]) => void,
-  setisLoading: (isLoading: boolean) => void
+  setIsLoading: (isLoading: boolean) => void
 ) => {
   try {
-    setisLoading(true)
+    setIsLoading(true)
     const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
-      method: "get",
+      method: "GET",
     })
     const responseRecords = await response.json()
     const calendarRecords: EventInput[] = responseRecords.map((record: any) => ({
@@ -20,9 +20,10 @@ export const fetchRecords = async (
       remarks: record.remarks,
     }))
     setEvents(calendarRecords)
-    setisLoading(false)
+    setIsLoading(false)
   } catch (error) {
     console.error("Error fetching data:", error)
+    setIsLoading(false)
   }
 }
 

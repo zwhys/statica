@@ -96,8 +96,7 @@ export default App
 
 //TODO: Implement loading screen for other than calendar
 //TODO: Allow for proper display of data in calendar
-//TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: set up delete and updatefunction
-//TODO: Make calendar look nice
 //TODO: All users see the same entries
+//TODO: Fix the dragging problem

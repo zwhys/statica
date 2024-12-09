@@ -6,17 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
 import AddExerciseEntry from "../addExerciseEntry"
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  Typography,
-  useTheme,
-} from "@mui/material"
+import { Box, Button, useTheme } from "@mui/material"
 import Loading from "./loading"
 import DisplayEntry from "../displayEntry"
 
@@ -71,6 +61,8 @@ const Calendar: React.FC = () => {
           firstDay={1}
           dayMaxEvents={true}
           events={events}
+          selectable={true}
+          select={() => setIsDialogOpen(true)}
           eventClick={handleEventClick}
         />
       )}

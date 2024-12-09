@@ -1,14 +1,16 @@
 import React from "react"
 import {
   Box,
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
+  IconButton,
   Typography,
   useTheme,
 } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
+import CloseIcon from "@mui/icons-material/Close"
 
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
   const theme = useTheme()
@@ -27,9 +29,25 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         }}
       >
         <DialogTitle>
-          <Typography variant="h6" fontWeight="bold">
-            {selectedEvent?.title || "Event Details"}
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Typography variant="h6" fontWeight="bold">
+              {selectedEvent?.title || "Event Details"}
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <IconButton color="error" sx={{ borderRadius: 5 }}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton sx={{ color: theme.palette.text.primary, borderRadius: 5 }}>
+                <EditIcon />
+              </IconButton>
+              <IconButton
+                onClick={onClose}
+                sx={{ color: theme.palette.text.primary, borderRadius: 5 }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          </Box>
         </DialogTitle>
 
         <DialogContent sx={{ padding: 3 }}>
@@ -52,21 +70,6 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
             <strong>Remarks:</strong> {selectedEvent?.remarks || "No remarks available."}
           </Typography>
         </DialogContent>
-
-        <DialogActions sx={{ paddingX: 3, paddingBottom: 2 }}>
-          <Button
-            onClick={onClose}
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{
-              borderRadius: 6,
-              paddingY: 1,
-            }}
-          >
-            Close
-          </Button>
-        </DialogActions>
       </Dialog>
     </Box>
   )

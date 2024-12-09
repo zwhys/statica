@@ -16,11 +16,11 @@ const DynamicGlobalStyles = () => {
         "& .chrome-picker": {
           boxShadow: "none !important",
         },
-        
+
         ".fc": {
-            backgroundColor: "transparent",
-            color: theme.palette.text.primary,
-          },
+          backgroundColor: "transparent",
+          color: theme.palette.text.primary,
+        },
         "& .fc-toolbar .fc-button": {
           backgroundColor: theme.palette.primary.main,
           border: "none",
