@@ -20,6 +20,7 @@ import { setUserId } from "../../redux/reducer"
 
 export const LogIn: React.FC<DisplayProps> = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [textfield, setTextfield] = useState("");
   const [showPassword, setShowPassword] = useState(false)
   const [authError, setAuthError] = useState("")
   const dispatch = useDispatch()
@@ -57,7 +58,10 @@ export const LogIn: React.FC<DisplayProps> = () => {
       </MenuItem>
       <Dialog
         open={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
+        onClose={() => {
+          setIsDialogOpen(false);
+          setTextfield("");
+        }}
         maxWidth="md"
         PaperProps={{
           sx: {
@@ -98,6 +102,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 type={showPassword ? "text" : "password"}
                 margin="normal"
                 fullWidth
+                value={textfield}
                 sx={{
                   "& .MuiInputLabel-root": {
                     color: theme.palette.text.primary, // Label color

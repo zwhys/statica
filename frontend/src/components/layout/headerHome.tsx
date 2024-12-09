@@ -17,17 +17,15 @@ export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
 
   return (
     <Container maxWidth={false}>
-      <Toolbar sx={{ margin: 1, display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/* Menu Icon, only visible on the homepage */}
-          <IconButton
-            onClick={() => {
-              setIsDrawerOpen(true)
-            }}
-            sx={{ display: { xs: "block", sm: "none" } }} // Only show the menu icon on small screens (mobile)
-          >
-            <MenuIcon />
-          </IconButton>
+      <Toolbar sx={{ margin: 1 }}>
+        <IconButton
+          onClick={() => {
+            setIsDrawerOpen(true)
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
             href="/"
             underline="none"
@@ -36,7 +34,6 @@ export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
               alignItems: "center",
               color: "inherit",
               cursor: "pointer",
-              ml: 2,
             }}
           >
             <Avatar
@@ -49,10 +46,10 @@ export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
               Railway
             </Typography>
           </Link>
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
-          <ThemeSwitch />
-          <HomeMenu />
+          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
+            <ThemeSwitch />
+            <HomeMenu />
+          </Box>
         </Box>
       </Toolbar>
     </Container>

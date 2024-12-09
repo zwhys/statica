@@ -11,7 +11,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material"
-import Calendar from "./layout/calendar"
 
 const drawerWidth = 200
 
@@ -45,7 +44,7 @@ export default function SidebarMenu({ open, onClose }: DisplayProps) {
             width: drawerWidth,
             boxSizing: "border-box",
             marginTop: "64px", // Push the drawer down below the header
-            height: "calc(100vh - 64px)", // This makes the drawer height shorter and ensures it fits within the screen, below the header
+            height: "calc(100vh - 64px)",
           },
         }}
         variant="persistent"
