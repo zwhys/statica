@@ -74,8 +74,8 @@ app.post("/add_exercise_entry", async (req, res) => {
         user_id,
         date_of_entry: new Date(date_of_entry),
         exercise_type,
-        sets,
-        reps,
+        sets: parseInt(sets, 10), 
+        reps: parseInt(reps, 10), 
         remarks,
       },
     });
