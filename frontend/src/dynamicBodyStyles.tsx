@@ -16,10 +16,10 @@ const DynamicGlobalStyles = () => {
         "& .chrome-picker": {
           boxShadow: "none !important",
         },
+        
         ".fc": {
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: "transparent",
             color: theme.palette.text.primary,
-            
           },
         "& .fc-toolbar .fc-button": {
           backgroundColor: theme.palette.primary.main,
@@ -35,21 +35,21 @@ const DynamicGlobalStyles = () => {
           backgroundColor: theme.palette.primary.dark,
         },
         "& .fc-col-header-cell": {
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: "transparent",
           color: theme.palette.text.primary,
           height: "40px",
           fontSize: "16px",
           fontWeight: theme.typography.fontWeightMedium,
         },
         "& .fc-col-header-cell.fc-day-sat, & .fc-col-header-cell.fc-day-sun": {
-          backgroundColor: theme.palette.text.secondary,
+          backgroundColor: theme.palette.background.weekend,
         },
         "& .fc-day-today": {
           backgroundColor: theme.palette.primary.light,
           fontWeight: theme.typography.fontWeightBold,
         },
         "& .fc-day-sat, & .fc-day-sun": {
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: theme.palette.background.weekend,
         },
         "& .fc-event-title": {
           whiteSpace: "nowrap",

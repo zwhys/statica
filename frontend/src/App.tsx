@@ -46,6 +46,14 @@ const routes = [
 
 const router = createBrowserRouter(routes)
 
+
+declare module "@mui/material/styles" {
+  interface TypeBackground {
+    weekend?: string;
+  }
+}
+
+
 const App = () => {
   const mode = useSelector((state: RootState) => state.mode.mode)
   const theme = (mode: "light" | "dark") =>
@@ -59,6 +67,7 @@ const App = () => {
         },
         background: {
           default: mode === "dark" ? "#3C3C4A" : "#F8F1EB",
+          weekend: mode === "dark" ? "#2C2C39" : "#D6C9BD",
         },
         text: {
           primary: mode === "dark" ? "#F8F1EB" : "#3C3C4A",
@@ -92,5 +101,5 @@ export default App
 //TODO: Allow for proper display of data in calendar dialog
 //TODO: Add types to everything
 //TODO: set up delete and updatefunction
-//TODO: Make calendar work in light mode
+//TODO: Make calendar look nice
 //TODO: Make it so that can render dark mode without refreshing on different pages
