@@ -6,6 +6,10 @@ interface ModeState {
   mode: "light" | "dark"
 }
 
+interface HeaderHomeProps {
+  setIsDrawerOpen: (open: boolean) => void
+}
+
 interface DisplayProps {
   open: boolean
   onClose: () => void

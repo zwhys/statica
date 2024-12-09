@@ -46,13 +46,11 @@ const routes = [
 
 const router = createBrowserRouter(routes)
 
-
 declare module "@mui/material/styles" {
   interface TypeBackground {
-    weekend?: string;
+    weekend?: string
   }
 }
-
 
 const App = () => {
   const mode = useSelector((state: RootState) => state.mode.mode)
