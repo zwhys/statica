@@ -33,7 +33,8 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         <DialogTitle>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <Typography variant="h6" fontWeight="bold">
-              {selectedEvent?.title || "Event Details"}
+              {`${selectedEvent?.sets} x ${selectedEvent?.reps} ${selectedEvent?.title}` ||
+                "Event Details"}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
               <IconButton
@@ -64,15 +65,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
             <strong>Day:</strong>{" "}
             {selectedEvent?.start
               ? new Date(selectedEvent.start as string).toLocaleDateString("en-GB")
-              : "No start time available."}
-          </Typography>
-
-          <Typography variant="body1" sx={{ color: theme.palette.text.primary }} paragraph>
-            <strong>Reps:</strong> {selectedEvent?.reps}
-          </Typography>
-
-          <Typography variant="body1" sx={{ color: theme.palette.text.primary }} paragraph>
-            <strong>Sets:</strong> {selectedEvent?.sets}
+              : "No date available..."}
           </Typography>
 
           <Typography variant="body1" sx={{ color: theme.palette.text.primary }} paragraph>

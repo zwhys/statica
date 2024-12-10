@@ -54,6 +54,7 @@ const DynamicGlobalStyles = () => {
         "& .fc-event-title": {
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
+          fontWeight: "bold"
         },
       }}
     />

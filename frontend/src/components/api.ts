@@ -1,4 +1,5 @@
 import { EventInput } from "@fullcalendar/core"
+import { useTheme } from "@mui/material"
 
 export const fetchRecords = async (
   userId: number | null,
@@ -13,11 +14,13 @@ export const fetchRecords = async (
     const responseRecords = await response.json()
     const calendarRecords: EventInput[] = responseRecords.map((record: any) => ({
       id: String(record.id),
-      title: record.exercise_type,
+      title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
       start: record.date_of_entry,
       sets: record.sets,
       reps: record.reps,
       remarks: record.remarks,
+      allDay: true,
+      color: "#8785BD" //TODO: Make this query the db
     }))
     setEvents(calendarRecords)
     setIsLoading(false)
