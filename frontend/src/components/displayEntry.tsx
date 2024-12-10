@@ -11,13 +11,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
-import DeleteConfirmationDialog from "../deleteConfirmationDialog"
 import DeleteUndoSnackbar from "../deleteUndoSnackbar"
 
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
-  const [isDisplayEntryDialogOpen, setIsDisplayEntryDialogOpen] = useState(false)  
-  const [isConfirmDeletionDialogOpen, setIsConfirmDeletionDialogOpen] = useState(false)
-
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
   const theme = useTheme()
 
@@ -42,7 +38,10 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
             <Box sx={{ display: "flex", gap: 1 }}>
               <IconButton
                 color="error"
-                onClick={() => setIsConfirmDeletionDialogOpen(true)}
+                onClick={() => {
+                  setIsSnackbarOpen(true)
+                  onClose()
+                }}
                 sx={{ borderRadius: 5 }}
               >
                 <DeleteIcon />
@@ -81,15 +80,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
           </Typography>
         </DialogContent>
       </Dialog>
-      <DeleteConfirmationDialog
-        open={isConfirmDeletionDialogOpen}
-        onClose={() => setIsConfirmDeletionDialogOpen(false)}
-        onDelete={() => {
-          setIsConfirmDeletionDialogOpen(false)
-          setIsDisplayEntryDialogOpen(false)
-          setIsSnackbarOpen(true)
-        }}
-      />
+
       <DeleteUndoSnackbar
         open={isSnackbarOpen}
         onClose={() => {
