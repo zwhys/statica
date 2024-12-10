@@ -13,6 +13,7 @@ interface HeaderHomeProps {
 interface DisplayProps {
   open: boolean
   onClose: () => void
+  onDelete?: () => void
   text?: string
   icon?: React.ReactNode
   sx?: object

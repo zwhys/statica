@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Dialog,
   DialogActions,
@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
-} from "@mui/material";
+} from "@mui/material"
 
 const WelcomeDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
   return (
@@ -31,7 +31,7 @@ const WelcomeDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default WelcomeDialog;
+export default WelcomeDialog

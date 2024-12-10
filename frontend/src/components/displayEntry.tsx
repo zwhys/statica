@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Box,
   Dialog,
@@ -11,8 +11,14 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
+import DeleteConfirmationDialog from "../deleteConfirmationDialog"
+import DeleteUndoSnackbar from "../deleteUndoSnackbar"
 
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
+  const [isDisplayEntryDialogOpen, setIsDisplayEntryDialogOpen] = useState(false)  
+  const [isConfirmDeletionDialogOpen, setIsConfirmDeletionDialogOpen] = useState(false)
+
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
   const theme = useTheme()
 
   return (
@@ -34,7 +40,11 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
               {selectedEvent?.title || "Event Details"}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <IconButton color="error" sx={{ borderRadius: 5 }}>
+              <IconButton
+                color="error"
+                onClick={() => setIsConfirmDeletionDialogOpen(true)}
+                sx={{ borderRadius: 5 }}
+              >
                 <DeleteIcon />
               </IconButton>
               <IconButton sx={{ color: theme.palette.text.primary, borderRadius: 5 }}>
@@ -71,6 +81,21 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
           </Typography>
         </DialogContent>
       </Dialog>
+      <DeleteConfirmationDialog
+        open={isConfirmDeletionDialogOpen}
+        onClose={() => setIsConfirmDeletionDialogOpen(false)}
+        onDelete={() => {
+          setIsConfirmDeletionDialogOpen(false)
+          setIsDisplayEntryDialogOpen(false)
+          setIsSnackbarOpen(true)
+        }}
+      />
+      <DeleteUndoSnackbar
+        open={isSnackbarOpen}
+        onClose={() => {
+          setIsSnackbarOpen(false)
+        }}
+      />
     </Box>
   )
 }
