@@ -3,9 +3,9 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Button,
+  Typography,
 } from "@mui/material"
 
 const WelcomeDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
@@ -15,15 +15,13 @@ const WelcomeDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
-          borderRadius: 8,
+          borderRadius: 4,
         },
       }}
     >
       <DialogTitle>Welcome</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          Welcome to the Railway! Your account has been successfully created.
-        </DialogContentText>
+        <Typography>Welcome to the Railway! Your account has been successfully created.</Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">

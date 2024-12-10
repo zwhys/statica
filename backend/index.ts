@@ -64,7 +64,7 @@ app.get("/records", async (req, res) => {
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  //TODO: fix this, date_of_entry does not work, also 3 new columsn
+  //TODO: date_of_entry does not work, also add the 3 new columns
   const { user_id, date_of_entry, exercise_type, sets, reps, remarks } =
     req.body;
 

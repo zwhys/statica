@@ -17,7 +17,6 @@ export default function HomePage() {
     const params = new URLSearchParams(location.search)
     if (params.get("dialog") === "open") {
       setIsDialogOpen(true)
-      navigate("/")
     }
   }, [location, navigate])
 
@@ -40,4 +39,4 @@ export default function HomePage() {
   )
 }
 
-//TODO: Fix This
+//TODO: Fix the sidebar

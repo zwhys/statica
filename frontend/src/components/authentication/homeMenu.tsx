@@ -68,7 +68,7 @@ export default function HomeMenu() {
           {username !== null ? username : "Loading..."}
         </MenuItem>
         <Divider />
-        <AppSettings open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+        {/* <AppSettings open={isDialogOpen} onClose={() => setIsDialogOpen(false)} /> */}
         <MenuItem
           onClick={() => {
             dispatch(setUserId(null))

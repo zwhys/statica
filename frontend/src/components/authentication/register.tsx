@@ -85,7 +85,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary,
                   },
                 }}
                 margin="normal"
@@ -114,7 +114,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary,
                   },
                 }}
                 margin="normal"
@@ -174,7 +174,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                 sx={{
                   mt: 2,
                   background: theme.palette.primary.main,
-                  color: theme.palette.text.primary,
+                  color: theme.palette.text.secondary,
                 }}
                 disabled={!passwordsMatch}
               >

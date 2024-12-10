@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Snackbar, Button, Typography, useTheme, IconButton } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
 
@@ -15,7 +15,7 @@ const DeleteUndoSnackbar: React.FC<DisplayProps> = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      autoHideDuration={100000000}
+      autoHideDuration={10000}
       sx={{
         "& .MuiSnackbarContent-root": {
           backgroundColor: theme.palette.background.default,

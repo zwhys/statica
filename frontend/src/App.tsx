@@ -94,7 +94,7 @@ const App = () => {
 
 export default App
 
-//TODO: Implement loading screen for other than calendar
+//TODO: Implement loading screen for other components other than calendar
 //TODO: Allow for proper display of data in calendar
 //TODO: Add types to everything
 //TODO: set up delete and updatefunction

@@ -11,7 +11,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
-import DeleteUndoSnackbar from "../deleteUndoSnackbar"
+import DeleteUndoSnackbar from "./deleteUndoSnackbar"
 
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
