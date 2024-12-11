@@ -5,7 +5,7 @@ import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
-import AddExerciseEntry from "../addExerciseEntry"
+import SubmitExerciseEntry from "../submitExerciseEntry"
 import { Box, Button, useTheme } from "@mui/material"
 import Loading from "./loading"
 import DisplayEntry from "../displayEntry"
@@ -72,7 +72,7 @@ const Calendar: React.FC = () => {
         selectedEvent={selectedEvent}
       />
 
-      <AddExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <SubmitExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </Box>
   )
 }

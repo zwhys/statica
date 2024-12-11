@@ -67,7 +67,7 @@ app.get("/records", async (req, res) => {
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  //TODO: date_of_entry does not work
+  //TODO: make it so that date of entry is not todays date, but the date the user chooses
   const { user_id, date_of_entry, exercise_type, sets, reps, remarks } =
     req.body;
 
@@ -85,6 +85,28 @@ app.post("/add_exercise_entry", async (req, res) => {
     res.send("Exercise entry added successfully");
   } catch (err) {
     console.error("Error saving exercise entry:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/update_exercise_entry", async (req, res) => {
+  const { id, exercise_type, sets, reps, remarks } = req.body;
+
+  try {
+    await prisma.records.update({
+      where: {
+        id: parseInt(id, 10),
+      },
+      data: {
+        exercise_type,
+        sets: parseInt(sets, 10),
+        reps: parseInt(reps, 10),
+        remarks,
+      },
+    });
+    res.send("Exercise entry updated successfully");
+  } catch (err) {
+    console.error("Error updating exercise entry:", err);
     res.status(500).send("Internal Server Error");
   }
 });

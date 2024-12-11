@@ -15,6 +15,7 @@ export const fetchRecords = async (
       id: String(record.id),
       title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
       start: record.date_of_entry,
+      exercise_type: record.exercise_type,
       sets: record.sets,
       reps: record.reps,
       remarks: record.remarks,
@@ -92,7 +93,7 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
   }
 }
 
-export const addExerciseEntry = async (data: AddExerciseEntryFormValues, userId: null | number) => {
+export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, userId: null | number) => {
   try {
     const response = await fetch("http://localhost:3001/add_exercise_entry", {
       method: "POST",
@@ -103,6 +104,26 @@ export const addExerciseEntry = async (data: AddExerciseEntryFormValues, userId:
         ...data,
         user_id: userId,
         date_of_entry: new Date(Date.now()).toISOString(),
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to add exercise entry")
+    }
+  } catch (error) {
+    console.error("Error adding exercise entry:", error)
+  }
+}
+
+export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) => {
+  try {
+    const response = await fetch("http://localhost:3001/update_exercise_entry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
       }),
     })
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import { addExerciseEntry, fetchExercise_types } from "./api"
+import { addExerciseEntry, updateExerciseEntry, fetchExercise_types } from "./api"
 import {
   Box,
   Button,
@@ -18,31 +18,44 @@ import {
   useTheme,
 } from "@mui/material"
 
-export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
+export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eventData }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
+
   const {
     control,
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<AddExerciseEntryFormValues>()
+  } = useForm<SubmitExerciseEntryFormValues>({
+    defaultValues: eventData,
+  })
 
-  const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
+  const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
-      addExerciseEntry(data, userId)
+      if (eventData) {
+        await updateExerciseEntry(data)
+      } else {
+        await addExerciseEntry(data, userId)
+      }
       onClose()
       reset()
     } catch (error) {
-      console.error("Error adding exercise entry:", error)
+      console.error("Error submitting exercise entry:", error)
     }
   }
 
   useEffect(() => {
     fetchExercise_types(setExercise_types)
   }, [])
+
+  useEffect(() => {
+    if (eventData) {
+      reset(eventData)
+    }
+  }, [eventData, reset])
 
   return (
     <Dialog
@@ -59,7 +72,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
     >
       <Box sx={{ padding: 2, minWidth: 400 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
-          Add Exercise Entry
+          {eventData ? "Edit Exercise Entry" : "Add Exercise Entry"}
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
@@ -70,7 +83,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary,
                   },
                 }}
               >
@@ -78,7 +91,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 <Controller
                   name="exercise_type"
                   control={control}
-                  defaultValue=""
+                  defaultValue={eventData?.exercise_type || ""}
                   rules={{ required: "Required" }}
                   render={({ field }) => (
                     <Select id="exercise_type" label="Type of Exercise" {...field}>
@@ -167,7 +180,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                     variant="outlined"
                     onClick={() => {
                       onClose()
-                      reset()
+                      reset() // Reset form fields when closing
                     }}
                   >
                     Cancel
@@ -182,7 +195,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                       color: theme.palette.text.secondary,
                     }}
                   >
-                    Create
+                    {eventData ? "Update" : "Create"}
                   </Button>
                 </Grid>
               </Grid>
@@ -194,4 +207,4 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   )
 }
 
-export default AddExerciseEntry
+export default SubmitExerciseEntry

@@ -12,9 +12,9 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AddExerciseEntryFormValues>()
+  } = useForm<SubmitExerciseEntryFormValues>()
 
-  const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
+  const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
       const response = await fetch("http://localhost:3001/change_colour", {
         method: "POST",

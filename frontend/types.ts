@@ -18,6 +18,7 @@ interface DisplayProps {
   icon?: React.ReactNode
   sx?: object
   selectedEvent?: any
+  eventData?: any
 }
 
 type DisplayRecordsProps = {
@@ -25,7 +26,8 @@ type DisplayRecordsProps = {
   setisLoading: (isLoading: boolean) => void
 }
 
-type AddExerciseEntryFormValues = {
+type SubmitExerciseEntryFormValues = {
+  id?: number
   exercise_type: string
   sets: number
   reps: number

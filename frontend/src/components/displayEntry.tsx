@@ -8,14 +8,16 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import { deleteExerciseEntry } from "./api"
+import { deleteExerciseEntry, updateExerciseEntry } from "./api"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
 import DeleteUndoSnackbar from "./deleteUndoSnackbar"
+import SubmitExerciseEntry from "./submitExerciseEntry"
 
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
+  const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
   const theme = useTheme()
 
   const handleDelete = () => {
@@ -24,7 +26,15 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
       deleteExerciseEntry(selectedEvent?.id)
       onClose()
     } catch (error) {
-      console.error("Error adding exercise entry:", error)
+      console.error("marking exercise entry as deleted:", error)
+    }
+  }
+
+  const handleUpdate = () => {
+    try {
+      setIsUpdateDialogOpen(true)
+    } catch (error) {
+      console.error("Error updating exercise entry:", error)
     }
   }
 
@@ -38,7 +48,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
             borderRadius: 4,
             minWidth: 400,
             boxShadow: 24,
-            zIndex: 1100
+            zIndex: 1100,
           },
         }}
       >
@@ -48,12 +58,20 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
               {selectedEvent?.title || "Event Details"}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <IconButton color="error" onClick={handleDelete} sx={{ borderRadius: 5 }}>
+              <IconButton
+                onClick={handleDelete}
+                sx={{ color: theme.palette.error.main, borderRadius: 5 }}
+              >
                 <DeleteIcon />
               </IconButton>
-              <IconButton sx={{ color: theme.palette.text.primary, borderRadius: 5 }}>
+
+              <IconButton
+                onClick={handleUpdate}
+                sx={{ color: theme.palette.text.primary, borderRadius: 5 }}
+              >
                 <EditIcon />
               </IconButton>
+
               <IconButton
                 onClick={onClose}
                 sx={{ color: theme.palette.text.primary, borderRadius: 5 }}
@@ -82,6 +100,19 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         open={isSnackbarOpen}
         onClose={() => {
           setIsSnackbarOpen(false)
+        }}
+      />
+      <SubmitExerciseEntry
+        open={isUpdateDialogOpen}
+        onClose={() => {
+          setIsUpdateDialogOpen(false)
+        }}
+        eventData={{
+          id: selectedEvent?.id,
+          exercise_type: selectedEvent?.exercise_type,
+          sets: selectedEvent?.sets,
+          reps: selectedEvent?.reps,
+          remarks: selectedEvent?.remarks,
         }}
       />
     </Box>
