@@ -34,7 +34,7 @@
   },
   "nodemonConfig": {
     "watch": [
-      "server"
+      "index.ts"
     ],
     "ext": "js,json,ts"
   }
