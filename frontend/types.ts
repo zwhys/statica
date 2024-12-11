@@ -18,7 +18,7 @@ interface DisplayProps {
   icon?: React.ReactNode
   sx?: object
   selectedEvent?: any
-  eventData?: any
+  eventData?: SubmitExerciseEntryFormValues
 }
 
 type DisplayRecordsProps = {

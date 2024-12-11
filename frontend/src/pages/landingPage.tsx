@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import HeaderLanding from "../components/layout/headerLanding"
 import { Box, Container, Grid, Typography, useTheme } from "@mui/material"
 import Register from "../components/authentication/register"
+import Footer from "../components/layout/footer"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 import AssistantIcon from "@mui/icons-material/Assistant"
-import Footer from "../components/layout/footer"
 
 export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)

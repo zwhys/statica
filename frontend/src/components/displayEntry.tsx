@@ -8,7 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import { deleteExerciseEntry, updateExerciseEntry } from "./api"
+import { deleteExerciseEntry } from "./api"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
