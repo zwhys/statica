@@ -51,10 +51,26 @@ const DynamicGlobalStyles = () => {
         "& .fc-day-sat, & .fc-day-sun": {
           backgroundColor: theme.palette.background.weekend,
         },
+        "& .fc-event": {
+          margin: "1px",
+        },
         "& .fc-event-title": {
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
-          fontWeight: "bold"
+          fontWeight: "bold",
+        },
+        "& .fc-popover": {
+          zIndex: "1000 !important"
+        },
+        "& .fc-popover-title": {
+          color: theme.palette.text.primary,
+        },
+        "& .fc-popover .fc-popover-header": {
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.background.weekend,
+        },
+        "& .fc-popover-body": {
+          backgroundColor: theme.palette.background.default,
         },
       }}
     />

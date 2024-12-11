@@ -38,6 +38,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
             borderRadius: 4,
             minWidth: 400,
             boxShadow: 24,
+            zIndex: 1100
           },
         }}
       >
