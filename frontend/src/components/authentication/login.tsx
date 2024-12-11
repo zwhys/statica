@@ -29,6 +29,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserFormValues>()
 
@@ -59,6 +60,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
         open={isDialogOpen}
         onClose={() => {
           setIsDialogOpen(false)
+          reset()
         }}
         maxWidth="md"
         PaperProps={{

@@ -27,6 +27,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
     register,
     watch,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserFormValues>()
 
@@ -59,7 +60,10 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
       </MenuItem>
       <Dialog
         open={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
+        onClose={() => {
+          setIsDialogOpen(false)
+          reset()
+        }}
         maxWidth="md"
         PaperProps={{
           sx: {
@@ -190,5 +194,3 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
 }
 
 export default Register
-
-//TODO: Make sure when the user clicks outsides the textfields are cleared
