@@ -26,8 +26,8 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
     control,
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    formState: { errors },
   } = useForm<AddExerciseEntryFormValues>()
 
   const onSubmit: SubmitHandler<AddExerciseEntryFormValues> = async data => {
@@ -47,7 +47,10 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={() => {
+        onClose()
+        reset()
+      }}
       PaperProps={{
         sx: {
           borderRadius: 4,
@@ -102,7 +105,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, 
+                    color: theme.palette.text.primary,
                   },
                 }}
                 {...register("sets", {
@@ -150,7 +153,7 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, 
+                    color: theme.palette.text.primary,
                   },
                 }}
                 {...register("remarks", { required: false })}
@@ -160,7 +163,13 @@ export const AddExerciseEntry: React.FC<DisplayProps> = ({ open, onClose }) => {
             <Grid item xs={12}>
               <Grid container justifyContent="flex-end" spacing={2}>
                 <Grid item>
-                  <Button variant="outlined" onClick={onClose}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                      onClose()
+                      reset()
+                    }}
+                  >
                     Cancel
                   </Button>
                 </Grid>
