@@ -8,6 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
+import { deleteExerciseEntry } from "./api"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import CloseIcon from "@mui/icons-material/Close"
@@ -16,6 +17,16 @@ import DeleteUndoSnackbar from "./deleteUndoSnackbar"
 export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEvent }) => {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
   const theme = useTheme()
+
+  const handleDelete = () => {
+    try {
+      setIsSnackbarOpen(true)
+      deleteExerciseEntry(selectedEvent?.id)
+      onClose()
+    } catch (error) {
+      console.error("Error adding exercise entry:", error)
+    }
+  }
 
   return (
     <Box textAlign="center">
@@ -33,18 +44,10 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         <DialogTitle>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <Typography variant="h6" fontWeight="bold">
-              {`${selectedEvent?.sets} x ${selectedEvent?.reps} ${selectedEvent?.title}` ||
-                "Event Details"}
+              {selectedEvent?.title || "Event Details"}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <IconButton
-                color="error"
-                onClick={() => {
-                  setIsSnackbarOpen(true)
-                  onClose()
-                }}
-                sx={{ borderRadius: 5 }}
-              >
+              <IconButton color="error" onClick={handleDelete} sx={{ borderRadius: 5 }}>
                 <DeleteIcon />
               </IconButton>
               <IconButton sx={{ color: theme.palette.text.primary, borderRadius: 5 }}>

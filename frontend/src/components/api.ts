@@ -1,5 +1,4 @@
 import { EventInput } from "@fullcalendar/core"
-import { useTheme } from "@mui/material"
 
 export const fetchRecords = async (
   userId: number | null,
@@ -20,7 +19,7 @@ export const fetchRecords = async (
       reps: record.reps,
       remarks: record.remarks,
       allDay: true,
-      color: "#8785BD" //TODO: Make this query the db
+      color: "#8785BD", //TODO: Make this query the db
     }))
     setEvents(calendarRecords)
     setIsLoading(false)
@@ -112,5 +111,25 @@ export const addExerciseEntry = async (data: AddExerciseEntryFormValues, userId:
     }
   } catch (error) {
     console.error("Error adding exercise entry:", error)
+  }
+}
+
+export const deleteExerciseEntry = async (id: number) => {
+  try {
+    const response = await fetch("http://localhost:3001/delete_exercise_entry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to mark exercise entry as deleted")
+    }
+  } catch (error) {
+    console.error("Error marking exercise entry as deleted:", error)
   }
 }

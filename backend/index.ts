@@ -54,7 +54,10 @@ app.get("/records", async (req, res) => {
   try {
     const { userId } = req.body;
     const records = await prisma.records.findMany({
-      where: { user_id: userId },
+      where: {
+        user_id: userId,
+        deleted_at: null,
+      },
     });
     res.json(records);
   } catch (err) {
@@ -74,14 +77,33 @@ app.post("/add_exercise_entry", async (req, res) => {
         user_id,
         date_of_entry: new Date(date_of_entry),
         exercise_type,
-        sets: parseInt(sets, 10), 
-        reps: parseInt(reps, 10), 
+        sets: parseInt(sets, 10),
+        reps: parseInt(reps, 10),
         remarks,
       },
     });
     res.send("Exercise entry added successfully");
   } catch (err) {
     console.error("Error saving exercise entry:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/delete_exercise_entry", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    await prisma.records.update({
+      where: {
+        id: parseInt(id, 10),
+      },
+      data: {
+        deleted_at: new Date(),
+      },
+    });
+    res.send("Exercise entry marked as deleted successfully");
+  } catch (err) {
+    console.error("Error marking exercise entry as deleted:", err);
     res.status(500).send("Internal Server Error");
   }
 });
