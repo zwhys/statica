@@ -31,6 +31,7 @@ type AddExerciseEntryFormValues = {
   reps: number
   remarks: string
 }
+
 type User = {
   id: number
   username: string
