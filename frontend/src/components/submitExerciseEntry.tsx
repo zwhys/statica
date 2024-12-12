@@ -35,6 +35,8 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
 
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
+      console.log(data)
+      console.log(eventData)
       if (data.id === null) {
         await updateExerciseEntry(data)
       } else {
@@ -52,7 +54,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
   }, [])
 
   useEffect(() => {
-    if (eventData) {
+    if (eventData?.id === null) {
       reset(eventData)
     }
   }, [eventData, reset])
@@ -72,7 +74,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
     >
       <Box sx={{ padding: 2, minWidth: 400 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
-          {eventData ? "Edit Exercise Entry" : "Add Exercise Entry"}
+          {eventData?.id === null ? "Edit Exercise Entry" : "Add Exercise Entry"}
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
@@ -195,7 +197,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
                       color: theme.palette.text.secondary,
                     }}
                   >
-                    {eventData ? "Update" : "Create"}
+                    {eventData?.id === null ? "Update" : "Create"}
                   </Button>
                 </Grid>
               </Grid>

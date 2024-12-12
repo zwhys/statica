@@ -12,19 +12,12 @@ import HomeMenu from "../authentication/homeMenu"
 import MenuIcon from "@mui/icons-material/Menu"
 import ThemeSwitch from "../themeSwitch"
 
-export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
+export default function HeaderHome({ setIsDrawerOpen, isDrawerOpen }: HeaderHomeProps) {
   const theme = useTheme()
 
   return (
     <Container maxWidth={false}>
       <Toolbar sx={{ margin: 1 }}>
-        <IconButton
-          onClick={() => {
-            setIsDrawerOpen(true)
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Link
             href="/"
@@ -46,6 +39,13 @@ export default function HeaderHome({ setIsDrawerOpen }: HeaderHomeProps) {
               Railway
             </Typography>
           </Link>
+          <IconButton
+            onClick={() => {
+              setIsDrawerOpen(!isDrawerOpen)
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
           <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
             <ThemeSwitch />
             <HomeMenu />

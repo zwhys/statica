@@ -8,17 +8,19 @@ interface ModeState {
 
 interface HeaderHomeProps {
   setIsDrawerOpen: (open: boolean) => void
+  isDrawerOpen: boolean
 }
 
 interface DisplayProps {
   open: boolean
   onClose: () => void
   onDelete?: () => void
+  setSelectedTab?: (tab: React.ReactNode) => void
   text?: string
   icon?: React.ReactNode
   sx?: object
   selectedEvent?: any
-  eventData?: SubmitExerciseEntryFormValues
+  eventData?: any
 }
 
 type DisplayRecordsProps = {

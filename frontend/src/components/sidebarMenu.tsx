@@ -11,8 +11,11 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material"
+import Calendar from "./layout/calendar"
+import Statistics from "./layout/statistics"
+import { useState } from "react"
 
-const drawerWidth = 200
+const drawerWidth = 250
 
 // const Main = styled("main", { shouldForwardProp: prop => prop !== "open" })<{
 //   open?: boolean
@@ -33,7 +36,20 @@ const drawerWidth = 200
 //   }),
 // }))
 
-export default function SidebarMenu({ open, onClose }: DisplayProps) {
+export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayProps) {
+  const Items = [
+    {
+      icon: <CalendarTodayRoundedIcon />,
+      text: "Calendar",
+      tab: <Calendar />,
+    },
+    {
+      icon: <BarChartOutlinedIcon />,
+      text: "Statistics",
+      tab: <Statistics />,
+    },
+  ]
+
   return (
     <Box>
       <Drawer
@@ -53,12 +69,11 @@ export default function SidebarMenu({ open, onClose }: DisplayProps) {
       >
         <Divider />
         <List>
-          {[
-            { icon: <CalendarTodayRoundedIcon />, text: "Calendar" },
-            { icon: <BarChartOutlinedIcon />, text: "Statistics" },
-          ].map(item => (
+          {Items.map(item => (
             <ListItem key={item.text} disablePadding>
-              <ListItemButton>
+              <ListItemButton
+                onClick={() => setSelectedTab?.(item.tab)}
+              >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>

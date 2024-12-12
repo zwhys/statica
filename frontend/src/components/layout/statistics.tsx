@@ -1,7 +1,7 @@
 import { Typography, Grid } from "@mui/material"
 import DisplayExerciseStatistics from "../displayExerciseStatistics"
 
-export default function Statistics() {
+const Statistics: React.FC = () => {
   return (
     <Grid container spacing={2} direction="column">
       <Typography variant="h2" />
@@ -14,3 +14,5 @@ export default function Statistics() {
     </Grid>
   )
 }
+
+export default Statistics

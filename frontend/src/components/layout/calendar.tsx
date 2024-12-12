@@ -69,7 +69,7 @@ const Calendar: React.FC = () => {
             const entryData: SubmitExerciseEntryFormValues = {
               date_of_entry: selectedDate,
             }
-            setSelectedEntryData(entryData) // Store the data in state
+            setSelectedEntryData(entryData)
             setIsDialogOpen(true)
           }}
           eventClick={handleEventClick}

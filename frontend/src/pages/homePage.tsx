@@ -10,6 +10,7 @@ import SidebarMenu from "../components/sidebarMenu"
 export default function HomePage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [selectedTab, setSelectedTab] = useState<React.ReactNode>(<Calendar />)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ export default function HomePage() {
 
   return (
     <>
-      <HeaderHome setIsDrawerOpen={setIsDrawerOpen} />
+      <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
       <Box
         sx={{
           display: "flex",
@@ -30,8 +31,12 @@ export default function HomePage() {
           margin: "30px 50px 50px 50px", // top right bottom left
         }}
       >
-        <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
-        <Calendar />
+        <SidebarMenu
+          open={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          setSelectedTab={setSelectedTab}
+        />
+        {selectedTab}
       </Box>
       <Footer />
       <WelcomeDialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
