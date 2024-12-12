@@ -15,11 +15,13 @@ const Calendar: React.FC = () => {
   const [isEntryOpen, setIsEntryOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
+  const [selectedEntryData, setSelectedEntryData] = useState<SubmitExerciseEntryFormValues>()
   const [isLoading, setisLoading] = useState(true)
   const theme = useTheme()
 
   const handleEventClick = (eventInfo: any) => {
     const clickedEvent = events.find(event => event.id === eventInfo.event.id)
+    console.log(clickedEvent)
     setSelectedEvent(clickedEvent || null)
     setIsEntryOpen(true)
   }
@@ -62,7 +64,14 @@ const Calendar: React.FC = () => {
           dayMaxEvents={true}
           events={events}
           selectable={true}
-          select={() => setIsDialogOpen(true)}
+          select={info => {
+            const selectedDate = new Date(info.start)
+            const entryData: SubmitExerciseEntryFormValues = {
+              date_of_entry: selectedDate,
+            }
+            setSelectedEntryData(entryData) // Store the data in state
+            setIsDialogOpen(true)
+          }}
           eventClick={handleEventClick}
         />
       )}
@@ -72,10 +81,13 @@ const Calendar: React.FC = () => {
         selectedEvent={selectedEvent}
       />
 
-      <SubmitExerciseEntry open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <SubmitExerciseEntry
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        eventData={selectedEntryData}
+      />
     </Box>
   )
 }
 
 export default Calendar
-

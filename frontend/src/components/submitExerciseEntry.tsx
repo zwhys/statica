@@ -35,7 +35,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
 
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
-      if (eventData) {
+      if (data.id === null) {
         await updateExerciseEntry(data)
       } else {
         await addExerciseEntry(data, userId)
@@ -180,7 +180,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
                     variant="outlined"
                     onClick={() => {
                       onClose()
-                      reset() // Reset form fields when closing
+                      reset()
                     }}
                   >
                     Cancel

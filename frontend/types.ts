@@ -28,10 +28,11 @@ type DisplayRecordsProps = {
 
 type SubmitExerciseEntryFormValues = {
   id?: number
-  exercise_type: string
-  sets: number
-  reps: number
-  remarks: string
+  date_of_entry?: Date
+  exercise_type?: string
+  sets?: number
+  reps?: number
+  remarks?: string
 }
 
 type User = {

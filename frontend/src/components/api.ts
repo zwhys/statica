@@ -103,7 +103,6 @@ export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, user
       body: JSON.stringify({
         ...data,
         user_id: userId,
-        date_of_entry: new Date(Date.now()).toISOString(),
       }),
     })
 

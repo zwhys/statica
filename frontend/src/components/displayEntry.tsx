@@ -109,6 +109,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         }}
         eventData={{
           id: selectedEvent?.id,
+          date_of_entry: selectedEvent?.start,
           exercise_type: selectedEvent?.exercise_type,
           sets: selectedEvent?.sets,
           reps: selectedEvent?.reps,

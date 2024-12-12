@@ -67,7 +67,6 @@ app.get("/records", async (req, res) => {
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  //TODO: make it so that date of entry is not todays date, but the date the user chooses
   const { user_id, date_of_entry, exercise_type, sets, reps, remarks } =
     req.body;
 
