@@ -1,42 +1,24 @@
-import { styled } from "@mui/material/styles"
-import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import {
   Box,
-  Drawer,
   Divider,
+  Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from "@mui/material"
+import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import Calendar from "./layout/calendar"
 import Statistics from "./layout/statistics"
-import { useState } from "react"
 
-const drawerWidth = 250
-
-// const Main = styled("main", { shouldForwardProp: prop => prop !== "open" })<{
-//   open?: boolean
-// }>(({ theme, open }) => ({
-//   flexGrow: 1,
-//   padding: theme.spacing(3),
-//   transition: theme.transitions.create("margin", {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   marginLeft: `-${drawerWidth}px`,
-//   ...(open && {
-//     transition: theme.transitions.create("margin", {
-//       easing: theme.transitions.easing.easeOut,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//     marginLeft: 0,
-//   }),
-// }))
+const drawerWidth = 240
 
 export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayProps) {
+  const theme = useTheme()
+
   const Items = [
     {
       icon: <CalendarTodayRoundedIcon />,
@@ -52,6 +34,21 @@ export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayPr
 
   return (
     <Box>
+      {open && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: theme.zIndex.drawer - 1,
+          }}
+          onClick={onClose}
+        />
+      )}
+
       <Drawer
         sx={{
           width: drawerWidth,
@@ -59,21 +56,27 @@ export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayPr
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            marginTop: "64px",
-            height: "calc(100vh - 64px)",
           },
         }}
         variant="persistent"
         open={open}
         onClose={onClose}
       >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            padding: "8px 16px",
+            height: "64px",
+          }}
+        ></Box>
+
         <Divider />
+
         <List>
           {Items.map(item => (
             <ListItem key={item.text} disablePadding>
-              <ListItemButton
-                onClick={() => setSelectedTab?.(item.tab)}
-              >
+              <ListItemButton onClick={() => setSelectedTab?.(item.tab)}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
@@ -82,7 +85,6 @@ export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayPr
         </List>
         <Divider />
       </Drawer>
-      {/* <Main open={open}></Main> */}
     </Box>
   )
 }

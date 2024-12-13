@@ -16,42 +16,53 @@ export default function HeaderHome({ setIsDrawerOpen, isDrawerOpen }: HeaderHome
   const theme = useTheme()
 
   return (
-    <Container maxWidth={false}>
-      <Toolbar sx={{ margin: 1 }}>
-        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-          <Link
-            href="/"
-            underline="none"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              color: "inherit",
-              cursor: "pointer",
-            }}
-          >
-            <Avatar
-              alt="Logo"
-              variant="rounded"
-              src="logo.png"
-              sx={{ marginRight: 2, width: 56, height: 56 }}
-            />
-            <Typography color={theme.palette.text.primary} fontSize={32}>
-              Railway
-            </Typography>
-          </Link>
-          <IconButton
-            onClick={() => {
-              setIsDrawerOpen(!isDrawerOpen)
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
-            <ThemeSwitch />
-            <HomeMenu />
+    <>
+      {" "}
+      <IconButton
+        onClick={() => {
+          setIsDrawerOpen(!isDrawerOpen)
+        }}
+        sx={{
+          position: "absolute",
+          top: 20,
+          left: 10,
+          zIndex: 1200,
+        }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Container maxWidth={false}>
+        <Toolbar sx={{ margin: 1 }}>
+          <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+            <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
+              <Link
+                href="/"
+                underline="none"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  color: "inherit",
+                  cursor: "pointer",
+                }}
+              >
+                <Avatar
+                  alt="Logo"
+                  variant="rounded"
+                  src="logo.png"
+                  sx={{ marginRight: 2, width: 56, height: 56 }}
+                />
+                <Typography color={theme.palette.text.primary} fontSize={32}>
+                  Railway
+                </Typography>
+              </Link>
+            </Box>
+            <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
+              <ThemeSwitch />
+              <HomeMenu />
+            </Box>
           </Box>
-        </Box>
-      </Toolbar>
-    </Container>
+        </Toolbar>
+      </Container>
+    </>
   )
 }
