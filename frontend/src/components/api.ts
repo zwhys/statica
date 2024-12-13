@@ -146,22 +146,35 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
   }
 }
 
-export const deleteExerciseEntry = async (id: number) => {
-  try {
-    const response = await fetch("http://localhost:3001/delete_exercise_entry", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-      }),
-    })
+let deleteTimeout: NodeJS.Timeout | null = null;
 
-    if (!response.ok) {
-      throw new Error("Failed to mark exercise entry as deleted")
+export const deleteExerciseEntry = (id: number) => {
+  deleteTimeout = setTimeout(async () => {
+    try {
+      const response = await fetch("http://localhost:3001/delete_exercise_entry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to delete exercise entry")
+      }
+    } catch (error) {
+      console.error("Error deleting exercise entry:", error)
+    }
+  }, 5000)
+}
+
+export const undoDeleteExerciseEntry = () => {
+  try {
+    if (deleteTimeout) {
+      clearTimeout(deleteTimeout)
+      deleteTimeout = null
     }
   } catch (error) {
-    console.error("Error marking exercise entry as deleted:", error)
+    console.error("Error undoing deleteExerciseEntry:", error)
   }
 }

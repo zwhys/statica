@@ -82,7 +82,7 @@ const Calendar: React.FC = () => {
           selectable={true}
           select={handleDateSelect}
           eventClick={handleEventClick}
-          eventTextColor ={theme.palette.background.weekend}
+          eventTextColor="#2C2C39"
         />
       )}
       <DisplayEntry

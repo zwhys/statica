@@ -1,12 +1,13 @@
 import React from "react"
 import { Snackbar, Button, Typography, useTheme, IconButton } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
+import { undoDeleteExerciseEntry } from "./api"
 
 const DeleteUndoSnackbar: React.FC<DisplayProps> = ({ open, onClose }) => {
   const theme = useTheme()
 
   const handleUndo = () => {
-    console.log("Undo action triggered!")
+    undoDeleteExerciseEntry()
     onClose()
   }
 
@@ -15,7 +16,7 @@ const DeleteUndoSnackbar: React.FC<DisplayProps> = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      autoHideDuration={10000}
+      autoHideDuration={5000}
       sx={{
         "& .MuiSnackbarContent-root": {
           backgroundColor: theme.palette.background.default,
