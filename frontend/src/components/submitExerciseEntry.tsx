@@ -36,7 +36,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
       if (data.id === undefined) {
-        await addExerciseEntry(data, userId, date_of_entry)
+        await addExerciseEntry(data, userId, date_of_entry as Date)
       } else {
         await updateExerciseEntry(data)
       }

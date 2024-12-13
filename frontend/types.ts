@@ -22,7 +22,7 @@ interface DisplayProps {
   sx?: object
   selectedEvent?: any
   eventData?: any
-  date_of_entry?: any
+  date_of_entry?: Date
 }
 
 type DisplayRecordsProps = {
