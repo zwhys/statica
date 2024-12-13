@@ -142,36 +142,39 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
   }
 }
 
-let deleteTimeout: NodeJS.Timeout | null = null
+export const deleteExerciseEntry = async (id: number) => {
+  try {
+    const response = await fetch("http://localhost:3001/delete_exercise_entry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
 
-export const deleteExerciseEntry = (id: number) => {
-  deleteTimeout = setTimeout(async () => {
-    try {
-      const response = await fetch("http://localhost:3001/delete_exercise_entry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to delete exercise entry")
-      }
-    } catch (error) {
-      console.error("Error deleting exercise entry:", error)
+    if (!response.ok) {
+      throw new Error("Failed to delete exercise entry")
     }
-  }, 5000)
+  } catch (error) {
+    console.error("Error deleting exercise entry:", error)
+  }
 }
 
-export const undoDeleteExerciseEntry = () => {
+export const undoDeleteExerciseEntry = async (id: number) => {
   try {
-    if (deleteTimeout) {
-      clearTimeout(deleteTimeout)
-      deleteTimeout = null
+    const response = await fetch("http://localhost:3001/undo_delete_exercise_entry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to delete exercise entry")
     }
   } catch (error) {
     console.error("Error undoing deleteExerciseEntry:", error)
   }
 }
-//TODO: Improve undo functionality 1: remove it when deleted, 2: show it when not deleted, 3: send event undo snackbox
+// TODO: Improve undo functionality by send event undo snackbox

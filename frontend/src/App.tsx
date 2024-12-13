@@ -96,4 +96,3 @@ export default App
 
 //TODO: Add types to everything
 //! TODO: All users see the same entries
-//! TODO: Fix Polling

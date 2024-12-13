@@ -101,6 +101,9 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         onClose={() => {
           setIsSnackbarOpen(false)
         }}
+        eventData={{
+          id: selectedEvent?.id,
+        }}
       />
       <SubmitExerciseEntry //This for updating
         open={isUpdateDialogOpen}

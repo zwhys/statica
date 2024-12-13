@@ -132,6 +132,25 @@ app.post("/delete_exercise_entry", async (req, res) => {
   }
 });
 
+app.post("/undo_delete_exercise_entry", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    await prisma.records.update({
+      where: {
+        id: parseInt(id, 10),
+      },
+      data: {
+        deleted_at: null,
+      },
+    });
+    res.send("Exercise entry marked as not deleted successfully");
+  } catch (err) {
+    console.error("Error marking exercise entry as not deleted:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.post("/check_username", async (req, res) => {
   const { username } = req.body;
 

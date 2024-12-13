@@ -3,11 +3,11 @@ import { Snackbar, Button, Typography, useTheme, IconButton } from "@mui/materia
 import CloseIcon from "@mui/icons-material/Close"
 import { undoDeleteExerciseEntry } from "./api"
 
-const DeleteUndoSnackbar: React.FC<DisplayProps> = ({ open, onClose }) => {
+const DeleteUndoSnackbar: React.FC<DisplayProps> = ({ open, onClose, eventData }) => {
   const theme = useTheme()
 
   const handleUndo = () => {
-    undoDeleteExerciseEntry()
+    undoDeleteExerciseEntry(eventData.id)
     onClose()
   }
 
