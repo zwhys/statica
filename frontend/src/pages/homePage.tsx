@@ -28,7 +28,7 @@ export default function HomePage() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          margin: "30px 50px 50px 50px", // top right bottom left
+          margin: "20px 50px 50px 50px", // top right bottom left
         }}
       >
         <SidebarMenu

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Box, useTheme } from "@mui/material"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
@@ -6,7 +7,6 @@ import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
 import SubmitExerciseEntry from "../submitExerciseEntry"
-import { Box, Button, useTheme } from "@mui/material"
 import DisplayEntry from "../displayEntry"
 import { fetchExercise_types } from "../api"
 
@@ -34,29 +34,13 @@ const Calendar: React.FC = () => {
     setIsEntryOpen(true)
   }
 
+  const handleAddButtonClick = () => {
+    setIsDialogOpen(true)
+    setSelectedDate(undefined)
+  }
+
   return (
     <Box sx={{ width: "100%" }}>
-      <Button
-        onClick={() => {
-          setIsDialogOpen(true)
-          setSelectedDate(undefined)
-        }}
-        sx={{
-          backgroundColor: theme.palette.primary.main,
-          color: theme.palette.text.secondary,
-          width: 40,
-          height: 40,
-          minWidth: 40,
-          borderRadius: "8px",
-          fontSize: 50,
-          "&:hover": {
-            bgcolor: theme.palette.primary.dark,
-          },
-        }}
-      >
-        +
-      </Button>
-
       <DisplayRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
 
       <FullCalendar
@@ -64,8 +48,15 @@ const Calendar: React.FC = () => {
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: "title",
-          right: "today prev,next",
+          right: "add today prev,next",
         }}
+        customButtons={{
+          add: {
+            text: "Add",
+            click: handleAddButtonClick,
+          },
+        }}
+
         buttonText={{
           today: "Today",
         }}

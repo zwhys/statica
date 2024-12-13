@@ -60,7 +60,7 @@ const DynamicGlobalStyles = () => {
           fontWeight: "bold",
         },
         "& .fc-popover": {
-          zIndex: "1000 !important"
+          zIndex: "1000 !important",
         },
         "& .fc-popover-title": {
           color: theme.palette.text.primary,
