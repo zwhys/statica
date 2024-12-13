@@ -46,7 +46,7 @@ export default function LandingPage() {
             Welcome to Railway
           </Typography>
           <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
-            This is a beautiful landing page.
+            Visable Progress, Achievable Goals
           </Typography>
           <Register
             open={isDialogOpen}
@@ -109,25 +109,27 @@ export default function LandingPage() {
                 <Typography variant="body1" sx={{ textAlign: "left", marginTop: "auto" }}>
                   {item.description}
                 </Typography>
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    bgcolor: "rgba(0, 0, 0, 0.8)", // Semi-transparent black
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white", // Overlay text color
-                    textAlign: "center", // Center align text within the overlay
-                  }}
-                >
-                  <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>
-                    Coming Soon
-                  </Typography>
-                </Box>
+                {["Statistics", "AI Assistant"].includes(item.title) && (
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      bgcolor: "rgba(0, 0, 0, 0.8)", // Semi-transparent black
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "white", // Overlay text color
+                      textAlign: "center", // Center align text within the overlay
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>
+                      Coming Soon
+                    </Typography>
+                  </Box>
+                )}
               </Box>
             </Grid>
           ))}
