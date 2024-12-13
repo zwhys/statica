@@ -70,6 +70,7 @@ const Calendar: React.FC = () => {
           dayMaxEvents={true}
           events={events}
           selectable={true}
+          selectMinDistance={10000}
           select={handleDateSelect}
           eventClick={handleEventClick}
         />

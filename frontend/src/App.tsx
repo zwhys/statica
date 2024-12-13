@@ -98,5 +98,4 @@ export default App
 //TODO: Add types to everything
 //! TODO: set up undo function
 //! TODO: All users see the same entries
-//! TODO: Fix the dragging problem
 //! TODO: Fix Polling
