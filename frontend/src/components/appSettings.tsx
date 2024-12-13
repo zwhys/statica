@@ -1,14 +1,7 @@
 import React, { useState, useCallback } from "react"
 import { ChromePicker, ColorResult } from "react-color"
 import { useForm, SubmitHandler } from "react-hook-form"
-import {
-  Box,
-  Button,
-  Dialog,
-  Grid,
-  Typography,
-  useTheme,
-} from "@mui/material"
+import { Box, Button, Dialog, Grid, Typography, useTheme } from "@mui/material"
 
 export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [color, setColor] = useState<string>("#000000")
@@ -105,5 +98,3 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
 }
 
 export default AppSettings
-
-//TODO: Get a new logo
