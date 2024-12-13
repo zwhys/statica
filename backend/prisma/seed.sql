@@ -5,121 +5,95 @@ VALUES
     ('mogojohn', '$2b$10$4OtE3iv3hdd.tHSaogPBPOsOIK2JOvgTWEd5.MbkL35vShPcrJtlq');
 
 
-INSERT INTO exercise_types (exercise_type, colour)
+INSERT INTO 
+    exercise_types (exercise_type, colour)
 VALUES
-    ('Ab Roller', '#FF5733'),
-    ('Arm Circles', '#33FF57'),
-    ('Back Extension', '#3357FF'),
-    ('Back Squat', '#FF33A6'),
-    ('Bear Crawl', '#A633FF'),
-    ('Bench Dip', '#FF9633'),
-    ('Bench Press', '#33FFD5'),
-    ('Bent Over Row', '#FFA633'),
-    ('Bicep Curl', '#33A6FF'),
-    ('Bird Dog', '#FF3357'),
-    ('Bodyweight Squat', '#57FF33'),
-    ('Box Jump', '#A6FF33'),
-    ('Bulgarian Split Squat', '#FF5733'),
-    ('Burpee', '#33FFA6'),
-    ('Calf Raise', '#FF33FF'),
-    ('Chest Fly', '#5733FF'),
-    ('Chest Press', '#33FF57'),
-    ('Chin-Up', '#33A6FF'),
-    ('Clean and Jerk', '#FF33A6'),
-    ('Close-Grip Bench Press', '#33FFD5'),
-    ('Clapping Push-Up', '#FFA633'),
-    ('Curl-Up', '#33A6FF'),
-    ('Deadlift', '#FF3357'),
-    ('Decline Push-Up', '#57FF33'),
-    ('Diamond Push-Up', '#A6FF33'),
-    ('Dips', '#FF5733'),
-    ('Dumbbell Curl', '#33FFA6'),
-    ('Dumbbell Fly', '#FF33FF'),
-    ('Dumbbell Lunge', '#5733FF'),
-    ('Dumbbell Press', '#33FF57'),
-    ('Dumbbell Row', '#33A6FF'),
-    ('Dumbbell Shrug', '#FF33A6'),
-    ('Dumbbell Squat', '#33FFD5'),
-    ('Dumbbell Step-Up', '#FFA633'),
-    ('Face Pull', '#33A6FF'),
-    ('Front Squat', '#FF3357'),
-    ('Glute Bridge', '#57FF33'),
-    ('Good Morning', '#A6FF33'),
-    ('Hanging Leg Raise', '#FF5733'),
-    ('Handstand Push-Up', '#33FFA6'),
-    ('High Knees', '#FF33FF'),
-    ('Hip Thrust', '#5733FF'),
-    ('Hollow Body Hold', '#33FF57'),
-    ('Inchworm', '#33A6FF'),
-    ('Incline Bench Press', '#FF33A6'),
-    ('Incline Push-Up', '#33FFD5'),
-    ('Jump Rope', '#FFA633'),
-    ('Jump Squat', '#33A6FF'),
-    ('Kettlebell Swing', '#FF3357'),
-    ('Kneeling Push-Up', '#57FF33'),
-    ('Lat Pulldown', '#A6FF33'),
-    ('Leg Curl', '#FF5733'),
-    ('Leg Extension', '#33FFA6'),
-    ('Leg Press', '#FF33FF'),
-    ('Lunge', '#5733FF'),
-    ('Mountain Climber', '#33FF57'),
-    ('Muscle-Up', '#33A6FF'),
-    ('One-Arm Push-Up', '#FF33A6'),
-    ('Overhead Press', '#33FFD5'),
-    ('Pistol Squat', '#FFA633'),
-    ('Plank', '#33A6FF'),
-    ('Power Clean', '#FF3357'),
-    ('Pull-Up', '#57FF33'),
-    ('Push Press', '#A6FF33'),
     ('Push-Up', '#FF5733'),
-    ('Rear Delt Fly', '#33FFA6'),
-    ('Renegade Row', '#FF33FF'),
-    ('Reverse Crunch', '#5733FF'),
-    ('Russian Twist', '#33FF57'),
-    ('Scissor Kick', '#33A6FF'),
-    ('Shoulder Press', '#FF33A6'),
-    ('Side Plank', '#33FFD5'),
-    ('Single-Leg Deadlift', '#FFA633'),
-    ('Sit-Up', '#33A6FF'),
-    ('Skipping', '#FF3357'),
-    ('Sled Push', '#57FF33'),
-    ('Sled Pull', '#A6FF33'),
-    ('Split Squat', '#FF5733'),
-    ('Squat', '#33FFA6'),
-    ('Squat Jump', '#FF33FF'),
-    ('Standing Calf Raise', '#5733FF'),
-    ('Standing Press', '#33FF57'),
-    ('Step-Up', '#33A6FF'),
-    ('Straight-Leg Deadlift', '#FF33A6'),
-    ('Superman', '#33FFD5'),
-    ('T-Bar Row', '#FFA633'),
-    ('Thruster', '#33A6FF'),
-    ('Toes to Bar', '#FF3357'),
-    ('Tricep Dip', '#57FF33'),
-    ('Tricep Extension', '#A6FF33'),
-    ('Tricep Pushdown', '#FF5733'),
-    ('Tuck Jump', '#33FFA6'),
-    ('Turkish Get-Up', '#FF33FF'),
-    ('Upright Row', '#5733FF'),
-    ('V-Up', '#33FF57'),
-    ('Wall Sit', '#33A6FF'),
-    ('Walking Lunge', '#FF33A6'),
-    ('Wide-Grip Bench Press', '#33FFD5'),
-    ('Wide-Grip Pull-Up', '#FFA633'),
-    ('Windshield Wipers', '#33A6FF');
+    ('Squat', '#33FF57'),
+    ('Deadlift', '#3357FF'),
+    ('Plank', '#FF33A1'),
+    ('Pull-Up', '#FF8333'),
+    ('Bench Press', '#FFBF33'),
+    ('Lunge', '#33FFDB'),
+    ('Bicep Curl', '#F733FF'),
+    ('Tricep Dip', '#33D1FF'),
+    ('Chin-Up', '#F7D733'),
+    ('Overhead Press', '#33B8FF'),
+    ('Leg Press', '#FF33C7'),
+    ('Bent Over Row', '#A833FF'),
+    ('Dumbbell Press', '#33FFC4'),
+    ('Box Jump', '#F3FF33'),
+    ('Mountain Climber', '#FF4B33'),
+    ('Russian Twist', '#33FF99'),
+    ('Jump Rope', '#FF33EC'),
+    ('Shoulder Press', '#8B33FF'),
+    ('Sit-Up', '#FF8B33');
 
 
+
+-- Insert records for each exercise type
 INSERT INTO records (user_id, date_of_entry, exercise_type, sets, reps, remarks, created_at, updated_at, deleted_at) 
 VALUES
     (1, '2024-06-26', 'Push-Up', 3, 15, 'Feeling good today', NOW(), NOW(), NULL),
-    (2, '2024-06-25', 'Sit-Up', 4, 20, 'Worked on form', NOW(), NOW(), NULL),
-    (1, '2024-06-24', 'Bicep Curl', 4, 12, 'Increased weight', NOW(), NOW(), NULL),
-    (2, '2024-06-26', 'Pull-Up', 3, 8, 'Improved grip strength', NOW(), NOW(), NULL),
-    (1, '2024-12-25', 'Deadlift', 5, 5, 'New personal record', NOW(), NOW(), NULL),
-    (2, '2024-12-24', 'Bench Press', 4, 10, 'Added extra set', NOW(), NOW(), NULL),
-    (1, '2024-12-23', 'Dips', 3, 12, 'Superset with pushups', NOW(), NOW(), NULL),
-    (2, '2024-12-22', 'Shoulder Press', 3, 12, 'Focused on form', NOW(), NOW(), NULL),
-    (1, '2024-12-21', 'Leg Press', 4, 15, 'Increased weight', NOW(), NOW(), NULL);
+    (2, '2024-06-27', 'Push-Up', 4, 12, 'Tough but doable', NOW(), NOW(), NULL),
+
+    (1, '2024-06-25', 'Squat', 4, 20, 'Legs feeling strong', NOW(), NOW(), NULL),
+    (2, '2024-06-26', 'Squat', 3, 18, 'Focused on depth', NOW(), NOW(), NULL),
+
+    (1, '2024-06-24', 'Deadlift', 5, 5, 'New personal record', NOW(), NOW(), NULL),
+    (2, '2024-06-23', 'Deadlift', 4, 6, 'Increased weight', NOW(), NOW(), NULL),
+
+    (1, '2024-06-28', 'Plank', 3, 60, 'Held longer than before', NOW(), NOW(), NULL),
+    (2, '2024-06-29', 'Plank', 2, 45, 'Struggling with form', NOW(), NOW(), NULL),
+
+    (1, '2024-06-30', 'Pull-Up', 3, 10, 'Improved grip strength', NOW(), NOW(), NULL),
+    (2, '2024-06-25', 'Pull-Up', 2, 8, 'Still working on it', NOW(), NOW(), NULL),
+
+    (1, '2024-06-22', 'Bench Press', 4, 10, 'Added extra set', NOW(), NOW(), NULL),
+    (2, '2024-06-21', 'Bench Press', 3, 12, 'Increased weight', NOW(), NOW(), NULL),
+
+    (1, '2024-06-24', 'Lunge', 4, 15, 'Felt good', NOW(), NOW(), NULL),
+    (2, '2024-06-25', 'Lunge', 3, 20, 'Focused on form', NOW(), NOW(), NULL),
+
+    (1, '2024-06-26', 'Bicep Curl', 4, 12, 'Increased weight', NOW(), NOW(), NULL),
+    (2, '2024-06-27', 'Bicep Curl', 3, 15, 'Felt the burn', NOW(), NOW(), NULL),
+
+    (1, '2024-06-22', 'Tricep Dip', 3, 12, 'Focus on depth', NOW(), NOW(), NULL),
+    (2, '2024-06-23', 'Tricep Dip', 4, 10, 'Added extra reps', NOW(), NOW(), NULL),
+
+    (1, '2024-06-21', 'Chin-Up', 3, 8, 'Improved form', NOW(), NOW(), NULL),
+    (2, '2024-06-22', 'Chin-Up', 2, 7, 'Working on pull strength', NOW(), NOW(), NULL),
+
+    (1, '2024-06-23', 'Overhead Press', 3, 10, 'Focus on shoulder engagement', NOW(), NOW(), NULL),
+    (2, '2024-06-24', 'Overhead Press', 4, 8, 'Used a heavier weight', NOW(), NOW(), NULL),
+
+    (1, '2024-06-25', 'Leg Press', 4, 15, 'Increased weight', NOW(), NOW(), NULL),
+    (2, '2024-06-26', 'Leg Press', 3, 18, 'Focus on full extension', NOW(), NOW(), NULL),
+
+    (1, '2024-06-28', 'Bent Over Row', 4, 12, 'Better form today', NOW(), NOW(), NULL),
+    (2, '2024-06-29', 'Bent Over Row', 3, 10, 'Focus on squeeze', NOW(), NOW(), NULL),
+
+    (1, '2024-06-30', 'Dumbbell Press', 3, 10, 'Increased reps', NOW(), NOW(), NULL),
+    (2, '2024-06-27', 'Dumbbell Press', 4, 12, 'Felt strong', NOW(), NOW(), NULL),
+
+    (1, '2024-06-23', 'Box Jump', 5, 8, 'Increased height', NOW(), NOW(), NULL),
+    (2, '2024-06-24', 'Box Jump', 4, 6, 'Focused on speed', NOW(), NOW(), NULL),
+
+    (1, '2024-06-21', 'Mountain Climber', 4, 20, 'Pushed harder', NOW(), NOW(), NULL),
+    (2, '2024-06-22', 'Mountain Climber', 3, 15, 'Slight improvement', NOW(), NOW(), NULL),
+
+    (1, '2024-06-23', 'Russian Twist', 4, 25, 'Feeling good', NOW(), NOW(), NULL),
+    (2, '2024-06-24', 'Russian Twist', 3, 20, 'Felt the burn', NOW(), NOW(), NULL),
+
+    (1, '2024-06-21', 'Jump Rope', 3, 50, 'Worked on endurance', NOW(), NOW(), NULL),
+    (2, '2024-06-22', 'Jump Rope', 4, 45, 'Increased speed', NOW(), NOW(), NULL),
+
+    (1, '2024-06-23', 'Shoulder Press', 3, 12, 'Focused on form', NOW(), NOW(), NULL),
+    (2, '2024-06-24', 'Shoulder Press', 4, 10, 'Increased weight', NOW(), NOW(), NULL),
+
+    (1, '2024-06-26', 'Sit-Up', 4, 20, 'Worked on form', NOW(), NOW(), NULL),
+    (2, '2024-06-25', 'Sit-Up', 3, 25, 'Focused on pace', NOW(), NOW(), NULL);
+
 
 
 -- psql -h localhost -U ZiYan -d railwaydb -f /Users/ZiYan/Desktop/railway/backend/prisma/seed.sql
