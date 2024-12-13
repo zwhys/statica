@@ -177,4 +177,3 @@ export const undoDeleteExerciseEntry = async (id: number) => {
     console.error("Error undoing deleteExerciseEntry:", error)
   }
 }
-// TODO: Improve undo functionality by send event undo snackbox
