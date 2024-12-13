@@ -6,18 +6,23 @@ import { fetchRecords } from "./api"
 
 const DisplayRecords: React.FC<{
   setEvents: (events: EventInput[]) => void
-  setisLoading: (isLoading: boolean) => void
   exerciseTypes: Exercise_types[]
-}> = ({ setEvents, setisLoading, exerciseTypes }) => {
+}> = ({ setEvents, exerciseTypes }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
 
   useEffect(() => {
     if (userId !== null && exerciseTypes.length > 0) {
-      fetchRecords(userId, setEvents, setisLoading, exerciseTypes)
+      fetchRecords(userId, setEvents, exerciseTypes)
     }
-  }, [userId, setEvents, setisLoading, exerciseTypes])
+  }, [userId, setEvents, exerciseTypes])
 
-  setInterval(fetchRecords, 5000)
+  setInterval(() => {
+    if (userId !== null && exerciseTypes.length > 0) {
+      ;(async () => {
+        await fetchRecords(userId, setEvents, exerciseTypes)
+      })()
+    }
+  }, 5000)
 
   return null
 }

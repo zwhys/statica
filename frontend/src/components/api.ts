@@ -3,11 +3,9 @@ import { EventInput } from "@fullcalendar/core"
 export const fetchRecords = async (
   userId: number | null,
   setEvents: (events: EventInput[]) => void,
-  setIsLoading: (isLoading: boolean) => void,
   exerciseTypes: Exercise_types[]
 ) => {
   try {
-    setIsLoading(true)
     const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
       method: "GET",
     })
@@ -30,10 +28,8 @@ export const fetchRecords = async (
       color: getColor(record.exercise_type),
     }))
     setEvents(calendarRecords)
-    setIsLoading(false)
   } catch (error) {
     console.error("Error fetching data:", error)
-    setIsLoading(false)
   }
 }
 
@@ -146,7 +142,7 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
   }
 }
 
-let deleteTimeout: NodeJS.Timeout | null = null;
+let deleteTimeout: NodeJS.Timeout | null = null
 
 export const deleteExerciseEntry = (id: number) => {
   deleteTimeout = setTimeout(async () => {

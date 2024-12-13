@@ -25,11 +25,6 @@ interface DisplayProps {
   date_of_entry?: Date
 }
 
-type DisplayRecordsProps = {
-  setEvents: (events: Records[]) => void
-  setisLoading: (isLoading: boolean) => void
-}
-
 type SubmitExerciseEntryFormValues = {
   id?: number
   exercise_type?: string

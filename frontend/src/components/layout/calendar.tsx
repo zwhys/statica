@@ -7,7 +7,6 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 import DisplayRecords from "../displayRecords"
 import SubmitExerciseEntry from "../submitExerciseEntry"
 import { Box, Button, useTheme } from "@mui/material"
-import Loading from "./loading"
 import DisplayEntry from "../displayEntry"
 import { fetchExercise_types } from "../api"
 
@@ -18,7 +17,6 @@ const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
   const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
-  const [isLoading, setisLoading] = useState(true)
   const theme = useTheme()
 
   useEffect(() => {
@@ -59,34 +57,27 @@ const Calendar: React.FC = () => {
         +
       </Button>
 
-      <DisplayRecords
-        setEvents={setEvents}
-        setisLoading={setisLoading}
-        exerciseTypes={exerciseTypes}
+      <DisplayRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
+
+      <FullCalendar
+        timeZone="UTC"
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        headerToolbar={{
+          left: "title",
+          right: "today prev,next",
+        }}
+        buttonText={{
+          today: "Today",
+        }}
+        firstDay={1}
+        dayMaxEvents={true}
+        events={events}
+        selectable={true}
+        select={handleDateSelect}
+        eventClick={handleEventClick}
+        eventTextColor="#2C2C39"
       />
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <FullCalendar
-          timeZone="UTC"
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            left: "title",
-            right: "today prev,next",
-          }}
-          buttonText={{
-            today: "Today",
-          }}
-          firstDay={1}
-          dayMaxEvents={true}
-          events={events}
-          selectable={true}
-          select={handleDateSelect}
-          eventClick={handleEventClick}
-          eventTextColor="#2C2C39"
-        />
-      )}
       <DisplayEntry
         open={isEntryOpen}
         onClose={() => setIsEntryOpen(false)}
