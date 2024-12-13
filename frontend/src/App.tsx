@@ -59,9 +59,9 @@ const App = () => {
       palette: {
         mode,
         primary: {
-          main: mode === "dark" ? "#D6D5FF" : "#B8B6FE",
-          light: mode === "dark" ? "#9694CC" : "#D6D5FF",
-          dark: mode === "dark" ? "#8785BD" : "#9694CC",
+          light: mode === "dark" ? "#E0D9FF" : "#D3CCFE",
+          main: mode === "dark" ? "#D3CCFE" : "#B8A9F8",
+          dark: mode === "dark" ? "#B8A9F8" : "#9E88F2",
         },
         background: {
           default: mode === "dark" ? "#3C3C4A" : "#F8F1EB",

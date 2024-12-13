@@ -110,3 +110,4 @@ export const AppSettings: React.FC<DisplayProps> = ({ open, onClose }) => {
 export default Settings
 
 //TODO: Fix the issue that the settings auto closes
+//TODO: Get a new logo
