@@ -25,7 +25,6 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   date_of_entry,
 }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
-  const [entryDate, setEntryDate] = useState(date_of_entry)
   const theme = useTheme()
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
 
@@ -42,7 +41,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
       if (data.id === undefined) {
-        await addExerciseEntry(data, userId, entryDate as Date)
+        await addExerciseEntry(data, userId, date_of_entry as Date)
       } else {
         await updateExerciseEntry(data)
       }
@@ -52,12 +51,6 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
       console.error("Error submitting exercise entry:", error)
     }
   }
-
-  useEffect(() => {
-    if (!open) {
-      setEntryDate(undefined)
-    }
-  }, [open])
 
   useEffect(() => {
     fetchExercise_types(setExercise_types)

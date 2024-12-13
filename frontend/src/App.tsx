@@ -96,6 +96,5 @@ export default App
 
 //TODO: Implement loading screen for other components other than calendar
 //TODO: Add types to everything
-//! TODO: set up undo function
 //! TODO: All users see the same entries
 //! TODO: Fix Polling

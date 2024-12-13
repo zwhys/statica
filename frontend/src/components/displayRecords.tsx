@@ -17,6 +17,8 @@ const DisplayRecords: React.FC<{
     }
   }, [userId, setEvents, setisLoading, exerciseTypes])
 
+  setInterval(fetchRecords, 5000)
+
   return null
 }
 

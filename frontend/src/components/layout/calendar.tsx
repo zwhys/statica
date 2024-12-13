@@ -26,8 +26,7 @@ const Calendar: React.FC = () => {
   }, [])
 
   const handleDateSelect = (info: any) => {
-    const eventDate = info.start
-    setSelectedDate(eventDate)
+    setSelectedDate(info.start)
     setIsDialogOpen(true)
   }
 
@@ -40,7 +39,10 @@ const Calendar: React.FC = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <Button
-        onClick={() => setIsDialogOpen(true)}
+        onClick={() => {
+          setIsDialogOpen(true)
+          setSelectedDate(undefined)
+        }}
         sx={{
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.secondary,

@@ -178,3 +178,4 @@ export const undoDeleteExerciseEntry = () => {
     console.error("Error undoing deleteExerciseEntry:", error)
   }
 }
+//TODO: Improve undo functionality 1: remove it when deleted, 2: show it when not deleted, 3: send event undo snackbox
