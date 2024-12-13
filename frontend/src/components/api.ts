@@ -3,13 +3,20 @@ import { EventInput } from "@fullcalendar/core"
 export const fetchRecords = async (
   userId: number | null,
   setEvents: (events: EventInput[]) => void,
-  setIsLoading: (isLoading: boolean) => void
+  setIsLoading: (isLoading: boolean) => void,
+  exerciseTypes: Exercise_types[]
 ) => {
   try {
     setIsLoading(true)
     const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
       method: "GET",
     })
+
+    const getColor = (exerciseType: string): string => {
+      const foundType = exerciseTypes.find(dbrow => dbrow.exercise_type === exerciseType)
+      return foundType ? foundType.colour : "#8785BD"
+    }
+
     const responseRecords = await response.json()
     const calendarRecords: EventInput[] = responseRecords.map((record: any) => ({
       id: String(record.id),
@@ -20,13 +27,25 @@ export const fetchRecords = async (
       reps: record.reps,
       remarks: record.remarks,
       allDay: true,
-      color: "#8785BD", //TODO: Make this query the db
+      color: getColor(record.exercise_type),
     }))
     setEvents(calendarRecords)
     setIsLoading(false)
   } catch (error) {
     console.error("Error fetching data:", error)
     setIsLoading(false)
+  }
+}
+
+export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
+  try {
+    const response = await fetch("http://localhost:3001/exercise_types", {
+      method: "GET",
+    })
+    const responseExercise_types: Exercise_types[] = await response.json()
+    setExercise_types(responseExercise_types)
+  } catch (error) {
+    console.error("Error fetching data:", error)
   }
 }
 
@@ -81,19 +100,11 @@ export const checkUsernameAvailable = async (username: string) => {
   }
 }
 
-export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
-  try {
-    const response = await fetch("http://localhost:3001/exercise_types", {
-      method: "GET",
-    })
-    const responseExercise_types: Exercise_types[] = await response.json()
-    setExercise_types(responseExercise_types)
-  } catch (error) {
-    console.error("Error fetching data:", error)
-  }
-}
-
-export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, userId: null | number, date_of_entry: Date) => {
+export const addExerciseEntry = async (
+  data: SubmitExerciseEntryFormValues,
+  userId: null | number,
+  date_of_entry: Date
+) => {
   try {
     const response = await fetch("http://localhost:3001/add_exercise_entry", {
       method: "POST",
@@ -103,7 +114,7 @@ export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, user
       body: JSON.stringify({
         ...data,
         user_id: userId,
-        data_of_entry: date_of_entry
+        data_of_entry: date_of_entry,
       }),
     })
 

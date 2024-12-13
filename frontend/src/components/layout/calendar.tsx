@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
@@ -9,6 +9,7 @@ import SubmitExerciseEntry from "../submitExerciseEntry"
 import { Box, Button, useTheme } from "@mui/material"
 import Loading from "./loading"
 import DisplayEntry from "../displayEntry"
+import { fetchExercise_types } from "../api"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -16,8 +17,13 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<EventInput[]>([])
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
+  const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
   const [isLoading, setisLoading] = useState(true)
   const theme = useTheme()
+
+  useEffect(() => {
+    fetchExercise_types(setExerciseTypes)
+  }, [])
 
   const handleDateSelect = (info: any) => {
     const eventDate = info.start
@@ -51,14 +57,18 @@ const Calendar: React.FC = () => {
         +
       </Button>
 
-      <DisplayRecords setEvents={setEvents} setisLoading={setisLoading} />
+      <DisplayRecords
+        setEvents={setEvents}
+        setisLoading={setisLoading}
+        exerciseTypes={exerciseTypes}
+      />
 
       {isLoading ? (
         <Loading />
       ) : (
         <FullCalendar
-        timeZone="UTC"
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          timeZone="UTC"
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
             left: "title",
             right: "today prev,next",
