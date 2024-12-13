@@ -57,7 +57,7 @@ const Calendar: React.FC = () => {
         <Loading />
       ) : (
         <FullCalendar
-        timeZone="local"
+        timeZone="UTC"
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
             left: "title",

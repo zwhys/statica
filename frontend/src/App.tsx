@@ -99,5 +99,4 @@ export default App
 //! TODO: set up undo function
 //! TODO: All users see the same entries
 //! TODO: Fix the dragging problem
-//! TODO: Fix the timezone difference problem
 //! TODO: Fix Polling
