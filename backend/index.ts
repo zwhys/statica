@@ -52,7 +52,7 @@ app.get("/exercise_types", async (req, res) => {
 
 app.get("/records", async (req, res) => {
   try {
-    const userId = parseInt(req.query.userid as string, 10);
+    const userId = parseInt(req.query.userId as string, 10);
     const records = await prisma.records.findMany({
       where: {
         user_id: userId,
