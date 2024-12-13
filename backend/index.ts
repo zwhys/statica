@@ -67,15 +67,17 @@ app.get("/records", async (req, res) => {
 });
 
 app.post("/add_exercise_entry", async (req, res) => {
-  const { user_id, exercise_type, sets, reps, remarks } =
-    req.body;
+  const { user_id, exercise_type, sets, reps, remarks } = req.body;
 
   const dateOfEntry = new Date(req.body.data_of_entry);
+  const validDate = isNaN(dateOfEntry.getTime())
+    ? new Date().toISOString()
+    : dateOfEntry.toISOString();
   try {
     await prisma.records.create({
       data: {
         user_id,
-        date_of_entry: dateOfEntry,
+        date_of_entry: validDate,
         exercise_type,
         sets: parseInt(sets, 10),
         reps: parseInt(reps, 10),
