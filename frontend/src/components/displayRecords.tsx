@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { EventInput } from "@fullcalendar/core"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
@@ -9,20 +9,23 @@ const DisplayRecords: React.FC<{
   exerciseTypes: Exercise_types[]
 }> = ({ setEvents, exerciseTypes }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
+  const isFetching = useRef(false)
 
   useEffect(() => {
-    if (userId !== null && exerciseTypes.length > 0) {
-      fetchRecords(userId, setEvents, exerciseTypes)
-    }
-  }, [userId, setEvents, exerciseTypes])
-
-  setInterval(() => {
-    if (userId !== null && exerciseTypes.length > 0) {
-      ;(async () => {
+    const fetchData = async () => {
+      if (userId !== null && exerciseTypes.length > 0 && !isFetching.current) {
+        isFetching.current = true
         await fetchRecords(userId, setEvents, exerciseTypes)
-      })()
+        isFetching.current = false
+      }
     }
-  }, 5000)
+
+    fetchData()
+
+    const intervalId = setInterval(fetchData, 3000)
+
+    return () => clearInterval(intervalId)
+  }, [userId, exerciseTypes, setEvents])
 
   return null
 }

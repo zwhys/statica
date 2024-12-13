@@ -95,4 +95,3 @@ const App = () => {
 export default App
 
 //TODO: Add types to everything
-//! TODO: All users see the same entries
