@@ -18,7 +18,7 @@ import {
   useTheme,
 } from "@mui/material"
 
-export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eventData }) => {
+export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eventData, date_of_entry }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
@@ -35,8 +35,8 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
 
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
-      if (data.id === null) {
-        await addExerciseEntry(data, userId)
+      if (data.id === undefined) {
+        await addExerciseEntry(data, userId, date_of_entry)
       } else {
         await updateExerciseEntry(data)
       }
@@ -72,7 +72,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
     >
       <Box sx={{ padding: 2, minWidth: 400 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
-          {eventData?.id === null ? "Add Exercise Entry" : "Edit Exercise Entry"}
+          {eventData?.id === undefined ? "Add Exercise Entry" : "Edit Exercise Entry"}
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
@@ -195,7 +195,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({ open, onClose, eve
                       color: theme.palette.text.secondary,
                     }}
                   >
-                    {eventData?.id === null ? "Createa" : "Update"}
+                    {eventData?.id === undefined ? "Create" : "Update"}
                   </Button>
                 </Grid>
               </Grid>

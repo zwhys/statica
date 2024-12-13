@@ -14,6 +14,7 @@ interface HeaderHomeProps {
 interface DisplayProps {
   open: boolean
   onClose: () => void
+
   onDelete?: () => void
   setSelectedTab?: (tab: React.ReactNode) => void
   text?: string
@@ -21,6 +22,7 @@ interface DisplayProps {
   sx?: object
   selectedEvent?: any
   eventData?: any
+  date_of_entry?: any
 }
 
 type DisplayRecordsProps = {
@@ -30,7 +32,6 @@ type DisplayRecordsProps = {
 
 type SubmitExerciseEntryFormValues = {
   id?: number
-  date_of_entry?: Date
   exercise_type?: string
   sets?: number
   reps?: number

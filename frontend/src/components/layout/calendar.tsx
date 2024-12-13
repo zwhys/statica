@@ -15,16 +15,13 @@ const Calendar: React.FC = () => {
   const [isEntryOpen, setIsEntryOpen] = useState(false)
   const [events, setEvents] = useState<EventInput[]>([])
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
-  const [selectedEntryData, setSelectedEntryData] = useState<SubmitExerciseEntryFormValues>()
+  const [selectedEntryDate, setSelectedDate] = useState<Date>()
   const [isLoading, setisLoading] = useState(true)
   const theme = useTheme()
 
   const handleDateSelect = (info: any) => {
-    const selectedDate = new Date(info.start)
-    const entryData: SubmitExerciseEntryFormValues = {
-      date_of_entry: selectedDate,
-    }
-    setSelectedEntryData(entryData)
+    const selectedDate = info.start
+    setSelectedDate(selectedDate)
     setIsDialogOpen(true)
   }
 
@@ -85,7 +82,7 @@ const Calendar: React.FC = () => {
       <SubmitExerciseEntry //This for adding
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        eventData={selectedEntryData}
+        date_of_entry={selectedEntryDate}
       />
     </Box>
   )

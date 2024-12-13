@@ -93,7 +93,7 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
   }
 }
 
-export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, userId: null | number) => {
+export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, userId: null | number, date_of_entry: Date) => {
   try {
     const response = await fetch("http://localhost:3001/add_exercise_entry", {
       method: "POST",
@@ -103,6 +103,7 @@ export const addExerciseEntry = async (data: SubmitExerciseEntryFormValues, user
       body: JSON.stringify({
         ...data,
         user_id: userId,
+        data_of_entry: new Date(date_of_entry).toISOString(),
       }),
     })
 
