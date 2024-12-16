@@ -32,14 +32,14 @@ export default function LandingPage() {
         <Box
           sx={{
             position: "absolute",
-            top: "50%", // Center vertically
-            left: "50%", // Center horizontally
-            transform: "translate(-50%, -50%)", // Adjust for perfect centering
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             color: "white",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
-            padding: "30px", // Padding for text box
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            padding: "30px",
             borderRadius: "8px",
-            textAlign: "center", // Center text
+            textAlign: "center",
           }}
         >
           <Typography variant="h4" component="div">
@@ -52,9 +52,9 @@ export default function LandingPage() {
             open={isDialogOpen}
             onClose={() => setIsDialogOpen(false)}
             sx={{
-              display: "inline-block", // Size adjusts to content
+              display: "inline-block",
               borderRadius: "8px",
-              padding: "10px 20px", // Adjust padding for text readability
+              padding: "10px 20px",
               bgcolor: theme.palette.primary.main,
               color: theme.palette.text.secondary,
               fontWeight: "bold",
@@ -92,14 +92,14 @@ export default function LandingPage() {
             <Grid item xs={4} key={index}>
               <Box
                 sx={{
-                  position: "relative", // Required for overlay positioning
+                  position: "relative",
                   borderRadius: "8px",
                   padding: "20px",
                   color: theme.palette.text.primary,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  overflow: "hidden", // Ensures overlay respects the box boundaries
+                  overflow: "hidden",
                 }}
               >
                 {item.icon}
@@ -117,12 +117,12 @@ export default function LandingPage() {
                       left: 0,
                       width: "100%",
                       height: "100%",
-                      bgcolor: "rgba(0, 0, 0, 0.8)", // Semi-transparent black
+                      bgcolor: "rgba(0, 0, 0, 0.8)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "white", // Overlay text color
-                      textAlign: "center", // Center align text within the overlay
+                      color: "white",
+                      textAlign: "center",
                     }}
                   >
                     <Typography variant="h6" sx={{ fontSize: "h4.fontSize" }}>

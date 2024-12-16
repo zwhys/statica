@@ -33,7 +33,7 @@ export function NotFoundPage() {
           href="/"
           sx={{
             borderRadius: "8px",
-            padding: "10px 20px", // Adjust padding for text readability
+            padding: "10px 20px",
             bgcolor: theme.palette.primary.main,
             color: theme.palette.text.secondary,
             fontWeight: "bold",

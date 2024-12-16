@@ -87,7 +87,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary,
                   },
                 }}
                 {...register("username", {
@@ -104,7 +104,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, // Label color
+                    color: theme.palette.text.primary, 
                   },
                 }}
                 {...register("password", {

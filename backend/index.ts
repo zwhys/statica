@@ -181,22 +181,6 @@ app.post("/add_user", async (req, res) => {
   }
 });
 
-app.post("/change_colour", async (req, res) => {
-  //TODO: Check if this works
-  const { exercise_type, colour } = req.body;
-
-  try {
-    await prisma.exercise_types.update({
-      where: { exercise_type },
-      data: { colour },
-    });
-    res.send("Colour changed successfully");
-  } catch (err) {
-    console.error("Error changing colour:", err);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 app.post("/authentication", async (req, res) => {
   const { username, password } = req.body;
 

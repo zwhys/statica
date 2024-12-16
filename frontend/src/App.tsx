@@ -94,4 +94,3 @@ const App = () => {
 
 export default App
 
-//TODO: Add types to everything

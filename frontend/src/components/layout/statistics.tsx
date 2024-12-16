@@ -1,17 +1,10 @@
-import { Typography, Grid } from "@mui/material"
-import DisplayExerciseStatistics from "../displayExerciseStatistics"
+import { Typography, Box } from "@mui/material"
 
 const Statistics: React.FC = () => {
   return (
-    <Grid container spacing={2} direction="column">
-      <Typography variant="h2" />
-      <Grid item>
-        <DisplayExerciseStatistics />
-      </Grid>
-      <Grid item>
-        <DisplayExerciseStatistics />
-      </Grid>
-    </Grid>
+    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "75vh" }}>
+      <Typography variant="h3">Coming Soon</Typography>
+    </Box>
   )
 }
 

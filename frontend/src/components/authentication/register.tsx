@@ -41,7 +41,6 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
       const responseData = await addUser(data)
       const userId: number = responseData.userId
       dispatch(setUserId(userId))
-      navigate("/?dialog=open") //TODO: Fix this so that it opens
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -141,7 +140,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                     fullWidth
                     sx={{
                       "& .MuiInputLabel-root": {
-                        color: theme.palette.text.primary, // Label color
+                        color: theme.palette.text.primary, 
                       },
                     }}
                     margin="normal"
@@ -161,7 +160,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                         checked={showPassword}
                         onClick={() => setShowPassword(!showPassword)}
                         sx={{
-                          color: theme.palette.text.primary, // Label color
+                          color: theme.palette.text.primary, 
                         }}
                       />
                     }

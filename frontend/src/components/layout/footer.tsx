@@ -7,8 +7,8 @@ const Footer = () => {
     <Box
       sx={{
         padding: "20px",
-        bgcolor: theme => theme.palette.grey[900], // Dark gray background
-        color: theme => theme.palette.grey[50], // Light text color
+        bgcolor: theme => theme.palette.grey[900], 
+        color: theme => theme.palette.grey[50], 
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

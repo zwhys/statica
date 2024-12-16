@@ -13,7 +13,6 @@ import {
 } from "@mui/material"
 import { AccountCircle, Settings, Logout } from "@mui/icons-material"
 import { setUserId } from "../../redux/reducer"
-import { AppSettings } from "../appSettings"
 import { RootState } from "../../redux/store"
 
 export default function HomeMenu() {
@@ -76,12 +75,6 @@ export default function HomeMenu() {
           {username !== null ? username : "Loading..."}
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => setIsDialogOpen(true)}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(setUserId(null))
@@ -94,7 +87,6 @@ export default function HomeMenu() {
           Logout
         </MenuItem>
       </Menu>
-      <AppSettings open={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   )
 }
