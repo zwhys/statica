@@ -43,5 +43,5 @@ VALUES
 
 
 
--- psql -h localhost -U ZiYan -d railwaydb -f /Users/ZiYan/Desktop/railway/backend/prisma/seed.sql
+-- psql -h localhost -U ZiYan -d staticadb -f /Users/ZiYan/Desktop/statica/backend/prisma/seed.sql
 -- command to run seeding scripts

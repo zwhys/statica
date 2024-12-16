@@ -40,7 +40,7 @@ const Footer = () => {
       </Box>
 
       <Typography variant="body2">
-        © {new Date().getFullYear()} Railway. All rights reserved.
+        © {new Date().getFullYear()} Statica. All rights reserved.
       </Typography>
     </Box>
   )

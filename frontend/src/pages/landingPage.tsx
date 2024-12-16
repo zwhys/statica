@@ -43,7 +43,7 @@ export default function LandingPage() {
           }}
         >
           <Typography variant="h4" component="div">
-            Welcome to Railway
+            Welcome to Statica
           </Typography>
           <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
             Visable Progress, Achievable Goals

@@ -21,7 +21,7 @@ export default function HeaderLanding() {
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
             <Typography color={theme.palette.text.primary} fontSize={32}>
-              Railway
+              Statica
             </Typography>
           </Link>
           <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
