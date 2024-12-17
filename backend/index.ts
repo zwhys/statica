@@ -7,9 +7,11 @@ const prisma = new PrismaClient();
 const app = express();
 const port = 3001;
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://statica9.vercel.app/landing"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
@@ -213,3 +215,5 @@ app.post("/authentication", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+module.exports = app;
