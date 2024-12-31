@@ -9,7 +9,8 @@
     "start": "ts-node build/index.js",
     "build": "tsc",
     "serve": "node build/server.js",
-    "vercel-build": "echo running"
+    "vercel-build": "echo running",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
