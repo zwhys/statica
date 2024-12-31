@@ -11,5 +11,6 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "skipLibCheck": true
-  }
+  },
+  "include": [".api/index.ts"]
 }

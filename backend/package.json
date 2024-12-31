@@ -8,7 +8,8 @@
     "dev": "ts-node index.ts",
     "start": "ts-node build/index.js",
     "build": "tsc",
-    "serve": "node build/server.js"
+    "serve": "node build/server.js",
+    "vercel-build": "echo running"
   },
   "keywords": [],
   "author": "",
