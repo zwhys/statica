@@ -11,7 +11,7 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://statica-teal.vercel.app/landing"],
+    origin: ["http://localhost:3000", "https://statica-teal.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
