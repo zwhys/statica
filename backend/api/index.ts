@@ -216,6 +216,4 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-await prisma.$disconnect();
-
 module.exports = app;
