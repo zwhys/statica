@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://statica-backed.vercel.app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node api/index.ts",
