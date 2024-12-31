@@ -28,7 +28,7 @@ export default function HomeMenu() {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await fetch("https://statica-backed.vercel.app/username", {
+        const response = await fetch("https://statica-backend.vercel.app/username", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -6,7 +6,7 @@ export const fetchRecords = async (
   exerciseTypes: Exercise_types[]
 ) => {
   try {
-    const response = await fetch(`https://statica-backed.vercel.app/records?userId=${userId}`, {
+    const response = await fetch(`https://statica-backend.vercel.app/records?userId=${userId}`, {
       method: "GET",
     })
 
@@ -35,7 +35,7 @@ export const fetchRecords = async (
 
 export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/exercise_types", {
+    const response = await fetch("https://statica-backend.vercel.app/exercise_types", {
       method: "GET",
     })
     const responseExercise_types: Exercise_types[] = await response.json()
@@ -47,7 +47,7 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
 
 export const getUserId = async (data: UserFormValues) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/authentication", {
+    const response = await fetch("https://statica-backend.vercel.app/authentication", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export const getUserId = async (data: UserFormValues) => {
 
 export const addUser = async (data: UserFormValues) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/add_user", {
+    const response = await fetch("https://statica-backend.vercel.app/add_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export const addUser = async (data: UserFormValues) => {
 
 export const checkUsernameAvailable = async (username: string) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/check_username", {
+    const response = await fetch("https://statica-backend.vercel.app/check_username", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export const addExerciseEntry = async (
   date_of_entry: Date
 ) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/add_exercise_entry", {
+    const response = await fetch("https://statica-backend.vercel.app/add_exercise_entry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +124,7 @@ export const addExerciseEntry = async (
 
 export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/update_exercise_entry", {
+    const response = await fetch("https://statica-backend.vercel.app/update_exercise_entry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
 
 export const deleteExerciseEntry = async (id: number) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/delete_exercise_entry", {
+    const response = await fetch("https://statica-backend.vercel.app/delete_exercise_entry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -162,7 +162,7 @@ export const deleteExerciseEntry = async (id: number) => {
 
 export const undoDeleteExerciseEntry = async (id: number) => {
   try {
-    const response = await fetch("https://statica-backed.vercel.app/undo_delete_exercise_entry", {
+    const response = await fetch("https://statica-backend.vercel.app/undo_delete_exercise_entry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
