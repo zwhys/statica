@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Checkbox,
+  CircularProgress,
   Dialog,
   FormControlLabel,
   MenuItem,
@@ -17,9 +18,9 @@ import { addUser, checkUsernameAvailable } from "../api"
 import { setUserId } from "../../redux/reducer"
 
 export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
+  const [isProcessing, setIsProcessing] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const theme = useTheme()
 
@@ -33,6 +34,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
+      setIsProcessing(true)
       const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
       const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
       if (!isUsernameAvailable) {
@@ -41,6 +43,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
       const responseData = await addUser(data)
       const userId: number = responseData.userId
       dispatch(setUserId(userId))
+      setIsProcessing(false)
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -140,7 +143,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                     fullWidth
                     sx={{
                       "& .MuiInputLabel-root": {
-                        color: theme.palette.text.primary, 
+                        color: theme.palette.text.primary,
                       },
                     }}
                     margin="normal"
@@ -160,7 +163,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                         checked={showPassword}
                         onClick={() => setShowPassword(!showPassword)}
                         sx={{
-                          color: theme.palette.text.primary, 
+                          color: theme.palette.text.primary,
                         }}
                       />
                     }
@@ -179,9 +182,9 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                   background: theme.palette.primary.main,
                   color: theme.palette.text.secondary,
                 }}
-                disabled={!passwordsMatch}
+                disabled={!passwordsMatch || isProcessing}
               >
-                Register
+                {isProcessing ? <CircularProgress size="25px" /> : "Register"}
               </Button>
             </Box>
             <img src="/login.png" alt="" style={{ maxWidth: "100%", maxHeight: "100%" }} />

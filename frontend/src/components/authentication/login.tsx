@@ -13,12 +13,14 @@ import {
   MenuItem,
   ListItemIcon,
   useTheme,
+  CircularProgress,
 } from "@mui/material"
 import { Login, Visibility, VisibilityOff } from "@mui/icons-material"
 import { getUserId } from "../api"
 import { setUserId } from "../../redux/reducer"
 
 export const LogIn: React.FC<DisplayProps> = () => {
+  const [isProcessing, setIsProcessing] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [authError, setAuthError] = useState("")
@@ -35,12 +37,14 @@ export const LogIn: React.FC<DisplayProps> = () => {
 
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
+      setIsProcessing(true)
       const response = await getUserId(data)
       const userId: number = response.userId
       if (!userId) {
         setAuthError("Username or Password is incorrect")
         return
       }
+      setIsProcessing(false)
       dispatch(setUserId(userId))
       navigate("/")
     } catch (error) {
@@ -132,8 +136,9 @@ export const LogIn: React.FC<DisplayProps> = () => {
                   background: theme.palette.primary.main,
                   color: theme.palette.text.secondary,
                 }}
+                disabled={isProcessing}
               >
-                Login
+                {isProcessing ? <CircularProgress size="25px"/> : "Login"}
               </Button>
             </Box>
             <img src="/login.png" alt="Login" style={{ maxWidth: "100%", maxHeight: "100%" }} />

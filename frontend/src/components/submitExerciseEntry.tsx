@@ -16,6 +16,7 @@ import {
   Select,
   TextField,
   useTheme,
+  CircularProgress,
 } from "@mui/material"
 
 export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
@@ -24,6 +25,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   eventData,
   date_of_entry,
 }) => {
+  const [isProcessing, setIsProcessing] = useState(false)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
   const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
@@ -40,6 +42,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
 
   const onSubmit: SubmitHandler<SubmitExerciseEntryFormValues> = async data => {
     try {
+      setIsProcessing(true)
       if (data.id === undefined) {
         await addExerciseEntry(data, userId, date_of_entry as Date)
       } else {
@@ -47,6 +50,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
       }
       onClose()
       reset()
+      setIsProcessing(false)
     } catch (error) {
       console.error("Error submitting exercise entry:", error)
     }
@@ -198,9 +202,17 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                     sx={{
                       backgroundColor: theme.palette.primary.main,
                       color: theme.palette.text.secondary,
+                      minWidth: '85px'
                     }}
+                    disabled={isProcessing}
                   >
-                    {eventData?.id === undefined ? "Create" : "Update"}
+                    {isProcessing ? (
+                      <CircularProgress size="25px" />
+                    ) : eventData?.id === undefined ? (
+                      "Create"
+                    ) : (
+                      "Update"
+                    )}
                   </Button>
                 </Grid>
               </Grid>
