@@ -79,7 +79,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
         },
       }}
     >
-      <Box sx={{ padding: 2, minWidth: 400 }}>
+      <Box sx={{ padding: 3, minWidth: 400 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
           {eventData?.id === undefined ? "Add Exercise Entry" : "Edit Exercise Entry"}
         </Typography>
