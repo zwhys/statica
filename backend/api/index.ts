@@ -153,6 +153,27 @@ app.post("/undo_delete_exercise_entry", async (req, res) => {
   }
 });
 
+app.post("/update_user_info", async (req, res) => {
+  const { userId, age, weight, additional_info } = req.body;
+
+  try {
+    await prisma.users.update({
+      where: {
+        id: parseInt(userId, 10),
+      },
+      data: {
+        age: parseInt(age, 10),
+        weight: parseInt(weight, 10),
+        additional_info,
+      },
+    });
+    res.send("User info updated successfully");
+  } catch (err) {
+    console.error("Error updating user info:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.post("/check_username", async (req, res) => {
   const { username } = req.body;
 

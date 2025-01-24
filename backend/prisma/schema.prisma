@@ -36,5 +36,8 @@ model users {
   id              Int       @id @default(autoincrement())
   username        String    @unique @db.VarChar(50)
   hashed_password String
+  age             Int?
+  weight          Float?
+  additional_info String?
   records         records[]
 }

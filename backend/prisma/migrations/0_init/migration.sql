@@ -28,6 +28,9 @@ CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
     "username" VARCHAR(50) NOT NULL,
     "hashed_password" TEXT NOT NULL,
+    "age" INT DEFAULT NULL,
+    "weight" FLOAT DEFAULT NULL,
+    "additional_info" TEXT DEFAULT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );

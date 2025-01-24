@@ -1,0 +1,165 @@
+import React, { useState, useEffect } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Dialog,
+  Grid,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material"
+import { updateUserInfo } from "./api"
+
+export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userInfoData }) => {
+  const [isProcessing, setIsProcessing] = useState(false)
+  const userId = useSelector((state: RootState) => state.user.userId)
+  const theme = useTheme()
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UserInfoFormValues>({
+    defaultValues: userInfoData,
+  })
+
+  const onSubmit: SubmitHandler<UserInfoFormValues> = async data => {
+    try {
+      setIsProcessing(true)
+      updateUserInfo(data, userId)
+      onClose()
+      setIsProcessing(false)
+    } catch (error) {
+      console.error("Error editing user info:", error)
+    }
+  }
+
+  useEffect(() => {
+    if (userInfoData) {
+      reset(userInfoData)
+    }
+  }, [userInfoData, reset])
+
+  return (
+    <Dialog
+      open={open}
+      onClose={() => {
+        onClose()
+        reset()
+      }}
+      PaperProps={{
+        sx: {
+          borderRadius: 4,
+        },
+      }}
+    >
+      <Box sx={{ padding: 3, minWidth: 400 }}>
+        <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
+          User Info (Comming Soon)
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={6}>
+              <TextField
+                id="age"
+                label="Age"
+                variant="outlined"
+                placeholder="Eg. 25"
+                fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary,
+                  },
+                }}
+                {...register("age", {
+                  pattern: {
+                    value: /^[1-9]\d*$/,
+                    message: "Please enter a valid number",
+                  },
+                })}
+                error={!!errors.age}
+                helperText={errors.age ? errors.age.message : ""}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                id="weight"
+                label="Weight"
+                variant="outlined"
+                placeholder="Eg. 70kg"
+                fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary,
+                  },
+                }}
+                {...register("weight", {
+                  pattern: {
+                    value: /^[1-9]\d*$/,
+                    message: "Please enter a valid number",
+                  },
+                })}
+                error={!!errors.weight}
+                helperText={errors.weight ? errors.weight.message : ""}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="additional_info"
+                label="Additional Information"
+                variant="outlined"
+                placeholder="Eg. Pre-existing Conditions, Dietary Requirements, ..."
+                fullWidth
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary,
+                  },
+                }}
+                {...register("additional_info")}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Grid container justifyContent="flex-end" spacing={2}>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                      onClose()
+                      reset()
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.text.secondary,
+                      minWidth: "67px",
+                    }}
+                    disabled={isProcessing}
+                  >
+                    {isProcessing ? <CircularProgress size="25px" /> : "Save"}
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </form>
+      </Box>
+    </Dialog>
+  )
+}
+
+export default UserProfileDialog
+
+//TODO: Fix this

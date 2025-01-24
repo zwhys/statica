@@ -22,6 +22,7 @@ interface DisplayProps {
   sx?: object
   selectedEvent?: any
   eventData?: any
+  userInfoData?: any
   date_of_entry?: Date
 }
 
@@ -31,6 +32,13 @@ type SubmitExerciseEntryFormValues = {
   sets?: number
   reps?: number
   remarks?: string
+}
+
+type UserInfoFormValues = {
+  userId?: number
+  age?: number
+  weight?: number
+  additional_info?: string
 }
 
 type User = {

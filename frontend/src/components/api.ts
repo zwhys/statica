@@ -135,10 +135,10 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
     })
 
     if (!response.ok) {
-      throw new Error("Failed to add exercise entry")
+      throw new Error("Failed to update exercise entry")
     }
   } catch (error) {
-    console.error("Error adding exercise entry:", error)
+    console.error("Error updating exercise entry:", error)
   }
 }
 
@@ -175,5 +175,26 @@ export const undoDeleteExerciseEntry = async (id: number) => {
     }
   } catch (error) {
     console.error("Error undoing deleteExerciseEntry:", error)
+  }
+}
+
+export const updateUserInfo = async (data: UserInfoFormValues, userId: null | number) => {
+  try {
+    const response = await fetch("https://statica-backend.vercel.app/update_user_info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        user_id: userId,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to update user info")
+    }
+  } catch (error) {
+    console.error("Error updating user info:", error)
   }
 }

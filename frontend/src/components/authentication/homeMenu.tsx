@@ -65,6 +65,7 @@ export default function HomeMenu() {
       <Menu
         anchorEl={anchorEl}
         open={open}
+        onClose={() => setAnchorEl(null)}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
