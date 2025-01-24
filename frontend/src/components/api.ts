@@ -45,6 +45,22 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
   }
 }
 
+export const fetchUserInfo = async (
+  setUserInfo: (data: UserInfoFormValues) => void,
+  userId: null | number,
+) => {
+  try {
+    // const response = await fetch(`https://statica-backend.vercel.app/user_info?userId=${userId}`, {
+    const response = await fetch(`http://localhost:3001/user_info?userId=${userId}`, {
+      method: "GET",
+    })
+    const responseUser_Info = await response.json()
+    setUserInfo(responseUser_Info)
+  } catch (error) {
+    console.error("Error fetching data:", error)
+  }
+}
+
 export const getUserId = async (data: UserFormValues) => {
   try {
     const response = await fetch("https://statica-backend.vercel.app/authentication", {
@@ -180,7 +196,8 @@ export const undoDeleteExerciseEntry = async (id: number) => {
 
 export const updateUserInfo = async (data: UserInfoFormValues, userId: null | number) => {
   try {
-    const response = await fetch("https://statica-backend.vercel.app/update_user_info", {
+    // const response = await fetch("https://statica-backend.vercel.app/update_user_info", {
+    const response = await fetch("http://localhost:3001/update_user_info", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

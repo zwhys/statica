@@ -68,6 +68,24 @@ app.get("/records", async (req, res) => {
   }
 });
 
+app.get("/user_info", async (req, res) => {
+  try {
+    const userId = parseInt(req.query.userId as string, 10);
+    const user_info = await prisma.users.findUnique({
+      where: { id: userId },
+      select: {
+        age: true,
+        weight: true,
+        additional_info: true,
+      },
+    });
+    res.json(user_info);
+  } catch (err) {
+    console.error("Server error:", err);
+    res.status(500).send("Server error");
+  }
+});
+
 app.post("/add_exercise_entry", async (req, res) => {
   const { user_id, exercise_type, sets, reps, remarks } = req.body;
 
@@ -159,7 +177,7 @@ app.post("/update_user_info", async (req, res) => {
   try {
     await prisma.users.update({
       where: {
-        id: user_id
+        id: user_id,
       },
       data: {
         age: parseInt(age, 10),

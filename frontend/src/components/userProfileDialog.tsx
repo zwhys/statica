@@ -12,10 +12,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import { updateUserInfo } from "./api"
+import { fetchUserInfo, updateUserInfo } from "./api"
 
 export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userInfoData }) => {
   const [isProcessing, setIsProcessing] = useState(false)
+  const [userInfo, setUserInfo] = useState<UserInfoFormValues | null>(null)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
 
@@ -31,13 +32,17 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userI
   const onSubmit: SubmitHandler<UserInfoFormValues> = async data => {
     try {
       setIsProcessing(true)
-      updateUserInfo(data, userId)
+      await updateUserInfo(data, userId)
       onClose()
       setIsProcessing(false)
     } catch (error) {
       console.error("Error editing user info:", error)
     }
   }
+
+  useEffect(() => {
+      fetchUserInfo(setUserInfo, userId)
+    }, [])
 
   useEffect(() => {
     if (userInfoData) {
