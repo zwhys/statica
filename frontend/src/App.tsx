@@ -8,6 +8,7 @@ import { ThemeProvider } from "@emotion/react"
 import { createTheme, CssBaseline } from "@mui/material"
 import { red, green } from "@mui/material/colors"
 import DynamicGlobalStyles from "./dynamicBodyStyles"
+import ReportBugsPage from "./pages/reportBugsPage"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -37,6 +38,10 @@ const routes = [
         <HomePage />
       </PrivateRoutes>
     ),
+  },
+  {
+    path: "/report-bugs",
+    element: <ReportBugsPage />,
   },
   {
     path: "*",
@@ -93,4 +98,3 @@ const App = () => {
 }
 
 export default App
-

@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton } from "@mui/material"
+import { Box, Typography, IconButton, Link } from "@mui/material"
 import { GitHub, LinkedIn } from "@mui/icons-material"
 import { FaFileCode } from "react-icons/fa"
 
@@ -19,7 +19,7 @@ const Footer = () => {
       <Box sx={{ display: "flex", gap: 3 }}>
         <Typography>About</Typography>
         <Typography>Services</Typography>
-        <Typography>Contact</Typography>
+        <Link href="/report-bugs" underline="hover" sx={{color: "#F8F1EB"}}>Report Bugs</Link>
         <Typography>Privacy Policy</Typography>
       </Box>
 
