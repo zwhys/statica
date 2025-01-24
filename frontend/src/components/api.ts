@@ -50,8 +50,7 @@ export const fetchUserInfo = async (
   userId: null | number,
 ) => {
   try {
-    // const response = await fetch(`https://statica-backend.vercel.app/user_info?userId=${userId}`, {
-    const response = await fetch(`http://localhost:3001/user_info?userId=${userId}`, {
+    const response = await fetch(`https://statica-backend.vercel.app/user_info?userId=${userId}`, {
       method: "GET",
     })
     const responseUser_Info = await response.json()
@@ -196,8 +195,7 @@ export const undoDeleteExerciseEntry = async (id: number) => {
 
 export const updateUserInfo = async (data: UserInfoFormValues, userId: null | number) => {
   try {
-    // const response = await fetch("https://statica-backend.vercel.app/update_user_info", {
-    const response = await fetch("http://localhost:3001/update_user_info", {
+    const response = await fetch("https://statica-backend.vercel.app/update_user_info", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
