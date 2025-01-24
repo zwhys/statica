@@ -154,12 +154,12 @@ app.post("/undo_delete_exercise_entry", async (req, res) => {
 });
 
 app.post("/update_user_info", async (req, res) => {
-  const { userId, age, weight, additional_info } = req.body;
+  const { user_id, age, weight, additional_info } = req.body;
 
   try {
     await prisma.users.update({
       where: {
-        id: parseInt(userId, 10),
+        id: user_id
       },
       data: {
         age: parseInt(age, 10),
