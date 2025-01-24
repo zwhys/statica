@@ -50,7 +50,6 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
       }
       onClose()
       reset()
-      setIsProcessing(false)
     } catch (error) {
       console.error("Error submitting exercise entry:", error)
     }
@@ -134,7 +133,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                   required: "Required",
                   pattern: {
                     value: /^[1-9]\d*$/,
-                    message: "Positive integers only",
+                    message: "Please enter a valid number",
                   },
                 })}
                 error={!!errors.sets}
@@ -157,7 +156,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                   required: "Required",
                   pattern: {
                     value: /^[1-9]\d*$/,
-                    message: "Positive integers only",
+                    message: "Please enter a valid number",
                   },
                 })}
                 error={!!errors.reps}

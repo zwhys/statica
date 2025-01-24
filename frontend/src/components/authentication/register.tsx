@@ -20,7 +20,7 @@ import { setUserId } from "../../redux/reducer"
 export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(true)
   const dispatch = useDispatch()
   const theme = useTheme()
 
@@ -38,6 +38,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
       const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
       const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
       if (!isUsernameAvailable) {
+        setIsProcessing(false)
         return
       }
       const responseData = await addUser(data)
@@ -105,6 +106,7 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                     const response = await checkUsernameAvailable(value)
                     const isUsernameAvailable: boolean = response.isUsernameAvailable
                     if (!isUsernameAvailable) {
+                      setIsProcessing(false)
                       return "Username is taken. Please choose another"
                     }
                     return true
@@ -196,3 +198,4 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
 }
 
 export default Register
+//TODO: Fix this

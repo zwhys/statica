@@ -11,9 +11,10 @@ import {
   Divider,
   useTheme,
 } from "@mui/material"
-import { AccountCircle, Settings, Logout } from "@mui/icons-material"
+import { AccountCircle, Logout } from "@mui/icons-material"
 import { setUserId } from "../../redux/reducer"
 import { RootState } from "../../redux/store"
+import UserProfileDialog from "../userProfileDialog"
 
 export default function HomeMenu() {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -64,16 +65,19 @@ export default function HomeMenu() {
       <Menu
         anchorEl={anchorEl}
         open={open}
-        onClick={() => setAnchorEl(null)}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
+        <MenuItem onClick={() => setIsDialogOpen(true)}>
           <ListItemIcon>
             <AccountCircle fontSize="small" />
           </ListItemIcon>
           {username !== null ? username : "Loading..."}
         </MenuItem>
+        <UserProfileDialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      ></UserProfileDialog>
         <Divider />
         <MenuItem
           onClick={() => {

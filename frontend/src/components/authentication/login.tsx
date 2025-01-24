@@ -42,9 +42,9 @@ export const LogIn: React.FC<DisplayProps> = () => {
       const userId: number = response.userId
       if (!userId) {
         setAuthError("Username or Password is incorrect")
+        setIsProcessing(false)
         return
       }
-      setIsProcessing(false)
       dispatch(setUserId(userId))
       navigate("/")
     } catch (error) {
