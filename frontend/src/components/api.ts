@@ -6,7 +6,7 @@ export const fetchRecords = async (
   exerciseTypes: Exercise_types[]
 ) => {
   try {
-    const response = await fetch(`http://localhost:3001/records?userId=${userId}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/records?userId=${userId}`, {
       method: "GET",
     })
 
@@ -35,7 +35,7 @@ export const fetchRecords = async (
 
 export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
   try {
-    const response = await fetch("http://localhost:3001/exercise_types", {
+    const response = await fetch("${process.env.REACT_APP_BACKEND_URL}/exercise_types", {
       method: "GET",
     })
     const responseExercise_types: Exercise_types[] = await response.json()
@@ -50,7 +50,7 @@ export const fetchUserInfo = async (
   userId: null | number,
 ) => {
   try {
-    const response = await fetch(`http://localhost:3001/user_info?userId=${userId}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user_info?userId=${userId}`, {
       method: "GET",
     })
     const responseUser_Info = await response.json()
@@ -62,7 +62,7 @@ export const fetchUserInfo = async (
 
 export const getUserId = async (data: UserFormValues) => {
   try {
-    const response = await fetch("http://localhost:3001/authentication", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const getUserId = async (data: UserFormValues) => {
 
 export const addUser = async (data: UserFormValues) => {
   try {
-    const response = await fetch("http://localhost:3001/add_user", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/add_user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ export const addUser = async (data: UserFormValues) => {
 
 export const checkUsernameAvailable = async (username: string) => {
   try {
-    const response = await fetch("http://localhost:3001/check_username", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/check_username`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export const addExerciseEntry = async (
   date_of_entry: Date
 ) => {
   try {
-    const response = await fetch("http://localhost:3001/add_exercise_entry", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/add_exercise_entry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export const addExerciseEntry = async (
 
 export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) => {
   try {
-    const response = await fetch("http://localhost:3001/update_exercise_entry", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/update_exercise_entry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -159,7 +159,7 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
 
 export const deleteExerciseEntry = async (id: number) => {
   try {
-    const response = await fetch("http://localhost:3001/delete_exercise_entry", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/delete_exercise_entry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -177,7 +177,7 @@ export const deleteExerciseEntry = async (id: number) => {
 
 export const undoDeleteExerciseEntry = async (id: number) => {
   try {
-    const response = await fetch("http://localhost:3001/undo_delete_exercise_entry", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/undo_delete_exercise_entry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -195,7 +195,7 @@ export const undoDeleteExerciseEntry = async (id: number) => {
 
 export const updateUserInfo = async (data: UserInfoFormValues, userId: null | number) => {
   try {
-    const response = await fetch("http://localhost:3001/update_user_info", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/update_user_info`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -29,7 +29,7 @@ export default function HomeMenu() {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await fetch("http://localhost:3001/username", {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
