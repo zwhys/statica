@@ -20,7 +20,16 @@ export default function HeaderLanding() {
               src="logo.png"
               sx={{ marginRight: 2, width: 56, height: 56 }}
             />
-            <Typography color={theme.palette.text.primary} fontSize={32}>
+            <Typography
+              color={theme.palette.text.primary}
+              fontSize={32}
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+              }}
+            >
               Statica
             </Typography>
           </Link>

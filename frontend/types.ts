@@ -35,7 +35,7 @@ type SubmitExerciseEntryFormValues = {
 }
 
 type UserInfoFormValues = {
-  userId?: number
+  userId: number
   age?: number
   weight?: number
   additional_info?: string

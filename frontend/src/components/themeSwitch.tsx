@@ -10,7 +10,16 @@ const ThemeSwitch: React.FC = () => {
 
   return (
     <>
-      <Typography>Change Theme</Typography>
+      <Typography
+        sx={{
+          display: {
+            xs: "none",
+            sm: "block",
+          },
+        }}
+      >
+        Change Theme
+      </Typography>
       <Switch
         checked={mode === "dark"}
         onChange={() => {
