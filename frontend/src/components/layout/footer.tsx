@@ -7,8 +7,8 @@ const Footer = () => {
     <Box
       sx={{
         padding: "20px",
-        bgcolor: theme => theme.palette.grey[900], 
-        color: theme => theme.palette.grey[50], 
+        bgcolor: theme => theme.palette.grey[900],
+        color: theme => theme.palette.grey[50],
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -17,10 +17,12 @@ const Footer = () => {
       }}
     >
       <Box sx={{ display: "flex", gap: 3 }}>
-        <Typography>About</Typography>
-        <Typography>Services</Typography>
-        <Link href="/report-bugs" underline="hover" sx={{color: "#F8F1EB"}}>Report Bugs</Link>
-        <Typography>Privacy Policy</Typography>
+        <Link href="/about" underline="hover" sx={{ color: "#F8F1EB" }}>
+          About
+        </Link>
+        <Link href="/report-bugs" underline="hover" sx={{ color: "#F8F1EB" }}>
+          Report Bugs
+        </Link>
       </Box>
 
       <Box>

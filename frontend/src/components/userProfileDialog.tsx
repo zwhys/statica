@@ -14,7 +14,7 @@ import {
 } from "@mui/material"
 import { fetchUserInfo, updateUserInfo } from "./api"
 
-export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userInfoData }) => {
+export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [userInfo, setUserInfo] = useState<UserInfoFormValues | null>(null)
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -25,9 +25,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userI
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UserInfoFormValues>({
-    defaultValues: userInfoData,
-  })
+  } = useForm<UserInfoFormValues>()
 
   const onSubmit: SubmitHandler<UserInfoFormValues> = async data => {
     try {
@@ -42,13 +40,13 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userI
 
   useEffect(() => {
       fetchUserInfo(setUserInfo, userId)
-    }, [])
+    }, [userId])
 
   useEffect(() => {
-    if (userInfoData) {
-      reset(userInfoData)
+    if (userInfo) {
+      reset(userInfo)
     }
-  }, [userInfoData, reset])
+  }, [userInfo, reset])
 
   return (
     <Dialog
@@ -118,7 +116,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose, userI
                 id="additional_info"
                 label="Additional Information"
                 variant="outlined"
-                placeholder="Eg. Pre-existing Conditions, Dietary Requirements, ..."
+                placeholder="Eg. Pre-existing Conditions, Dietary Restrictions, ..."
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {

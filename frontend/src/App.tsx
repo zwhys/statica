@@ -9,6 +9,7 @@ import { createTheme, CssBaseline } from "@mui/material"
 import { red, green } from "@mui/material/colors"
 import DynamicGlobalStyles from "./dynamicBodyStyles"
 import ReportBugsPage from "./pages/reportBugsPage"
+import AboutPage from "./pages/aboutPage"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -38,6 +39,10 @@ const routes = [
         <HomePage />
       </PrivateRoutes>
     ),
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
   },
   {
     path: "/report-bugs",
