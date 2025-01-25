@@ -18,6 +18,9 @@ export function AboutPage() {
       ) : (
         <HeaderLanding />
       )}
+      <Typography variant="h3" component="div" sx={{ textAlign: "center", padding: "20px" }}>
+        About
+      </Typography>
       <Box
         sx={{
           width: "100vw",
@@ -25,55 +28,43 @@ export function AboutPage() {
           overflow: "hidden",
         }}
       >
-        <Box
-          component="img"
-          src="about.jpg"
-          sx={{
-            width: "100%",
-          }}
-        />
+        <Container maxWidth={false}>
+          <Grid container>
+            <Grid item xs={12} md={6} sx={{ padding: "30px" }}>
+              <Typography variant="h6" paragraph paddingTop={`40px`}>
+                Welcome to <strong>Statica</strong>, your personal workout tracking companion! This
+                app was built to help you keep track of your fitness journey in a simple and
+                effective way. With Statica, you can log your workouts, and see your progress over
+                time—all within a sleek, easy-to-use calendar interface.
+              </Typography>
 
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "white",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            padding: "30px",
-            borderRadius: "8px",
-            textAlign: "center",
-          }}
-        >
-          <Typography variant="h4" component="div">
-            About Statica
-          </Typography>
-        </Box>
-      </Box>
-      <Box textAlign="center">
-        <Container maxWidth={false} sx={{ marginTop: "15px", marginBottom: "15px" }}>
-          <Typography variant="body1" paragraph sx={{ maxWidth: "75%", margin: "0 auto" }}>
-            Welcome to <strong>Statica</strong>, your personal workout tracking companion! This app
-            was built to help you keep track of your fitness journey in a simple and effective way.
-            With Statica, you can log your workouts, and see your progress over time—all within a
-            sleek, easy-to-use calendar interface.
-          </Typography>
-          <Typography variant="h6" gutterBottom>
-            Features:
-          </Typography>
-          <Typography variant="body1">
-            Track Workouts: Log your workouts by date, including exercises, sets, reps, and remarks.
-          </Typography>
-          <Typography variant="body1">
-            Calendar View: View your workout schedule at a glance in a calendar layout.
-          </Typography>
-          <Typography variant="body1">
-            Progress Over Time: Monitor your progress and see how your workout routine evolves.
-          </Typography>
-          <Typography variant="body1">
-            AI Chatbot: Assists you in planning your workouts and provides helpful tips.
-          </Typography>
+              <Typography variant="h4" textAlign={"center"} padding={`30px`}>
+                Features
+              </Typography>
+
+              <Typography variant="h6">
+                Calendar View: View your workouts at a glance in a calendar layout.
+              </Typography>
+              <Typography variant="h6">
+                Progress Over Time: View your progress and see how you improve.
+              </Typography>
+              <Typography variant="h6">
+                AI Chatbot: Assists you in planning your workouts and provides tips.
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                src="about.png"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
       <Footer />
