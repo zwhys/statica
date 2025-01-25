@@ -35,16 +35,9 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
   const onSubmit: SubmitHandler<UserFormValues> = async data => {
     try {
       setIsProcessing(true)
-      const usernameAvailabilityResponse = await checkUsernameAvailable(data.username)
-      const isUsernameAvailable: boolean = usernameAvailabilityResponse.isUsernameAvailable
-      if (!isUsernameAvailable) {
-        setIsProcessing(false)
-        return
-      }
       const responseData = await addUser(data)
       const userId: number = responseData.userId
       dispatch(setUserId(userId))
-      setIsProcessing(false)
     } catch (error) {
       console.error("Error adding user:", error)
     }
@@ -103,13 +96,20 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
                     message: "Username cannot exceed 50 characters",
                   },
                   validate: async value => {
-                    const response = await checkUsernameAvailable(value)
-                    const isUsernameAvailable: boolean = response.isUsernameAvailable
-                    if (!isUsernameAvailable) {
+                    try {
+                      setIsProcessing(true)
+                      const response = await checkUsernameAvailable(value)
+                      const isUsernameAvailable: boolean = response.isUsernameAvailable
+                      if (!isUsernameAvailable) {
+                        return "Username is taken. Please choose another"
+                      }
+                      return true
+                    } catch (err) {
+                      console.error("Error validating username:", err)
+                      return "Error validating username"
+                    } finally {
                       setIsProcessing(false)
-                      return "Username is taken. Please choose another"
                     }
-                    return true
                   },
                 })}
                 error={!!errors.username}
