@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Button } from "@mui/material"
+import { Box, Typography, useTheme, Button, Container } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"
@@ -18,14 +18,23 @@ export function ReportBugsPage() {
       ) : (
         <HeaderLanding />
       )}
-      <Box textAlign="center">
-        <Typography
-          sx={{ color: theme.palette.text.primary}}
-          variant="body1"
-          paragraph
-        >
-          REPORT BUGS HERE
-        </Typography>
+      <Box
+        textAlign="center"
+        sx={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          minHeight: "100vh",
+          width: "fit-content",
+          margin: "0 auto",
+          padding: "20px",
+          borderRadius: "10px",
+        }}
+      >
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLScA92xHdi9H1FGf4_392WnDyHnTM7BF2cwmnlT9uzgjTPIizQ/viewform?embedded=true"
+          width="640"
+          height="1050"
+          style={{ border: "none" }}
+        />
       </Box>
       <Footer />
     </>

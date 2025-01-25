@@ -6,6 +6,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
+        marginTop: "1%",
         padding: "20px",
         bgcolor: theme => theme.palette.grey[900],
         color: theme => theme.palette.grey[50],
