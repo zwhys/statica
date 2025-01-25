@@ -35,7 +35,7 @@ export const fetchRecords = async (
 
 export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
   try {
-    const response = await fetch("${process.env.REACT_APP_BACKEND_URL}/exercise_types", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/exercise_types`, {
       method: "GET",
     })
     const responseExercise_types: Exercise_types[] = await response.json()

@@ -198,4 +198,3 @@ export const Register: React.FC<DisplayProps> = ({ sx, icon, text }) => {
 }
 
 export default Register
-//TODO: Fix this
