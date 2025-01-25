@@ -28,6 +28,39 @@ export default function LandingPage() {
             width: "100%",
           }}
         />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "white",
+            borderRadius: "8px",
+            textAlign: "center",
+            display: {
+              xs: "block",
+              sm: "none",
+            },
+          }}
+        >
+          <Register
+            open={isDialogOpen}
+            onClose={() => setIsDialogOpen(false)}
+            sx={{
+              display: "inline-block",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              bgcolor: theme.palette.primary.main,
+              color: theme.palette.text.secondary,
+              fontWeight: "bold",
+              typography: "h6",
+              "&:hover": {
+                bgcolor: theme.palette.primary.dark,
+              },
+            }}
+            text="Get Started"
+          />
+        </Box>
 
         <Box
           sx={{
@@ -40,12 +73,25 @@ export default function LandingPage() {
             padding: "30px",
             borderRadius: "8px",
             textAlign: "center",
+            display: {
+              xs: "none",
+              sm: "block",
+            },
           }}
         >
-          <Typography variant="h4" component="div">
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{
+              display: {
+                sm: "none",
+                md: "block",
+              },
+            }}
+          >
             Welcome to Statica
           </Typography>
-          <Typography variant="body1" component="p" sx={{ marginBottom: "20px" }}>
+          <Typography component="p" variant="body1">
             Visable Progress, Achievable Goals
           </Typography>
           <Register
@@ -89,7 +135,7 @@ export default function LandingPage() {
                 "Your personal fitness guide. The AI Assistant offers tailored workout recommendations, tracks your progress, and provides tips to help you reach your goals faster.",
             },
           ].map((item, index) => (
-            <Grid item xs={4} key={index}>
+            <Grid item xs={12} md={4} key={index}>
               <Box
                 sx={{
                   position: "relative",
