@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Button } from "@mui/material"
+import { Box, Typography, useTheme, Button, Stack } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"
@@ -12,19 +12,15 @@ export function NotFoundPage() {
   const theme = useTheme()
 
   return (
-    <>
+    <Box minHeight={`100vh`} display={`flex`} flexDirection={`column`}>
       {userId ? (
         <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
       ) : (
         <HeaderLanding />
       )}
-      <Box textAlign="center">
-        <img src="/404.png" alt="error" style={{ height: "100vh" }} />
-        <Typography
-          sx={{ color: theme.palette.text.primary, marginTop: "-375px" }}
-          variant="body1"
-          paragraph
-        >
+      <Box textAlign="center" flex={1} alignContent={`center`} paddingBottom={`10px`}>
+        <img src="/404.svg" alt="error" style={{ maxWidth: "50%" }} />
+        <Typography sx={{ color: theme.palette.text.primary }} variant="body1" paragraph>
           The page you are looking for does not exists, was renamed, or is temporarily unavailable.
         </Typography>
 
@@ -33,12 +29,10 @@ export function NotFoundPage() {
           href="/"
           sx={{
             borderRadius: "8px",
-            padding: "10px 20px",
             bgcolor: theme.palette.primary.main,
             color: theme.palette.text.secondary,
             fontWeight: "bold",
             typography: "h6",
-            marginBottom: "125px",
             "&:hover": {
               bgcolor: theme.palette.primary.dark,
             },
@@ -48,7 +42,7 @@ export function NotFoundPage() {
         </Button>
       </Box>
       <Footer />
-    </>
+    </Box>
   )
 }
 

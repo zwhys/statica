@@ -53,7 +53,14 @@ export function AboutPage() {
               </Typography>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                order: { xs: -1, md: 1 }
+              }}
+            >
               <Box
                 component="img"
                 src="about.png"
