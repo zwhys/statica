@@ -17,7 +17,6 @@ const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
   const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
-  const theme = useTheme()
 
   useEffect(() => {
     fetchExercise_types(setExerciseTypes)
@@ -40,7 +39,7 @@ const Calendar: React.FC = () => {
   }
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box>
       <DisplayRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
 
       <FullCalendar
@@ -56,7 +55,6 @@ const Calendar: React.FC = () => {
             click: handleAddButtonClick,
           },
         }}
-
         buttonText={{
           today: "Today",
         }}
@@ -67,6 +65,7 @@ const Calendar: React.FC = () => {
         select={handleDateSelect}
         eventClick={handleEventClick}
         eventTextColor="#2C2C39"
+        height={"1100px"}
       />
 
       <DisplayEntry
