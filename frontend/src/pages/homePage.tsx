@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useState } from "react"
 import { Box } from "@mui/material"
 import HeaderHome from "../components/layout/headerHome"
 import Calendar from "../components/layout/calendar"
@@ -7,18 +6,8 @@ import Footer from "../components/layout/footer"
 import SidebarMenu from "../components/sidebarMenu"
 
 export default function HomePage() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [selectedTab, setSelectedTab] = useState<React.ReactNode>(<Calendar />)
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search)
-    if (params.get("dialog") === "open") {
-      setIsDialogOpen(true)
-    }
-  }, [location, navigate])
 
   return (
     <>
@@ -27,7 +16,7 @@ export default function HomePage() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          margin: "20px 50px 50px 50px"
+          margin: "20px 50px 50px 50px",
         }}
       >
         <SidebarMenu
