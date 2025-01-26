@@ -61,13 +61,13 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
         },
       }}
     >
-      <Box sx={{ padding: 3, minWidth: 400 }}>
+      <Box sx={{ padding: 3}}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
-          User Info (Comming Soon)
+          User Info
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="age"
                 label="Age"
@@ -89,7 +89,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                 helperText={errors.age ? errors.age.message : ""}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="weight"
                 label="Weight"
@@ -164,5 +164,3 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
 }
 
 export default UserProfileDialog
-
-//TODO: Fix this

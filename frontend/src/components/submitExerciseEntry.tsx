@@ -78,7 +78,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
         },
       }}
     >
-      <Box sx={{ padding: 3, minWidth: 400 }}>
+      <Box sx={{ padding: 3}}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
           {eventData?.id === undefined ? "Add Exercise Entry" : "Edit Exercise Entry"}
         </Typography>
@@ -117,7 +117,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 <FormHelperText>{errors.exercise_type?.message}</FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="sets"
                 label="No. of Sets"
@@ -140,7 +140,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 helperText={errors.sets ? errors.sets.message : ""}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="reps"
                 label="No. of Reps"
