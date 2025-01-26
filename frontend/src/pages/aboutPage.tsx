@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Button, Grid, Container, Paper } from "@mui/material"
+import { Box, Typography, Grid, Container } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"
@@ -9,7 +9,6 @@ import { useState } from "react"
 export function AboutPage() {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const theme = useTheme()
 
   return (
     <>

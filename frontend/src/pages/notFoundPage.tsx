@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Button, Stack } from "@mui/material"
+import { Box, Typography, useTheme, Button } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"

@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material"
+import { Box } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"
@@ -53,6 +53,7 @@ export function ReportBugsPage() {
         }}
       >
         <iframe
+          title="google-form"
           src="https://docs.google.com/forms/d/e/1FAIpQLScA92xHdi9H1FGf4_392WnDyHnTM7BF2cwmnlT9uzgjTPIizQ/viewform?embedded=true"
           width={formWidth}
           height="1050"
