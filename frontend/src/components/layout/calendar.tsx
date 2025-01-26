@@ -44,7 +44,7 @@ const Calendar: React.FC = () => {
 
       <FullCalendar
         timeZone="UTC"
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: "title",
           right: "add today prev,next",

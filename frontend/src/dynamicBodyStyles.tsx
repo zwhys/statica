@@ -72,6 +72,12 @@ const DynamicGlobalStyles = () => {
         "& .fc-popover-body": {
           backgroundColor: theme.palette.background.default,
         },
+
+        "@media (max-width: 600px)": {
+          "& .fc-header-toolbar": {
+            flexDirection: "column",
+          },
+        },
       }}
     />
   )
