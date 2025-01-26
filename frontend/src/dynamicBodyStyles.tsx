@@ -72,22 +72,18 @@ const DynamicGlobalStyles = () => {
         "& .fc-popover-body": {
           backgroundColor: theme.palette.background.default,
         },
-
         "& .fc .fc-scrollgrid": {
-          border: "none !important", // Removes the main calendar border
+          border: "none !important",
         },
         "& .fc-scrollgrid td:last-of-type": {
-          border: "none !important", // Removes the main calendar border
+          border: "none !important",
         },
-
         "& .fc .fc-day": {
-          border: "none !important", // General catch-all for day-related borders
+          border: "none !important",
         },
-
         "& .fc-header-toolbar": {
           margin: "20px 50px 50px 50px",
         },
-
         "@media (max-width: 600px)": {
           "& .fc-header-toolbar": {
             flexDirection: "column",
