@@ -11,26 +11,31 @@ import {
 import HomeMenu from "../authentication/homeMenu"
 import MenuIcon from "@mui/icons-material/Menu"
 import ThemeSwitch from "../themeSwitch"
+import { useLocation } from "react-router-dom"
 
 export default function HeaderHome({ setIsDrawerOpen, isDrawerOpen }: HeaderHomeProps) {
   const theme = useTheme()
+  const location = useLocation()
+  const shouldRenderSidebar = location.pathname === "/"
 
   return (
     <>
       {" "}
-      <IconButton
-        onClick={() => {
-          setIsDrawerOpen(!isDrawerOpen)
-        }}
-        sx={{
-          position: "absolute",
-          top: 20,
-          left: 10,
-          zIndex: 1200,
-        }}
-      >
-        <MenuIcon />
-      </IconButton>
+      {shouldRenderSidebar && (
+        <IconButton
+          onClick={() => {
+            setIsDrawerOpen(!isDrawerOpen)
+          }}
+          sx={{
+            position: "absolute",
+            top: 20,
+            left: 10,
+            zIndex: 1200,
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+      )}
       <Container maxWidth={false}>
         <Toolbar sx={{ margin: 1 }}>
           <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
