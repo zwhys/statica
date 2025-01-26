@@ -12,20 +12,12 @@ export default function HomePage() {
   return (
     <>
       <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "20px 50px 50px 50px",
-        }}
-      >
-        <SidebarMenu
-          open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-          setSelectedTab={setSelectedTab}
-        />
-        {selectedTab}
-      </Box>
+      <SidebarMenu
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        setSelectedTab={setSelectedTab}
+      />
+      {selectedTab}
       <Footer />
     </>
   )

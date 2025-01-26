@@ -73,6 +73,21 @@ const DynamicGlobalStyles = () => {
           backgroundColor: theme.palette.background.default,
         },
 
+        "& .fc .fc-scrollgrid": {
+          border: "none !important", // Removes the main calendar border
+        },
+        "& .fc-scrollgrid td:last-of-type": {
+          border: "none !important", // Removes the main calendar border
+        },
+
+        "& .fc .fc-day": {
+          border: "none !important", // General catch-all for day-related borders
+        },
+
+        "& .fc-header-toolbar": {
+          margin: "20px 50px 50px 50px",
+        },
+
         "@media (max-width: 600px)": {
           "& .fc-header-toolbar": {
             flexDirection: "column",
