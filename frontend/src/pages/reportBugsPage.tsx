@@ -1,15 +1,38 @@
-import { Box, Typography, useTheme, Button, Container } from "@mui/material"
+import { Box, useTheme } from "@mui/material"
 import { useSelector } from "react-redux"
 import HeaderLanding from "../components/layout/headerLanding"
 import HeaderHome from "../components/layout/headerHome"
 import Footer from "../components/layout/footer"
 import { RootState } from "../redux/store"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export function ReportBugsPage() {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const theme = useTheme()
+  const [formWidth, setFormWidth] = useState<string | number>()
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (windowWidth <= 425) {
+      setFormWidth(windowWidth * 0.8)
+    } else if (windowWidth <= 680) {
+      setFormWidth(windowWidth * 0.9)
+    } else {
+      setFormWidth("640")
+    }
+  }, [windowWidth])
 
   return (
     <>
@@ -31,7 +54,7 @@ export function ReportBugsPage() {
       >
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLScA92xHdi9H1FGf4_392WnDyHnTM7BF2cwmnlT9uzgjTPIizQ/viewform?embedded=true"
-          width="640"
+          width={formWidth}
           height="1050"
           style={{ border: "none" }}
         />
