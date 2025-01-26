@@ -4,16 +4,17 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import {
   Button,
-  Dialog,
-  Typography,
-  TextField,
   Box,
+  CircularProgress,
+  Dialog,
   IconButton,
   InputAdornment,
-  MenuItem,
   ListItemIcon,
+  MenuItem,
+  Stack,
+  TextField,
+  Typography,
   useTheme,
-  CircularProgress,
 } from "@mui/material"
 import { Login, Visibility, VisibilityOff } from "@mui/icons-material"
 import { getUserId } from "../api"
@@ -66,22 +67,17 @@ export const LogIn: React.FC<DisplayProps> = () => {
           setIsDialogOpen(false)
           reset()
         }}
-        maxWidth="md"
         PaperProps={{
           sx: {
             borderRadius: 8,
+            width: { sx: "100%", md: "50%" },
+            maxWidth: "100vw",
           },
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex" height={500} width={722}>
-            <Box
-              flex={1}
-              display="flex"
-              justifyContent="center"
-              flexDirection="column"
-              sx={{ margin: 3 }}
-            >
+          <Stack direction={"row"}>
+            <Box sx={{ width: { xs: "100%", sm: "50%" }, margin: 3 }} alignContent="center">
               <Typography variant="h4" sx={{ textAlign: "left", marginBottom: 2 }}>
                 Login
               </Typography>
@@ -108,7 +104,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 fullWidth
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary, 
+                    color: theme.palette.text.primary,
                   },
                 }}
                 {...register("password", {
@@ -138,11 +134,22 @@ export const LogIn: React.FC<DisplayProps> = () => {
                 }}
                 disabled={isProcessing}
               >
-                {isProcessing ? <CircularProgress size="25px"/> : "Login"}
+                {isProcessing ? <CircularProgress size="25px" /> : "Login"}
               </Button>
             </Box>
-            <img src="/login.png" alt="Login" style={{ maxWidth: "100%", maxHeight: "100%" }} />
-          </Box>
+            <Box
+              component="img"
+              src="/login.png"
+              alt="Login"
+              sx={{
+                width: "50%",
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+              }}
+            />
+          </Stack>
         </form>
       </Dialog>
     </>
