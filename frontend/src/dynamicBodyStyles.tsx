@@ -16,11 +16,6 @@ const DynamicGlobalStyles = () => {
         "& .chrome-picker": {
           boxShadow: "none !important",
         },
-
-        ".fc": {
-          backgroundColor: "transparent",
-          color: theme.palette.text.primary,
-        },
         "& .fc-toolbar .fc-button": {
           backgroundColor: theme.palette.primary.main,
           border: "none",
@@ -43,10 +38,6 @@ const DynamicGlobalStyles = () => {
         },
         "& .fc-col-header-cell.fc-day-sat, & .fc-col-header-cell.fc-day-sun": {
           backgroundColor: theme.palette.background.weekend,
-        },
-        "& .fc-day-today": {
-          backgroundColor: theme.palette.primary.light,
-          fontWeight: theme.typography.fontWeightBold,
         },
         "& .fc-day-sat, & .fc-day-sun": {
           backgroundColor: theme.palette.background.weekend,
@@ -83,6 +74,9 @@ const DynamicGlobalStyles = () => {
         },
         "& .fc-header-toolbar": {
           margin: "20px 50px 50px 50px",
+        },
+        "& th[role='presentation']": {
+          border: "none",
         },
         "@media (max-width: 600px)": {
           "& .fc-header-toolbar": {
