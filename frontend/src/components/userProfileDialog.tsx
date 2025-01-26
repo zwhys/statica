@@ -39,8 +39,8 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
   }
 
   useEffect(() => {
-      fetchUserInfo(setUserInfo, userId)
-    }, [userId])
+    fetchUserInfo(setUserInfo, userId)
+  }, [userId])
 
   useEffect(() => {
     if (userInfo) {
@@ -61,7 +61,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
         },
       }}
     >
-      <Box sx={{ padding: 3}}>
+      <Box sx={{ padding: 3 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
           User Info
         </Typography>
@@ -81,7 +81,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                 }}
                 {...register("age", {
                   pattern: {
-                    value: /^[1-9]\d*$/,
+                    value: /^[1-9][0-9]{0,3}$/,
                     message: "Please enter a valid number",
                   },
                 })}
@@ -103,7 +103,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                 }}
                 {...register("weight", {
                   pattern: {
-                    value: /^[1-9]\d*$/,
+                    value: /^[1-9][0-9]{0,3}$/,
                     message: "Please enter a valid number",
                   },
                 })}
@@ -164,3 +164,5 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
 }
 
 export default UserProfileDialog
+
+//TODO: Fix call and disappear bug

@@ -50,6 +50,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
       }
       onClose()
       reset()
+      setIsProcessing(false)
     } catch (error) {
       console.error("Error submitting exercise entry:", error)
     }
@@ -78,7 +79,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
         },
       }}
     >
-      <Box sx={{ padding: 3}}>
+      <Box sx={{ padding: 3 }}>
         <Typography variant="h5" sx={{ textAlign: "left", marginBottom: 2 }}>
           {eventData?.id === undefined ? "Add Exercise Entry" : "Edit Exercise Entry"}
         </Typography>
@@ -132,7 +133,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 {...register("sets", {
                   required: "Required",
                   pattern: {
-                    value: /^[1-9]\d*$/,
+                    value: /^[1-9][0-9]{0,3}$/,
                     message: "Please enter a valid number",
                   },
                 })}
@@ -155,7 +156,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 {...register("reps", {
                   required: "Required",
                   pattern: {
-                    value: /^[1-9]\d*$/,
+                    value: /^[1-9][0-9]{0,3}$/,
                     message: "Please enter a valid number",
                   },
                 })}
@@ -201,7 +202,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                     sx={{
                       backgroundColor: theme.palette.primary.main,
                       color: theme.palette.text.secondary,
-                      minWidth: '85px'
+                      minWidth: "85px",
                     }}
                     disabled={isProcessing}
                   >
