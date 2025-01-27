@@ -4,7 +4,7 @@ import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
-import DisplayRecords from "../displayRecords"
+import DisplayCalendarRecords from "../displayCalendarRecords"
 import SubmitExerciseEntry from "../submitExerciseEntry"
 import DisplayEntry from "../displayEntry"
 import { fetchExercise_types } from "../api"
@@ -39,7 +39,7 @@ const Calendar: React.FC = () => {
 
   return (
     <Box>
-      <DisplayRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
+      <DisplayCalendarRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
 
       <FullCalendar
         timeZone="UTC"

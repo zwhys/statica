@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react"
 import { EventInput } from "@fullcalendar/core"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import { fetchRecords } from "./api"
+import { fetchCalendarRecords } from "./api"
 
-const DisplayRecords: React.FC<{
+const DisplayCalendarRecords: React.FC<{
   setEvents: (events: EventInput[]) => void
   exerciseTypes: Exercise_types[]
 }> = ({ setEvents, exerciseTypes }) => {
@@ -15,7 +15,7 @@ const DisplayRecords: React.FC<{
     const fetchData = async () => {
       if (userId !== null && exerciseTypes.length > 0 && !isFetching.current) {
         isFetching.current = true
-        await fetchRecords(userId, setEvents, exerciseTypes)
+        await fetchCalendarRecords(userId, setEvents, exerciseTypes)
         isFetching.current = false
       }
     }
@@ -30,4 +30,4 @@ const DisplayRecords: React.FC<{
   return null
 }
 
-export default DisplayRecords
+export default DisplayCalendarRecords
