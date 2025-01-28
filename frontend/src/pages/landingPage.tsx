@@ -126,7 +126,7 @@ export default function LandingPage() {
               icon: <BarChartOutlinedIcon sx={{ fontSize: 100 }} />,
               title: "Statistics",
               description:
-                "Track your progress with detailed insights on your workouts, including personal best and more. Visual graphs help you monitor trends and see improvements over time.",
+                "Track your progress with detailed insights on your workouts, including personal best and more. Monitor trends and see your improvements over time.",
             },
             {
               icon: <AssistantIcon sx={{ fontSize: 100 }} />,
