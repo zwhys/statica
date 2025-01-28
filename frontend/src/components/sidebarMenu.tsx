@@ -11,24 +11,24 @@ import {
 } from "@mui/material"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
-import Calendar from "./layout/calendar"
-import Statistics from "./layout/statistics"
+import { useNavigate } from "react-router-dom"
 
 const drawerWidth = 240
 
-export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayProps) {
+export default function SidebarMenu({ open, onClose }: DisplayProps) {
+  const navigate = useNavigate()
   const theme = useTheme()
 
   const Items = [
     {
       icon: <CalendarTodayRoundedIcon />,
       text: "Calendar",
-      tab: <Calendar />,
+      link: "/calendar",
     },
     {
       icon: <BarChartOutlinedIcon />,
       text: "Statistics",
-      tab: <Statistics />,
+      link: "/statistics",
     },
   ]
 
@@ -76,7 +76,7 @@ export default function SidebarMenu({ open, onClose, setSelectedTab }: DisplayPr
         <List>
           {Items.map(item => (
             <ListItem key={item.text} disablePadding>
-              <ListItemButton onClick={() => setSelectedTab?.(item.tab)}>
+              <ListItemButton onClick={() => navigate(item.link)}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>

@@ -5,6 +5,7 @@ import HeaderHome from "../components/layout/headerHome"
 import Footer from "../components/layout/footer"
 import { RootState } from "../redux/store"
 import { useState } from "react"
+import SidebarMenu from "../components/sidebarMenu"
 
 export function AboutPage() {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -17,6 +18,7 @@ export function AboutPage() {
       ) : (
         <HeaderLanding />
       )}
+      <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
       <Typography variant="h3" component="div" sx={{ textAlign: "center", padding: "20px" }}>
         About
       </Typography>
@@ -57,7 +59,7 @@ export function AboutPage() {
               xs={12}
               md={6}
               sx={{
-                order: { xs: -1, md: 1 }
+                order: { xs: -1, md: 1 },
               }}
             >
               <Box

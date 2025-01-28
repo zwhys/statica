@@ -16,7 +16,7 @@ import { useLocation } from "react-router-dom"
 export default function HeaderHome({ setIsDrawerOpen, isDrawerOpen }: HeaderHomeProps) {
   const theme = useTheme()
   const location = useLocation()
-  const shouldRenderSidebar = location.pathname === "/"
+  const shouldRenderSidebar = location.pathname !== "/landing"
 
   return (
     <>

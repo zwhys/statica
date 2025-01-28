@@ -16,7 +16,6 @@ interface DisplayProps {
   onClose: () => void
 
   onDelete?: () => void
-  setSelectedTab?: (tab: React.ReactNode) => void
   text?: string
   icon?: React.ReactNode
   sx?: object

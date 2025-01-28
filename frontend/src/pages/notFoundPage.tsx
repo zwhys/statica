@@ -5,6 +5,7 @@ import HeaderHome from "../components/layout/headerHome"
 import Footer from "../components/layout/footer"
 import { RootState } from "../redux/store"
 import { useState } from "react"
+import SidebarMenu from "../components/sidebarMenu"
 
 export function NotFoundPage() {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -18,6 +19,7 @@ export function NotFoundPage() {
       ) : (
         <HeaderLanding />
       )}
+      <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
       <Box textAlign="center" flex={1} alignContent={`center`} paddingBottom={`10px`}>
         <img src="/404.svg" alt="error" style={{ maxWidth: "50%" }} />
         <Typography sx={{ color: theme.palette.text.primary }} variant="body1" paragraph>
