@@ -15,6 +15,7 @@ import { AccountCircle, Logout } from "@mui/icons-material"
 import { setUserId } from "../../redux/reducer"
 import { RootState } from "../../redux/store"
 import UserProfileDialog from "../userProfileDialog"
+import { fetchUsername } from "../api"
 
 export default function HomeMenu() {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -27,28 +28,12 @@ export default function HomeMenu() {
   const theme = useTheme()
 
   useEffect(() => {
-    const fetchUsername = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId }),
-        })
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch username")
-        }
-
-        const data = await response.json()
-        setUsername(data.username)
-      } catch (error) {
-        console.error("Error fetching username:", error)
-      }
+    const fetchData = async () => {
+      const username = await fetchUsername(userId)
+      setUsername(username)
     }
 
-    fetchUsername()
+    fetchData()
   }, [userId])
 
   return (

@@ -128,6 +128,27 @@ export const checkUsernameAvailable = async (username: string) => {
   }
 }
 
+export const fetchUsername = async (userId: null | number,) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch username")
+    }
+
+    const data = await response.json()
+    return data.username
+  } catch (error) {
+    console.error("Error fetching username:", error)
+  }
+}
+
 export const addExerciseEntry = async (
   data: SubmitExerciseEntryFormValues,
   userId: null | number,
