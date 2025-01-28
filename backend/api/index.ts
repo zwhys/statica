@@ -60,6 +60,9 @@ app.get("/records", async (req, res) => {
         user_id: userId,
         deleted_at: null,
       },
+      include: {
+        exercise_types: true,
+      },
     });
     res.json(records);
   } catch (err) {

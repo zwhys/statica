@@ -21,7 +21,6 @@ interface DisplayProps {
   sx?: object
   selectedEvent?: any
   eventData?: any
-  userInfoData?: any
   date_of_entry?: Date
 }
 
@@ -52,7 +51,7 @@ type UserFormValues = {
   confirmPassword: string
 }
 
-type Exercise_types = {
+type ExerciseTypes = {
   id: number
   exercise_type: string
   colour: string
@@ -61,10 +60,13 @@ type Exercise_types = {
 type Records = {
   id: number
   user_id: number
+  title?: string
+  start?: any
   date_of_entry: string
   exercise_type: string
   sets: number
   reps: number
   remarks: string
   color: string
+  exercise_types: ExerciseTypes
 }
