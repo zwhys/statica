@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { Box, IconButton, Avatar, Menu, ListItemIcon, useTheme } from "@mui/material"
+import { PersonAdd } from "@mui/icons-material"
 import Register from "./register"
 import LogIn from "./login"
-import { PersonAdd } from "@mui/icons-material"
 
 export default function LandingMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)

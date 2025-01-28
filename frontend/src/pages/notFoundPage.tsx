@@ -1,12 +1,7 @@
 import { Box, Typography, useTheme, Button } from "@mui/material"
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
-import { useState } from "react"
 import Layout from "../components/layout/layout"
 
 export function NotFoundPage() {
-  const userId = useSelector((state: RootState) => state.user.userId)
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const theme = useTheme()
 
   return (
