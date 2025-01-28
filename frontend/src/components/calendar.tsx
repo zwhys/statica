@@ -1,14 +1,23 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Box } from "@mui/material"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import SubmitExerciseEntry from "./submitExerciseEntry"
 import DisplayEntry from "./displayEntry"
-import { fetchExercise_types, fetchRecords } from "./api"
+import { fetchExerciseTypes, fetchRecords } from "./api"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+
+const recordsToEventInput = (records: Records[]): EventInput[] => {
+  return records.map(record => ({
+    id: String(record.id),
+    title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
+    start: record.date_of_entry,
+    color: record.exercise_types.colour,
+    allDay: true,
+  }))
+}
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -16,20 +25,34 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<EventInput[]>([])
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
-  const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
+  const [exerciseTypes, setExerciseTypes] = useState<ExerciseTypes[]>([])
   const userId = useSelector((state: RootState) => state.user.userId)
   const isFetching = useRef(false)
 
   useEffect(() => {
-    fetchExercise_types(setExerciseTypes)
+    const fetchData = async () => {
+      setExerciseTypes(await fetchExerciseTypes())
+    }
+
+    fetchData()
   }, [])
 
   useEffect(() => {
     const fetchData = async () => {
-      if (userId !== null && exerciseTypes.length > 0 && !isFetching.current) {
-        isFetching.current = true
-        await fetchRecords(userId, exerciseTypes, setEvents)
-        isFetching.current = false
+      if (userId !== null && !isFetching.current) {
+        try {
+          isFetching.current = true
+          const records = await fetchRecords(userId)
+          if (records && records.length > 0) {
+            setEvents(recordsToEventInput(records))
+          } else {
+            setEvents([])
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error)
+        } finally {
+          isFetching.current = false
+        }
       }
     }
 
@@ -37,8 +60,10 @@ const Calendar: React.FC = () => {
 
     const intervalId = setInterval(fetchData, 3000)
 
-    return () => clearInterval(intervalId)
-  }, [userId, exerciseTypes, setEvents])
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [userId, exerciseTypes])
 
   const handleDateSelect = (info: any) => {
     setSelectedDate(info.start)

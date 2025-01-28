@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import { addExerciseEntry, updateExerciseEntry, fetchExercise_types } from "./api"
+import { addExerciseEntry, updateExerciseEntry, fetchExerciseTypes } from "./api"
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
-  Typography,
   FormControl,
   FormHelperText,
   Grid,
@@ -15,8 +15,8 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
   useTheme,
-  CircularProgress,
 } from "@mui/material"
 
 export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
@@ -28,7 +28,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   const [isProcessing, setIsProcessing] = useState(false)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
-  const [exercise_types, setExercise_types] = useState<Exercise_types[]>([])
+  const [exerciseTypes, setExerciseTypes] = useState<ExerciseTypes[]>([])
 
   const {
     control,
@@ -57,7 +57,11 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   }
 
   useEffect(() => {
-    fetchExercise_types(setExercise_types)
+    const fetchData = async () => {
+      setExerciseTypes(await fetchExerciseTypes())
+    }
+
+    fetchData()
   }, [])
 
   useEffect(() => {
@@ -104,7 +108,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                   rules={{ required: "Required" }}
                   render={({ field }) => (
                     <Select id="exercise_type" label="Type of Exercise" {...field}>
-                      {exercise_types.map(exercise_type => (
+                      {exerciseTypes.map(exercise_type => (
                         <MenuItem
                           key={exercise_type.exercise_type}
                           value={exercise_type.exercise_type}

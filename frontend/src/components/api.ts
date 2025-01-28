@@ -1,68 +1,26 @@
-import { EventInput } from "@fullcalendar/core"
-
-export const fetchRecords = async (
-  userId: number | null,
-  exerciseTypes: Exercise_types[],
-  setEvents?: (events: EventInput[]) => void
-) => {
+export const fetchRecords = async (userId: number | null) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/records?userId=${userId}`, {
       method: "GET",
     })
-    const responseRecords = await response.json()
-
-    const getColor = (exerciseType: string): string => {
-      const foundType = exerciseTypes.find(dbrow => dbrow.exercise_type === exerciseType)
-      return foundType ? foundType.colour : "#8785BD"
-    }
-
-    const processedRecords = responseRecords.map((record: any) => ({
-      id: String(record.id),
-      date_of_entry: record.date_of_entry,
-      exercise_type: record.exercise_type,
-      sets: record.sets,
-      reps: record.reps,
-      remarks: record.remarks,
-      color: getColor(record.exercise_type),
-    }))
-
-    if (setEvents) {
-      const calendarRecords: EventInput[] = processedRecords.map((record: any) => ({
-        id: record.id,
-        title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
-        start: record.date_of_entry,
-        exercise_type: record.exercise_type,
-        sets: record.sets,
-        reps: record.reps,
-        remarks: record.remarks,
-        allDay: true,
-        color: record.color,
-      }))
-      setEvents(calendarRecords)
-    }
-
-    return processedRecords
+    return await response.json()
   } catch (error) {
     console.error("Error fetching data:", error)
   }
 }
 
-export const fetchExercise_types = async (setExercise_types: (types: Exercise_types[]) => void) => {
+export const fetchExerciseTypes = async () => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/exercise_types`, {
       method: "GET",
     })
-    const responseExercise_types: Exercise_types[] = await response.json()
-    setExercise_types(responseExercise_types)
+    return await response.json()
   } catch (error) {
     console.error("Error fetching data:", error)
   }
 }
 
-export const fetchUserInfo = async (
-  setUserInfo: (data: UserInfoFormValues) => void,
-  userId: null | number
-) => {
+export const fetchUserInfo = async (userId: null | number) => {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/user_info?userId=${userId}`,
@@ -70,8 +28,7 @@ export const fetchUserInfo = async (
         method: "GET",
       }
     )
-    const responseUser_Info = await response.json()
-    setUserInfo(responseUser_Info)
+    return await response.json()
   } catch (error) {
     console.error("Error fetching data:", error)
   }
@@ -128,7 +85,7 @@ export const checkUsernameAvailable = async (username: string) => {
   }
 }
 
-export const fetchUsername = async (userId: null | number,) => {
+export const fetchUsername = async (userId: null | number) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, {
       method: "POST",

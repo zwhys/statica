@@ -60,13 +60,10 @@ type ExerciseTypes = {
 type Records = {
   id: number
   user_id: number
-  title?: string
-  start?: any
   date_of_entry: string
   exercise_type: string
   sets: number
   reps: number
   remarks: string
-  color: string
   exercise_types: ExerciseTypes
 }

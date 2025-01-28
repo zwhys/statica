@@ -37,9 +37,13 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
       console.error("Error editing user info:", error)
     }
   }
-
   useEffect(() => {
-    fetchUserInfo(setUserInfo, userId)
+    const fetchData = async () => {
+      const userInfo = await fetchUserInfo(userId)
+      setUserInfo(userInfo)
+    }
+
+    fetchData()
   }, [userId])
 
   useEffect(() => {
@@ -166,8 +170,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
 export default UserProfileDialog
 
 //TODO: Fix call and disappear bug
-//TODO: Fix fetching of statistics, maybe fix the colours also
-//TODO: Add running function and pb for running
+//TODO: Add timing function and personal best
 //TODO: Add AI assistant
 //TODO: Allow for user to add their own exercise types
 //TODO: Allow for user to change colour of exercise types
