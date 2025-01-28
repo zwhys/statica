@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { fetchRecords, fetchExercise_types } from "./api"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import DisplayRecords from "./displayRecords"
 import SubmitExerciseEntry from "./submitExerciseEntry"
 
 const Statistics: React.FC = () => {
@@ -44,6 +43,9 @@ const Statistics: React.FC = () => {
     }
 
     fetchData()
+    const intervalId = setInterval(fetchData, 3000)
+
+    return () => clearInterval(intervalId)
   }, [])
 
   if (loading) {
@@ -57,7 +59,6 @@ const Statistics: React.FC = () => {
         }}
       >
         <Typography variant="h3" sx={{ color: theme.palette.text.primary, fontWeight: "bold" }}>
-
           Loading...
         </Typography>
       </Box>
@@ -103,8 +104,6 @@ const Statistics: React.FC = () => {
   } else {
     return (
       <Box sx={{ minHeight: "100vh" }}>
-        <DisplayRecords setData={setData} exerciseTypes={exerciseTypes} />
-
         <Grid container sx={{ padding: { xs: "10px", sm: "50px" } }}>
           {Object.entries(groupRecords(data)).map(([exerciseType, records]) => {
             const isExpanded = expandedExercises[exerciseType] || false

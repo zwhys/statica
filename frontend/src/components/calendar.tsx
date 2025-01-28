@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Box } from "@mui/material"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
-import DisplayRecords from "./displayRecords"
 import SubmitExerciseEntry from "./submitExerciseEntry"
 import DisplayEntry from "./displayEntry"
-import { fetchExercise_types } from "./api"
+import { fetchExercise_types, fetchRecords } from "./api"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -16,10 +17,28 @@ const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
   const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
+  const userId = useSelector((state: RootState) => state.user.userId)
+  const isFetching = useRef(false)
 
   useEffect(() => {
     fetchExercise_types(setExerciseTypes)
   }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId !== null && exerciseTypes.length > 0 && !isFetching.current) {
+        isFetching.current = true
+        await fetchRecords(userId, exerciseTypes, setEvents)
+        isFetching.current = false
+      }
+    }
+
+    fetchData()
+
+    const intervalId = setInterval(fetchData, 3000)
+
+    return () => clearInterval(intervalId)
+  }, [userId, exerciseTypes, setEvents])
 
   const handleDateSelect = (info: any) => {
     setSelectedDate(info.start)
@@ -38,9 +57,7 @@ const Calendar: React.FC = () => {
   }
 
   return (
-    <Box>
-      <DisplayRecords setEvents={setEvents} exerciseTypes={exerciseTypes} />
-
+    <>
       <FullCalendar
         timeZone="UTC"
         plugins={[dayGridPlugin, interactionPlugin]}
@@ -79,7 +96,7 @@ const Calendar: React.FC = () => {
         onClose={() => setIsDialogOpen(false)}
         date_of_entry={selectedDate}
       />
-    </Box>
+    </>
   )
 }
 
