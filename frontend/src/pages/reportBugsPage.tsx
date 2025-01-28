@@ -1,14 +1,8 @@
 import { Box } from "@mui/material"
-import { useSelector } from "react-redux"
-import HeaderLanding from "../components/layout/headerLanding"
-import HeaderHome from "../components/layout/headerHome"
-import Footer from "../components/layout/footer"
-import { RootState } from "../redux/store"
 import { useEffect, useState } from "react"
+import Layout from "../components/layout/layout"
 
 export function ReportBugsPage() {
-  const userId = useSelector((state: RootState) => state.user.userId)
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [formWidth, setFormWidth] = useState<string | number>()
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
@@ -35,12 +29,7 @@ export function ReportBugsPage() {
   }, [windowWidth])
 
   return (
-    <>
-      {userId ? (
-        <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
-      ) : (
-        <HeaderLanding />
-      )}
+    <Layout>
       <Box
         textAlign="center"
         sx={{
@@ -60,8 +49,7 @@ export function ReportBugsPage() {
           style={{ border: "none" }}
         />
       </Box>
-      <Footer />
-    </>
+    </Layout>
   )
 }
 

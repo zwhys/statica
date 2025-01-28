@@ -2,32 +2,46 @@ import { EventInput } from "@fullcalendar/core"
 
 export const fetchRecords = async (
   userId: number | null,
-  setEvents: (events: EventInput[]) => void,
-  exerciseTypes: Exercise_types[]
+  exerciseTypes: Exercise_types[],
+  setEvents?: (events: EventInput[]) => void
 ) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/records?userId=${userId}`, {
       method: "GET",
     })
+    const responseRecords = await response.json()
 
     const getColor = (exerciseType: string): string => {
       const foundType = exerciseTypes.find(dbrow => dbrow.exercise_type === exerciseType)
       return foundType ? foundType.colour : "#8785BD"
     }
 
-    const responseRecords = await response.json()
-    const calendarRecords: EventInput[] = responseRecords.map((record: any) => ({
+    const processedRecords = responseRecords.map((record: any) => ({
       id: String(record.id),
-      title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
-      start: record.date_of_entry,
+      date_of_entry: record.date_of_entry,
       exercise_type: record.exercise_type,
       sets: record.sets,
       reps: record.reps,
       remarks: record.remarks,
-      allDay: true,
       color: getColor(record.exercise_type),
     }))
-    setEvents(calendarRecords)
+
+    if (setEvents) {
+      const calendarRecords: EventInput[] = processedRecords.map((record: any) => ({
+        id: record.id,
+        title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
+        start: record.date_of_entry,
+        exercise_type: record.exercise_type,
+        sets: record.sets,
+        reps: record.reps,
+        remarks: record.remarks,
+        allDay: true,
+        color: record.color,
+      }))
+      setEvents(calendarRecords)
+    }
+
+    return processedRecords
   } catch (error) {
     console.error("Error fetching data:", error)
   }
@@ -47,12 +61,15 @@ export const fetchExercise_types = async (setExercise_types: (types: Exercise_ty
 
 export const fetchUserInfo = async (
   setUserInfo: (data: UserInfoFormValues) => void,
-  userId: null | number,
+  userId: null | number
 ) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user_info?userId=${userId}`, {
-      method: "GET",
-    })
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/user_info?userId=${userId}`,
+      {
+        method: "GET",
+      }
+    )
     const responseUser_Info = await response.json()
     setUserInfo(responseUser_Info)
   } catch (error) {
@@ -177,13 +194,16 @@ export const deleteExerciseEntry = async (id: number) => {
 
 export const undoDeleteExerciseEntry = async (id: number) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/undo_delete_exercise_entry`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    })
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/undo_delete_exercise_entry`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
+    )
 
     if (!response.ok) {
       throw new Error("Failed to delete exercise entry")

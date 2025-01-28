@@ -1,15 +1,16 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "./redux/store"
-import HomePage from "./pages/homePage"
-import LandingPage from "./pages/landingPage"
-import NotFoundPage from "./pages/notFoundPage"
 import { ThemeProvider } from "@emotion/react"
 import { createTheme, CssBaseline } from "@mui/material"
 import { red, green } from "@mui/material/colors"
 import DynamicGlobalStyles from "./dynamicBodyStyles"
+import NotFoundPage from "./pages/notFoundPage"
 import ReportBugsPage from "./pages/reportBugsPage"
+import LandingPage from "./pages/landingPage"
 import AboutPage from "./pages/aboutPage"
+import StatisticsPage from "./pages/statisticsPage"
+import CalendarPage from "./pages/calendarPage"
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -20,7 +21,7 @@ const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
 const PublicRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
 
-  return !userId ? children : <Navigate to="/" />
+  return !userId ? children : <Navigate to="/calendar" />
 }
 
 const routes = [
@@ -33,10 +34,18 @@ const routes = [
     ),
   },
   {
-    path: "/",
+    path: "/calendar",
     element: (
       <PrivateRoutes>
-        <HomePage />
+        <CalendarPage />
+      </PrivateRoutes>
+    ),
+  },
+  {
+    path: "/statistics",
+    element: (
+      <PrivateRoutes>
+        <StatisticsPage />
       </PrivateRoutes>
     ),
   },

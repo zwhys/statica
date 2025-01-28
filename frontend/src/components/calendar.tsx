@@ -4,10 +4,10 @@ import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
-import DisplayRecords from "../displayRecords"
-import SubmitExerciseEntry from "../submitExerciseEntry"
-import DisplayEntry from "../displayEntry"
-import { fetchExercise_types } from "../api"
+import DisplayRecords from "./displayRecords"
+import SubmitExerciseEntry from "./submitExerciseEntry"
+import DisplayEntry from "./displayEntry"
+import { fetchExercise_types } from "./api"
 
 const Calendar: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)

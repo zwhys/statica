@@ -76,9 +76,9 @@ export default function HomeMenu() {
           {username !== null ? username : "Loading..."}
         </MenuItem>
         <UserProfileDialog
-        open={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      ></UserProfileDialog>
+          open={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+        ></UserProfileDialog>
         <Divider />
         <MenuItem
           onClick={() => {
