@@ -83,7 +83,7 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
           <Typography variant="body1" sx={{ color: theme.palette.text.primary }} paragraph>
             <strong>Day:</strong>{" "}
             {selectedEvent?.start
-              ? new Date(selectedEvent.start as string).toLocaleDateString("en-GB")
+              ? new Date(selectedEvent.start).toLocaleDateString("en-GB")
               : "No date available..."}
           </Typography>
 
