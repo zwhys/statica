@@ -56,7 +56,8 @@ const Statistics: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h3" sx={{ color: "#F8F1EB", textAlign: "center" }}>
+        <Typography variant="h3" sx={{ color: theme.palette.text.primary, fontWeight: "bold" }}>
+
           Loading...
         </Typography>
       </Box>
