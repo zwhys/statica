@@ -1,107 +1,88 @@
-import { Typography, Box, Stack, Grid, useTheme } from "@mui/material"
+import { Typography, Box, Stack, Grid } from "@mui/material"
+import { useEffect, useState } from "react"
+import DisplayStatisticsRecords from "../displayStatisticsRecords"
+import { fetchStatisticsRecords } from "../api"
+import { fetchExercise_types } from "../api"
+import { useSelector } from "react-redux"
+import { RootState } from "../../redux/store"
 
 const Statistics: React.FC = () => {
-  const theme = useTheme()
+  const userId = useSelector((state: RootState) => state.user.userId)
+  const [exerciseTypes, setExerciseTypes] = useState<Exercise_types[]>([])
+  const [data, setData] = useState<Records[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const data = [
-    {
-      id: 1,
-      label: "Push Ups",
-      color: "#42BFDD",
-      details: [
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 2, label: "SETS REPS DATES 2" },
-      ],
-    },
-    {
-      id: 2,
-      label: "Reverse Fly",
-      color: "#706C61",
-      details: [
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 2, label: "SETS REPS DATES 2" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-        { id: 3, label: "SETS REPS DATES 3" },
-      ],
-    },
-    {
-      id: 3,
-      label: "Bicep Curl",
-      color: "#DAA49A",
-      details: [
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-        { id: 1, label: "SETS REPS DATES 1" },
-      ],
-    },
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        fetchExercise_types(setExerciseTypes)
+
+        const records = await fetchStatisticsRecords(userId, exerciseTypes)
+        setData(records)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return (
+      <Typography variant="h6" sx={{ color: "#F8F1EB", textAlign: "center" }}>
+        Loading...
+      </Typography>
+    )
+  }
 
   return (
     <Box sx={{ minHeight: "100vh" }}>
+      <DisplayStatisticsRecords setData={setData} exerciseTypes={exerciseTypes} />
       <Grid container sx={{ padding: { xs: "10px", sm: "50px" } }}>
-        {data.map(item => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            key={item.id}
-            sx={{
-              padding: "5px",
-            }}
-          >
-            <Box
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "8px", padding: "10px" }}
+        {data &&
+          data.map(item => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              key={item.id}
+              sx={{
+                padding: "5px",
+              }}
             >
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "#F8F1EB",
-                }}
-              >
-                {item.label}
-              </Typography>
-
-              <Stack
-                spacing={1}
-                sx={{
-                  marginTop: 2,
-                  padding: 1,
-                  borderRadius: "8px",
-                }}
-              >
-                {item.details.map(detail => (
-                  <Box
-                    key={detail.id}
-                    sx={{
-                      padding: 1,
-                      backgroundColor: item.color,
-                      borderRadius: "4px",
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ color: "#ffffff" }}>
-                      {detail.label}
+              <Box sx={{ backgroundColor: item.color, borderRadius: "8px", padding: "10px" }}>
+                <Stack
+                  spacing={1}
+                  sx={{
+                    marginTop: 2,
+                    padding: 1,
+                    borderRadius: "8px",
+                  }}
+                >
+                  <Stack direction="row" flex={1} justifyContent="space-between">
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "#2C2C39",
+                      }}
+                    >
+                      {item.sets} x {item.reps}
                     </Typography>
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          </Grid>
-        ))}
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "#2C2C39",
+                      }}
+                    >
+                      {new Date(item.date_of_entry as string).toLocaleDateString("en-GB")}
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Grid>
+          ))}
       </Grid>
     </Box>
   )

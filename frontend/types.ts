@@ -67,4 +67,5 @@ type Records = {
   sets: number
   reps: number
   remarks: string
+  color: string
 }
