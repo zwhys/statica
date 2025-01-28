@@ -6,26 +6,26 @@ VALUES
 INSERT INTO 
     exercise_types (exercise_type, colour)
 VALUES
-    (1, 'Push Up', '#FFB6C1'),     -- Pastel Red
-    (2, 'Sit Up', '#FFDEAD'),      -- Pastel Orange
-    (3, 'Pull Up', '#FFFFE0'),     -- Pastel Yellow
-    (4, 'Squat', '#B4E7B4'),       -- Pastel Green
-    (5, 'Bench Press', '#ADD8E6'), -- Pastel Blue
-    (6, 'Shoulder Press', '#E6A8D7'), -- Pastel Purple
-    (7, 'Romanian Deadlift', '#D8BFD8'), -- Pastel Violet
-    (8, 'Bicep Curl', '#FF80BF'),  -- Light Pink
-    (9, 'Lateral Raises', '#FFB3D9'), -- Light Magenta
-    (10, 'Tricep Pushdowns', '#FF99CC'), -- Light Rose
-    (11, 'Reverse Fly', '#FFF5B7'), -- Light Yellow
-    (12, 'Bent Over Row', '#FFCC99'), -- Light Coral
-    (13, 'Calf Raises', '#C2F0C2'), -- Mint Green
-    (14, 'Running', '#D1B2FF'),    -- Light Lavender
-    (15, 'L-sit', '#C0FFB3'),      -- Light Lime Green
-    (16, 'Reverse Curl', '#FFB3A7'), -- Peachy Pink
-    (17, 'Hammer Curl', '#99D9E3'), -- Pastel Cyan
-    (18, 'Bodyweight Dip', '#A9D0F5'), -- Soft Blue
-    (19, 'Handstand', '#F7F7FF'),  -- Very Light Yellow
-    (20, 'Tuck Planche', '#FFB366'); -- Soft Orange-Red
+    (1, 'Push Up', '#A9D0F4'),       -- Chest
+    (2, 'Sit Up', '#F7F7FE'),         -- Core
+    (3, 'Pull Up', '#D1B2FF'),        -- Back
+    (4, 'Squat', '#B4E7B4'),          -- Legs
+    (5, 'Bench Press', '#A9D0F4'),    -- Chest
+    (6, 'Shoulder Press', '#FFB366'), -- Shoulders
+    (7, 'Romanian Deadlift', '#D1B2FF'), -- Back
+    (8, 'Bicep Curl', '#FF80BF'),    -- Arms
+    (9, 'Lateral Raises', '#FFB366'), -- Shoulders
+    (10, 'Tricep Pushdowns', '#FF80BF'), -- Arms
+    (11, 'Reverse Fly', '#D1B2FF'),   -- Back
+    (12, 'Bent Over Row', '#D1B2FF'), -- Back
+    (13, 'Calf Raises', '#B4E7B4'),   -- Legs
+    (14, 'Running', '#B4E7B4'),       -- Legs
+    (15, 'L-sit', '#F7F7FE'),         -- Core
+    (16, 'Reverse Curl', '#FF80BF'),  -- Arms
+    (17, 'Hammer Curl', '#FF80BF'),   -- Arms
+    (18, 'Bodyweight Dip', '#A9D0F4'), -- Chest
+    (19, 'Handstand', '#F7F7FE'),     -- Core
+    (20, 'Tuck Planche', '#F7F7FE');  -- Core
 
 
 INSERT INTO records (user_id, date_of_entry, exercise_type, sets, reps, remarks, created_at, updated_at, deleted_at) 
