@@ -125,7 +125,7 @@ export default function LandingPage() {
                 icon: <BarChartOutlinedIcon sx={{ fontSize: 100 }} />,
                 title: "Statistics",
                 description:
-                  "Track your progress with detailed insights on your workouts, including personal best and more. Monitor trends and see your improvements over time.",
+                  "Track your progress with detailed insights on your workouts, including personal best and more (Coming Soon). Monitor trends and see your improvements over time.",
               },
               {
                 icon: <AssistantIcon sx={{ fontSize: 100 }} />,
@@ -154,7 +154,7 @@ export default function LandingPage() {
                   <Typography variant="body1" sx={{ textAlign: "left", marginTop: "auto" }}>
                     {item.description}
                   </Typography>
-                  {["Statistics", "AI Assistant"].includes(item.title) && (
+                  {["AI Assistant"].includes(item.title) && (
                     <Box
                       sx={{
                         position: "absolute",
