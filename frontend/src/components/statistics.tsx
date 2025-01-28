@@ -1,9 +1,9 @@
 import { Typography, Box, Stack, Grid, Button } from "@mui/material"
 import { useEffect, useState } from "react"
-import { fetchRecords, fetchExercise_types } from "../api"
+import { fetchRecords, fetchExercise_types } from "./api"
 import { useSelector } from "react-redux"
-import { RootState } from "../../redux/store"
-import DisplayRecords from "../displayRecords"
+import { RootState } from "../redux/store"
+import DisplayRecords from "./displayRecords"
 
 const Statistics: React.FC = () => {
   const userId = useSelector((state: RootState) => state.user.userId)

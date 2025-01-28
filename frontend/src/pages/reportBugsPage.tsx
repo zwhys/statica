@@ -6,6 +6,7 @@ import Footer from "../components/layout/footer"
 import { RootState } from "../redux/store"
 import { useEffect, useState } from "react"
 import SidebarMenu from "../components/sidebarMenu"
+import Layout from "../components/layout/layout"
 
 export function ReportBugsPage() {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -36,13 +37,7 @@ export function ReportBugsPage() {
   }, [windowWidth])
 
   return (
-    <>
-      {userId ? (
-        <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
-      ) : (
-        <HeaderLanding />
-      )}
-      <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+    <Layout>
       <Box
         textAlign="center"
         sx={{
@@ -62,8 +57,7 @@ export function ReportBugsPage() {
           style={{ border: "none" }}
         />
       </Box>
-      <Footer />
-    </>
+    </Layout>
   )
 }
 

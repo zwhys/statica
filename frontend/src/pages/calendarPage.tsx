@@ -1,18 +1,10 @@
-import { useState } from "react"
-import HeaderHome from "../components/layout/headerHome"
-import Calendar from "../components/layout/calendar"
-import Footer from "../components/layout/footer"
-import SidebarMenu from "../components/sidebarMenu"
+import Calendar from "../components/calendar"
+import Layout from "../components/layout/layout"
 
 export default function CalendarPage() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
   return (
-    <>
-      <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
-      <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+    <Layout>
       <Calendar />
-      <Footer />
-    </>
+    </Layout>
   )
 }

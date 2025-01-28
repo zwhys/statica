@@ -47,7 +47,7 @@ export const LogIn: React.FC<DisplayProps> = () => {
         return
       }
       dispatch(setUserId(userId))
-      navigate("/")
+      navigate("/calendar")
     } catch (error) {
       console.error("Error during login:", error)
     }

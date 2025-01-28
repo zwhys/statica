@@ -41,7 +41,7 @@ export default function HeaderHome({ setIsDrawerOpen, isDrawerOpen }: HeaderHome
           <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
               <Link
-                href="/"
+                href="/calendar"
                 underline="none"
                 sx={{
                   display: "flex",
