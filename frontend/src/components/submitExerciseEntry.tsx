@@ -10,10 +10,10 @@ import {
   Dialog,
   FormControl,
   FormHelperText,
-  Grid,
   InputLabel,
   MenuItem,
   Select,
+  Stack,
   TextField,
   Typography,
   useTheme,
@@ -85,41 +85,40 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
           {eventData?.id === undefined ? "Add Exercise Entry" : "Edit Exercise Entry"}
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12}>
-              <FormControl
-                variant="outlined"
-                error={!!errors.exercise_type}
-                fullWidth
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary,
-                  },
-                }}
-              >
-                <InputLabel id="exercise-type-label">Type of Exercise</InputLabel>
-                <Controller
-                  name="exercise_type"
-                  control={control}
-                  defaultValue={eventData?.exercise_type || ""}
-                  rules={{ required: "Required" }}
-                  render={({ field }) => (
-                    <Select id="exercise_type" label="Type of Exercise" {...field}>
-                      {exerciseTypes?.map(exercise_type => (
-                        <MenuItem
-                          key={exercise_type.exercise_type}
-                          value={exercise_type.exercise_type}
-                        >
-                          {exercise_type.exercise_type}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-                <FormHelperText>{errors.exercise_type?.message}</FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
+          <Stack spacing={2}>
+            <FormControl
+              variant="outlined"
+              error={!!errors.exercise_type}
+              fullWidth
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.text.primary,
+                },
+              }}
+            >
+              <InputLabel id="exercise-type-label">Type of Exercise</InputLabel>
+              <Controller
+                name="exercise_type"
+                control={control}
+                defaultValue={eventData?.exercise_type || ""}
+                rules={{ required: "Required" }}
+                render={({ field }) => (
+                  <Select id="exercise_type" label="Type of Exercise" {...field}>
+                    {exerciseTypes?.map(exercise_type => (
+                      <MenuItem
+                        key={exercise_type.exercise_type}
+                        value={exercise_type.exercise_type}
+                      >
+                        {exercise_type.exercise_type}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
+              />
+              <FormHelperText>{errors.exercise_type?.message}</FormHelperText>
+            </FormControl>
+
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
                 id="sets"
                 label="No. of Sets"
@@ -141,8 +140,6 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 error={!!errors.sets}
                 helperText={errors.sets ? errors.sets.message : ""}
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
               <TextField
                 id="reps"
                 label="No. of Reps"
@@ -164,61 +161,54 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 error={!!errors.reps}
                 helperText={errors.reps ? errors.reps.message : ""}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="remarks"
-                label="Remarks"
-                multiline
-                maxRows={4}
-                variant="outlined"
-                placeholder="Eg. Feelings, Difficulty, ..."
-                fullWidth
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary,
-                  },
-                }}
-                {...register("remarks", { required: false })}
-              />
-            </Grid>
+            </Stack>
 
-            <Grid item xs={12}>
-              <Grid container justifyContent="flex-end" spacing={2}>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                      onClose()
-                      reset()
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      backgroundColor: theme.palette.primary.main,
-                      color: theme.palette.text.secondary,
-                      minWidth: "85px",
-                    }}
-                    disabled={isProcessing}
-                  >
-                    {isProcessing ? (
-                      <CircularProgress size="25px" />
-                    ) : eventData?.id === undefined ? (
-                      "Create"
-                    ) : (
-                      "Update"
-                    )}
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+            <TextField
+              id="remarks"
+              label="Remarks"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              placeholder="Eg. Feelings, Difficulty, ..."
+              fullWidth
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.text.primary,
+                },
+              }}
+              {...register("remarks", { required: false })}
+            />
+
+            <Stack direction="row" justifyContent="flex-end" spacing={2}>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  onClose()
+                  reset()
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.primary.main,
+                  color: theme.palette.text.secondary,
+                  minWidth: "85px",
+                }}
+                disabled={isProcessing}
+              >
+                {isProcessing ? (
+                  <CircularProgress size="25px" />
+                ) : eventData?.id === undefined ? (
+                  "Create"
+                ) : (
+                  "Update"
+                )}
+              </Button>
+            </Stack>
+          </Stack>
         </form>
       </Box>
     </Dialog>

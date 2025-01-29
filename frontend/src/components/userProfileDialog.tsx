@@ -7,7 +7,7 @@ import {
   Button,
   CircularProgress,
   Dialog,
-  Grid,
+  Stack,
   TextField,
   Typography,
   useTheme,
@@ -68,8 +68,8 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
           User Info
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={6}>
+          <Stack spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
                 id="age"
                 label="Age"
@@ -90,8 +90,6 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                 error={!!errors.age}
                 helperText={errors.age ? errors.age.message : ""}
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
               <TextField
                 id="weight"
                 label="Weight"
@@ -112,53 +110,46 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                 error={!!errors.weight}
                 helperText={errors.weight ? errors.weight.message : ""}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="additional_info"
-                label="Additional Information"
-                variant="outlined"
-                placeholder="Eg. Pre-existing Conditions, Dietary Restrictions, ..."
-                fullWidth
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: theme.palette.text.primary,
-                  },
-                }}
-                {...register("additional_info")}
-              />
-            </Grid>
+            </Stack>
 
-            <Grid item xs={12}>
-              <Grid container justifyContent="flex-end" spacing={2}>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                      onClose()
-                      reset()
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      backgroundColor: theme.palette.primary.main,
-                      color: theme.palette.text.secondary,
-                      minWidth: "67px",
-                    }}
-                    disabled={isProcessing}
-                  >
-                    {isProcessing ? <CircularProgress size="25px" /> : "Save"}
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+            <TextField
+              id="additional_info"
+              label="Additional Information"
+              variant="outlined"
+              placeholder="Eg. Pre-existing Conditions, Dietary Restrictions, ..."
+              fullWidth
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.text.primary,
+                },
+              }}
+              {...register("additional_info")}
+            />
+
+            <Stack direction="row" justifyContent="flex-end" spacing={2}>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  onClose()
+                  reset()
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.primary.main,
+                  color: theme.palette.text.secondary,
+                  minWidth: "67px",
+                }}
+                disabled={isProcessing}
+              >
+                {isProcessing ? <CircularProgress size="25px" /> : "Save"}
+              </Button>
+            </Stack>
+          </Stack>
         </form>
       </Box>
     </Dialog>
