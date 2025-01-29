@@ -2,31 +2,25 @@ import { Box } from "@mui/material"
 import { useEffect, useState } from "react"
 import Layout from "../components/layout/layout"
 
-export function ReportBugsPage() {
-  const [formWidth, setFormWidth] = useState<string | number>()
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(() => window.innerWidth)
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth)
+      requestAnimationFrame(() => setWidth(window.innerWidth))
     }
 
     window.addEventListener("resize", handleResize)
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  useEffect(() => {
-    if (windowWidth <= 425) {
-      setFormWidth(windowWidth * 0.8)
-    } else if (windowWidth <= 680) {
-      setFormWidth(windowWidth * 0.9)
-    } else {
-      setFormWidth("640")
-    }
-  }, [windowWidth])
+  return width
+}
+
+export function ReportBugsPage() {
+  const windowWidth = useWindowWidth()
+  const formWidth =
+    windowWidth <= 425 ? windowWidth * 0.8 : windowWidth <= 680 ? windowWidth * 0.9 : 640
 
   return (
     <Layout>
