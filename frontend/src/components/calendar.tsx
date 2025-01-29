@@ -5,7 +5,7 @@ import FullCalendar from "@fullcalendar/react"
 import interactionPlugin from "@fullcalendar/interaction"
 import SubmitExerciseEntry from "./submitExerciseEntry"
 import DisplayEntry from "./displayEntry"
-import { fetchExerciseTypes, fetchRecords } from "./api"
+import { fetchRecords } from "./api"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 
@@ -25,17 +25,8 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<EventInput[]>([])
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
-  const [exerciseTypes, setExerciseTypes] = useState<ExerciseTypes[]>([])
   const userId = useSelector((state: RootState) => state.user.userId)
   const isFetching = useRef(false)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setExerciseTypes(await fetchExerciseTypes())
-    }
-
-    fetchData()
-  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +54,7 @@ const Calendar: React.FC = () => {
     return () => {
       clearInterval(intervalId)
     }
-  }, [userId, exerciseTypes])
+  }, [userId])
 
   const handleDateSelect = (info: any) => {
     setSelectedDate(info.start)

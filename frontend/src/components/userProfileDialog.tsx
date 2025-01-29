@@ -37,6 +37,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
       console.error("Error editing user info:", error)
     }
   }
+  
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = await fetchUserInfo(userId)
@@ -169,8 +170,9 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
 
 export default UserProfileDialog
 
-//TODO: Fix call and disappear bug
+//TODO: Fix major bug
+//TODO: Add friends and view others friends
 //TODO: Add timing function and personal best
-//TODO: Add AI assistant
 //TODO: Allow for user to add their own exercise types
 //TODO: Allow for user to change colour of exercise types
+//TODO: Add AI assistant
