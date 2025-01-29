@@ -20,7 +20,12 @@ const Footer = () => {
         <Link href="/about" underline="hover" sx={{ color: "#F8F1EB" }}>
           About
         </Link>
-        <Link href="/report-bugs" underline="hover" sx={{ color: "#F8F1EB" }}>
+        <Link
+          href="https://docs.google.com/forms/d/e/1FAIpQLScA92xHdi9H1FGf4_392WnDyHnTM7BF2cwmnlT9uzgjTPIizQ/viewform"
+          target="_blank"
+          underline="hover"
+          sx={{ color: "#F8F1EB" }}
+        >
           Report Bugs
         </Link>
       </Box>

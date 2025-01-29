@@ -6,7 +6,6 @@ import { createTheme, CssBaseline } from "@mui/material"
 import { red, green } from "@mui/material/colors"
 import DynamicGlobalStyles from "./dynamicBodyStyles"
 import NotFoundPage from "./pages/notFoundPage"
-import ReportBugsPage from "./pages/reportBugsPage"
 import LandingPage from "./pages/landingPage"
 import AboutPage from "./pages/aboutPage"
 import StatisticsPage from "./pages/statisticsPage"
@@ -55,10 +54,6 @@ const routes = [
   {
     path: "/about",
     element: <AboutPage />,
-  },
-  {
-    path: "/report-bugs",
-    element: <ReportBugsPage />,
   },
   {
     path: "*",
