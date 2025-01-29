@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography, useTheme } from "@mui/material"
 import Register from "../components/authentication/register"
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
-import AssistantIcon from "@mui/icons-material/Assistant"
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Layout from "../components/layout/layout"
 
 export default function LandingPage() {
@@ -128,7 +128,7 @@ export default function LandingPage() {
                   "Track your progress with detailed insights on your workouts, including personal best and more (Coming Soon). Monitor trends and see your improvements over time.",
               },
               {
-                icon: <AssistantIcon sx={{ fontSize: 100 }} />,
+                icon: <AutoAwesomeIcon sx={{ fontSize: 100 }} />,
                 title: "AI Assistant",
                 description:
                   "Your personal fitness guide. The AI Assistant offers tailored workout recommendations, tracks your progress, and provides tips to help you reach your goals faster.",

@@ -5,6 +5,7 @@ import SidebarMenu from "../sidebarMenu"
 import Footer from "./footer"
 import HeaderHome from "./headerHome"
 import HeaderLanding from "./headerLanding"
+import ChatbotButton from "./chatbotButton"
 
 const Layout = ({ children }: { children: JSX.Element }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -16,6 +17,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
         <HeaderHome setIsDrawerOpen={setIsDrawerOpen} isDrawerOpen={isDrawerOpen} />
         <SidebarMenu open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
         {children}
+        <ChatbotButton />
         <Footer />
       </>
     )

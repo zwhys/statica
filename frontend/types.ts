@@ -22,6 +22,7 @@ interface DisplayProps {
   selectedEvent?: any
   eventData?: any
   date_of_entry?: Date
+  anchorEl?: HTMLElement | null
 }
 
 type SubmitExerciseEntryFormValues = {

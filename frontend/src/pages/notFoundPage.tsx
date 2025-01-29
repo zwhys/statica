@@ -1,5 +1,6 @@
 import { Box, Typography, useTheme, Button } from "@mui/material"
 import Layout from "../components/layout/layout"
+import ChatbotButton from "../components/layout/chatbotButton"
 
 export function NotFoundPage() {
   const theme = useTheme()
@@ -7,7 +8,7 @@ export function NotFoundPage() {
   return (
     <Layout>
       <>
-        <Box textAlign="center" flex={1} alignContent={`center`} paddingBottom={`10px`}>
+        <Box textAlign="center" flex={1} alignContent="center" minHeight="72vh">
           <img src="/404.svg" alt="error" style={{ maxWidth: "50%" }} />
           <Typography sx={{ color: theme.palette.text.primary }} variant="body1" paragraph>
             The page you are looking for does not exists, was renamed, or is temporarily
