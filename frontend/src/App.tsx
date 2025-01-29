@@ -11,6 +11,9 @@ import LandingPage from "./pages/landingPage"
 import AboutPage from "./pages/aboutPage"
 import StatisticsPage from "./pages/statisticsPage"
 import CalendarPage from "./pages/calendarPage"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
+const queryClient = new QueryClient()
 
 const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -103,11 +106,13 @@ const App = () => {
     })
 
   return (
-    <ThemeProvider theme={theme(mode)}>
-      <CssBaseline />
-      <DynamicGlobalStyles />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme(mode)}>
+        <CssBaseline />
+        <DynamicGlobalStyles />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 

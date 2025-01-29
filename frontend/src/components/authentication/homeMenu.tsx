@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import {
@@ -16,25 +16,22 @@ import { setUserId } from "../../redux/reducer"
 import { RootState } from "../../redux/store"
 import UserProfileDialog from "../userProfileDialog"
 import { fetchUsername } from "../api"
+import { useQuery } from "@tanstack/react-query"
 
 export default function HomeMenu() {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const [username, setUsername] = useState<string | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const open = Boolean(anchorEl)
   const theme = useTheme()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const username = await fetchUsername(userId)
-      setUsername(username)
-    }
-
-    fetchData()
-  }, [userId])
+  const { data: username } = useQuery({
+    queryKey: ["username", userId],
+    queryFn: () => fetchUsername(userId),
+    enabled: !!userId,
+  })
 
   return (
     <>

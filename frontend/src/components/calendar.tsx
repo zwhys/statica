@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import FullCalendar from "@fullcalendar/react"
@@ -26,35 +27,21 @@ const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date>()
   const userId = useSelector((state: RootState) => state.user.userId)
-  const isFetching = useRef(false)
+
+  const { data: records } = useQuery({
+    queryKey: ["records", userId],
+    queryFn: () => fetchRecords(userId),
+    enabled: !!userId,
+    refetchInterval: 3000,
+  })
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (userId !== null && !isFetching.current) {
-        try {
-          isFetching.current = true
-          const records = await fetchRecords(userId)
-          if (records && records.length > 0) {
-            setEvents(recordsToEventInput(records))
-          } else {
-            setEvents([])
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error)
-        } finally {
-          isFetching.current = false
-        }
-      }
+    if (records && records.length > 0) {
+      setEvents(recordsToEventInput(records))
+    } else {
+      setEvents([])
     }
-
-    fetchData()
-
-    const intervalId = setInterval(fetchData, 3000)
-
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [userId])
+  }, [records])
 
   const handleDateSelect = (info: any) => {
     setSelectedDate(info.start)

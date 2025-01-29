@@ -1,15 +1,14 @@
+import { useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { RootState } from "../redux/store"
 import { Typography, Box, Stack, Grid, Button, useTheme, CircularProgress } from "@mui/material"
-import { useEffect, useState } from "react"
 import { fetchRecords } from "./api"
 import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
 import SubmitExerciseEntry from "./submitExerciseEntry"
 
 const Statistics: React.FC = () => {
   const userId = useSelector((state: RootState) => state.user.userId)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [data, setData] = useState<Records[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
   const [expandedExercises, setExpandedExercises] = useState<Record<string, boolean>>({})
   const theme = useTheme()
 
@@ -23,33 +22,23 @@ const Statistics: React.FC = () => {
     }, {} as Record<string, Records[]>)
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const records = await fetchRecords(userId)
-        if (records && records.length > 0) {
-          const sortedRecords = records.sort(
-            (a: Records, b: Records) =>
-              new Date(b.date_of_entry).getTime() - new Date(a.date_of_entry).getTime()
-          )
-          setData(sortedRecords)
-        } else {
-          setData([])
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      } finally {
-        setLoading(false)
+  const { data: records, isLoading } = useQuery({
+    queryKey: ["records", userId],
+    queryFn: () => fetchRecords(userId),
+    enabled: !!userId,
+    refetchInterval: 3000,
+    select: (records: Records[]) => {
+      if (records && records.length > 0) {
+        return records.sort(
+          (record1: Records, record2: Records) =>
+            new Date(record2.date_of_entry).getTime() - new Date(record1.date_of_entry).getTime()
+        )
       }
-    }
+      return []
+    },
+  })
 
-    fetchData()
-    const intervalId = setInterval(fetchData, 3000)
-
-    return () => clearInterval(intervalId)
-  }, [userId])
-
-  if (loading) {
+  if (isLoading) {
     return (
       <Box
         sx={{
@@ -64,7 +53,7 @@ const Statistics: React.FC = () => {
     )
   }
 
-  if (data.length === 0) {
+  if (!records) {
     return (
       <Box
         sx={{
@@ -105,7 +94,7 @@ const Statistics: React.FC = () => {
   return (
     <Box sx={{ minHeight: "100vh" }}>
       <Grid container sx={{ padding: { xs: "10px", sm: "50px" } }}>
-        {Object.entries(groupRecords(data)).map(([exerciseType, records]) => {
+        {Object.entries(groupRecords(records)).map(([exerciseType, records]) => {
           const isExpanded = expandedExercises[exerciseType] || false
           const displayedRecords = isExpanded ? records : records.slice(0, 3)
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
@@ -13,10 +13,10 @@ import {
   useTheme,
 } from "@mui/material"
 import { fetchUserInfo, updateUserInfo } from "./api"
+import { useQuery } from "@tanstack/react-query"
 
 export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [isProcessing, setIsProcessing] = useState(false)
-  const [userInfo, setUserInfo] = useState<UserInfoFormValues | null>(null)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
 
@@ -37,15 +37,12 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
       console.error("Error editing user info:", error)
     }
   }
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      const userInfo = await fetchUserInfo(userId)
-      setUserInfo(userInfo)
-    }
 
-    fetchData()
-  }, [userId])
+  const { data: userInfo } = useQuery({
+    queryKey: ["userInfo", userId],
+    queryFn: () => fetchUserInfo(userId),
+    enabled: !!userId,
+  })
 
   useEffect(() => {
     if (userInfo) {

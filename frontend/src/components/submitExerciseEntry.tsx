@@ -18,6 +18,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
+import { useQuery } from "@tanstack/react-query"
 
 export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   open,
@@ -28,7 +29,6 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   const [isProcessing, setIsProcessing] = useState(false)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
-  const [exerciseTypes, setExerciseTypes] = useState<ExerciseTypes[]>([])
 
   const {
     control,
@@ -56,13 +56,10 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
     }
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setExerciseTypes(await fetchExerciseTypes())
-    }
-
-    fetchData()
-  }, [])
+  const { data: exerciseTypes } = useQuery<ExerciseTypes[] | undefined>({
+    queryKey: ["exerciseTypes"],
+    queryFn: fetchExerciseTypes,
+  })
 
   useEffect(() => {
     if (eventData) {
@@ -108,7 +105,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                   rules={{ required: "Required" }}
                   render={({ field }) => (
                     <Select id="exercise_type" label="Type of Exercise" {...field}>
-                      {exerciseTypes.map(exercise_type => (
+                      {exerciseTypes?.map(exercise_type => (
                         <MenuItem
                           key={exercise_type.exercise_type}
                           value={exercise_type.exercise_type}
