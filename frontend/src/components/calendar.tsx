@@ -13,9 +13,9 @@ import { RootState } from "../redux/store"
 const recordsToEventInput = (records: Records[]): EventInput[] => {
   return records.map(record => ({
     id: String(record.id),
-    title: `${record.sets} x ${record.reps} ${record.exercise_type}`,
-    start: record.date_of_entry,
-    color: record.exercise_types.colour,
+    title: `${record.sets} x ${record.reps} ${record.exerciseType}`,
+    start: record.dateOfEntry,
+    color: record.exercise_types.color,
     allDay: true,
   }))
 }
@@ -97,7 +97,7 @@ const Calendar: React.FC = () => {
       <SubmitExerciseEntry //This for adding
         open={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        date_of_entry={selectedDate}
+        dateOfEntry={selectedDate}
       />
     </>
   )

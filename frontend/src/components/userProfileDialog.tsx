@@ -113,7 +113,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
             </Stack>
 
             <TextField
-              id="additional_info"
+              id="additionalInfo"
               label="Additional Information"
               variant="outlined"
               placeholder="Eg. Pre-existing Conditions, Dietary Restrictions, ..."
@@ -123,7 +123,7 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
                   color: theme.palette.text.primary,
                 },
               }}
-              {...register("additional_info")}
+              {...register("additionalInfo")}
             />
 
             <Stack direction="row" justifyContent="flex-end" spacing={2}>
@@ -162,5 +162,5 @@ export default UserProfileDialog
 //TODO: Add friends and view others friends
 //TODO: Add timing function and personal best
 //TODO: Allow for user to add their own exercise types
-//TODO: Allow for user to change colour of exercise types
+//TODO: Allow for user to change color of exercise types
 //TODO: Add AI assistant

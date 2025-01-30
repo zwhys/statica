@@ -14,10 +14,10 @@ const Statistics: React.FC = () => {
 
   const groupRecords = (records: Records[]) => {
     return records.reduce((acc, record) => {
-      if (!acc[record.exercise_type]) {
-        acc[record.exercise_type] = []
+      if (!acc[record.exerciseType]) {
+        acc[record.exerciseType] = []
       }
-      acc[record.exercise_type].push(record)
+      acc[record.exerciseType].push(record)
       return acc
     }, {} as Record<string, Records[]>)
   }
@@ -31,7 +31,7 @@ const Statistics: React.FC = () => {
       if (records && records.length > 0) {
         return records.sort(
           (record1: Records, record2: Records) =>
-            new Date(record2.date_of_entry).getTime() - new Date(record1.date_of_entry).getTime()
+            new Date(record2.dateOfEntry).getTime() - new Date(record1.dateOfEntry).getTime()
         )
       }
       return []
@@ -85,7 +85,7 @@ const Statistics: React.FC = () => {
         <SubmitExerciseEntry
           open={isDialogOpen}
           onClose={() => setIsDialogOpen(false)}
-          date_of_entry={undefined}
+          dateOfEntry={undefined}
         />
       </Box>
     )
@@ -118,7 +118,7 @@ const Statistics: React.FC = () => {
                       direction="row"
                       justifyContent="space-between"
                       sx={{
-                        backgroundColor: item.exercise_types.colour,
+                        backgroundColor: item.exercise_types.color,
                         padding: "5px",
                         borderRadius: "4px",
                       }}
@@ -127,7 +127,7 @@ const Statistics: React.FC = () => {
                         {item.sets} x {item.reps}
                       </Typography>
                       <Typography variant="body1" sx={{ color: "#2C2C39" }}>
-                        {new Date(item.date_of_entry).toLocaleDateString("en-GB")}
+                        {new Date(item.dateOfEntry).toLocaleDateString("en-GB")}
                       </Typography>
                     </Stack>
                   ))}

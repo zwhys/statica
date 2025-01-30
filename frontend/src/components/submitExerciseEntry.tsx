@@ -24,7 +24,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
   open,
   onClose,
   eventData,
-  date_of_entry,
+  dateOfEntry,
 }) => {
   const [isProcessing, setIsProcessing] = useState(false)
   const userId = useSelector((state: RootState) => state.user.userId)
@@ -44,7 +44,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
     try {
       setIsProcessing(true)
       if (data.id === undefined) {
-        await addExerciseEntry(data, userId, date_of_entry as Date)
+        await addExerciseEntry(data, userId, dateOfEntry as Date)
       } else {
         await updateExerciseEntry(data)
       }
@@ -88,7 +88,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
           <Stack spacing={2}>
             <FormControl
               variant="outlined"
-              error={!!errors.exercise_type}
+              error={!!errors.exerciseType}
               fullWidth
               sx={{
                 "& .MuiInputLabel-root": {
@@ -98,24 +98,24 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
             >
               <InputLabel id="exercise-type-label">Type of Exercise</InputLabel>
               <Controller
-                name="exercise_type"
+                name="exerciseType"
                 control={control}
-                defaultValue={eventData?.exercise_type || ""}
+                defaultValue={eventData?.exerciseType || ""}
                 rules={{ required: "Required" }}
                 render={({ field }) => (
-                  <Select id="exercise_type" label="Type of Exercise" {...field}>
-                    {exerciseTypes?.map(exercise_type => (
+                  <Select id="exerciseType" label="Type of Exercise" {...field}>
+                    {exerciseTypes?.map(exerciseType => (
                       <MenuItem
-                        key={exercise_type.exercise_type}
-                        value={exercise_type.exercise_type}
+                        key={exerciseType.exerciseType}
+                        value={exerciseType.exerciseType}
                       >
-                        {exercise_type.exercise_type}
+                        {exerciseType.exerciseType}
                       </MenuItem>
                     ))}
                   </Select>
                 )}
               />
-              <FormHelperText>{errors.exercise_type?.message}</FormHelperText>
+              <FormHelperText>{errors.exerciseType?.message}</FormHelperText>
             </FormControl>
 
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>

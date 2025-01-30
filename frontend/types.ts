@@ -21,12 +21,12 @@ interface DisplayProps {
   sx?: object
   selectedEvent?: any
   eventData?: any
-  date_of_entry?: Date
+  dateOfEntry?: Date
 }
 
 type SubmitExerciseEntryFormValues = {
   id?: number
-  exercise_type?: string
+  exerciseType?: string
   sets?: number
   reps?: number
   remarks?: string
@@ -36,7 +36,7 @@ type UserInfoFormValues = {
   userId: number
   age?: number
   weight?: number
-  additional_info?: string
+  additionalInfo?: string
 }
 
 type User = {
@@ -53,15 +53,15 @@ type UserFormValues = {
 
 type ExerciseTypes = {
   id: number
-  exercise_type: string
-  colour: string
+  exerciseType: string
+  color: string
 }
 
 type Records = {
   id: number
-  user_id: number
-  date_of_entry: string
-  exercise_type: string
+  userId: number
+  dateOfEntry: string
+  exerciseType: string
   sets: number
   reps: number
   remarks: string

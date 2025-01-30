@@ -13,7 +13,7 @@ export const fetchRecords = async (userId: number | null) => {
 
 export const fetchExerciseTypes = async () => {
   try {
-    const response = await axios.get(`${API_URL}/exercise_types`)
+    const response = await axios.get(`${API_URL}/exercise-types`)
     return response.data
   } catch (error) {
     console.error("Error fetching data:", error)
@@ -22,7 +22,7 @@ export const fetchExerciseTypes = async () => {
 
 export const fetchUserInfo = async (userId: number | null) => {
   try {
-    const response = await axios.get(`${API_URL}/user_info`, { params: { userId } })
+    const response = await axios.get(`${API_URL}/user-info`, { params: { userId } })
     return response.data
   } catch (error) {
     console.error("Error fetching data:", error)
@@ -41,7 +41,7 @@ export const getUserId = async (data: UserFormValues) => {
 
 export const addUser = async (data: UserFormValues) => {
   try {
-    const response = await axios.post(`${API_URL}/add_user`, data)
+    const response = await axios.post(`${API_URL}/add-user`, data)
     return response.data
   } catch (error) {
     console.error("Error adding user:", error)
@@ -51,7 +51,7 @@ export const addUser = async (data: UserFormValues) => {
 
 export const checkUsernameAvailable = async (username: string) => {
   try {
-    const response = await axios.post(`${API_URL}/check_username`, { username })
+    const response = await axios.post(`${API_URL}/check-username`, { username })
     return response.data
   } catch (error) {
     console.error("Error checking username uniqueness:", error)
@@ -71,13 +71,13 @@ export const fetchUsername = async (userId: number | null) => {
 export const addExerciseEntry = async (
   data: SubmitExerciseEntryFormValues,
   userId: number | null,
-  date_of_entry: Date
+  dateOfEntry: Date
 ) => {
   try {
-    await axios.post(`${API_URL}/add_exercise_entry`, {
+    await axios.post(`${API_URL}/add-exercise-entry`, {
       ...data,
-      user_id: userId,
-      date_of_entry,
+      userId: userId,
+      dateOfEntry,
     })
   } catch (error) {
     console.error("Error adding exercise entry:", error)
@@ -86,7 +86,7 @@ export const addExerciseEntry = async (
 
 export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) => {
   try {
-    await axios.post(`${API_URL}/update_exercise_entry`, data)
+    await axios.post(`${API_URL}/update-exercise-entry`, data)
   } catch (error) {
     console.error("Error updating exercise entry:", error)
   }
@@ -94,7 +94,7 @@ export const updateExerciseEntry = async (data: SubmitExerciseEntryFormValues) =
 
 export const deleteExerciseEntry = async (id: number) => {
   try {
-    await axios.post(`${API_URL}/delete_exercise_entry`, { id })
+    await axios.post(`${API_URL}/delete-exercise-entry`, { id })
   } catch (error) {
     console.error("Error deleting exercise entry:", error)
   }
@@ -102,7 +102,7 @@ export const deleteExerciseEntry = async (id: number) => {
 
 export const undoDeleteExerciseEntry = async (id: number) => {
   try {
-    await axios.post(`${API_URL}/undo_delete_exercise_entry`, { id })
+    await axios.post(`${API_URL}/undo-delete-exercise-entry`, { id })
   } catch (error) {
     console.error("Error undoing deleteExerciseEntry:", error)
   }
@@ -110,9 +110,9 @@ export const undoDeleteExerciseEntry = async (id: number) => {
 
 export const updateUserInfo = async (data: UserInfoFormValues, userId: number | null) => {
   try {
-    await axios.post(`${API_URL}/update_user_info`, {
+    await axios.post(`${API_URL}/update-user-info`, {
       ...data,
-      user_id: userId,
+      userId: userId,
     })
   } catch (error) {
     console.error("Error updating user info:", error)

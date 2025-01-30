@@ -108,8 +108,8 @@ export const DisplayEntry: React.FC<DisplayProps> = ({ open, onClose, selectedEv
         onClose={() => setIsUpdateDialogOpen(false)}
         eventData={{
           id: selectedEvent?.id,
-          date_of_entry: selectedEvent?.start,
-          exercise_type: selectedEvent?.exercise_type,
+          dateOfEntry: selectedEvent?.start,
+          exerciseType: selectedEvent?.exerciseType,
           sets: selectedEvent?.sets,
           reps: selectedEvent?.reps,
           remarks: selectedEvent?.remarks,
