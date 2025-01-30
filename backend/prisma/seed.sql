@@ -1,34 +1,35 @@
 INSERT INTO
-    users (username, hashed_password)
+    users (username, "hashedPassword")
 VALUES
     ('admin', '$2b$10$NLTuvAVTPjucQe8fMSKwxOIflgWR4opMu4fdkYbGmm4O5GZbKbKJW');
 
 INSERT INTO 
-    exercise_types (exercise_type, colour)
+    exercise_types ("exerciseType", color)
 VALUES
-    (1, 'Push Up', '#A9D0F4'),       -- Chest
-    (2, 'Sit Up', '#F7F7FE'),         -- Core
-    (3, 'Pull Up', '#D1B2FF'),        -- Back
-    (4, 'Squat', '#B4E7B4'),          -- Legs
-    (5, 'Bench Press', '#A9D0F4'),    -- Chest
-    (6, 'Shoulder Press', '#FFB366'), -- Shoulders
-    (7, 'Romanian Deadlift', '#D1B2FF'), -- Back
-    (8, 'Bicep Curl', '#FF80BF'),    -- Arms
-    (9, 'Lateral Raises', '#FFB366'), -- Shoulders
-    (10, 'Tricep Pushdowns', '#FF80BF'), -- Arms
-    (11, 'Reverse Fly', '#D1B2FF'),   -- Back
-    (12, 'Bent Over Row', '#D1B2FF'), -- Back
-    (13, 'Calf Raises', '#B4E7B4'),   -- Legs
-    (14, 'Running', '#B4E7B4'),       -- Legs
-    (15, 'L-sit', '#F7F7FE'),         -- Core
-    (16, 'Reverse Curl', '#FF80BF'),  -- Arms
-    (17, 'Hammer Curl', '#FF80BF'),   -- Arms
-    (18, 'Bodyweight Dip', '#A9D0F4'), -- Chest
-    (19, 'Handstand', '#F7F7FE'),     -- Core
-    (20, 'Tuck Planche', '#F7F7FE');  -- Core
+   ('Bicep Curl', '#FF80BF'),    -- Arms
+   ('Hammer Curl', '#FF80BF'),   -- Arms
+   ('Reverse Curl', '#FF80BF'),  -- Arms
+   ('Tricep Pushdowns', '#FF80BF'), -- Arms
+   ('Bent Over Row', '#D1B2FF'), -- Back
+   ('Reverse Fly', '#D1B2FF'),   -- Back
+   ('Romanian Deadlift', '#D1B2FF'), -- Back
+   ('Pull Up', '#D1B2FF'),       -- Back
+   ('Bench Press', '#A9D0F4'),   -- Chest
+   ('Bodyweight Dip', '#A9D0F4'),-- Chest
+   ('Push Up', '#A9D0F4'),       -- Chest
+   ('Shoulder Press', '#FFB366'),-- Shoulders
+   ('Lateral Raises', '#FFB366'),-- Shoulders
+   ('Squat', '#B4E7B4'),         -- Legs
+   ('Calf Raises', '#B4E7B4'),   -- Legs
+   ('Running', '#B4E7B4'),       -- Legs
+   ('L-sit', '#F7F7FE'),         -- Core
+   ('Sit Up', '#F7F7FE'),        -- Core
+   ('Handstand', '#F7F7FE'),     -- Core
+   ('Tuck Planche', '#F7F7FE');  -- Core
 
 
-INSERT INTO records (user_id, date_of_entry, exercise_type, sets, reps, remarks, created_at, updated_at, deleted_at) 
+
+INSERT INTO records ("userId", "dateOfEntry", "exerciseType", sets, reps, remarks, created_at, updated_at, deleted_at) 
 VALUES
     (1, '2025-02-01', 'Push Up', 4, 15, 'Pushed for more reps', NOW(), NOW(), NULL),
     (1, '2025-02-02', 'Sit Up', 4, 20, 'Feeling the burn', NOW(), NOW(), NULL),

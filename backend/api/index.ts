@@ -42,7 +42,7 @@ app.post("/username", async (req, res) => {
   }
 });
 
-app.get("/exercise_types", async (req, res) => {
+app.get("/exercise-types", async (req, res) => {
   try {
     const exerciseTypes = await prisma.exercise_types.findMany();
     res.json(exerciseTypes);
@@ -57,7 +57,7 @@ app.get("/records", async (req, res) => {
     const userId = parseInt(req.query.userId as string, 10);
     const records = await prisma.records.findMany({
       where: {
-        user_id: userId,
+        userId: userId,
         deleted_at: null,
       },
       include: {
@@ -71,26 +71,26 @@ app.get("/records", async (req, res) => {
   }
 });
 
-app.get("/user_info", async (req, res) => {
+app.get("/user-info", async (req, res) => {
   try {
     const userId = parseInt(req.query.userId as string, 10);
-    const user_info = await prisma.users.findUnique({
+    const userInfo = await prisma.users.findUnique({
       where: { id: userId },
       select: {
         age: true,
         weight: true,
-        additional_info: true,
+        additionalInfo: true,
       },
     });
-    res.json(user_info);
+    res.json(userInfo);
   } catch (err) {
     console.error("Server error:", err);
     res.status(500).send("Server error");
   }
 });
 
-app.post("/add_exercise_entry", async (req, res) => {
-  const { user_id, exercise_type, sets, reps, remarks } = req.body;
+app.post("/add-exercise-entry", async (req, res) => {
+  const { userId, exerciseType, sets, reps, remarks } = req.body;
 
   const dateOfEntry = new Date(req.body.data_of_entry);
   const validDate = isNaN(dateOfEntry.getTime())
@@ -99,9 +99,9 @@ app.post("/add_exercise_entry", async (req, res) => {
   try {
     await prisma.records.create({
       data: {
-        user_id,
-        date_of_entry: validDate,
-        exercise_type,
+        userId,
+        dateOfEntry: validDate,
+        exerciseType,
         sets: parseInt(sets, 10),
         reps: parseInt(reps, 10),
         remarks,
@@ -114,8 +114,8 @@ app.post("/add_exercise_entry", async (req, res) => {
   }
 });
 
-app.post("/update_exercise_entry", async (req, res) => {
-  const { id, exercise_type, sets, reps, remarks } = req.body;
+app.post("/update-exercise-entry", async (req, res) => {
+  const { id, exerciseType, sets, reps, remarks } = req.body;
 
   try {
     await prisma.records.update({
@@ -123,7 +123,7 @@ app.post("/update_exercise_entry", async (req, res) => {
         id: parseInt(id, 10),
       },
       data: {
-        exercise_type,
+        exerciseType,
         sets: parseInt(sets, 10),
         reps: parseInt(reps, 10),
         remarks,
@@ -136,7 +136,7 @@ app.post("/update_exercise_entry", async (req, res) => {
   }
 });
 
-app.post("/delete_exercise_entry", async (req, res) => {
+app.post("/delete-exercise-entry", async (req, res) => {
   const { id } = req.body;
 
   try {
@@ -155,7 +155,7 @@ app.post("/delete_exercise_entry", async (req, res) => {
   }
 });
 
-app.post("/undo_delete_exercise_entry", async (req, res) => {
+app.post("/undo-delete-exercise-entry", async (req, res) => {
   const { id } = req.body;
 
   try {
@@ -174,18 +174,18 @@ app.post("/undo_delete_exercise_entry", async (req, res) => {
   }
 });
 
-app.post("/update_user_info", async (req, res) => {
-  const { user_id, age, weight, additional_info } = req.body;
+app.post("/update-user-info", async (req, res) => {
+  const { userId, age, weight, additionalInfo } = req.body;
 
   try {
     await prisma.users.update({
       where: {
-        id: user_id,
+        id: userId,
       },
       data: {
         age: parseInt(age, 10),
         weight: parseInt(weight, 10),
-        additional_info,
+        additionalInfo,
       },
     });
     res.send("User info updated successfully");
@@ -195,7 +195,7 @@ app.post("/update_user_info", async (req, res) => {
   }
 });
 
-app.post("/check_username", async (req, res) => {
+app.post("/check-username", async (req, res) => {
   const { username } = req.body;
 
   try {
@@ -210,13 +210,13 @@ app.post("/check_username", async (req, res) => {
   }
 });
 
-app.post("/add_user", async (req, res) => {
+app.post("/add-user", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const hashed_password = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.users.create({
-      data: { username, hashed_password },
+      data: { username, hashedPassword },
     });
     res.json({ userId: newUser.id });
   } catch (err) {
@@ -241,7 +241,7 @@ app.post("/authentication", async (req, res) => {
       return res.json({ userId: null });
     }
 
-    const match = await bcrypt.compare(password, user.hashed_password);
+    const match = await bcrypt.compare(password, user.hashedPassword);
 
     if (!match) {
       return res.json({ userId: null });

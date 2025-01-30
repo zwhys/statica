@@ -9,35 +9,34 @@ datasource db {
 }
 
 model exercise_types {
-  id            Int       @id @default(autoincrement())
-  exercise_type String    @unique @db.VarChar(50)
-  colour        String    @db.VarChar(7)
-  records       records[]
+  id           Int       @id @default(autoincrement())
+  exerciseType String    @unique @db.VarChar(50)
+  color        String    @db.VarChar(7)
+  records      records[]
 }
 
 model records {
-  id             Int            @id @default(autoincrement())
-  user_id        Int
-  date_of_entry  DateTime       @db.Date
-  exercise_type  String         @db.VarChar(50)
-  sets           Int            @db.SmallInt
-  reps           Int            @db.SmallInt
-  remarks        String?
-  created_at     DateTime       @default(now()) @db.Timestamp(6)
-  updated_at     DateTime       @updatedAt @db.Timestamp(6)
-  deleted_at     DateTime?      @db.Timestamp(6)
-  
-  exercise_types exercise_types @relation(fields: [exercise_type], references: [exercise_type], onDelete: NoAction, onUpdate: NoAction)
-  users          users          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  dateOfEntry  DateTime  @db.Date
+  exerciseType String    @db.VarChar(50)
+  sets         Int       @db.SmallInt
+  reps         Int       @db.SmallInt
+  remarks      String?
+  created_at   DateTime  @default(now()) @db.Timestamp(6)
+  updated_at   DateTime  @updatedAt @db.Timestamp(6)
+  deleted_at   DateTime? @db.Timestamp(6)
+
+  exercise_types exercise_types @relation(fields: [exerciseType], references: [exerciseType], onDelete: NoAction, onUpdate: NoAction)
+  users          users          @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
-
 model users {
-  id              Int       @id @default(autoincrement())
-  username        String    @unique @db.VarChar(50)
-  hashed_password String
-  age             Int?
-  weight          Float?
-  additional_info String?
-  records         records[]
+  id             Int       @id @default(autoincrement())
+  username       String    @unique @db.VarChar(50)
+  hashedPassword String
+  age            Int?
+  weight         Float?
+  additionalInfo String?
+  records        records[]
 }
