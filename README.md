@@ -1,10 +1,10 @@
-Project Name
+# Statica
 
-Description
+## Description
 
 A simple project to track workouts in a calendar. This application allows users to log and visualize their workouts over time.
 
-Features
+## Features
 
 Track workouts by date
 
@@ -24,14 +24,14 @@ Database: Supabase (PostgreSQL)
 
 Styling: Material-UI
 
-Installation
+## Installation
 
 Clone the repository:
 
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo
 
-Install dependencies:
+## Install dependencies:
 
 npm install
 
@@ -43,7 +43,7 @@ Start the development server:
 
 npm run dev
 
-Deployment
+## Deployment
 
 Frontend: Deployed on Vercel
 
