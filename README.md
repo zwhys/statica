@@ -1,4 +1,4 @@
-# [Statica](https://statica-teal.vercel.app/landing)
+# Getting started with [Statica](https://statica-teal.vercel.app/landing)
 
 Statica is a simple personal workout tracking companion, built to help users keep track of their fitness journey in a simple and effective way.
 
@@ -6,28 +6,28 @@ Statica is a simple personal workout tracking companion, built to help users kee
 
 Install [node.js](https://nodejs.org/en)
 
-## Installation
-
 ### Clone the repository:
 
-'''
+```
 git clone https://github.com/zwhys/statica.git
-cd statica
-'''
+```
 
 ## Install dependencies:
 
-'''
-cd frontend
+```
+cd statica/frontend
 npm install
-cd backend
+cd statica/backend
 npm install
-'''
+```
 
-Set up environment variables in a .env file:
+## Start the development server:
 
-DATABASE_URL=your_supabase_url
-
-Start the development server:
-
+Frontend:
+```
+npm start
+```
+Backend:
+```
 npm run dev
+```
