@@ -10,15 +10,19 @@ Install [node.js](https://nodejs.org/en)
 
 ### Clone the repository:
 
+'''
 git clone https://github.com/zwhys/statica.git
 cd statica
+'''
 
 ## Install dependencies:
 
+'''
 cd frontend
 npm install
 cd backend
 npm install
+'''
 
 Set up environment variables in a .env file:
 
