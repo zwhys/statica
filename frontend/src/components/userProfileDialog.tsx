@@ -13,30 +13,12 @@ import {
   useTheme,
 } from "@mui/material"
 import { fetchUserInfo, updateUserInfo } from "./api"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 
 export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => {
   const [isProcessing, setIsProcessing] = useState(false)
   const userId = useSelector((state: RootState) => state.user.userId)
   const theme = useTheme()
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<UserInfoFormValues>()
-
-  const onSubmit: SubmitHandler<UserInfoFormValues> = async data => {
-    try {
-      setIsProcessing(true)
-      await updateUserInfo(data, userId)
-      onClose()
-      setIsProcessing(false)
-    } catch (error) {
-      console.error("Error editing user info:", error)
-    }
-  }
 
   const { data: userInfo } = useQuery({
     queryKey: ["userInfo", userId],
@@ -44,11 +26,35 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
     enabled: !!userId,
   })
 
-  useEffect(() => {
-    if (userInfo) {
-      reset(userInfo)
-    }
-  }, [userInfo, reset])
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UserInfoFormValues>({
+    defaultValues: { userId: userId, ...userInfo },
+  })
+  console.log(userInfo)
+  const mutation = useMutation({
+    mutationFn: async (data: UserInfoFormValues) => {
+      return updateUserInfo(data, userId)
+    },
+    onSuccess: () => {
+      onClose()
+    },
+    onError: error => {
+      console.error("Error editing user info:", error)
+    },
+    onSettled: () => {
+      setIsProcessing(false)
+    },
+  })
+
+  const onSubmit: SubmitHandler<UserInfoFormValues> = data => {
+    setIsProcessing(true)
+    mutation.mutate(data)
+    reset(userInfo)
+  }
 
   return (
     <Dialog
