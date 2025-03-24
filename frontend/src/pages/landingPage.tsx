@@ -5,6 +5,7 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded"
 import AssistantIcon from "@mui/icons-material/Assistant"
 import Layout from "../components/layout/layout"
+import WarningCard from "../components/warningCard"
 
 export default function LandingPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -179,6 +180,7 @@ export default function LandingPage() {
               </Grid>
             ))}
           </Grid>
+          <WarningCard />
         </Container>
       </>
     </Layout>
