@@ -81,7 +81,7 @@ const Calendar: React.FC = () => {
         dayMaxEvents={true}
         events={events}
         selectable={true}
-        longPressDelay={5}
+        longPressDelay={250}
         select={handleDateSelect}
         eventClick={handleEventClick}
         eventTextColor="#2C2C39"
