@@ -7,7 +7,7 @@ export function NotFoundPage() {
   return (
     <Layout>
       <>
-        <Box textAlign="center" flex={1} alignContent={`center`} paddingBottom={`10px`}>
+        <Box sx={{ textAlign: "center", alignContent: "center", height: "calc(100vh - 220px)" }}>
           <img src="/404.svg" alt="error" style={{ maxWidth: "50%" }} />
           <Typography sx={{ color: theme.palette.text.primary }} variant="body1" paragraph>
             The page you are looking for does not exists, was renamed, or is temporarily
