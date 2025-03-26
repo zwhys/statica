@@ -26,12 +26,12 @@ export default function WarningCard() {
               Hide
             </Button>
           </Box>
-          <CardContent>
+          <Box sx={{ padding: "12px" }}>
             <Typography variant="body2">
               This site is no longer actively maintained and may not be secure. Do not enter any
               sensitive information.
             </Typography>
-          </CardContent>
+          </Box>
         </Card>
       ) : (
         <Button

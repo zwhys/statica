@@ -105,10 +105,7 @@ export const SubmitExerciseEntry: React.FC<DisplayProps> = ({
                 render={({ field }) => (
                   <Select id="exerciseType" label="Type of Exercise" {...field}>
                     {exerciseTypes?.map(exerciseType => (
-                      <MenuItem
-                        key={exerciseType.exerciseType}
-                        value={exerciseType.exerciseType}
-                      >
+                      <MenuItem key={exerciseType.exerciseType} value={exerciseType.exerciseType}>
                         {exerciseType.exerciseType}
                       </MenuItem>
                     ))}

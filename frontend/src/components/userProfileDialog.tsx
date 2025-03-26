@@ -163,10 +163,3 @@ export const UserProfileDialog: React.FC<DisplayProps> = ({ open, onClose }) => 
 }
 
 export default UserProfileDialog
-
-//TODO: Fix major bug
-//TODO: Add friends and view others friends
-//TODO: Add timing function and personal best
-//TODO: Allow for user to add their own exercise types
-//TODO: Allow for user to change color of exercise types
-//TODO: Add AI assistant
