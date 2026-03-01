@@ -1,4 +1,4 @@
-# Getting started with [Statica](https://statica-teal.vercel.app/landing)
+# Getting started with [Statica](https://statica.tanziyan.com/landing)
 
 Statica is a simple personal workout tracking companion, built to help users keep track of their fitness journey in a simple and effective way.
 
